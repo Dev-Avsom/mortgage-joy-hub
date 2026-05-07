@@ -14,6 +14,7 @@ import { Route as LoanProgramsRouteImport } from './routes/loan-programs'
 import { Route as LoanOfficersRouteImport } from './routes/loan-officers'
 import { Route as LearnRouteImport } from './routes/learn'
 import { Route as GetPrequalifiedRouteImport } from './routes/get-prequalified'
+import { Route as FindOfficerRouteImport } from './routes/find-officer'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CalculatorRouteImport } from './routes/calculator'
 import { Route as AffordabilityRouteImport } from './routes/affordability'
@@ -47,6 +48,11 @@ const LearnRoute = LearnRouteImport.update({
 const GetPrequalifiedRoute = GetPrequalifiedRouteImport.update({
   id: '/get-prequalified',
   path: '/get-prequalified',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FindOfficerRoute = FindOfficerRouteImport.update({
+  id: '/find-officer',
+  path: '/find-officer',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -102,6 +108,7 @@ export interface FileRoutesByFullPath {
   '/affordability': typeof AffordabilityRoute
   '/calculator': typeof CalculatorRoute
   '/contact': typeof ContactRoute
+  '/find-officer': typeof FindOfficerRoute
   '/get-prequalified': typeof GetPrequalifiedRoute
   '/learn': typeof LearnRouteWithChildren
   '/loan-officers': typeof LoanOfficersRouteWithChildren
@@ -118,6 +125,7 @@ export interface FileRoutesByTo {
   '/affordability': typeof AffordabilityRoute
   '/calculator': typeof CalculatorRoute
   '/contact': typeof ContactRoute
+  '/find-officer': typeof FindOfficerRoute
   '/get-prequalified': typeof GetPrequalifiedRoute
   '/learn': typeof LearnRouteWithChildren
   '/loan-officers': typeof LoanOfficersRouteWithChildren
@@ -135,6 +143,7 @@ export interface FileRoutesById {
   '/affordability': typeof AffordabilityRoute
   '/calculator': typeof CalculatorRoute
   '/contact': typeof ContactRoute
+  '/find-officer': typeof FindOfficerRoute
   '/get-prequalified': typeof GetPrequalifiedRoute
   '/learn': typeof LearnRouteWithChildren
   '/loan-officers': typeof LoanOfficersRouteWithChildren
@@ -153,6 +162,7 @@ export interface FileRouteTypes {
     | '/affordability'
     | '/calculator'
     | '/contact'
+    | '/find-officer'
     | '/get-prequalified'
     | '/learn'
     | '/loan-officers'
@@ -169,6 +179,7 @@ export interface FileRouteTypes {
     | '/affordability'
     | '/calculator'
     | '/contact'
+    | '/find-officer'
     | '/get-prequalified'
     | '/learn'
     | '/loan-officers'
@@ -185,6 +196,7 @@ export interface FileRouteTypes {
     | '/affordability'
     | '/calculator'
     | '/contact'
+    | '/find-officer'
     | '/get-prequalified'
     | '/learn'
     | '/loan-officers'
@@ -202,6 +214,7 @@ export interface RootRouteChildren {
   AffordabilityRoute: typeof AffordabilityRoute
   CalculatorRoute: typeof CalculatorRoute
   ContactRoute: typeof ContactRoute
+  FindOfficerRoute: typeof FindOfficerRoute
   GetPrequalifiedRoute: typeof GetPrequalifiedRoute
   LearnRoute: typeof LearnRouteWithChildren
   LoanOfficersRoute: typeof LoanOfficersRouteWithChildren
@@ -244,6 +257,13 @@ declare module '@tanstack/react-router' {
       path: '/get-prequalified'
       fullPath: '/get-prequalified'
       preLoaderRoute: typeof GetPrequalifiedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/find-officer': {
+      id: '/find-officer'
+      path: '/find-officer'
+      fullPath: '/find-officer'
+      preLoaderRoute: typeof FindOfficerRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -351,6 +371,7 @@ const rootRouteChildren: RootRouteChildren = {
   AffordabilityRoute: AffordabilityRoute,
   CalculatorRoute: CalculatorRoute,
   ContactRoute: ContactRoute,
+  FindOfficerRoute: FindOfficerRoute,
   GetPrequalifiedRoute: GetPrequalifiedRoute,
   LearnRoute: LearnRouteWithChildren,
   LoanOfficersRoute: LoanOfficersRouteWithChildren,
@@ -360,3 +381,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
