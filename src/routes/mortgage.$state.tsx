@@ -106,7 +106,7 @@ function StatePage() {
       <section className="mx-auto max-w-7xl px-4 pb-12">
         <h2 className="text-2xl font-bold">Popular {state.name} cities we serve</h2>
         <div className="mt-4 flex flex-wrap gap-2">
-          {state.popularCities.map((c) => (
+          {state.popularCities.map((c: string) => (
             <span key={c} className="rounded-full border border-border bg-secondary px-3 py-1 text-sm">
               <MapPin className="mr-1 inline h-3 w-3" />{c}, {state.code}
             </span>
