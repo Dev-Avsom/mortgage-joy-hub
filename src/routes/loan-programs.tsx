@@ -3,6 +3,8 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Home, ShieldCheck, Award, FileCheck, DollarSign, TrendingUp, Briefcase, Landmark, Wallet } from "lucide-react";
 import { LOAN_PROGRAMS } from "@/lib/loan-programs";
+import { LoanComparisonChart } from "@/components/site/LoanComparisonChart";
+import { Reveal } from "@/components/site/Reveal";
 
 const ICONS: Record<string, typeof Home> = {
   conventional: Home,
@@ -28,16 +30,22 @@ export const Route = createFileRoute("/loan-programs")({
 function ProgramsPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 py-12">
-      <h1 className="text-3xl font-bold md:text-4xl">Loan programs</h1>
-      <p className="mt-2 max-w-2xl text-muted-foreground">
-        From first-time buyers to seasoned investors, we have a loan program built for you.
-      </p>
-      <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <Reveal>
+        <h1 className="text-3xl font-bold md:text-4xl">Loan <span className="gradient-text">programs</span></h1>
+        <p className="mt-2 max-w-2xl text-muted-foreground">
+          From first-time buyers to seasoned investors, we have a loan program built for you.
+        </p>
+      </Reveal>
+
+      <LoanComparisonChart full />
+
+      <h2 className="mt-6 text-2xl font-bold">All programs</h2>
+      <div className="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {LOAN_PROGRAMS.map((p) => {
           const Icon = ICONS[p.slug] ?? Home;
           return (
-            <Card key={p.slug} className="flex flex-col p-6 transition hover:shadow-[var(--shadow-elegant)]">
-              <Icon className="h-9 w-9 text-primary" />
+            <Card key={p.slug} className="hover-lift group flex flex-col p-6">
+              <Icon className="h-9 w-9 text-primary transition-transform group-hover:scale-110" />
               <h2 className="mt-3 text-xl font-semibold">{p.name}</h2>
               <p className="mt-1 text-sm text-muted-foreground">{p.tagline}</p>
               <ul className="mt-4 space-y-1 text-sm">
