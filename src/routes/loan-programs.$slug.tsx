@@ -2,10 +2,10 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Check, X, ArrowLeft } from "lucide-react";
-import { getProgram, LOAN_PROGRAMS } from "@/lib/loan-programs";
+import { getProgram, LOAN_PROGRAMS, type LoanProgram } from "@/lib/loan-programs";
 
 export const Route = createFileRoute("/loan-programs/$slug")({
-  loader: ({ params }) => {
+  loader: ({ params }): { program: LoanProgram } => {
     const program = getProgram(params.slug);
     if (!program) throw notFound();
     return { program };
