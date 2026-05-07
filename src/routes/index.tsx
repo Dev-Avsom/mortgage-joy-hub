@@ -87,11 +87,22 @@ function HomePage() {
             </div>
             <div className="animate-fade-in-up mt-8 flex flex-wrap items-center gap-5 border-t border-white/15 pt-6 text-sm" style={{ animationDelay: "480ms" }}>
               <div className="flex items-center gap-2">
-                <div className="flex -space-x-2">
-                  {["oklch(0.84_0.13_75)", "oklch(0.7_0.15_30)", "oklch(0.65_0.18_260)", "oklch(0.7_0.15_180)"].map((c, i) => (
-                    <div key={i} className="h-7 w-7 rounded-full border-2 border-[oklch(0.2_0.05_255)]" style={{ background: c }} />
-                  ))}
-                </div>
+              <div className="flex -space-x-2">
+                {[
+                  { bg: "oklch(0.84 0.13 75)", initials: "SM" },
+                  { bg: "oklch(0.7 0.15 30)", initials: "DR" },
+                  { bg: "oklch(0.65 0.18 260)", initials: "AK" },
+                  { bg: "oklch(0.7 0.15 180)", initials: "MJ" },
+                ].map((a, i) => (
+                  <div
+                    key={i}
+                    className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-[oklch(0.2_0.05_255)] text-[10px] font-bold text-white/95"
+                    style={{ background: a.bg }}
+                  >
+                    {a.initials}
+                  </div>
+                ))}
+              </div>
                 <div className="text-white/85">
                   <div className="flex items-center gap-1">
                     {[...Array(5)].map((_, i) => <Star key={i} className="h-3.5 w-3.5 fill-[oklch(0.84_0.13_75)] text-[oklch(0.84_0.13_75)]" />)}
