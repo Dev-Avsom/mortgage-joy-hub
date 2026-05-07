@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Users, ShieldCheck, TrendingDown, Phone, ArrowRight, Home, FileCheck, Award } from "lucide-react";
+import { Users, ShieldCheck, TrendingDown, Phone, ArrowRight, FileCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { siteConfig } from "@/lib/site-config";
