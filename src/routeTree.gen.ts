@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as TcpaRouteImport } from './routes/tcpa'
+import { Route as ReviewsRouteImport } from './routes/reviews'
 import { Route as RefinanceRouteImport } from './routes/refinance'
 import { Route as ProcessRouteImport } from './routes/process'
 import { Route as PrivacyRouteImport } from './routes/privacy'
@@ -43,6 +44,11 @@ const TermsRoute = TermsRouteImport.update({
 const TcpaRoute = TcpaRouteImport.update({
   id: '/tcpa',
   path: '/tcpa',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReviewsRoute = ReviewsRouteImport.update({
+  id: '/reviews',
+  path: '/reviews',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RefinanceRoute = RefinanceRouteImport.update({
@@ -181,6 +187,7 @@ export interface FileRoutesByFullPath {
   '/privacy': typeof PrivacyRoute
   '/process': typeof ProcessRoute
   '/refinance': typeof RefinanceRoute
+  '/reviews': typeof ReviewsRoute
   '/tcpa': typeof TcpaRoute
   '/terms': typeof TermsRoute
   '/admin/login': typeof AdminLoginRoute
@@ -208,6 +215,7 @@ export interface FileRoutesByTo {
   '/privacy': typeof PrivacyRoute
   '/process': typeof ProcessRoute
   '/refinance': typeof RefinanceRoute
+  '/reviews': typeof ReviewsRoute
   '/tcpa': typeof TcpaRoute
   '/terms': typeof TermsRoute
   '/admin/login': typeof AdminLoginRoute
@@ -236,6 +244,7 @@ export interface FileRoutesById {
   '/privacy': typeof PrivacyRoute
   '/process': typeof ProcessRoute
   '/refinance': typeof RefinanceRoute
+  '/reviews': typeof ReviewsRoute
   '/tcpa': typeof TcpaRoute
   '/terms': typeof TermsRoute
   '/admin/login': typeof AdminLoginRoute
@@ -265,6 +274,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/process'
     | '/refinance'
+    | '/reviews'
     | '/tcpa'
     | '/terms'
     | '/admin/login'
@@ -292,6 +302,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/process'
     | '/refinance'
+    | '/reviews'
     | '/tcpa'
     | '/terms'
     | '/admin/login'
@@ -319,6 +330,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/process'
     | '/refinance'
+    | '/reviews'
     | '/tcpa'
     | '/terms'
     | '/admin/login'
@@ -347,6 +359,7 @@ export interface RootRouteChildren {
   PrivacyRoute: typeof PrivacyRoute
   ProcessRoute: typeof ProcessRoute
   RefinanceRoute: typeof RefinanceRoute
+  ReviewsRoute: typeof ReviewsRoute
   TcpaRoute: typeof TcpaRoute
   TermsRoute: typeof TermsRoute
 }
@@ -365,6 +378,13 @@ declare module '@tanstack/react-router' {
       path: '/tcpa'
       fullPath: '/tcpa'
       preLoaderRoute: typeof TcpaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reviews': {
+      id: '/reviews'
+      path: '/reviews'
+      fullPath: '/reviews'
+      preLoaderRoute: typeof ReviewsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/refinance': {
@@ -595,6 +615,7 @@ const rootRouteChildren: RootRouteChildren = {
   PrivacyRoute: PrivacyRoute,
   ProcessRoute: ProcessRoute,
   RefinanceRoute: RefinanceRoute,
+  ReviewsRoute: ReviewsRoute,
   TcpaRoute: TcpaRoute,
   TermsRoute: TermsRoute,
 }
