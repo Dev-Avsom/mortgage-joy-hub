@@ -14,6 +14,7 @@ import { Route as LoanOfficersRouteImport } from './routes/loan-officers'
 import { Route as GetPrequalifiedRouteImport } from './routes/get-prequalified'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CalculatorRouteImport } from './routes/calculator'
+import { Route as AffordabilityRouteImport } from './routes/affordability'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as LoanOfficersSlugRouteImport } from './routes/loan-officers.$slug'
@@ -43,6 +44,11 @@ const CalculatorRoute = CalculatorRouteImport.update({
   path: '/calculator',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AffordabilityRoute = AffordabilityRouteImport.update({
+  id: '/affordability',
+  path: '/affordability',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
@@ -62,6 +68,7 @@ const LoanOfficersSlugRoute = LoanOfficersSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/affordability': typeof AffordabilityRoute
   '/calculator': typeof CalculatorRoute
   '/contact': typeof ContactRoute
   '/get-prequalified': typeof GetPrequalifiedRoute
@@ -72,6 +79,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/affordability': typeof AffordabilityRoute
   '/calculator': typeof CalculatorRoute
   '/contact': typeof ContactRoute
   '/get-prequalified': typeof GetPrequalifiedRoute
@@ -83,6 +91,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/affordability': typeof AffordabilityRoute
   '/calculator': typeof CalculatorRoute
   '/contact': typeof ContactRoute
   '/get-prequalified': typeof GetPrequalifiedRoute
@@ -95,6 +104,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/affordability'
     | '/calculator'
     | '/contact'
     | '/get-prequalified'
@@ -105,6 +115,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
+    | '/affordability'
     | '/calculator'
     | '/contact'
     | '/get-prequalified'
@@ -115,6 +126,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/about'
+    | '/affordability'
     | '/calculator'
     | '/contact'
     | '/get-prequalified'
@@ -126,6 +138,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  AffordabilityRoute: typeof AffordabilityRoute
   CalculatorRoute: typeof CalculatorRoute
   ContactRoute: typeof ContactRoute
   GetPrequalifiedRoute: typeof GetPrequalifiedRoute
@@ -170,6 +183,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CalculatorRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/affordability': {
+      id: '/affordability'
+      path: '/affordability'
+      fullPath: '/affordability'
+      preLoaderRoute: typeof AffordabilityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/about': {
       id: '/about'
       path: '/about'
@@ -209,6 +229,7 @@ const LoanOfficersRouteWithChildren = LoanOfficersRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  AffordabilityRoute: AffordabilityRoute,
   CalculatorRoute: CalculatorRoute,
   ContactRoute: ContactRoute,
   GetPrequalifiedRoute: GetPrequalifiedRoute,
@@ -218,3 +239,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
