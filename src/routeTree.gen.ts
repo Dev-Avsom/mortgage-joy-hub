@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TermsRouteImport } from './routes/terms'
 import { Route as RefinanceRouteImport } from './routes/refinance'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as LoanProgramsRouteImport } from './routes/loan-programs'
@@ -28,6 +29,11 @@ import { Route as LoanOfficersSlugRouteImport } from './routes/loan-officers.$sl
 import { Route as LearnSlugRouteImport } from './routes/learn.$slug'
 import { Route as AdminLoginRouteImport } from './routes/admin.login'
 
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RefinanceRoute = RefinanceRouteImport.update({
   id: '/refinance',
   path: '/refinance',
@@ -135,6 +141,7 @@ export interface FileRoutesByFullPath {
   '/loan-programs': typeof LoanProgramsRoute
   '/privacy': typeof PrivacyRoute
   '/refinance': typeof RefinanceRoute
+  '/terms': typeof TermsRoute
   '/admin/login': typeof AdminLoginRoute
   '/learn/$slug': typeof LearnSlugRoute
   '/loan-officers/$slug': typeof LoanOfficersSlugRoute
@@ -155,6 +162,7 @@ export interface FileRoutesByTo {
   '/loan-programs': typeof LoanProgramsRoute
   '/privacy': typeof PrivacyRoute
   '/refinance': typeof RefinanceRoute
+  '/terms': typeof TermsRoute
   '/admin/login': typeof AdminLoginRoute
   '/learn/$slug': typeof LearnSlugRoute
   '/loan-officers/$slug': typeof LoanOfficersSlugRoute
@@ -176,6 +184,7 @@ export interface FileRoutesById {
   '/loan-programs': typeof LoanProgramsRoute
   '/privacy': typeof PrivacyRoute
   '/refinance': typeof RefinanceRoute
+  '/terms': typeof TermsRoute
   '/admin/login': typeof AdminLoginRoute
   '/learn/$slug': typeof LearnSlugRoute
   '/loan-officers/$slug': typeof LoanOfficersSlugRoute
@@ -198,6 +207,7 @@ export interface FileRouteTypes {
     | '/loan-programs'
     | '/privacy'
     | '/refinance'
+    | '/terms'
     | '/admin/login'
     | '/learn/$slug'
     | '/loan-officers/$slug'
@@ -218,6 +228,7 @@ export interface FileRouteTypes {
     | '/loan-programs'
     | '/privacy'
     | '/refinance'
+    | '/terms'
     | '/admin/login'
     | '/learn/$slug'
     | '/loan-officers/$slug'
@@ -238,6 +249,7 @@ export interface FileRouteTypes {
     | '/loan-programs'
     | '/privacy'
     | '/refinance'
+    | '/terms'
     | '/admin/login'
     | '/learn/$slug'
     | '/loan-officers/$slug'
@@ -259,10 +271,18 @@ export interface RootRouteChildren {
   LoanProgramsRoute: typeof LoanProgramsRoute
   PrivacyRoute: typeof PrivacyRoute
   RefinanceRoute: typeof RefinanceRoute
+  TermsRoute: typeof TermsRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/refinance': {
       id: '/refinance'
       path: '/refinance'
@@ -440,6 +460,7 @@ const rootRouteChildren: RootRouteChildren = {
   LoanProgramsRoute: LoanProgramsRoute,
   PrivacyRoute: PrivacyRoute,
   RefinanceRoute: RefinanceRoute,
+  TermsRoute: TermsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
