@@ -15,7 +15,7 @@ export function StickyCTA() {
           href={whatsappLink()}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center justify-center gap-2 rounded-md bg-[oklch(0.62_0.16_150)] px-3 py-2.5 text-sm font-semibold text-white"
+          className="animate-pulse-ring flex items-center justify-center gap-2 rounded-md bg-[oklch(0.62_0.16_150)] px-3 py-2.5 text-sm font-semibold text-white"
         >
           <MessageCircle className="h-4 w-4" /> WhatsApp
         </a>
