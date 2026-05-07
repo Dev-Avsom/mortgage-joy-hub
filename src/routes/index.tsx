@@ -1,8 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Calculator, Users, ShieldCheck, TrendingDown, Phone, MessageCircle, ArrowRight, Home, FileCheck, Award } from "lucide-react";
+import { Calculator, Users, ShieldCheck, TrendingDown, Phone, ArrowRight, Home, FileCheck, Award } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { siteConfig, whatsappLink } from "@/lib/site-config";
+import { siteConfig } from "@/lib/site-config";
 import { LeadForm } from "@/components/site/LeadForm";
 import { Reviews } from "@/components/site/Reviews";
 
