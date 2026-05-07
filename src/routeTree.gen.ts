@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as RefinanceRouteImport } from './routes/refinance'
 import { Route as LoanProgramsRouteImport } from './routes/loan-programs'
 import { Route as LoanOfficersRouteImport } from './routes/loan-officers'
+import { Route as LearnRouteImport } from './routes/learn'
 import { Route as GetPrequalifiedRouteImport } from './routes/get-prequalified'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CalculatorRouteImport } from './routes/calculator'
@@ -33,6 +34,11 @@ const LoanProgramsRoute = LoanProgramsRouteImport.update({
 const LoanOfficersRoute = LoanOfficersRouteImport.update({
   id: '/loan-officers',
   path: '/loan-officers',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LearnRoute = LearnRouteImport.update({
+  id: '/learn',
+  path: '/learn',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GetPrequalifiedRoute = GetPrequalifiedRouteImport.update({
@@ -78,6 +84,7 @@ export interface FileRoutesByFullPath {
   '/calculator': typeof CalculatorRoute
   '/contact': typeof ContactRoute
   '/get-prequalified': typeof GetPrequalifiedRoute
+  '/learn': typeof LearnRoute
   '/loan-officers': typeof LoanOfficersRouteWithChildren
   '/loan-programs': typeof LoanProgramsRoute
   '/refinance': typeof RefinanceRoute
@@ -90,6 +97,7 @@ export interface FileRoutesByTo {
   '/calculator': typeof CalculatorRoute
   '/contact': typeof ContactRoute
   '/get-prequalified': typeof GetPrequalifiedRoute
+  '/learn': typeof LearnRoute
   '/loan-officers': typeof LoanOfficersRouteWithChildren
   '/loan-programs': typeof LoanProgramsRoute
   '/refinance': typeof RefinanceRoute
@@ -103,6 +111,7 @@ export interface FileRoutesById {
   '/calculator': typeof CalculatorRoute
   '/contact': typeof ContactRoute
   '/get-prequalified': typeof GetPrequalifiedRoute
+  '/learn': typeof LearnRoute
   '/loan-officers': typeof LoanOfficersRouteWithChildren
   '/loan-programs': typeof LoanProgramsRoute
   '/refinance': typeof RefinanceRoute
@@ -117,6 +126,7 @@ export interface FileRouteTypes {
     | '/calculator'
     | '/contact'
     | '/get-prequalified'
+    | '/learn'
     | '/loan-officers'
     | '/loan-programs'
     | '/refinance'
@@ -129,6 +139,7 @@ export interface FileRouteTypes {
     | '/calculator'
     | '/contact'
     | '/get-prequalified'
+    | '/learn'
     | '/loan-officers'
     | '/loan-programs'
     | '/refinance'
@@ -141,6 +152,7 @@ export interface FileRouteTypes {
     | '/calculator'
     | '/contact'
     | '/get-prequalified'
+    | '/learn'
     | '/loan-officers'
     | '/loan-programs'
     | '/refinance'
@@ -154,6 +166,7 @@ export interface RootRouteChildren {
   CalculatorRoute: typeof CalculatorRoute
   ContactRoute: typeof ContactRoute
   GetPrequalifiedRoute: typeof GetPrequalifiedRoute
+  LearnRoute: typeof LearnRoute
   LoanOfficersRoute: typeof LoanOfficersRouteWithChildren
   LoanProgramsRoute: typeof LoanProgramsRoute
   RefinanceRoute: typeof RefinanceRoute
@@ -180,6 +193,13 @@ declare module '@tanstack/react-router' {
       path: '/loan-officers'
       fullPath: '/loan-officers'
       preLoaderRoute: typeof LoanOfficersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/learn': {
+      id: '/learn'
+      path: '/learn'
+      fullPath: '/learn'
+      preLoaderRoute: typeof LearnRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/get-prequalified': {
@@ -253,6 +273,7 @@ const rootRouteChildren: RootRouteChildren = {
   CalculatorRoute: CalculatorRoute,
   ContactRoute: ContactRoute,
   GetPrequalifiedRoute: GetPrequalifiedRoute,
+  LearnRoute: LearnRoute,
   LoanOfficersRoute: LoanOfficersRouteWithChildren,
   LoanProgramsRoute: LoanProgramsRoute,
   RefinanceRoute: RefinanceRoute,
@@ -260,3 +281,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
