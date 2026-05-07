@@ -1,18 +1,16 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Users, ShieldCheck, TrendingDown, Phone, ArrowRight, FileCheck } from "lucide-react";
+import { Users, ShieldCheck, TrendingDown, ArrowRight, FileCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { siteConfig } from "@/lib/site-config";
 import { Reviews } from "@/components/site/Reviews";
 import { RateQuoteWidget } from "@/components/site/RateQuoteWidget";
-import { RateAlertForm } from "@/components/site/RateAlertForm";
 import { BestRateBadge } from "@/components/site/BestRateBadge";
 import { GradientOrb } from "@/components/site/GradientOrb";
 import { Reveal } from "@/components/site/Reveal";
 import { LoanProcessTimeline } from "@/components/site/LoanProcessTimeline";
 
 import { LoanComparisonChart } from "@/components/site/LoanComparisonChart";
-import { TestimonialMarquee } from "@/components/site/TestimonialMarquee";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -106,40 +104,8 @@ function HomePage() {
       {/* Process timeline */}
       <LoanProcessTimeline />
 
-      {/* Testimonial marquee */}
-      <TestimonialMarquee />
-
-      {/* CTA strip */}
+      {/* Social proof */}
       <Reviews />
-
-      {/* Rate alert */}
-      <section className="mx-auto max-w-7xl px-4">
-        <RateAlertForm />
-      </section>
-
-      {/* CTA strip */}
-      <section className="mx-auto max-w-7xl px-4 py-16">
-        <Reveal>
-          <div
-            className="animated-bg relative flex flex-col items-center justify-between gap-6 overflow-hidden rounded-2xl px-8 py-10 text-white shadow-[var(--shadow-elegant)] md:flex-row"
-            style={{ background: "var(--gradient-hero)" }}
-          >
-            <GradientOrb className="-top-20 -right-20" color="oklch(0.84 0.13 75 / 0.5)" size={300} />
-            <div className="relative">
-              <h2 className="text-2xl font-bold">Ready to talk numbers?</h2>
-              <p className="mt-1 text-white/80">Speak with a licensed loan officer today.</p>
-            </div>
-            <div className="relative flex flex-wrap gap-3">
-              <Button asChild size="lg" className="glow-on-hover bg-white text-primary hover:bg-white/90">
-                <a href={siteConfig.phoneHref}><Phone className="mr-2 h-5 w-5" /> {siteConfig.phone}</a>
-              </Button>
-              <Button asChild size="lg" variant="outline" className="border-white/40 bg-white/10 text-white hover:bg-white/20">
-                <Link to="/loan-officers">Meet our team</Link>
-              </Button>
-            </div>
-          </div>
-        </Reveal>
-      </section>
     </>
   );
 }
