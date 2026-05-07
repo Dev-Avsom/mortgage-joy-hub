@@ -15,6 +15,7 @@ import { Route as RefinanceRouteImport } from './routes/refinance'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as LoanProgramsRouteImport } from './routes/loan-programs'
 import { Route as LoanOfficersRouteImport } from './routes/loan-officers'
+import { Route as LicensesRouteImport } from './routes/licenses'
 import { Route as LearnRouteImport } from './routes/learn'
 import { Route as JoinRouteImport } from './routes/join'
 import { Route as GetPrequalifiedRouteImport } from './routes/get-prequalified'
@@ -58,6 +59,11 @@ const LoanProgramsRoute = LoanProgramsRouteImport.update({
 const LoanOfficersRoute = LoanOfficersRouteImport.update({
   id: '/loan-officers',
   path: '/loan-officers',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LicensesRoute = LicensesRouteImport.update({
+  id: '/licenses',
+  path: '/licenses',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LearnRoute = LearnRouteImport.update({
@@ -143,6 +149,7 @@ export interface FileRoutesByFullPath {
   '/get-prequalified': typeof GetPrequalifiedRoute
   '/join': typeof JoinRoute
   '/learn': typeof LearnRouteWithChildren
+  '/licenses': typeof LicensesRoute
   '/loan-officers': typeof LoanOfficersRouteWithChildren
   '/loan-programs': typeof LoanProgramsRoute
   '/privacy': typeof PrivacyRoute
@@ -165,6 +172,7 @@ export interface FileRoutesByTo {
   '/get-prequalified': typeof GetPrequalifiedRoute
   '/join': typeof JoinRoute
   '/learn': typeof LearnRouteWithChildren
+  '/licenses': typeof LicensesRoute
   '/loan-officers': typeof LoanOfficersRouteWithChildren
   '/loan-programs': typeof LoanProgramsRoute
   '/privacy': typeof PrivacyRoute
@@ -188,6 +196,7 @@ export interface FileRoutesById {
   '/get-prequalified': typeof GetPrequalifiedRoute
   '/join': typeof JoinRoute
   '/learn': typeof LearnRouteWithChildren
+  '/licenses': typeof LicensesRoute
   '/loan-officers': typeof LoanOfficersRouteWithChildren
   '/loan-programs': typeof LoanProgramsRoute
   '/privacy': typeof PrivacyRoute
@@ -212,6 +221,7 @@ export interface FileRouteTypes {
     | '/get-prequalified'
     | '/join'
     | '/learn'
+    | '/licenses'
     | '/loan-officers'
     | '/loan-programs'
     | '/privacy'
@@ -234,6 +244,7 @@ export interface FileRouteTypes {
     | '/get-prequalified'
     | '/join'
     | '/learn'
+    | '/licenses'
     | '/loan-officers'
     | '/loan-programs'
     | '/privacy'
@@ -256,6 +267,7 @@ export interface FileRouteTypes {
     | '/get-prequalified'
     | '/join'
     | '/learn'
+    | '/licenses'
     | '/loan-officers'
     | '/loan-programs'
     | '/privacy'
@@ -279,6 +291,7 @@ export interface RootRouteChildren {
   GetPrequalifiedRoute: typeof GetPrequalifiedRoute
   JoinRoute: typeof JoinRoute
   LearnRoute: typeof LearnRouteWithChildren
+  LicensesRoute: typeof LicensesRoute
   LoanOfficersRoute: typeof LoanOfficersRouteWithChildren
   LoanProgramsRoute: typeof LoanProgramsRoute
   PrivacyRoute: typeof PrivacyRoute
@@ -329,6 +342,13 @@ declare module '@tanstack/react-router' {
       path: '/loan-officers'
       fullPath: '/loan-officers'
       preLoaderRoute: typeof LoanOfficersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/licenses': {
+      id: '/licenses'
+      path: '/licenses'
+      fullPath: '/licenses'
+      preLoaderRoute: typeof LicensesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/learn': {
@@ -476,6 +496,7 @@ const rootRouteChildren: RootRouteChildren = {
   GetPrequalifiedRoute: GetPrequalifiedRoute,
   JoinRoute: JoinRoute,
   LearnRoute: LearnRouteWithChildren,
+  LicensesRoute: LicensesRoute,
   LoanOfficersRoute: LoanOfficersRouteWithChildren,
   LoanProgramsRoute: LoanProgramsRoute,
   PrivacyRoute: PrivacyRoute,
