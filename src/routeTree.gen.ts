@@ -9,38 +9,154 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as LoanProgramsRouteImport } from './routes/loan-programs'
+import { Route as LoanOfficersRouteImport } from './routes/loan-officers'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as CalculatorRouteImport } from './routes/calculator'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as LoanOfficersSlugRouteImport } from './routes/loan-officers.$slug'
 
+const LoanProgramsRoute = LoanProgramsRouteImport.update({
+  id: '/loan-programs',
+  path: '/loan-programs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoanOfficersRoute = LoanOfficersRouteImport.update({
+  id: '/loan-officers',
+  path: '/loan-officers',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CalculatorRoute = CalculatorRouteImport.update({
+  id: '/calculator',
+  path: '/calculator',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LoanOfficersSlugRoute = LoanOfficersSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => LoanOfficersRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/calculator': typeof CalculatorRoute
+  '/contact': typeof ContactRoute
+  '/loan-officers': typeof LoanOfficersRouteWithChildren
+  '/loan-programs': typeof LoanProgramsRoute
+  '/loan-officers/$slug': typeof LoanOfficersSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/calculator': typeof CalculatorRoute
+  '/contact': typeof ContactRoute
+  '/loan-officers': typeof LoanOfficersRouteWithChildren
+  '/loan-programs': typeof LoanProgramsRoute
+  '/loan-officers/$slug': typeof LoanOfficersSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/calculator': typeof CalculatorRoute
+  '/contact': typeof ContactRoute
+  '/loan-officers': typeof LoanOfficersRouteWithChildren
+  '/loan-programs': typeof LoanProgramsRoute
+  '/loan-officers/$slug': typeof LoanOfficersSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/calculator'
+    | '/contact'
+    | '/loan-officers'
+    | '/loan-programs'
+    | '/loan-officers/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/calculator'
+    | '/contact'
+    | '/loan-officers'
+    | '/loan-programs'
+    | '/loan-officers/$slug'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/calculator'
+    | '/contact'
+    | '/loan-officers'
+    | '/loan-programs'
+    | '/loan-officers/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  CalculatorRoute: typeof CalculatorRoute
+  ContactRoute: typeof ContactRoute
+  LoanOfficersRoute: typeof LoanOfficersRouteWithChildren
+  LoanProgramsRoute: typeof LoanProgramsRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/loan-programs': {
+      id: '/loan-programs'
+      path: '/loan-programs'
+      fullPath: '/loan-programs'
+      preLoaderRoute: typeof LoanProgramsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/loan-officers': {
+      id: '/loan-officers'
+      path: '/loan-officers'
+      fullPath: '/loan-officers'
+      preLoaderRoute: typeof LoanOfficersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/calculator': {
+      id: '/calculator'
+      path: '/calculator'
+      fullPath: '/calculator'
+      preLoaderRoute: typeof CalculatorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,22 +164,36 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/loan-officers/$slug': {
+      id: '/loan-officers/$slug'
+      path: '/$slug'
+      fullPath: '/loan-officers/$slug'
+      preLoaderRoute: typeof LoanOfficersSlugRouteImport
+      parentRoute: typeof LoanOfficersRoute
+    }
   }
 }
 
+interface LoanOfficersRouteChildren {
+  LoanOfficersSlugRoute: typeof LoanOfficersSlugRoute
+}
+
+const LoanOfficersRouteChildren: LoanOfficersRouteChildren = {
+  LoanOfficersSlugRoute: LoanOfficersSlugRoute,
+}
+
+const LoanOfficersRouteWithChildren = LoanOfficersRoute._addFileChildren(
+  LoanOfficersRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  CalculatorRoute: CalculatorRoute,
+  ContactRoute: ContactRoute,
+  LoanOfficersRoute: LoanOfficersRouteWithChildren,
+  LoanProgramsRoute: LoanProgramsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
