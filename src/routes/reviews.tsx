@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Star } from "lucide-react";
+import { Reveal } from "@/components/site/Reveal";
 
 export const Route = createFileRoute("/reviews")({
   head: () => ({
@@ -30,18 +31,21 @@ const REVIEWS = [
 function ReviewsPage() {
   return (
     <div className="mx-auto max-w-6xl px-4 py-12">
+      <Reveal>
       <div className="text-center">
-        <h1 className="text-3xl font-bold md:text-4xl">What clients say</h1>
+        <h1 className="text-3xl font-bold md:text-4xl">What <span className="gradient-text">clients say</span></h1>
         <div className="mt-3 flex items-center justify-center gap-1">
           {Array.from({ length: 5 }).map((_, i) => (
-            <Star key={i} className="h-6 w-6 fill-amber-400 text-amber-400" />
+            <Star key={i} className="h-6 w-6 fill-amber-400 text-amber-400 animate-scale-in" style={{ animationDelay: `${i * 80}ms` }} />
           ))}
         </div>
         <p className="mt-2 text-sm text-muted-foreground">4.9 average from 1,200+ verified reviews</p>
       </div>
+      </Reveal>
       <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-        {REVIEWS.map((r) => (
-          <Card key={r.name + r.city} className="flex flex-col p-6">
+        {REVIEWS.map((r, idx) => (
+          <Reveal key={r.name + r.city} delay={idx * 70}>
+          <Card className="hover-lift flex h-full flex-col p-6">
             <div className="flex items-center gap-1">
               {Array.from({ length: r.rating }).map((_, i) => (
                 <Star key={i} className="h-4 w-4 fill-amber-400 text-amber-400" />
@@ -53,12 +57,13 @@ function ReviewsPage() {
               <p className="text-xs text-muted-foreground">{r.city} · {r.program}</p>
             </div>
           </Card>
+          </Reveal>
         ))}
       </div>
-      <div className="mt-12 rounded-2xl p-8 text-center text-white" style={{ background: "var(--gradient-hero)" }}>
+      <div className="animated-bg mt-12 rounded-2xl p-8 text-center text-white" style={{ background: "var(--gradient-hero)" }}>
         <h2 className="text-2xl font-bold">Join 1,200+ happy homeowners</h2>
         <p className="mt-2 text-white/80">Get pre-qualified in 5 minutes. Soft credit pull, no obligation.</p>
-        <Button asChild size="lg" variant="secondary" className="mt-4"><Link to="/get-prequalified">Get pre-qualified</Link></Button>
+        <Button asChild size="lg" variant="secondary" className="glow-on-hover mt-4"><Link to="/get-prequalified">Get pre-qualified</Link></Button>
       </div>
     </div>
   );
