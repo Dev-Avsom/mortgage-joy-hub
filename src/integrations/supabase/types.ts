@@ -14,7 +14,113 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      leads: {
+        Row: {
+          calc_inputs: Json | null
+          calc_results: Json | null
+          created_at: string
+          email: string
+          id: string
+          loan_officer_id: string | null
+          message: string | null
+          name: string
+          phone: string | null
+          source: string
+        }
+        Insert: {
+          calc_inputs?: Json | null
+          calc_results?: Json | null
+          created_at?: string
+          email: string
+          id?: string
+          loan_officer_id?: string | null
+          message?: string | null
+          name: string
+          phone?: string | null
+          source?: string
+        }
+        Update: {
+          calc_inputs?: Json | null
+          calc_results?: Json | null
+          created_at?: string
+          email?: string
+          id?: string
+          loan_officer_id?: string | null
+          message?: string | null
+          name?: string
+          phone?: string | null
+          source?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "leads_loan_officer_id_fkey"
+            columns: ["loan_officer_id"]
+            isOneToOne: false
+            referencedRelation: "loan_officers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      loan_officers: {
+        Row: {
+          bio: string | null
+          created_at: string
+          display_order: number
+          email: string | null
+          id: string
+          is_active: boolean
+          languages: string[]
+          name: string
+          nmls_id: string | null
+          phone: string | null
+          photo_url: string | null
+          slug: string
+          specialties: string[]
+          title: string | null
+          updated_at: string
+          whatsapp: string | null
+          years_experience: number | null
+        }
+        Insert: {
+          bio?: string | null
+          created_at?: string
+          display_order?: number
+          email?: string | null
+          id?: string
+          is_active?: boolean
+          languages?: string[]
+          name: string
+          nmls_id?: string | null
+          phone?: string | null
+          photo_url?: string | null
+          slug: string
+          specialties?: string[]
+          title?: string | null
+          updated_at?: string
+          whatsapp?: string | null
+          years_experience?: number | null
+        }
+        Update: {
+          bio?: string | null
+          created_at?: string
+          display_order?: number
+          email?: string | null
+          id?: string
+          is_active?: boolean
+          languages?: string[]
+          name?: string
+          nmls_id?: string | null
+          phone?: string | null
+          photo_url?: string | null
+          slug?: string
+          specialties?: string[]
+          title?: string | null
+          updated_at?: string
+          whatsapp?: string | null
+          years_experience?: number | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
