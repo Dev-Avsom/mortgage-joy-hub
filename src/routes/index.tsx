@@ -10,7 +10,7 @@ import { BestRateBadge } from "@/components/site/BestRateBadge";
 import { GradientOrb } from "@/components/site/GradientOrb";
 import { Reveal } from "@/components/site/Reveal";
 import { LoanProcessTimeline } from "@/components/site/LoanProcessTimeline";
-import { StatsCounters } from "@/components/site/StatsCounters";
+
 import { LoanComparisonChart } from "@/components/site/LoanComparisonChart";
 import { TestimonialMarquee } from "@/components/site/TestimonialMarquee";
 
@@ -73,9 +73,6 @@ function HomePage() {
           </div>
         </div>
       </section>
-
-      {/* Stats counters */}
-      <StatsCounters />
 
       {/* Value props */}
       <section className="mx-auto max-w-7xl px-4 py-16">
