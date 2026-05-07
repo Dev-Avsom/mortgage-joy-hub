@@ -20,6 +20,7 @@ import { Route as LearnRouteImport } from './routes/learn'
 import { Route as JoinRouteImport } from './routes/join'
 import { Route as GetPrequalifiedRouteImport } from './routes/get-prequalified'
 import { Route as FindOfficerRouteImport } from './routes/find-officer'
+import { Route as FaqRouteImport } from './routes/faq'
 import { Route as DocumentsRouteImport } from './routes/documents'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CalculatorRouteImport } from './routes/calculator'
@@ -86,6 +87,11 @@ const GetPrequalifiedRoute = GetPrequalifiedRouteImport.update({
 const FindOfficerRoute = FindOfficerRouteImport.update({
   id: '/find-officer',
   path: '/find-officer',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DocumentsRoute = DocumentsRouteImport.update({
@@ -158,6 +164,7 @@ export interface FileRoutesByFullPath {
   '/calculator': typeof CalculatorRoute
   '/contact': typeof ContactRoute
   '/documents': typeof DocumentsRoute
+  '/faq': typeof FaqRoute
   '/find-officer': typeof FindOfficerRoute
   '/get-prequalified': typeof GetPrequalifiedRoute
   '/join': typeof JoinRoute
@@ -183,6 +190,7 @@ export interface FileRoutesByTo {
   '/calculator': typeof CalculatorRoute
   '/contact': typeof ContactRoute
   '/documents': typeof DocumentsRoute
+  '/faq': typeof FaqRoute
   '/find-officer': typeof FindOfficerRoute
   '/get-prequalified': typeof GetPrequalifiedRoute
   '/join': typeof JoinRoute
@@ -209,6 +217,7 @@ export interface FileRoutesById {
   '/calculator': typeof CalculatorRoute
   '/contact': typeof ContactRoute
   '/documents': typeof DocumentsRoute
+  '/faq': typeof FaqRoute
   '/find-officer': typeof FindOfficerRoute
   '/get-prequalified': typeof GetPrequalifiedRoute
   '/join': typeof JoinRoute
@@ -236,6 +245,7 @@ export interface FileRouteTypes {
     | '/calculator'
     | '/contact'
     | '/documents'
+    | '/faq'
     | '/find-officer'
     | '/get-prequalified'
     | '/join'
@@ -261,6 +271,7 @@ export interface FileRouteTypes {
     | '/calculator'
     | '/contact'
     | '/documents'
+    | '/faq'
     | '/find-officer'
     | '/get-prequalified'
     | '/join'
@@ -286,6 +297,7 @@ export interface FileRouteTypes {
     | '/calculator'
     | '/contact'
     | '/documents'
+    | '/faq'
     | '/find-officer'
     | '/get-prequalified'
     | '/join'
@@ -312,6 +324,7 @@ export interface RootRouteChildren {
   CalculatorRoute: typeof CalculatorRoute
   ContactRoute: typeof ContactRoute
   DocumentsRoute: typeof DocumentsRoute
+  FaqRoute: typeof FaqRoute
   FindOfficerRoute: typeof FindOfficerRoute
   GetPrequalifiedRoute: typeof GetPrequalifiedRoute
   JoinRoute: typeof JoinRoute
@@ -402,6 +415,13 @@ declare module '@tanstack/react-router' {
       path: '/find-officer'
       fullPath: '/find-officer'
       preLoaderRoute: typeof FindOfficerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/documents': {
@@ -544,6 +564,7 @@ const rootRouteChildren: RootRouteChildren = {
   CalculatorRoute: CalculatorRoute,
   ContactRoute: ContactRoute,
   DocumentsRoute: DocumentsRoute,
+  FaqRoute: FaqRoute,
   FindOfficerRoute: FindOfficerRoute,
   GetPrequalifiedRoute: GetPrequalifiedRoute,
   JoinRoute: JoinRoute,
@@ -559,3 +580,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
