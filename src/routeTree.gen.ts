@@ -20,6 +20,7 @@ import { Route as AffordabilityRouteImport } from './routes/affordability'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as LoanOfficersSlugRouteImport } from './routes/loan-officers.$slug'
+import { Route as LearnSlugRouteImport } from './routes/learn.$slug'
 
 const RefinanceRoute = RefinanceRouteImport.update({
   id: '/refinance',
@@ -76,6 +77,11 @@ const LoanOfficersSlugRoute = LoanOfficersSlugRouteImport.update({
   path: '/$slug',
   getParentRoute: () => LoanOfficersRoute,
 } as any)
+const LearnSlugRoute = LearnSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => LearnRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -84,10 +90,11 @@ export interface FileRoutesByFullPath {
   '/calculator': typeof CalculatorRoute
   '/contact': typeof ContactRoute
   '/get-prequalified': typeof GetPrequalifiedRoute
-  '/learn': typeof LearnRoute
+  '/learn': typeof LearnRouteWithChildren
   '/loan-officers': typeof LoanOfficersRouteWithChildren
   '/loan-programs': typeof LoanProgramsRoute
   '/refinance': typeof RefinanceRoute
+  '/learn/$slug': typeof LearnSlugRoute
   '/loan-officers/$slug': typeof LoanOfficersSlugRoute
 }
 export interface FileRoutesByTo {
@@ -97,10 +104,11 @@ export interface FileRoutesByTo {
   '/calculator': typeof CalculatorRoute
   '/contact': typeof ContactRoute
   '/get-prequalified': typeof GetPrequalifiedRoute
-  '/learn': typeof LearnRoute
+  '/learn': typeof LearnRouteWithChildren
   '/loan-officers': typeof LoanOfficersRouteWithChildren
   '/loan-programs': typeof LoanProgramsRoute
   '/refinance': typeof RefinanceRoute
+  '/learn/$slug': typeof LearnSlugRoute
   '/loan-officers/$slug': typeof LoanOfficersSlugRoute
 }
 export interface FileRoutesById {
@@ -111,10 +119,11 @@ export interface FileRoutesById {
   '/calculator': typeof CalculatorRoute
   '/contact': typeof ContactRoute
   '/get-prequalified': typeof GetPrequalifiedRoute
-  '/learn': typeof LearnRoute
+  '/learn': typeof LearnRouteWithChildren
   '/loan-officers': typeof LoanOfficersRouteWithChildren
   '/loan-programs': typeof LoanProgramsRoute
   '/refinance': typeof RefinanceRoute
+  '/learn/$slug': typeof LearnSlugRoute
   '/loan-officers/$slug': typeof LoanOfficersSlugRoute
 }
 export interface FileRouteTypes {
@@ -130,6 +139,7 @@ export interface FileRouteTypes {
     | '/loan-officers'
     | '/loan-programs'
     | '/refinance'
+    | '/learn/$slug'
     | '/loan-officers/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -143,6 +153,7 @@ export interface FileRouteTypes {
     | '/loan-officers'
     | '/loan-programs'
     | '/refinance'
+    | '/learn/$slug'
     | '/loan-officers/$slug'
   id:
     | '__root__'
@@ -156,6 +167,7 @@ export interface FileRouteTypes {
     | '/loan-officers'
     | '/loan-programs'
     | '/refinance'
+    | '/learn/$slug'
     | '/loan-officers/$slug'
   fileRoutesById: FileRoutesById
 }
@@ -166,7 +178,7 @@ export interface RootRouteChildren {
   CalculatorRoute: typeof CalculatorRoute
   ContactRoute: typeof ContactRoute
   GetPrequalifiedRoute: typeof GetPrequalifiedRoute
-  LearnRoute: typeof LearnRoute
+  LearnRoute: typeof LearnRouteWithChildren
   LoanOfficersRoute: typeof LoanOfficersRouteWithChildren
   LoanProgramsRoute: typeof LoanProgramsRoute
   RefinanceRoute: typeof RefinanceRoute
@@ -251,8 +263,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoanOfficersSlugRouteImport
       parentRoute: typeof LoanOfficersRoute
     }
+    '/learn/$slug': {
+      id: '/learn/$slug'
+      path: '/$slug'
+      fullPath: '/learn/$slug'
+      preLoaderRoute: typeof LearnSlugRouteImport
+      parentRoute: typeof LearnRoute
+    }
   }
 }
+
+interface LearnRouteChildren {
+  LearnSlugRoute: typeof LearnSlugRoute
+}
+
+const LearnRouteChildren: LearnRouteChildren = {
+  LearnSlugRoute: LearnSlugRoute,
+}
+
+const LearnRouteWithChildren = LearnRoute._addFileChildren(LearnRouteChildren)
 
 interface LoanOfficersRouteChildren {
   LoanOfficersSlugRoute: typeof LoanOfficersSlugRoute
@@ -273,7 +302,7 @@ const rootRouteChildren: RootRouteChildren = {
   CalculatorRoute: CalculatorRoute,
   ContactRoute: ContactRoute,
   GetPrequalifiedRoute: GetPrequalifiedRoute,
-  LearnRoute: LearnRoute,
+  LearnRoute: LearnRouteWithChildren,
   LoanOfficersRoute: LoanOfficersRouteWithChildren,
   LoanProgramsRoute: LoanProgramsRoute,
   RefinanceRoute: RefinanceRoute,
