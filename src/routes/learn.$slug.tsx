@@ -1,5 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { articles, getArticle } from "@/lib/articles";
+import { articles, getArticle, type Article } from "@/lib/articles";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight, Clock } from "lucide-react";
@@ -39,7 +39,7 @@ export const Route = createFileRoute("/learn/$slug")({
 });
 
 function ArticlePage() {
-  const { article } = Route.useLoaderData();
+  const { article } = Route.useLoaderData() as { article: Article };
 
   // Render markdown-ish (## headings + paragraphs)
   const blocks = article.body.split("\n\n").map((b, i) => {
