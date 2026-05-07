@@ -39,6 +39,8 @@ export function Footer() {
             <li><Link to="/about" className="text-muted-foreground hover:text-primary">About</Link></li>
             <li><Link to="/contact" className="text-muted-foreground hover:text-primary">Contact</Link></li>
             <li><Link to="/get-prequalified" className="text-muted-foreground hover:text-primary">Get Pre-qualified</Link></li>
+            <li><Link to="/join" className="text-muted-foreground hover:text-primary">Join Our Team</Link></li>
+            <li><Link to="/documents" className="text-muted-foreground hover:text-primary">Document Portal</Link></li>
           </ul>
         </div>
         <div>
@@ -67,9 +69,11 @@ export function Footer() {
           <div className="flex flex-wrap items-center justify-between gap-2 pt-2">
             <span>© {new Date().getFullYear()} {siteConfig.brand}. All rights reserved.</span>
             <span className="space-x-3">
-              <a href="#" className="hover:text-primary">Privacy Policy</a>
-              <a href="#" className="hover:text-primary">Terms of Service</a>
-              <a href="#" className="hover:text-primary">Licensing</a>
+              <Link to="/privacy" className="hover:text-primary">Privacy</Link>
+              <Link to="/terms" className="hover:text-primary">Terms</Link>
+              <Link to="/tcpa" className="hover:text-primary">TCPA</Link>
+              <Link to="/licenses" className="hover:text-primary">Licenses</Link>
+              <Link to="/accessibility" className="hover:text-primary">Accessibility</Link>
             </span>
           </div>
         </div>
