@@ -4,6 +4,9 @@ import { Button } from "@/components/ui/button";
 import { Phone, MessageCircle, ArrowRight } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { siteConfig } from "@/lib/site-config";
+import type { Tables } from "@/integrations/supabase/types";
+
+type Officer = Tables<"loan_officers">;
 
 export const Route = createFileRoute("/loan-officers")({
   head: () => ({
@@ -39,7 +42,7 @@ function OfficersPage() {
         Licensed experts ready to help you navigate every step of your home loan.
       </p>
       <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {officers.map((o) => (
+        {(officers as Officer[]).map((o) => (
           <Card key={o.id} className="overflow-hidden p-0 transition hover:shadow-[var(--shadow-elegant)]">
             {o.photo_url && (
               <img src={o.photo_url} alt={`${o.name}, ${o.title ?? "Loan officer"}`} className="h-56 w-full object-cover" loading="lazy" />
@@ -50,7 +53,7 @@ function OfficersPage() {
               {o.nmls_id && <p className="mt-1 text-xs text-muted-foreground">NMLS #{o.nmls_id}</p>}
               <p className="mt-3 line-clamp-3 text-sm">{o.bio}</p>
               <div className="mt-4 flex flex-wrap gap-1.5">
-                {o.specialties.slice(0, 3).map((s) => (
+                {o.specialties.slice(0, 3).map((s: string) => (
                   <span key={s} className="rounded-full bg-secondary px-2 py-0.5 text-xs">{s}</span>
                 ))}
               </div>
