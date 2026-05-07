@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as LoanProgramsRouteImport } from './routes/loan-programs'
 import { Route as LoanOfficersRouteImport } from './routes/loan-officers'
+import { Route as GetPrequalifiedRouteImport } from './routes/get-prequalified'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CalculatorRouteImport } from './routes/calculator'
 import { Route as AboutRouteImport } from './routes/about'
@@ -25,6 +26,11 @@ const LoanProgramsRoute = LoanProgramsRouteImport.update({
 const LoanOfficersRoute = LoanOfficersRouteImport.update({
   id: '/loan-officers',
   path: '/loan-officers',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GetPrequalifiedRoute = GetPrequalifiedRouteImport.update({
+  id: '/get-prequalified',
+  path: '/get-prequalified',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -58,6 +64,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/calculator': typeof CalculatorRoute
   '/contact': typeof ContactRoute
+  '/get-prequalified': typeof GetPrequalifiedRoute
   '/loan-officers': typeof LoanOfficersRouteWithChildren
   '/loan-programs': typeof LoanProgramsRoute
   '/loan-officers/$slug': typeof LoanOfficersSlugRoute
@@ -67,6 +74,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/calculator': typeof CalculatorRoute
   '/contact': typeof ContactRoute
+  '/get-prequalified': typeof GetPrequalifiedRoute
   '/loan-officers': typeof LoanOfficersRouteWithChildren
   '/loan-programs': typeof LoanProgramsRoute
   '/loan-officers/$slug': typeof LoanOfficersSlugRoute
@@ -77,6 +85,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/calculator': typeof CalculatorRoute
   '/contact': typeof ContactRoute
+  '/get-prequalified': typeof GetPrequalifiedRoute
   '/loan-officers': typeof LoanOfficersRouteWithChildren
   '/loan-programs': typeof LoanProgramsRoute
   '/loan-officers/$slug': typeof LoanOfficersSlugRoute
@@ -88,6 +97,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/calculator'
     | '/contact'
+    | '/get-prequalified'
     | '/loan-officers'
     | '/loan-programs'
     | '/loan-officers/$slug'
@@ -97,6 +107,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/calculator'
     | '/contact'
+    | '/get-prequalified'
     | '/loan-officers'
     | '/loan-programs'
     | '/loan-officers/$slug'
@@ -106,6 +117,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/calculator'
     | '/contact'
+    | '/get-prequalified'
     | '/loan-officers'
     | '/loan-programs'
     | '/loan-officers/$slug'
@@ -116,6 +128,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   CalculatorRoute: typeof CalculatorRoute
   ContactRoute: typeof ContactRoute
+  GetPrequalifiedRoute: typeof GetPrequalifiedRoute
   LoanOfficersRoute: typeof LoanOfficersRouteWithChildren
   LoanProgramsRoute: typeof LoanProgramsRoute
 }
@@ -134,6 +147,13 @@ declare module '@tanstack/react-router' {
       path: '/loan-officers'
       fullPath: '/loan-officers'
       preLoaderRoute: typeof LoanOfficersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/get-prequalified': {
+      id: '/get-prequalified'
+      path: '/get-prequalified'
+      fullPath: '/get-prequalified'
+      preLoaderRoute: typeof GetPrequalifiedRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -191,9 +211,20 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   CalculatorRoute: CalculatorRoute,
   ContactRoute: ContactRoute,
+  GetPrequalifiedRoute: GetPrequalifiedRoute,
   LoanOfficersRoute: LoanOfficersRouteWithChildren,
   LoanProgramsRoute: LoanProgramsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
