@@ -21,6 +21,7 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as LoanOfficersSlugRouteImport } from './routes/loan-officers.$slug'
 import { Route as LearnSlugRouteImport } from './routes/learn.$slug'
+import { Route as AdminLoginRouteImport } from './routes/admin.login'
 
 const RefinanceRoute = RefinanceRouteImport.update({
   id: '/refinance',
@@ -82,6 +83,11 @@ const LearnSlugRoute = LearnSlugRouteImport.update({
   path: '/$slug',
   getParentRoute: () => LearnRoute,
 } as any)
+const AdminLoginRoute = AdminLoginRouteImport.update({
+  id: '/admin/login',
+  path: '/admin/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -94,6 +100,7 @@ export interface FileRoutesByFullPath {
   '/loan-officers': typeof LoanOfficersRouteWithChildren
   '/loan-programs': typeof LoanProgramsRoute
   '/refinance': typeof RefinanceRoute
+  '/admin/login': typeof AdminLoginRoute
   '/learn/$slug': typeof LearnSlugRoute
   '/loan-officers/$slug': typeof LoanOfficersSlugRoute
 }
@@ -108,6 +115,7 @@ export interface FileRoutesByTo {
   '/loan-officers': typeof LoanOfficersRouteWithChildren
   '/loan-programs': typeof LoanProgramsRoute
   '/refinance': typeof RefinanceRoute
+  '/admin/login': typeof AdminLoginRoute
   '/learn/$slug': typeof LearnSlugRoute
   '/loan-officers/$slug': typeof LoanOfficersSlugRoute
 }
@@ -123,6 +131,7 @@ export interface FileRoutesById {
   '/loan-officers': typeof LoanOfficersRouteWithChildren
   '/loan-programs': typeof LoanProgramsRoute
   '/refinance': typeof RefinanceRoute
+  '/admin/login': typeof AdminLoginRoute
   '/learn/$slug': typeof LearnSlugRoute
   '/loan-officers/$slug': typeof LoanOfficersSlugRoute
 }
@@ -139,6 +148,7 @@ export interface FileRouteTypes {
     | '/loan-officers'
     | '/loan-programs'
     | '/refinance'
+    | '/admin/login'
     | '/learn/$slug'
     | '/loan-officers/$slug'
   fileRoutesByTo: FileRoutesByTo
@@ -153,6 +163,7 @@ export interface FileRouteTypes {
     | '/loan-officers'
     | '/loan-programs'
     | '/refinance'
+    | '/admin/login'
     | '/learn/$slug'
     | '/loan-officers/$slug'
   id:
@@ -167,6 +178,7 @@ export interface FileRouteTypes {
     | '/loan-officers'
     | '/loan-programs'
     | '/refinance'
+    | '/admin/login'
     | '/learn/$slug'
     | '/loan-officers/$slug'
   fileRoutesById: FileRoutesById
@@ -182,6 +194,7 @@ export interface RootRouteChildren {
   LoanOfficersRoute: typeof LoanOfficersRouteWithChildren
   LoanProgramsRoute: typeof LoanProgramsRoute
   RefinanceRoute: typeof RefinanceRoute
+  AdminLoginRoute: typeof AdminLoginRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -270,6 +283,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LearnSlugRouteImport
       parentRoute: typeof LearnRoute
     }
+    '/admin/login': {
+      id: '/admin/login'
+      path: '/admin/login'
+      fullPath: '/admin/login'
+      preLoaderRoute: typeof AdminLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -306,7 +326,18 @@ const rootRouteChildren: RootRouteChildren = {
   LoanOfficersRoute: LoanOfficersRouteWithChildren,
   LoanProgramsRoute: LoanProgramsRoute,
   RefinanceRoute: RefinanceRoute,
+  AdminLoginRoute: AdminLoginRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
