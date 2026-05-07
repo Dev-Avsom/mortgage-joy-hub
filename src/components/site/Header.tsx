@@ -68,8 +68,8 @@ export function Header() {
     <header className="sticky top-0 z-40 border-b border-border bg-background/90 backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3">
         <Link to="/" className="flex items-center gap-2 font-bold text-primary">
-          <img src={logoBlue} alt={siteConfig.brand} className="brand-logo-blue h-10 w-auto" />
-          <img src={logoBrown} alt={siteConfig.brand} className="brand-logo-brown h-10 w-auto" />
+          <img src={logoBlue} alt={siteConfig.brand} className="brand-logo-blue h-14 w-auto md:h-16" />
+          <img src={logoBrown} alt={siteConfig.brand} className="brand-logo-brown h-14 w-auto md:h-16" />
         </Link>
         <nav className="hidden items-center gap-1 lg:flex">
           {nav.map((n) =>
