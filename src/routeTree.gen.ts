@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TermsRouteImport } from './routes/terms'
+import { Route as TcpaRouteImport } from './routes/tcpa'
 import { Route as RefinanceRouteImport } from './routes/refinance'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as LoanProgramsRouteImport } from './routes/loan-programs'
@@ -32,6 +33,11 @@ import { Route as AdminLoginRouteImport } from './routes/admin.login'
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TcpaRoute = TcpaRouteImport.update({
+  id: '/tcpa',
+  path: '/tcpa',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RefinanceRoute = RefinanceRouteImport.update({
@@ -141,6 +147,7 @@ export interface FileRoutesByFullPath {
   '/loan-programs': typeof LoanProgramsRoute
   '/privacy': typeof PrivacyRoute
   '/refinance': typeof RefinanceRoute
+  '/tcpa': typeof TcpaRoute
   '/terms': typeof TermsRoute
   '/admin/login': typeof AdminLoginRoute
   '/learn/$slug': typeof LearnSlugRoute
@@ -162,6 +169,7 @@ export interface FileRoutesByTo {
   '/loan-programs': typeof LoanProgramsRoute
   '/privacy': typeof PrivacyRoute
   '/refinance': typeof RefinanceRoute
+  '/tcpa': typeof TcpaRoute
   '/terms': typeof TermsRoute
   '/admin/login': typeof AdminLoginRoute
   '/learn/$slug': typeof LearnSlugRoute
@@ -184,6 +192,7 @@ export interface FileRoutesById {
   '/loan-programs': typeof LoanProgramsRoute
   '/privacy': typeof PrivacyRoute
   '/refinance': typeof RefinanceRoute
+  '/tcpa': typeof TcpaRoute
   '/terms': typeof TermsRoute
   '/admin/login': typeof AdminLoginRoute
   '/learn/$slug': typeof LearnSlugRoute
@@ -207,6 +216,7 @@ export interface FileRouteTypes {
     | '/loan-programs'
     | '/privacy'
     | '/refinance'
+    | '/tcpa'
     | '/terms'
     | '/admin/login'
     | '/learn/$slug'
@@ -228,6 +238,7 @@ export interface FileRouteTypes {
     | '/loan-programs'
     | '/privacy'
     | '/refinance'
+    | '/tcpa'
     | '/terms'
     | '/admin/login'
     | '/learn/$slug'
@@ -249,6 +260,7 @@ export interface FileRouteTypes {
     | '/loan-programs'
     | '/privacy'
     | '/refinance'
+    | '/tcpa'
     | '/terms'
     | '/admin/login'
     | '/learn/$slug'
@@ -271,6 +283,7 @@ export interface RootRouteChildren {
   LoanProgramsRoute: typeof LoanProgramsRoute
   PrivacyRoute: typeof PrivacyRoute
   RefinanceRoute: typeof RefinanceRoute
+  TcpaRoute: typeof TcpaRoute
   TermsRoute: typeof TermsRoute
 }
 
@@ -281,6 +294,13 @@ declare module '@tanstack/react-router' {
       path: '/terms'
       fullPath: '/terms'
       preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tcpa': {
+      id: '/tcpa'
+      path: '/tcpa'
+      fullPath: '/tcpa'
+      preLoaderRoute: typeof TcpaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/refinance': {
@@ -460,6 +480,7 @@ const rootRouteChildren: RootRouteChildren = {
   LoanProgramsRoute: LoanProgramsRoute,
   PrivacyRoute: PrivacyRoute,
   RefinanceRoute: RefinanceRoute,
+  TcpaRoute: TcpaRoute,
   TermsRoute: TermsRoute,
 }
 export const routeTree = rootRouteImport
