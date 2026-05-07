@@ -3,6 +3,8 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Award, Heart, ShieldCheck } from "lucide-react";
 import { siteConfig } from "@/lib/site-config";
+import { StatsCounters } from "@/components/site/StatsCounters";
+import { Reveal } from "@/components/site/Reveal";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -18,38 +20,35 @@ export const Route = createFileRoute("/about")({
 
 function AboutPage() {
   return (
-    <div className="mx-auto max-w-5xl px-4 py-12">
-      <h1 className="text-3xl font-bold md:text-4xl">About Ensure Home Loans</h1>
+    <div>
+      <div className="mx-auto max-w-5xl px-4 py-12">
+      <Reveal>
+      <h1 className="text-3xl font-bold md:text-4xl">About <span className="gradient-text">Ensure Home Loans</span></h1>
       <p className="mt-4 max-w-3xl text-lg text-muted-foreground">
         Ensure Home Loans is your one stop shop for home loans. We partner with 250+ licensed
         Mortgage Loan Originators across 29+ states, backed by 40+ reputable lender relationships —
         so every borrower gets the right loan at the right price, the first time.
       </p>
-
-      <div className="mt-8 grid gap-4 sm:grid-cols-3">
-        {[
-          { stat: "250+", label: "MLO partners" },
-          { stat: "29+", label: "States served" },
-          { stat: "40+", label: "Lender relationships" },
-        ].map((s) => (
-          <Card key={s.label} className="p-5 text-center">
-            <p className="text-3xl font-bold text-primary">{s.stat}</p>
-            <p className="mt-1 text-sm text-muted-foreground">{s.label}</p>
-          </Card>
-        ))}
+      </Reveal>
       </div>
 
-      <div className="mt-10 grid gap-6 md:grid-cols-3">
+      <StatsCounters />
+
+      <div className="mx-auto max-w-5xl px-4 pb-12">
+
+      <div className="grid gap-6 md:grid-cols-3">
         {[
           { icon: Heart, title: "MLO-first model", body: "We don't employ — we partner with MLOs. That means more flexibility, better pricing, and personal service." },
           { icon: ShieldCheck, title: "Every loan, one place", body: "Conventional, Non-QM, Jumbo, DSCR, Bank Statement, Hard Money, Construction, Commercial — you name it." },
           { icon: Award, title: "40+ lender network", body: "We shop your loan across our entire network so you always get the sharpest rate and structure." },
-        ].map((v) => (
-          <Card key={v.title} className="p-6">
-            <v.icon className="h-9 w-9 text-primary" />
-            <h3 className="mt-3 text-lg font-semibold">{v.title}</h3>
-            <p className="mt-1 text-sm text-muted-foreground">{v.body}</p>
-          </Card>
+        ].map((v, i) => (
+          <Reveal key={v.title} delay={i * 100}>
+            <Card className="hover-lift p-6">
+              <v.icon className="h-9 w-9 text-primary" />
+              <h3 className="mt-3 text-lg font-semibold">{v.title}</h3>
+              <p className="mt-1 text-sm text-muted-foreground">{v.body}</p>
+            </Card>
+          </Reveal>
         ))}
       </div>
 
@@ -57,7 +56,7 @@ function AboutPage() {
         <h2 className="text-2xl font-bold">What we offer</h2>
         <div className="mt-3 flex flex-wrap gap-2 text-sm">
           {["Conventional", "Non-QM", "Jumbo", "DSCR", "Self-Employment", "Investment Homes", "Bank Statement", "Hard Money", "Construction", "Commercial"].map((p) => (
-            <span key={p} className="rounded-full border border-border bg-secondary/50 px-3 py-1">{p}</span>
+            <span key={p} className="rounded-full border border-border bg-secondary/50 px-3 py-1 transition hover:scale-105 hover:border-primary hover:text-primary">{p}</span>
           ))}
         </div>
         <p className="mt-3 text-sm text-muted-foreground">You name it, and we will get it for you.</p>
@@ -72,13 +71,14 @@ function AboutPage() {
         </p>
       </section>
 
-      <div className="mt-12 rounded-2xl p-8 text-white" style={{ background: "var(--gradient-hero)" }}>
+      <div className="animated-bg mt-12 rounded-2xl p-8 text-white" style={{ background: "var(--gradient-hero)" }}>
         <h2 className="text-2xl font-bold">Want to partner with us as an MLO?</h2>
         <p className="mt-2 text-white/80">Join 250+ MLOs across 29+ states. Or talk to us about your home loan today.</p>
         <div className="mt-4 flex flex-wrap gap-2">
-          <Button asChild size="lg" variant="secondary"><Link to="/join">Become an MLO partner</Link></Button>
+          <Button asChild size="lg" variant="secondary" className="glow-on-hover"><Link to="/join">Become an MLO partner</Link></Button>
           <Button asChild size="lg" variant="outline" className="border-white/30 bg-transparent text-white hover:bg-white/10"><Link to="/contact">Contact us</Link></Button>
         </div>
+      </div>
       </div>
     </div>
   );

@@ -3,6 +3,8 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Check, X, ArrowLeft } from "lucide-react";
 import { getProgram, LOAN_PROGRAMS, type LoanProgram } from "@/lib/loan-programs";
+import { Reveal } from "@/components/site/Reveal";
+import { GradientOrb } from "@/components/site/GradientOrb";
 
 export const Route = createFileRoute("/loan-programs/$slug")({
   loader: ({ params }): { program: LoanProgram } => {
@@ -40,19 +42,27 @@ export const Route = createFileRoute("/loan-programs/$slug")({
 function ProgramDetail() {
   const { program: p } = Route.useLoaderData() as { program: LoanProgram };
   return (
-    <div className="mx-auto max-w-5xl px-4 py-12">
-      <Link to="/loan-programs" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-primary">
-        <ArrowLeft className="h-4 w-4" /> All loan programs
-      </Link>
-      <h1 className="mt-4 text-3xl font-bold md:text-4xl">{p.name}</h1>
-      <p className="mt-2 max-w-3xl text-lg text-muted-foreground">{p.tagline}</p>
+    <div>
+      <section className="relative overflow-hidden text-white animated-bg" style={{ background: "var(--gradient-hero)" }}>
+        <GradientOrb className="-top-20 -right-20" color="oklch(0.84 0.13 75 / 0.5)" size={420} />
+        <div className="relative mx-auto max-w-5xl px-4 py-12">
+          <Link to="/loan-programs" className="inline-flex items-center gap-1 text-sm text-white/80 hover:text-white">
+            <ArrowLeft className="h-4 w-4" /> All loan programs
+          </Link>
+          <h1 className="animate-fade-in-up mt-4 text-3xl font-bold md:text-4xl">{p.name}</h1>
+          <p className="animate-fade-in-up mt-2 max-w-3xl text-lg text-white/85" style={{ animationDelay: "120ms" }}>{p.tagline}</p>
+        </div>
+      </section>
 
-      <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mx-auto max-w-5xl px-4 py-12">
+      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         {p.highlights.map((h) => (
-          <Card key={h.label} className="p-4">
-            <p className="text-xs uppercase tracking-wide text-muted-foreground">{h.label}</p>
-            <p className="mt-1 text-xl font-bold text-primary">{h.value}</p>
-          </Card>
+          <Reveal key={h.label}>
+            <Card className="hover-lift p-4">
+              <p className="text-xs uppercase tracking-wide text-muted-foreground">{h.label}</p>
+              <p className="mt-1 text-xl font-bold text-primary">{h.value}</p>
+            </Card>
+          </Reveal>
         ))}
       </div>
 
@@ -71,22 +81,22 @@ function ProgramDetail() {
       </section>
 
       <section className="mt-10 grid gap-6 md:grid-cols-2">
-        <Card className="p-6">
+        <Reveal><Card className="hover-lift p-6">
           <h3 className="text-lg font-semibold">Pros</h3>
           <ul className="mt-3 space-y-2 text-sm">
             {p.pros.map((x) => (
               <li key={x} className="flex gap-2"><Check className="h-4 w-4 shrink-0 text-[oklch(0.62_0.16_150)]" /> {x}</li>
             ))}
           </ul>
-        </Card>
-        <Card className="p-6">
+        </Card></Reveal>
+        <Reveal delay={120}><Card className="hover-lift p-6">
           <h3 className="text-lg font-semibold">Things to consider</h3>
           <ul className="mt-3 space-y-2 text-sm">
             {p.cons.map((x) => (
               <li key={x} className="flex gap-2"><X className="h-4 w-4 shrink-0 text-muted-foreground" /> {x}</li>
             ))}
           </ul>
-        </Card>
+        </Card></Reveal>
       </section>
 
       <section className="mt-10">
@@ -110,11 +120,11 @@ function ProgramDetail() {
         </div>
       </section>
 
-      <section className="mt-12 rounded-2xl p-8 text-white" style={{ background: "var(--gradient-hero)" }}>
+      <section className="animated-bg mt-12 rounded-2xl p-8 text-white" style={{ background: "var(--gradient-hero)" }}>
         <h2 className="text-2xl font-bold">Ready to apply for a {p.shortName} loan?</h2>
         <p className="mt-2 text-white/80">Get pre-qualified in minutes — soft credit pull, no impact to your score.</p>
         <div className="mt-4 flex flex-wrap gap-2">
-          <Button asChild size="lg" variant="secondary"><Link to="/get-prequalified">Get pre-qualified</Link></Button>
+          <Button asChild size="lg" variant="secondary" className="glow-on-hover"><Link to="/get-prequalified">Get pre-qualified</Link></Button>
           <Button asChild size="lg" variant="outline" className="border-white/30 bg-transparent text-white hover:bg-white/10"><Link to="/contact">Talk to an officer</Link></Button>
         </div>
       </section>
@@ -129,6 +139,7 @@ function ProgramDetail() {
           ))}
         </div>
       </section>
+      </div>
     </div>
   );
 }

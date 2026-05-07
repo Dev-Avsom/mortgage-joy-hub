@@ -188,3 +188,124 @@
 .brand-logo-blue { display: none; }
 [data-theme="blue"] .brand-logo-brown { display: none; }
 [data-theme="blue"] .brand-logo-blue { display: inline-block; }
+
+/* ===========================================================
+   ANIMATION UTILITIES — modern & lively motion system
+   =========================================================== */
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
+@keyframes blob {
+  0%, 100% { transform: translate(0,0) scale(1); }
+  33%      { transform: translate(30px,-20px) scale(1.08); }
+  66%      { transform: translate(-20px,20px) scale(0.95); }
+}
+@keyframes shimmer {
+  0% { transform: scale(0.6); opacity: 0.9; }
+  100% { transform: scale(2.4); opacity: 0; }
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes draw-line {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+@keyframes pulse-ring {
+  0%   { box-shadow: 0 0 0 0 oklch(0.62 0.16 150 / 0.55); }
+  70%  { box-shadow: 0 0 0 14px oklch(0.62 0.16 150 / 0); }
+  100% { box-shadow: 0 0 0 0 oklch(0.62 0.16 150 / 0); }
+}
+
+.animate-fade-in-up { animation: fade-in-up 0.6s ease-out both; }
+.animate-scale-in   { animation: scale-in 0.4s ease-out both; }
+.animate-float      { animation: float-y 6s ease-in-out infinite; }
+.animate-blob       { animation: blob 18s ease-in-out infinite; }
+.animate-pulse-ring { animation: pulse-ring 2s ease-out infinite; }
+
+.animated-bg {
+  background-size: 200% 200%;
+  animation: gradient-shift 14s ease infinite;
+}
+
+.gradient-text {
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.glass {
+  background: color-mix(in oklab, var(--background) 70%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid color-mix(in oklab, var(--border) 80%, transparent);
+}
+
+.hover-lift {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-elegant);
+}
+
+.glow-on-hover {
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+.glow-on-hover:hover {
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--primary) 18%, transparent),
+              0 10px 30px -10px color-mix(in oklab, var(--primary) 40%, transparent);
+  transform: translateY(-1px);
+}
+
+/* Scroll reveal: starts hidden, .in-view triggers fade-up */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  will-change: opacity, transform;
+}
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.marquee-track {
+  animation: marquee 40s linear infinite;
+}
+.marquee-pause:hover .marquee-track { animation-play-state: paused; }
+
+.draw-line {
+  transform-origin: left center;
+  animation: draw-line 1.2s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in-up,
+  .animate-scale-in,
+  .animate-float,
+  .animate-blob,
+  .animate-pulse-ring,
+  .animated-bg,
+  .marquee-track,
+  .draw-line {
+    animation: none !important;
+  }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .hover-lift:hover, .glow-on-hover:hover { transform: none; }
+}
