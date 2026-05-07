@@ -81,3 +81,85 @@ export const usd = (n: number) =>
 
 export const usd2 = (n: number) =>
   n.toLocaleString("en-US", { style: "currency", currency: "USD" });
+
+/** Standard 28%/36% DTI affordability calc */
+export function calcAffordability(opts: {
+  annualIncome: number;
+  monthlyDebts: number;
+  rate: number;
+  termYears: number;
+  downPayment: number;
+  taxRate?: number; // % of home value yearly
+  insRate?: number; // % of home value yearly
+}) {
+  const { annualIncome, monthlyDebts, rate, termYears, downPayment } = opts;
+  const taxRate = opts.taxRate ?? 1.1;
+  const insRate = opts.insRate ?? 0.4;
+
+  const monthlyIncome = annualIncome / 12;
+  // Conservative: total housing + debts shouldn't exceed 36% of gross
+  const maxHousing = monthlyIncome * 0.36 - monthlyDebts;
+  const r = rate / 100 / 12;
+  const n = termYears * 12;
+
+  // Solve: payment = housing where housing = PI + (price * (tax+ins)/12)
+  // PI per $1 of loan
+  const piPerDollar = r === 0 ? 1 / n : (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+  const tiPerDollar = (taxRate + insRate) / 100 / 12;
+
+  // maxHousing = loan*piPerDollar + price*tiPerDollar, loan = price - down
+  // maxHousing + down*piPerDollar = price * (piPerDollar + tiPerDollar)
+  const maxPrice =
+    piPerDollar + tiPerDollar > 0
+      ? (maxHousing + downPayment * piPerDollar) / (piPerDollar + tiPerDollar)
+      : 0;
+
+  const safePrice = Math.max(downPayment, maxPrice);
+  const loan = Math.max(0, safePrice - downPayment);
+  const monthlyPI = loan * piPerDollar;
+  const monthlyTax = (safePrice * taxRate) / 100 / 12;
+  const monthlyIns = (safePrice * insRate) / 100 / 12;
+
+  return {
+    maxPrice: safePrice,
+    loanAmount: loan,
+    monthlyPI,
+    monthlyTax,
+    monthlyIns,
+    monthlyTotal: monthlyPI + monthlyTax + monthlyIns,
+    maxHousing,
+  };
+}
+
+/** Refinance comparison */
+export function calcRefi(opts: {
+  currentBalance: number;
+  currentRate: number;
+  currentMonthsLeft: number;
+  newRate: number;
+  newTermYears: number;
+  closingCosts: number;
+}) {
+  const monthlyPay = (bal: number, rate: number, n: number) => {
+    const r = rate / 100 / 12;
+    return r === 0 ? bal / n : (bal * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+  };
+  const currentPayment = monthlyPay(opts.currentBalance, opts.currentRate, opts.currentMonthsLeft);
+  const newPayment = monthlyPay(opts.currentBalance, opts.newRate, opts.newTermYears * 12);
+  const monthlySavings = currentPayment - newPayment;
+  const breakevenMonths = monthlySavings > 0 ? Math.ceil(opts.closingCosts / monthlySavings) : Infinity;
+
+  // Lifetime interest
+  const totalCurrentInterest = currentPayment * opts.currentMonthsLeft - opts.currentBalance;
+  const totalNewInterest = newPayment * opts.newTermYears * 12 - opts.currentBalance;
+
+  return {
+    currentPayment,
+    newPayment,
+    monthlySavings,
+    breakevenMonths,
+    totalCurrentInterest,
+    totalNewInterest,
+    lifetimeSavings: totalCurrentInterest - totalNewInterest - opts.closingCosts,
+  };
+}

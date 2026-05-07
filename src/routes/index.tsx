@@ -1,9 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Calculator, Users, ShieldCheck, TrendingDown, Phone, MessageCircle, ArrowRight, Home, FileCheck, Award } from "lucide-react";
+import { Calculator, Users, ShieldCheck, TrendingDown, Phone, ArrowRight, Home, FileCheck, Award } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { siteConfig, whatsappLink } from "@/lib/site-config";
+import { siteConfig } from "@/lib/site-config";
 import { LeadForm } from "@/components/site/LeadForm";
+import { Reviews } from "@/components/site/Reviews";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -39,14 +40,14 @@ function HomePage() {
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button asChild size="lg" className="bg-[oklch(0.84_0.13_75)] text-[oklch(0.2_0.05_255)] hover:opacity-90">
-                <Link to="/calculator">
-                  <Calculator className="mr-2 h-5 w-5" /> Calculate payment
+                <Link to="/get-prequalified">
+                  <FileCheck className="mr-2 h-5 w-5" /> Get pre-qualified
                 </Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="border-white/30 bg-white/10 text-white hover:bg-white/20">
-                <a href={whatsappLink()} target="_blank" rel="noopener noreferrer">
-                  <MessageCircle className="mr-2 h-5 w-5" /> Chat on WhatsApp
-                </a>
+                <Link to="/calculator">
+                  <Calculator className="mr-2 h-5 w-5" /> Calculate payment
+                </Link>
               </Button>
             </div>
             <div className="mt-8 grid grid-cols-3 gap-6 border-t border-white/15 pt-6 text-sm">
@@ -112,6 +113,9 @@ function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* CTA strip */}
+      <Reviews />
 
       {/* CTA strip */}
       <section className="mx-auto max-w-7xl px-4 py-16">
