@@ -70,7 +70,6 @@ export function Header() {
         <Link to="/" className="flex items-center gap-2 font-bold text-primary">
           <img src={logoBlue} alt={siteConfig.brand} className="brand-logo-blue h-10 w-auto" />
           <img src={logoBrown} alt={siteConfig.brand} className="brand-logo-brown h-10 w-auto" />
-          <span className="text-lg leading-tight">{siteConfig.brand}</span>
         </Link>
         <nav className="hidden items-center gap-1 lg:flex">
           {nav.map((n) =>
