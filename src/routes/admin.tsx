@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
-import { Download, Search, LogOut, Phone, Mail, ShieldAlert } from "lucide-react";
+import { Download, Search, LogOut, Phone, Mail, ShieldAlert, Users } from "lucide-react";
 
 export const Route = createFileRoute("/admin")({
   head: () => ({ meta: [{ title: "Admin Dashboard — HomeBridge Mortgage" }, { name: "robots", content: "noindex" }] }),
@@ -168,6 +168,7 @@ function AdminPage() {
           <p className="text-sm text-muted-foreground">Signed in as {userEmail}</p>
         </div>
         <div className="flex gap-2">
+          <Button asChild variant="outline"><Link to="/admin/officers"><Users className="mr-2 h-4 w-4" /> Manage MLOs</Link></Button>
           <Button variant="outline" onClick={exportCSV}><Download className="mr-2 h-4 w-4" /> Export CSV</Button>
           <Button variant="outline" onClick={signOut}><LogOut className="mr-2 h-4 w-4" /> Sign out</Button>
         </div>
