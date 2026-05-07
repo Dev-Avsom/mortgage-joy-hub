@@ -1,13 +1,19 @@
 export const siteConfig = {
-  brand: "HomeBridge Mortgage",
-  tagline: "Smarter home loans, made simple.",
-  phone: "+1 (555) 201-3000",
-  phoneHref: "tel:+15552013000",
-  whatsappNumber: "15552013000",
-  whatsappHref: "https://wa.me/15552013000",
-  email: "hello@homebridge-mortgage.example",
-  address: "1200 Oak Street, Suite 400, Austin, TX 78701",
-  nmlsId: "NMLS #123456",
+  brand: "Ensure Home Loans",
+  tagline: "Your one stop shop for home loans.",
+  phone: "(682) 413-1045",
+  phoneHref: "tel:+16824131045",
+  altPhones: [
+    { label: "(682) 344-1144", href: "tel:+16823441144" },
+    { label: "(682) 470-9269", href: "tel:+16824709269" },
+    { label: "(682) 344-1471", href: "tel:+16823441471" },
+  ],
+  whatsappNumber: "16824131045",
+  whatsappHref: "https://wa.me/16824131045",
+  email: "contact@ensurehomeloans.com",
+  assistEmail: "assist@ensurehomeloans.com",
+  address: "Texas, USA",
+  nmlsId: "NMLS #1666674",
 };
 
 export const whatsappLink = (msg = "Hi! I'd like to learn more about your mortgage options.") =>
