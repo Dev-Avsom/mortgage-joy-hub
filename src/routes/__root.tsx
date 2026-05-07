@@ -12,6 +12,7 @@ import appCss from "../styles.css?url";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { StickyCTA } from "@/components/site/StickyCTA";
+import { LiveChat } from "@/components/site/LiveChat";
 import { Toaster } from "@/components/ui/sonner";
 
 function NotFoundComponent() {
@@ -126,6 +127,7 @@ function RootComponent() {
         </main>
         <Footer />
         <StickyCTA />
+        <LiveChat />
         <Toaster richColors position="top-center" />
       </div>
     </QueryClientProvider>
