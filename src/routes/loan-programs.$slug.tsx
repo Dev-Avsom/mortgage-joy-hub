@@ -38,7 +38,7 @@ export const Route = createFileRoute("/loan-programs/$slug")({
 });
 
 function ProgramDetail() {
-  const { program: p } = Route.useLoaderData();
+  const { program: p } = Route.useLoaderData() as { program: LoanProgram };
   return (
     <div className="mx-auto max-w-5xl px-4 py-12">
       <Link to="/loan-programs" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-primary">
