@@ -13,7 +13,10 @@ import { Route as RefinanceRouteImport } from './routes/refinance'
 import { Route as LoanProgramsRouteImport } from './routes/loan-programs'
 import { Route as LoanOfficersRouteImport } from './routes/loan-officers'
 import { Route as LearnRouteImport } from './routes/learn'
+import { Route as JoinRouteImport } from './routes/join'
 import { Route as GetPrequalifiedRouteImport } from './routes/get-prequalified'
+import { Route as FindOfficerRouteImport } from './routes/find-officer'
+import { Route as DocumentsRouteImport } from './routes/documents'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CalculatorRouteImport } from './routes/calculator'
 import { Route as AffordabilityRouteImport } from './routes/affordability'
@@ -44,9 +47,24 @@ const LearnRoute = LearnRouteImport.update({
   path: '/learn',
   getParentRoute: () => rootRouteImport,
 } as any)
+const JoinRoute = JoinRouteImport.update({
+  id: '/join',
+  path: '/join',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const GetPrequalifiedRoute = GetPrequalifiedRouteImport.update({
   id: '/get-prequalified',
   path: '/get-prequalified',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FindOfficerRoute = FindOfficerRouteImport.update({
+  id: '/find-officer',
+  path: '/find-officer',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DocumentsRoute = DocumentsRouteImport.update({
+  id: '/documents',
+  path: '/documents',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -102,7 +120,10 @@ export interface FileRoutesByFullPath {
   '/affordability': typeof AffordabilityRoute
   '/calculator': typeof CalculatorRoute
   '/contact': typeof ContactRoute
+  '/documents': typeof DocumentsRoute
+  '/find-officer': typeof FindOfficerRoute
   '/get-prequalified': typeof GetPrequalifiedRoute
+  '/join': typeof JoinRoute
   '/learn': typeof LearnRouteWithChildren
   '/loan-officers': typeof LoanOfficersRouteWithChildren
   '/loan-programs': typeof LoanProgramsRoute
@@ -118,7 +139,10 @@ export interface FileRoutesByTo {
   '/affordability': typeof AffordabilityRoute
   '/calculator': typeof CalculatorRoute
   '/contact': typeof ContactRoute
+  '/documents': typeof DocumentsRoute
+  '/find-officer': typeof FindOfficerRoute
   '/get-prequalified': typeof GetPrequalifiedRoute
+  '/join': typeof JoinRoute
   '/learn': typeof LearnRouteWithChildren
   '/loan-officers': typeof LoanOfficersRouteWithChildren
   '/loan-programs': typeof LoanProgramsRoute
@@ -135,7 +159,10 @@ export interface FileRoutesById {
   '/affordability': typeof AffordabilityRoute
   '/calculator': typeof CalculatorRoute
   '/contact': typeof ContactRoute
+  '/documents': typeof DocumentsRoute
+  '/find-officer': typeof FindOfficerRoute
   '/get-prequalified': typeof GetPrequalifiedRoute
+  '/join': typeof JoinRoute
   '/learn': typeof LearnRouteWithChildren
   '/loan-officers': typeof LoanOfficersRouteWithChildren
   '/loan-programs': typeof LoanProgramsRoute
@@ -153,7 +180,10 @@ export interface FileRouteTypes {
     | '/affordability'
     | '/calculator'
     | '/contact'
+    | '/documents'
+    | '/find-officer'
     | '/get-prequalified'
+    | '/join'
     | '/learn'
     | '/loan-officers'
     | '/loan-programs'
@@ -169,7 +199,10 @@ export interface FileRouteTypes {
     | '/affordability'
     | '/calculator'
     | '/contact'
+    | '/documents'
+    | '/find-officer'
     | '/get-prequalified'
+    | '/join'
     | '/learn'
     | '/loan-officers'
     | '/loan-programs'
@@ -185,7 +218,10 @@ export interface FileRouteTypes {
     | '/affordability'
     | '/calculator'
     | '/contact'
+    | '/documents'
+    | '/find-officer'
     | '/get-prequalified'
+    | '/join'
     | '/learn'
     | '/loan-officers'
     | '/loan-programs'
@@ -202,7 +238,10 @@ export interface RootRouteChildren {
   AffordabilityRoute: typeof AffordabilityRoute
   CalculatorRoute: typeof CalculatorRoute
   ContactRoute: typeof ContactRoute
+  DocumentsRoute: typeof DocumentsRoute
+  FindOfficerRoute: typeof FindOfficerRoute
   GetPrequalifiedRoute: typeof GetPrequalifiedRoute
+  JoinRoute: typeof JoinRoute
   LearnRoute: typeof LearnRouteWithChildren
   LoanOfficersRoute: typeof LoanOfficersRouteWithChildren
   LoanProgramsRoute: typeof LoanProgramsRoute
@@ -239,11 +278,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LearnRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/join': {
+      id: '/join'
+      path: '/join'
+      fullPath: '/join'
+      preLoaderRoute: typeof JoinRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/get-prequalified': {
       id: '/get-prequalified'
       path: '/get-prequalified'
       fullPath: '/get-prequalified'
       preLoaderRoute: typeof GetPrequalifiedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/find-officer': {
+      id: '/find-officer'
+      path: '/find-officer'
+      fullPath: '/find-officer'
+      preLoaderRoute: typeof FindOfficerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/documents': {
+      id: '/documents'
+      path: '/documents'
+      fullPath: '/documents'
+      preLoaderRoute: typeof DocumentsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -351,7 +411,10 @@ const rootRouteChildren: RootRouteChildren = {
   AffordabilityRoute: AffordabilityRoute,
   CalculatorRoute: CalculatorRoute,
   ContactRoute: ContactRoute,
+  DocumentsRoute: DocumentsRoute,
+  FindOfficerRoute: FindOfficerRoute,
   GetPrequalifiedRoute: GetPrequalifiedRoute,
+  JoinRoute: JoinRoute,
   LearnRoute: LearnRouteWithChildren,
   LoanOfficersRoute: LoanOfficersRouteWithChildren,
   LoanProgramsRoute: LoanProgramsRoute,

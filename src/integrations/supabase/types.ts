@@ -14,6 +14,39 @@ export type Database = {
   }
   public: {
     Tables: {
+      documents: {
+        Row: {
+          category: string
+          created_at: string
+          file_name: string
+          id: string
+          size_bytes: number | null
+          status: string
+          storage_path: string
+          user_id: string
+        }
+        Insert: {
+          category?: string
+          created_at?: string
+          file_name: string
+          id?: string
+          size_bytes?: number | null
+          status?: string
+          storage_path: string
+          user_id: string
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          file_name?: string
+          id?: string
+          size_bytes?: number | null
+          status?: string
+          storage_path?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       leads: {
         Row: {
           admin_notes: string | null
@@ -124,6 +157,36 @@ export type Database = {
           updated_at?: string
           whatsapp?: string | null
           years_experience?: number | null
+        }
+        Relationships: []
+      }
+      rate_alerts: {
+        Row: {
+          active: boolean
+          created_at: string
+          email: string
+          id: string
+          loan_type: string
+          target_rate: number
+          zip: string | null
+        }
+        Insert: {
+          active?: boolean
+          created_at?: string
+          email: string
+          id?: string
+          loan_type?: string
+          target_rate: number
+          zip?: string | null
+        }
+        Update: {
+          active?: boolean
+          created_at?: string
+          email?: string
+          id?: string
+          loan_type?: string
+          target_rate?: number
+          zip?: string | null
         }
         Relationships: []
       }

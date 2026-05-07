@@ -1,10 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Calculator, Users, ShieldCheck, TrendingDown, Phone, ArrowRight, Home, FileCheck, Award } from "lucide-react";
+import { Users, ShieldCheck, TrendingDown, Phone, ArrowRight, Home, FileCheck, Award } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { siteConfig } from "@/lib/site-config";
-import { LeadForm } from "@/components/site/LeadForm";
 import { Reviews } from "@/components/site/Reviews";
+import { RateQuoteWidget } from "@/components/site/RateQuoteWidget";
+import { RateAlertForm } from "@/components/site/RateAlertForm";
+import { BestRateBadge } from "@/components/site/BestRateBadge";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -28,15 +30,17 @@ function HomePage() {
       >
         <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 md:py-24 lg:grid-cols-2 lg:items-center">
           <div>
-            <span className="inline-block rounded-full bg-white/10 px-3 py-1 text-xs font-medium uppercase tracking-wider">
-              Licensed in 50 states · {siteConfig.nmlsId}
-            </span>
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="inline-block rounded-full bg-white/10 px-3 py-1 text-xs font-medium uppercase tracking-wider">
+                Licensed in 50 states · {siteConfig.nmlsId}
+              </span>
+              <BestRateBadge />
+            </div>
             <h1 className="mt-4 text-4xl font-bold leading-tight md:text-5xl lg:text-6xl">
               Smarter home loans, <span className="text-[oklch(0.84_0.13_75)]">made simple.</span>
             </h1>
             <p className="mt-5 max-w-lg text-lg text-white/85">
-              Run real numbers in seconds, compare loan programs, and talk to a real
-              loan officer — no spam, no pressure.
+              See live rates from <strong>230+ wholesale lenders</strong>, run real numbers in seconds, and talk to a real licensed loan officer — no spam, no pressure.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button asChild size="lg" className="bg-[oklch(0.84_0.13_75)] text-[oklch(0.2_0.05_255)] hover:opacity-90">
@@ -45,8 +49,8 @@ function HomePage() {
                 </Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="border-white/30 bg-white/10 text-white hover:bg-white/20">
-                <Link to="/calculator">
-                  <Calculator className="mr-2 h-5 w-5" /> Calculate payment
+                <Link to="/find-officer">
+                  <Users className="mr-2 h-5 w-5" /> Find an officer
                 </Link>
               </Button>
             </div>
@@ -56,15 +60,7 @@ function HomePage() {
               <div><div className="text-2xl font-bold">4.9★</div><div className="text-white/70">Avg rating</div></div>
             </div>
           </div>
-          <Card className="border-0 p-6 text-foreground shadow-2xl">
-            <h2 className="text-xl font-semibold">Get pre-qualified in minutes</h2>
-            <p className="mt-1 text-sm text-muted-foreground">
-              Tell us a bit about you and a loan officer will reach out today.
-            </p>
-            <div className="mt-4">
-              <LeadForm source="hero" submitLabel="Request a callback" />
-            </div>
-          </Card>
+          <RateQuoteWidget />
         </div>
       </section>
 
@@ -116,6 +112,11 @@ function HomePage() {
 
       {/* CTA strip */}
       <Reviews />
+
+      {/* Rate alert */}
+      <section className="mx-auto max-w-7xl px-4">
+        <RateAlertForm />
+      </section>
 
       {/* CTA strip */}
       <section className="mx-auto max-w-7xl px-4 py-16">
