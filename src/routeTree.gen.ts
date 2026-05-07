@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as TcpaRouteImport } from './routes/tcpa'
 import { Route as RefinanceRouteImport } from './routes/refinance'
+import { Route as ProcessRouteImport } from './routes/process'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as LoanProgramsRouteImport } from './routes/loan-programs'
 import { Route as LoanOfficersRouteImport } from './routes/loan-officers'
@@ -47,6 +48,11 @@ const TcpaRoute = TcpaRouteImport.update({
 const RefinanceRoute = RefinanceRouteImport.update({
   id: '/refinance',
   path: '/refinance',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProcessRoute = ProcessRouteImport.update({
+  id: '/process',
+  path: '/process',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrivacyRoute = PrivacyRouteImport.update({
@@ -173,6 +179,7 @@ export interface FileRoutesByFullPath {
   '/loan-officers': typeof LoanOfficersRouteWithChildren
   '/loan-programs': typeof LoanProgramsRouteWithChildren
   '/privacy': typeof PrivacyRoute
+  '/process': typeof ProcessRoute
   '/refinance': typeof RefinanceRoute
   '/tcpa': typeof TcpaRoute
   '/terms': typeof TermsRoute
@@ -199,6 +206,7 @@ export interface FileRoutesByTo {
   '/loan-officers': typeof LoanOfficersRouteWithChildren
   '/loan-programs': typeof LoanProgramsRouteWithChildren
   '/privacy': typeof PrivacyRoute
+  '/process': typeof ProcessRoute
   '/refinance': typeof RefinanceRoute
   '/tcpa': typeof TcpaRoute
   '/terms': typeof TermsRoute
@@ -226,6 +234,7 @@ export interface FileRoutesById {
   '/loan-officers': typeof LoanOfficersRouteWithChildren
   '/loan-programs': typeof LoanProgramsRouteWithChildren
   '/privacy': typeof PrivacyRoute
+  '/process': typeof ProcessRoute
   '/refinance': typeof RefinanceRoute
   '/tcpa': typeof TcpaRoute
   '/terms': typeof TermsRoute
@@ -254,6 +263,7 @@ export interface FileRouteTypes {
     | '/loan-officers'
     | '/loan-programs'
     | '/privacy'
+    | '/process'
     | '/refinance'
     | '/tcpa'
     | '/terms'
@@ -280,6 +290,7 @@ export interface FileRouteTypes {
     | '/loan-officers'
     | '/loan-programs'
     | '/privacy'
+    | '/process'
     | '/refinance'
     | '/tcpa'
     | '/terms'
@@ -306,6 +317,7 @@ export interface FileRouteTypes {
     | '/loan-officers'
     | '/loan-programs'
     | '/privacy'
+    | '/process'
     | '/refinance'
     | '/tcpa'
     | '/terms'
@@ -333,6 +345,7 @@ export interface RootRouteChildren {
   LoanOfficersRoute: typeof LoanOfficersRouteWithChildren
   LoanProgramsRoute: typeof LoanProgramsRouteWithChildren
   PrivacyRoute: typeof PrivacyRoute
+  ProcessRoute: typeof ProcessRoute
   RefinanceRoute: typeof RefinanceRoute
   TcpaRoute: typeof TcpaRoute
   TermsRoute: typeof TermsRoute
@@ -359,6 +372,13 @@ declare module '@tanstack/react-router' {
       path: '/refinance'
       fullPath: '/refinance'
       preLoaderRoute: typeof RefinanceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/process': {
+      id: '/process'
+      path: '/process'
+      fullPath: '/process'
+      preLoaderRoute: typeof ProcessRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacy': {
@@ -573,6 +593,7 @@ const rootRouteChildren: RootRouteChildren = {
   LoanOfficersRoute: LoanOfficersRouteWithChildren,
   LoanProgramsRoute: LoanProgramsRouteWithChildren,
   PrivacyRoute: PrivacyRoute,
+  ProcessRoute: ProcessRoute,
   RefinanceRoute: RefinanceRoute,
   TcpaRoute: TcpaRoute,
   TermsRoute: TermsRoute,
