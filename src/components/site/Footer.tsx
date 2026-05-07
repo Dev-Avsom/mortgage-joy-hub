@@ -31,6 +31,10 @@ export function Footer() {
             <li><Link to="/loan-programs" className="text-muted-foreground hover:text-primary">Loan Programs</Link></li>
             <li><Link to="/loan-officers" className="text-muted-foreground hover:text-primary">Our Loan Officers</Link></li>
             <li><Link to="/learn" className="text-muted-foreground hover:text-primary">Learning Center</Link></li>
+            <li><Link to="/first-time-buyer" className="text-muted-foreground hover:text-primary">First-Time Buyer Guide</Link></li>
+            <li><Link to="/process" className="text-muted-foreground hover:text-primary">How It Works</Link></li>
+            <li><Link to="/faq" className="text-muted-foreground hover:text-primary">FAQ</Link></li>
+            <li><Link to="/reviews" className="text-muted-foreground hover:text-primary">Reviews</Link></li>
           </ul>
         </div>
         <div>
@@ -39,7 +43,11 @@ export function Footer() {
             <li><Link to="/about" className="text-muted-foreground hover:text-primary">About</Link></li>
             <li><Link to="/contact" className="text-muted-foreground hover:text-primary">Contact</Link></li>
             <li><Link to="/get-prequalified" className="text-muted-foreground hover:text-primary">Get Pre-qualified</Link></li>
-            <li><Link to="/join" className="text-muted-foreground hover:text-primary">Join Our Team</Link></li>
+            <li><Link to="/join" className="text-muted-foreground hover:text-primary">Join Our Team (MLOs)</Link></li>
+            <li><Link to="/careers" className="text-muted-foreground hover:text-primary">Careers</Link></li>
+            <li><Link to="/agents" className="text-muted-foreground hover:text-primary">Agent Partners</Link></li>
+            <li><Link to="/builders" className="text-muted-foreground hover:text-primary">Builder Partners</Link></li>
+            <li><Link to="/press" className="text-muted-foreground hover:text-primary">Press & Media</Link></li>
             <li><Link to="/documents" className="text-muted-foreground hover:text-primary">Document Portal</Link></li>
           </ul>
         </div>
