@@ -17,6 +17,7 @@ import { Route as GetPrequalifiedRouteImport } from './routes/get-prequalified'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CalculatorRouteImport } from './routes/calculator'
 import { Route as AffordabilityRouteImport } from './routes/affordability'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as LoanOfficersSlugRouteImport } from './routes/loan-officers.$slug'
@@ -63,6 +64,11 @@ const AffordabilityRoute = AffordabilityRouteImport.update({
   path: '/affordability',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
@@ -84,14 +90,15 @@ const LearnSlugRoute = LearnSlugRouteImport.update({
   getParentRoute: () => LearnRoute,
 } as any)
 const AdminLoginRoute = AdminLoginRouteImport.update({
-  id: '/admin/login',
-  path: '/admin/login',
-  getParentRoute: () => rootRouteImport,
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => AdminRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/admin': typeof AdminRouteWithChildren
   '/affordability': typeof AffordabilityRoute
   '/calculator': typeof CalculatorRoute
   '/contact': typeof ContactRoute
@@ -107,6 +114,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/admin': typeof AdminRouteWithChildren
   '/affordability': typeof AffordabilityRoute
   '/calculator': typeof CalculatorRoute
   '/contact': typeof ContactRoute
@@ -123,6 +131,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/admin': typeof AdminRouteWithChildren
   '/affordability': typeof AffordabilityRoute
   '/calculator': typeof CalculatorRoute
   '/contact': typeof ContactRoute
@@ -140,6 +149,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/admin'
     | '/affordability'
     | '/calculator'
     | '/contact'
@@ -155,6 +165,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
+    | '/admin'
     | '/affordability'
     | '/calculator'
     | '/contact'
@@ -170,6 +181,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/about'
+    | '/admin'
     | '/affordability'
     | '/calculator'
     | '/contact'
@@ -186,6 +198,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  AdminRoute: typeof AdminRouteWithChildren
   AffordabilityRoute: typeof AffordabilityRoute
   CalculatorRoute: typeof CalculatorRoute
   ContactRoute: typeof ContactRoute
@@ -194,7 +207,6 @@ export interface RootRouteChildren {
   LoanOfficersRoute: typeof LoanOfficersRouteWithChildren
   LoanProgramsRoute: typeof LoanProgramsRoute
   RefinanceRoute: typeof RefinanceRoute
-  AdminLoginRoute: typeof AdminLoginRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -255,6 +267,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AffordabilityRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/about': {
       id: '/about'
       path: '/about'
@@ -285,13 +304,23 @@ declare module '@tanstack/react-router' {
     }
     '/admin/login': {
       id: '/admin/login'
-      path: '/admin/login'
+      path: '/login'
       fullPath: '/admin/login'
       preLoaderRoute: typeof AdminLoginRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof AdminRoute
     }
   }
 }
+
+interface AdminRouteChildren {
+  AdminLoginRoute: typeof AdminLoginRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminLoginRoute: AdminLoginRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 
 interface LearnRouteChildren {
   LearnSlugRoute: typeof LearnSlugRoute
@@ -318,6 +347,7 @@ const LoanOfficersRouteWithChildren = LoanOfficersRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  AdminRoute: AdminRouteWithChildren,
   AffordabilityRoute: AffordabilityRoute,
   CalculatorRoute: CalculatorRoute,
   ContactRoute: ContactRoute,
@@ -326,7 +356,6 @@ const rootRouteChildren: RootRouteChildren = {
   LoanOfficersRoute: LoanOfficersRouteWithChildren,
   LoanProgramsRoute: LoanProgramsRoute,
   RefinanceRoute: RefinanceRoute,
-  AdminLoginRoute: AdminLoginRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
