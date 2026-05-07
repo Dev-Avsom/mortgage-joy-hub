@@ -36,7 +36,7 @@ export const Route = createFileRoute("/find-officer")({
 });
 
 function FindOfficerPage() {
-  const { officers } = Route.useLoaderData();
+  const { officers } = Route.useLoaderData() as { officers: Officer[] };
   const [q, setQ] = useState("");
   const [lang, setLang] = useState("");
 
