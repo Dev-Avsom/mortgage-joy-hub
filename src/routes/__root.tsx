@@ -121,7 +121,7 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <ScriptOnce>{`(function(){try{var t=localStorage.getItem('brand-theme');if(t&&t!=='blue')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();`}</ScriptOnce>
+      <ScriptOnce>{`(function(){try{var t=localStorage.getItem('brand-theme');if(t&&t!=='brown')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();`}</ScriptOnce>
       <div className="flex min-h-screen flex-col">
         <Header />
         <main className="flex-1 pb-24 lg:pb-0">
