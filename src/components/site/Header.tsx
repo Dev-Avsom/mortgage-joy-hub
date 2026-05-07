@@ -3,6 +3,9 @@ import { Phone, MessageCircle, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { siteConfig, whatsappLink } from "@/lib/site-config";
 import { Button } from "@/components/ui/button";
+import { ThemeSwitcher } from "@/components/site/ThemeSwitcher";
+import logoBlue from "@/assets/logo-blue.png";
+import logoBrown from "@/assets/logo-brown.png";
 
 const nav = [
   { to: "/", label: "Home" },
@@ -21,9 +24,8 @@ export function Header() {
     <header className="sticky top-0 z-40 border-b border-border bg-background/90 backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3">
         <Link to="/" className="flex items-center gap-2 font-bold text-primary">
-          <span className="grid h-9 w-9 place-items-center rounded-lg bg-primary text-primary-foreground">
-            HB
-          </span>
+          <img src={logoBlue} alt={siteConfig.brand} className="brand-logo-blue h-10 w-auto" />
+          <img src={logoBrown} alt={siteConfig.brand} className="brand-logo-brown h-10 w-auto" />
           <span className="text-lg leading-tight">{siteConfig.brand}</span>
         </Link>
         <nav className="hidden items-center gap-6 lg:flex">
@@ -39,6 +41,7 @@ export function Header() {
           ))}
         </nav>
         <div className="hidden items-center gap-2 lg:flex">
+          <ThemeSwitcher compact />
           <Button asChild variant="outline" size="sm">
             <a href={siteConfig.phoneHref}>
               <Phone className="mr-1 h-4 w-4" /> Call
@@ -50,13 +53,15 @@ export function Header() {
             </a>
           </Button>
         </div>
-        <button
-          aria-label="Toggle menu"
-          className="lg:hidden"
-          onClick={() => setOpen((v) => !v)}
-        >
-          {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-        </button>
+        <div className="flex items-center gap-2 lg:hidden">
+          <ThemeSwitcher compact />
+          <button
+            aria-label="Toggle menu"
+            onClick={() => setOpen((v) => !v)}
+          >
+            {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
+        </div>
       </div>
       {open && (
         <div className="border-t border-border bg-background lg:hidden">
