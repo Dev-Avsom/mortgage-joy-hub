@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as RefinanceRouteImport } from './routes/refinance'
 import { Route as LoanProgramsRouteImport } from './routes/loan-programs'
 import { Route as LoanOfficersRouteImport } from './routes/loan-officers'
 import { Route as GetPrequalifiedRouteImport } from './routes/get-prequalified'
@@ -19,6 +20,11 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as LoanOfficersSlugRouteImport } from './routes/loan-officers.$slug'
 
+const RefinanceRoute = RefinanceRouteImport.update({
+  id: '/refinance',
+  path: '/refinance',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LoanProgramsRoute = LoanProgramsRouteImport.update({
   id: '/loan-programs',
   path: '/loan-programs',
@@ -74,6 +80,7 @@ export interface FileRoutesByFullPath {
   '/get-prequalified': typeof GetPrequalifiedRoute
   '/loan-officers': typeof LoanOfficersRouteWithChildren
   '/loan-programs': typeof LoanProgramsRoute
+  '/refinance': typeof RefinanceRoute
   '/loan-officers/$slug': typeof LoanOfficersSlugRoute
 }
 export interface FileRoutesByTo {
@@ -85,6 +92,7 @@ export interface FileRoutesByTo {
   '/get-prequalified': typeof GetPrequalifiedRoute
   '/loan-officers': typeof LoanOfficersRouteWithChildren
   '/loan-programs': typeof LoanProgramsRoute
+  '/refinance': typeof RefinanceRoute
   '/loan-officers/$slug': typeof LoanOfficersSlugRoute
 }
 export interface FileRoutesById {
@@ -97,6 +105,7 @@ export interface FileRoutesById {
   '/get-prequalified': typeof GetPrequalifiedRoute
   '/loan-officers': typeof LoanOfficersRouteWithChildren
   '/loan-programs': typeof LoanProgramsRoute
+  '/refinance': typeof RefinanceRoute
   '/loan-officers/$slug': typeof LoanOfficersSlugRoute
 }
 export interface FileRouteTypes {
@@ -110,6 +119,7 @@ export interface FileRouteTypes {
     | '/get-prequalified'
     | '/loan-officers'
     | '/loan-programs'
+    | '/refinance'
     | '/loan-officers/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -121,6 +131,7 @@ export interface FileRouteTypes {
     | '/get-prequalified'
     | '/loan-officers'
     | '/loan-programs'
+    | '/refinance'
     | '/loan-officers/$slug'
   id:
     | '__root__'
@@ -132,6 +143,7 @@ export interface FileRouteTypes {
     | '/get-prequalified'
     | '/loan-officers'
     | '/loan-programs'
+    | '/refinance'
     | '/loan-officers/$slug'
   fileRoutesById: FileRoutesById
 }
@@ -144,10 +156,18 @@ export interface RootRouteChildren {
   GetPrequalifiedRoute: typeof GetPrequalifiedRoute
   LoanOfficersRoute: typeof LoanOfficersRouteWithChildren
   LoanProgramsRoute: typeof LoanProgramsRoute
+  RefinanceRoute: typeof RefinanceRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/refinance': {
+      id: '/refinance'
+      path: '/refinance'
+      fullPath: '/refinance'
+      preLoaderRoute: typeof RefinanceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/loan-programs': {
       id: '/loan-programs'
       path: '/loan-programs'
@@ -235,6 +255,7 @@ const rootRouteChildren: RootRouteChildren = {
   GetPrequalifiedRoute: GetPrequalifiedRoute,
   LoanOfficersRoute: LoanOfficersRouteWithChildren,
   LoanProgramsRoute: LoanProgramsRoute,
+  RefinanceRoute: RefinanceRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
