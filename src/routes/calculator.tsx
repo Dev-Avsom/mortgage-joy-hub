@@ -55,7 +55,7 @@ function CalculatorPage() {
   ]);
 
   const set = (patch: Partial<typeof s>) =>
-    navigate({ search: (prev) => ({ ...prev, ...patch }), replace: true });
+    navigate({ search: (prev: typeof s) => ({ ...prev, ...patch }), replace: true });
 
   const downPct = s.price > 0 ? (s.down / s.price) * 100 : 0;
 
