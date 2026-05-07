@@ -87,7 +87,7 @@ function ProfilePage() {
               <div>
                 <h3 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">Specialties</h3>
                 <div className="mt-2 flex flex-wrap gap-1.5">
-                  {officer.specialties.map((s) => (
+                  {officer.specialties.map((s: string) => (
                     <span key={s} className="rounded-full bg-secondary px-2.5 py-0.5 text-xs">{s}</span>
                   ))}
                 </div>
@@ -97,7 +97,7 @@ function ProfilePage() {
               <div>
                 <h3 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">Languages</h3>
                 <div className="mt-2 flex flex-wrap gap-1.5">
-                  {officer.languages.map((s) => (
+                  {officer.languages.map((s: string) => (
                     <span key={s} className="rounded-full bg-secondary px-2.5 py-0.5 text-xs">{s}</span>
                   ))}
                 </div>
