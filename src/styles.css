@@ -63,32 +63,33 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(0.99 0.005 250);
-  --foreground: oklch(0.18 0.04 250);
+  /* DEFAULT THEME: BROWN / ORANGE — Ensure Home Loans brand */
+  --background: oklch(0.99 0.005 60);
+  --foreground: oklch(0.22 0.05 40);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.18 0.04 250);
+  --card-foreground: oklch(0.22 0.05 40);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.18 0.04 250);
-  --primary: oklch(0.28 0.09 255);
-  --primary-foreground: oklch(0.98 0.005 250);
-  --primary-glow: oklch(0.42 0.13 255);
-  --secondary: oklch(0.95 0.015 250);
-  --secondary-foreground: oklch(0.22 0.06 255);
-  --muted: oklch(0.96 0.01 250);
-  --muted-foreground: oklch(0.5 0.03 255);
-  --accent: oklch(0.78 0.14 75);
-  --accent-foreground: oklch(0.2 0.05 255);
+  --popover-foreground: oklch(0.22 0.05 40);
+  --primary: oklch(0.62 0.15 45);
+  --primary-foreground: oklch(0.99 0.005 60);
+  --primary-glow: oklch(0.72 0.16 50);
+  --secondary: oklch(0.95 0.02 60);
+  --secondary-foreground: oklch(0.3 0.07 40);
+  --muted: oklch(0.96 0.012 60);
+  --muted-foreground: oklch(0.5 0.04 45);
+  --accent: oklch(0.32 0.04 40);
+  --accent-foreground: oklch(0.99 0.005 60);
   --success: oklch(0.62 0.16 150);
   --success-foreground: oklch(0.98 0.005 250);
-  --gradient-hero: linear-gradient(135deg, oklch(0.22 0.07 255), oklch(0.38 0.13 260));
-  --gradient-accent: linear-gradient(135deg, oklch(0.78 0.14 75), oklch(0.84 0.11 60));
-  --shadow-elegant: 0 10px 30px -12px oklch(0.28 0.09 255 / 0.25);
-  --shadow-card: 0 4px 16px -6px oklch(0.28 0.09 255 / 0.12);
+  --gradient-hero: linear-gradient(135deg, oklch(0.32 0.05 40), oklch(0.55 0.15 45));
+  --gradient-accent: linear-gradient(135deg, oklch(0.62 0.15 45), oklch(0.72 0.16 50));
+  --shadow-elegant: 0 10px 30px -12px oklch(0.55 0.15 45 / 0.3);
+  --shadow-card: 0 4px 16px -6px oklch(0.55 0.15 45 / 0.15);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.9 0.012 250);
-  --input: oklch(0.92 0.01 250);
-  --ring: oklch(0.42 0.13 255);
+  --border: oklch(0.9 0.015 60);
+  --input: oklch(0.92 0.012 60);
+  --ring: oklch(0.62 0.15 45);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -155,32 +156,36 @@
    Toggle via <html data-theme="brown"> — set by ThemeSwitcher.
    =========================================================== */
 [data-theme="brown"] {
-  --background: oklch(0.99 0.005 60);
-  --foreground: oklch(0.22 0.05 40);
+/* ===========================================================
+   ALT THEME: BLUE — opt-in via <html data-theme="blue">
+   =========================================================== */
+[data-theme="blue"] {
+  --background: oklch(0.99 0.005 250);
+  --foreground: oklch(0.18 0.04 250);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.22 0.05 40);
+  --card-foreground: oklch(0.18 0.04 250);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.22 0.05 40);
-  --primary: oklch(0.62 0.15 45);            /* warm orange */
-  --primary-foreground: oklch(0.99 0.005 60);
-  --primary-glow: oklch(0.72 0.16 50);
-  --secondary: oklch(0.95 0.02 60);
-  --secondary-foreground: oklch(0.3 0.07 40);
-  --muted: oklch(0.96 0.012 60);
-  --muted-foreground: oklch(0.5 0.04 45);
-  --accent: oklch(0.32 0.04 40);             /* dark brown accent */
-  --accent-foreground: oklch(0.99 0.005 60);
-  --gradient-hero: linear-gradient(135deg, oklch(0.32 0.05 40), oklch(0.55 0.15 45));
-  --gradient-accent: linear-gradient(135deg, oklch(0.62 0.15 45), oklch(0.72 0.16 50));
-  --shadow-elegant: 0 10px 30px -12px oklch(0.55 0.15 45 / 0.3);
-  --shadow-card: 0 4px 16px -6px oklch(0.55 0.15 45 / 0.15);
-  --border: oklch(0.9 0.015 60);
-  --input: oklch(0.92 0.012 60);
-  --ring: oklch(0.62 0.15 45);
+  --popover-foreground: oklch(0.18 0.04 250);
+  --primary: oklch(0.28 0.09 255);
+  --primary-foreground: oklch(0.98 0.005 250);
+  --primary-glow: oklch(0.42 0.13 255);
+  --secondary: oklch(0.95 0.015 250);
+  --secondary-foreground: oklch(0.22 0.06 255);
+  --muted: oklch(0.96 0.01 250);
+  --muted-foreground: oklch(0.5 0.03 255);
+  --accent: oklch(0.78 0.14 75);
+  --accent-foreground: oklch(0.2 0.05 255);
+  --gradient-hero: linear-gradient(135deg, oklch(0.22 0.07 255), oklch(0.38 0.13 260));
+  --gradient-accent: linear-gradient(135deg, oklch(0.78 0.14 75), oklch(0.84 0.11 60));
+  --shadow-elegant: 0 10px 30px -12px oklch(0.28 0.09 255 / 0.25);
+  --shadow-card: 0 4px 16px -6px oklch(0.28 0.09 255 / 0.12);
+  --border: oklch(0.9 0.012 250);
+  --input: oklch(0.92 0.01 250);
+  --ring: oklch(0.42 0.13 255);
 }
 
-/* Logo swap based on theme */
-.brand-logo-blue { display: inline-block; }
-.brand-logo-brown { display: none; }
-[data-theme="brown"] .brand-logo-blue { display: none; }
-[data-theme="brown"] .brand-logo-brown { display: inline-block; }
+/* Logo swap based on theme — brown is default */
+.brand-logo-brown { display: inline-block; }
+.brand-logo-blue { display: none; }
+[data-theme="blue"] .brand-logo-brown { display: none; }
+[data-theme="blue"] .brand-logo-blue { display: inline-block; }
