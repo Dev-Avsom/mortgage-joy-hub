@@ -24,6 +24,7 @@ import { Route as AffordabilityRouteImport } from './routes/affordability'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as MortgageStateRouteImport } from './routes/mortgage.$state'
 import { Route as LoanOfficersSlugRouteImport } from './routes/loan-officers.$slug'
 import { Route as LearnSlugRouteImport } from './routes/learn.$slug'
 import { Route as AdminLoginRouteImport } from './routes/admin.login'
@@ -103,6 +104,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MortgageStateRoute = MortgageStateRouteImport.update({
+  id: '/$state',
+  path: '/$state',
+  getParentRoute: () => MortgageRoute,
+} as any)
 const LoanOfficersSlugRoute = LoanOfficersSlugRouteImport.update({
   id: '/$slug',
   path: '/$slug',
@@ -133,11 +139,12 @@ export interface FileRoutesByFullPath {
   '/learn': typeof LearnRouteWithChildren
   '/loan-officers': typeof LoanOfficersRouteWithChildren
   '/loan-programs': typeof LoanProgramsRoute
-  '/mortgage': typeof MortgageRoute
+  '/mortgage': typeof MortgageRouteWithChildren
   '/refinance': typeof RefinanceRoute
   '/admin/login': typeof AdminLoginRoute
   '/learn/$slug': typeof LearnSlugRoute
   '/loan-officers/$slug': typeof LoanOfficersSlugRoute
+  '/mortgage/$state': typeof MortgageStateRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -153,11 +160,12 @@ export interface FileRoutesByTo {
   '/learn': typeof LearnRouteWithChildren
   '/loan-officers': typeof LoanOfficersRouteWithChildren
   '/loan-programs': typeof LoanProgramsRoute
-  '/mortgage': typeof MortgageRoute
+  '/mortgage': typeof MortgageRouteWithChildren
   '/refinance': typeof RefinanceRoute
   '/admin/login': typeof AdminLoginRoute
   '/learn/$slug': typeof LearnSlugRoute
   '/loan-officers/$slug': typeof LoanOfficersSlugRoute
+  '/mortgage/$state': typeof MortgageStateRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -174,11 +182,12 @@ export interface FileRoutesById {
   '/learn': typeof LearnRouteWithChildren
   '/loan-officers': typeof LoanOfficersRouteWithChildren
   '/loan-programs': typeof LoanProgramsRoute
-  '/mortgage': typeof MortgageRoute
+  '/mortgage': typeof MortgageRouteWithChildren
   '/refinance': typeof RefinanceRoute
   '/admin/login': typeof AdminLoginRoute
   '/learn/$slug': typeof LearnSlugRoute
   '/loan-officers/$slug': typeof LoanOfficersSlugRoute
+  '/mortgage/$state': typeof MortgageStateRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -201,6 +210,7 @@ export interface FileRouteTypes {
     | '/admin/login'
     | '/learn/$slug'
     | '/loan-officers/$slug'
+    | '/mortgage/$state'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -221,6 +231,7 @@ export interface FileRouteTypes {
     | '/admin/login'
     | '/learn/$slug'
     | '/loan-officers/$slug'
+    | '/mortgage/$state'
   id:
     | '__root__'
     | '/'
@@ -241,6 +252,7 @@ export interface FileRouteTypes {
     | '/admin/login'
     | '/learn/$slug'
     | '/loan-officers/$slug'
+    | '/mortgage/$state'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -257,7 +269,7 @@ export interface RootRouteChildren {
   LearnRoute: typeof LearnRouteWithChildren
   LoanOfficersRoute: typeof LoanOfficersRouteWithChildren
   LoanProgramsRoute: typeof LoanProgramsRoute
-  MortgageRoute: typeof MortgageRoute
+  MortgageRoute: typeof MortgageRouteWithChildren
   RefinanceRoute: typeof RefinanceRoute
 }
 
@@ -368,6 +380,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/mortgage/$state': {
+      id: '/mortgage/$state'
+      path: '/$state'
+      fullPath: '/mortgage/$state'
+      preLoaderRoute: typeof MortgageStateRouteImport
+      parentRoute: typeof MortgageRoute
+    }
     '/loan-officers/$slug': {
       id: '/loan-officers/$slug'
       path: '/$slug'
@@ -424,6 +443,18 @@ const LoanOfficersRouteWithChildren = LoanOfficersRoute._addFileChildren(
   LoanOfficersRouteChildren,
 )
 
+interface MortgageRouteChildren {
+  MortgageStateRoute: typeof MortgageStateRoute
+}
+
+const MortgageRouteChildren: MortgageRouteChildren = {
+  MortgageStateRoute: MortgageStateRoute,
+}
+
+const MortgageRouteWithChildren = MortgageRoute._addFileChildren(
+  MortgageRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
@@ -438,7 +469,7 @@ const rootRouteChildren: RootRouteChildren = {
   LearnRoute: LearnRouteWithChildren,
   LoanOfficersRoute: LoanOfficersRouteWithChildren,
   LoanProgramsRoute: LoanProgramsRoute,
-  MortgageRoute: MortgageRoute,
+  MortgageRoute: MortgageRouteWithChildren,
   RefinanceRoute: RefinanceRoute,
 }
 export const routeTree = rootRouteImport
