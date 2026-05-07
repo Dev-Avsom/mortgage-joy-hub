@@ -34,6 +34,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as LoanProgramsSlugRouteImport } from './routes/loan-programs.$slug'
 import { Route as LoanOfficersSlugRouteImport } from './routes/loan-officers.$slug'
 import { Route as LearnSlugRouteImport } from './routes/learn.$slug'
+import { Route as AdminOfficersRouteImport } from './routes/admin.officers'
 import { Route as AdminLoginRouteImport } from './routes/admin.login'
 
 const TermsRoute = TermsRouteImport.update({
@@ -161,6 +162,11 @@ const LearnSlugRoute = LearnSlugRouteImport.update({
   path: '/$slug',
   getParentRoute: () => LearnRoute,
 } as any)
+const AdminOfficersRoute = AdminOfficersRouteImport.update({
+  id: '/officers',
+  path: '/officers',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminLoginRoute = AdminLoginRouteImport.update({
   id: '/login',
   path: '/login',
@@ -191,6 +197,7 @@ export interface FileRoutesByFullPath {
   '/tcpa': typeof TcpaRoute
   '/terms': typeof TermsRoute
   '/admin/login': typeof AdminLoginRoute
+  '/admin/officers': typeof AdminOfficersRoute
   '/learn/$slug': typeof LearnSlugRoute
   '/loan-officers/$slug': typeof LoanOfficersSlugRoute
   '/loan-programs/$slug': typeof LoanProgramsSlugRoute
@@ -219,6 +226,7 @@ export interface FileRoutesByTo {
   '/tcpa': typeof TcpaRoute
   '/terms': typeof TermsRoute
   '/admin/login': typeof AdminLoginRoute
+  '/admin/officers': typeof AdminOfficersRoute
   '/learn/$slug': typeof LearnSlugRoute
   '/loan-officers/$slug': typeof LoanOfficersSlugRoute
   '/loan-programs/$slug': typeof LoanProgramsSlugRoute
@@ -248,6 +256,7 @@ export interface FileRoutesById {
   '/tcpa': typeof TcpaRoute
   '/terms': typeof TermsRoute
   '/admin/login': typeof AdminLoginRoute
+  '/admin/officers': typeof AdminOfficersRoute
   '/learn/$slug': typeof LearnSlugRoute
   '/loan-officers/$slug': typeof LoanOfficersSlugRoute
   '/loan-programs/$slug': typeof LoanProgramsSlugRoute
@@ -278,6 +287,7 @@ export interface FileRouteTypes {
     | '/tcpa'
     | '/terms'
     | '/admin/login'
+    | '/admin/officers'
     | '/learn/$slug'
     | '/loan-officers/$slug'
     | '/loan-programs/$slug'
@@ -306,6 +316,7 @@ export interface FileRouteTypes {
     | '/tcpa'
     | '/terms'
     | '/admin/login'
+    | '/admin/officers'
     | '/learn/$slug'
     | '/loan-officers/$slug'
     | '/loan-programs/$slug'
@@ -334,6 +345,7 @@ export interface FileRouteTypes {
     | '/tcpa'
     | '/terms'
     | '/admin/login'
+    | '/admin/officers'
     | '/learn/$slug'
     | '/loan-officers/$slug'
     | '/loan-programs/$slug'
@@ -541,6 +553,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LearnSlugRouteImport
       parentRoute: typeof LearnRoute
     }
+    '/admin/officers': {
+      id: '/admin/officers'
+      path: '/officers'
+      fullPath: '/admin/officers'
+      preLoaderRoute: typeof AdminOfficersRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/login': {
       id: '/admin/login'
       path: '/login'
@@ -553,10 +572,12 @@ declare module '@tanstack/react-router' {
 
 interface AdminRouteChildren {
   AdminLoginRoute: typeof AdminLoginRoute
+  AdminOfficersRoute: typeof AdminOfficersRoute
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
   AdminLoginRoute: AdminLoginRoute,
+  AdminOfficersRoute: AdminOfficersRoute,
 }
 
 const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
