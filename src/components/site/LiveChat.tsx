@@ -27,8 +27,10 @@ export function LiveChat() {
   const [open, setOpen] = useState(false);
   const [sending, setSending] = useState(false);
   const [online, setOnline] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     setOnline(isOnline());
     const t = setInterval(() => setOnline(isOnline()), 60_000);
     return () => clearInterval(t);
@@ -73,7 +75,7 @@ export function LiveChat() {
         className="fixed bottom-20 right-4 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-2xl transition hover:scale-105 lg:bottom-6"
       >
         {open ? <X className="h-6 w-6" /> : <MessageCircle className="h-6 w-6" />}
-        {!open && online && (
+        {mounted && !open && online && (
           <span className="absolute right-1 top-1 flex h-3 w-3">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[oklch(0.7_0.18_150)] opacity-75" />
             <span className="relative inline-flex h-3 w-3 rounded-full bg-[oklch(0.62_0.16_150)] ring-2 ring-background" />
