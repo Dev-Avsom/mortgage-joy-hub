@@ -10,20 +10,20 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-export type BrandTheme = "blue" | "brown";
+export type BrandTheme = "brown" | "blue";
 const STORAGE_KEY = "brand-theme";
 
 function applyTheme(t: BrandTheme) {
   if (typeof document === "undefined") return;
-  if (t === "blue") document.documentElement.removeAttribute("data-theme");
+  if (t === "brown") document.documentElement.removeAttribute("data-theme");
   else document.documentElement.setAttribute("data-theme", t);
 }
 
 export function ThemeSwitcher({ compact = false }: { compact?: boolean }) {
-  const [theme, setTheme] = useState<BrandTheme>("blue");
+  const [theme, setTheme] = useState<BrandTheme>("brown");
 
   useEffect(() => {
-    const saved = (localStorage.getItem(STORAGE_KEY) as BrandTheme | null) ?? "blue";
+    const saved = (localStorage.getItem(STORAGE_KEY) as BrandTheme | null) ?? "brown";
     setTheme(saved);
     applyTheme(saved);
   }, []);
@@ -34,7 +34,7 @@ export function ThemeSwitcher({ compact = false }: { compact?: boolean }) {
     applyTheme(t);
   }
 
-  const swatch = (t: BrandTheme) => (t === "blue" ? "oklch(0.42 0.13 255)" : "oklch(0.62 0.15 45)");
+  const swatch = (t: BrandTheme) => (t === "brown" ? "oklch(0.62 0.15 45)" : "oklch(0.42 0.13 255)");
 
   return (
     <DropdownMenu>
@@ -47,7 +47,7 @@ export function ThemeSwitcher({ compact = false }: { compact?: boolean }) {
       <DropdownMenuContent align="end" className="w-56">
         <DropdownMenuLabel>Brand color preview</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        {(["blue", "brown"] as BrandTheme[]).map((t) => (
+        {(["brown", "blue"] as BrandTheme[]).map((t) => (
           <DropdownMenuItem key={t} onClick={() => pick(t)} className="cursor-pointer">
             <span className="mr-2 inline-block h-4 w-4 rounded-full border border-border" style={{ background: swatch(t) }} />
             <span className="capitalize">{t}</span>
