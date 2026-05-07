@@ -115,6 +115,9 @@ function HomePage() {
       </section>
 
       {/* CTA strip */}
+      <Reviews />
+
+      {/* CTA strip */}
       <section className="mx-auto max-w-7xl px-4 py-16">
         <div
           className="flex flex-col items-center justify-between gap-6 rounded-2xl px-8 py-10 text-white shadow-[var(--shadow-elegant)] md:flex-row"
