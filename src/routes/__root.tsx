@@ -78,10 +78,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "HomeBridge Mortgage — Smarter home loans, made simple" },
       { name: "description", content: "US mortgage lending made simple. Calculate payments, explore loan programs, and connect with a licensed loan officer." },
-      { property: "og:title", content: "HomeBridge Mortgage" },
-      { property: "og:description", content: "Calculate payments, explore loan programs, and connect with a licensed loan officer." },
+      { property: "og:title", content: "HomeBridge Mortgage — Smarter home loans, made simple" },
+      { property: "og:description", content: "US mortgage lending made simple. Calculate payments, explore loan programs, and connect with a licensed loan officer." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
+      { name: "twitter:title", content: "HomeBridge Mortgage — Smarter home loans, made simple" },
+      { name: "twitter:description", content: "US mortgage lending made simple. Calculate payments, explore loan programs, and connect with a licensed loan officer." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/809e8a66-a58c-4ced-ad58-a3c064ec2d87/id-preview-0ea3f6c2--ca4731a9-499a-4afe-b959-6ad09499f32a.lovable.app-1778158735031.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/809e8a66-a58c-4ced-ad58-a3c064ec2d87/id-preview-0ea3f6c2--ca4731a9-499a-4afe-b959-6ad09499f32a.lovable.app-1778158735031.png" },
     ],
     links: [
       {
