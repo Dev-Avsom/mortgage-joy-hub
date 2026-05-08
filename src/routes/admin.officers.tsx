@@ -1,5 +1,5 @@
 import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -13,7 +13,7 @@ import {
   AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import { toast } from "sonner";
-import { Plus, Pencil, Trash2, ArrowLeft, ShieldAlert, LogOut } from "lucide-react";
+import { Plus, Pencil, Trash2, ShieldAlert, LogOut, Upload, Loader2 } from "lucide-react";
 
 export const Route = createFileRoute("/admin/officers")({
   head: () => ({ meta: [{ title: "Manage MLOs — Admin" }, { name: "robots", content: "noindex" }] }),
@@ -30,17 +30,20 @@ type Officer = {
   phone: string | null;
   whatsapp: string | null;
   bio: string | null;
+  about: string | null;
   photo_url: string | null;
   years_experience: number | null;
   languages: string[];
   specialties: string[];
+  achievements: string[];
   display_order: number;
   is_active: boolean;
 };
 
 const empty: Partial<Officer> = {
   name: "", slug: "", title: "", nmls_id: "", email: "", phone: "", whatsapp: "",
-  bio: "", photo_url: "", years_experience: 0, languages: [], specialties: [],
+  bio: "", about: "", photo_url: "", years_experience: 0,
+  languages: [], specialties: [], achievements: [],
   display_order: 0, is_active: true,
 };
 
@@ -52,10 +55,13 @@ function OfficersAdmin() {
   const navigate = useNavigate();
   const [authReady, setAuthReady] = useState(false);
   const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
+  const [userEmail, setUserEmail] = useState<string | null>(null);
   const [officers, setOfficers] = useState<Officer[]>([]);
   const [loading, setLoading] = useState(false);
   const [editing, setEditing] = useState<Partial<Officer> | null>(null);
   const [deleteId, setDeleteId] = useState<string | null>(null);
+  const [uploading, setUploading] = useState(false);
+  const fileRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     let mounted = true;
@@ -63,6 +69,7 @@ function OfficersAdmin() {
       const { data: { session } } = await supabase.auth.getSession();
       if (!mounted) return;
       if (!session) { navigate({ to: "/admin/login" }); return; }
+      setUserEmail(session.user.email ?? null);
       const { data: roles } = await supabase.from("user_roles").select("role").eq("user_id", session.user.id);
       const admin = (roles ?? []).some((r) => r.role === "admin");
       setIsAdmin(admin);
@@ -85,24 +92,40 @@ function OfficersAdmin() {
     setOfficers((data ?? []) as Officer[]);
   };
 
+  const handlePhotoUpload = async (file: File) => {
+    if (!editing) return;
+    setUploading(true);
+    const ext = file.name.split(".").pop() ?? "jpg";
+    const path = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
+    const { error: upErr } = await supabase.storage.from("officer-photos").upload(path, file, {
+      cacheControl: "3600", upsert: false, contentType: file.type,
+    });
+    setUploading(false);
+    if (upErr) return toast.error(upErr.message);
+    const { data } = supabase.storage.from("officer-photos").getPublicUrl(path);
+    setEditing({ ...editing, photo_url: data.publicUrl });
+    toast.success("Photo uploaded");
+  };
+
   const save = async () => {
     if (!editing) return;
     const name = (editing.name ?? "").trim();
     if (!name) return toast.error("Name is required");
     const slug = (editing.slug?.trim() || slugify(name));
     const payload = {
-      name,
-      slug,
+      name, slug,
       title: editing.title || null,
       nmls_id: editing.nmls_id || null,
       email: editing.email || null,
       phone: editing.phone || null,
       whatsapp: editing.whatsapp || null,
       bio: editing.bio || null,
+      about: editing.about || null,
       photo_url: editing.photo_url || null,
       years_experience: editing.years_experience ? Number(editing.years_experience) : null,
       languages: editing.languages ?? [],
       specialties: editing.specialties ?? [],
+      achievements: editing.achievements ?? [],
       display_order: Number(editing.display_order ?? 0),
       is_active: editing.is_active ?? true,
     };
@@ -125,7 +148,7 @@ function OfficersAdmin() {
     load();
   };
 
-  const signOut = async () => { await supabase.auth.signOut(); navigate({ to: "/admin/login" }); };
+  const signOut = async () => { await supabase.auth.signOut(); window.location.href = "/admin/login"; };
 
   if (!authReady) return <div className="p-12 text-center text-muted-foreground">Loading…</div>;
 
@@ -146,15 +169,13 @@ function OfficersAdmin() {
     <div className="mx-auto max-w-7xl px-4 py-8">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <Link to="/admin" className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground">
-            <ArrowLeft className="mr-1 h-4 w-4" /> Back to leads
-          </Link>
-          <h1 className="mt-2 text-2xl font-bold">Manage Loan Officers</h1>
-          <p className="text-sm text-muted-foreground">Add, edit, or remove MLO profiles shown on the public site.</p>
+          <h1 className="text-2xl font-bold">Manage Loan Officers</h1>
+          <p className="text-sm text-muted-foreground">Signed in as {userEmail}</p>
         </div>
-        <Button onClick={() => setEditing({ ...empty })}>
-          <Plus className="mr-2 h-4 w-4" /> Add MLO
-        </Button>
+        <div className="flex gap-2">
+          <Button onClick={() => setEditing({ ...empty })}><Plus className="mr-2 h-4 w-4" /> Add MLO</Button>
+          <Button variant="outline" onClick={signOut}><LogOut className="mr-2 h-4 w-4" /> Sign out</Button>
+        </div>
       </div>
 
       <Card className="mt-6 overflow-hidden p-0">
@@ -162,6 +183,7 @@ function OfficersAdmin() {
           <table className="w-full text-sm">
             <thead className="border-b bg-secondary/40 text-left text-xs uppercase tracking-wide text-muted-foreground">
               <tr>
+                <th className="px-4 py-3">Photo</th>
                 <th className="px-4 py-3">Name</th>
                 <th className="px-4 py-3">Title</th>
                 <th className="px-4 py-3">NMLS</th>
@@ -173,11 +195,18 @@ function OfficersAdmin() {
             </thead>
             <tbody>
               {loading ? (
-                <tr><td colSpan={7} className="px-4 py-12 text-center text-muted-foreground">Loading…</td></tr>
+                <tr><td colSpan={8} className="px-4 py-12 text-center text-muted-foreground">Loading…</td></tr>
               ) : officers.length === 0 ? (
-                <tr><td colSpan={7} className="px-4 py-12 text-center text-muted-foreground">No MLOs yet. Click "Add MLO" to create one.</td></tr>
+                <tr><td colSpan={8} className="px-4 py-12 text-center text-muted-foreground">No MLOs yet. Click "Add MLO" to create one.</td></tr>
               ) : officers.map((o) => (
                 <tr key={o.id} className="border-b last:border-b-0 hover:bg-secondary/30">
+                  <td className="px-4 py-3">
+                    {o.photo_url ? (
+                      <img src={o.photo_url} alt={o.name} className="h-12 w-12 rounded-full object-cover" />
+                    ) : (
+                      <div className="h-12 w-12 rounded-full bg-secondary" />
+                    )}
+                  </td>
                   <td className="px-4 py-3 font-medium">{o.name}<div className="text-xs text-muted-foreground">/{o.slug}</div></td>
                   <td className="px-4 py-3">{o.title ?? "—"}</td>
                   <td className="px-4 py-3 text-xs">{o.nmls_id ?? "—"}</td>
@@ -206,6 +235,28 @@ function OfficersAdmin() {
           </DialogHeader>
           {editing && (
             <div className="grid gap-4 py-2 sm:grid-cols-2">
+              <div className="sm:col-span-2">
+                <Label className="mb-1.5 block text-xs">Profile photo</Label>
+                <div className="flex items-center gap-4">
+                  {editing.photo_url ? (
+                    <img src={editing.photo_url} alt="" className="h-20 w-20 rounded-full object-cover" />
+                  ) : (
+                    <div className="h-20 w-20 rounded-full bg-secondary" />
+                  )}
+                  <input
+                    ref={fileRef} type="file" accept="image/*" className="hidden"
+                    onChange={(e) => { const f = e.target.files?.[0]; if (f) handlePhotoUpload(f); e.target.value = ""; }}
+                  />
+                  <Button type="button" variant="outline" disabled={uploading} onClick={() => fileRef.current?.click()}>
+                    {uploading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Upload className="mr-2 h-4 w-4" />}
+                    {editing.photo_url ? "Replace photo" : "Upload photo"}
+                  </Button>
+                  {editing.photo_url && (
+                    <Button type="button" variant="ghost" onClick={() => setEditing({ ...editing, photo_url: "" })}>Remove</Button>
+                  )}
+                </div>
+              </div>
+
               <Field label="Name *">
                 <Input value={editing.name ?? ""} onChange={(e) => setEditing({ ...editing, name: e.target.value })} />
               </Field>
@@ -220,17 +271,25 @@ function OfficersAdmin() {
               <Field label="Years experience">
                 <Input type="number" value={editing.years_experience ?? 0} onChange={(e) => setEditing({ ...editing, years_experience: Number(e.target.value) })} />
               </Field>
-              <Field label="Photo URL" className="sm:col-span-2">
-                <Input placeholder="https://…" value={editing.photo_url ?? ""} onChange={(e) => setEditing({ ...editing, photo_url: e.target.value })} />
-              </Field>
               <Field label="Languages (comma-separated)" className="sm:col-span-2">
                 <Input value={(editing.languages ?? []).join(", ")} onChange={(e) => setEditing({ ...editing, languages: e.target.value.split(",").map((s) => s.trim()).filter(Boolean) })} />
               </Field>
               <Field label="Specialties (comma-separated)" className="sm:col-span-2">
                 <Input value={(editing.specialties ?? []).join(", ")} onChange={(e) => setEditing({ ...editing, specialties: e.target.value.split(",").map((s) => s.trim()).filter(Boolean) })} />
               </Field>
-              <Field label="Bio" className="sm:col-span-2">
-                <Textarea rows={4} value={editing.bio ?? ""} onChange={(e) => setEditing({ ...editing, bio: e.target.value })} />
+              <Field label="Short bio (shown on cards)" className="sm:col-span-2">
+                <Textarea rows={3} value={editing.bio ?? ""} onChange={(e) => setEditing({ ...editing, bio: e.target.value })} />
+              </Field>
+              <Field label="About (full description on profile)" className="sm:col-span-2">
+                <Textarea rows={5} value={editing.about ?? ""} onChange={(e) => setEditing({ ...editing, about: e.target.value })} />
+              </Field>
+              <Field label="Achievements (one per line)" className="sm:col-span-2">
+                <Textarea
+                  rows={4}
+                  placeholder="Top 1% MLO 2024&#10;NMLS Certified Mentor&#10;$50M+ funded in 2023"
+                  value={(editing.achievements ?? []).join("\n")}
+                  onChange={(e) => setEditing({ ...editing, achievements: e.target.value.split("\n").map((s) => s.trim()).filter(Boolean) })}
+                />
               </Field>
               <Field label="Display order">
                 <Input type="number" value={editing.display_order ?? 0} onChange={(e) => setEditing({ ...editing, display_order: Number(e.target.value) })} />
@@ -252,9 +311,7 @@ function OfficersAdmin() {
         <AlertDialogContent>
           <AlertDialogHeader>
             <AlertDialogTitle>Delete this MLO?</AlertDialogTitle>
-            <AlertDialogDescription>
-              This permanently removes the loan officer profile. This cannot be undone.
-            </AlertDialogDescription>
+            <AlertDialogDescription>This permanently removes the loan officer profile.</AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel>Cancel</AlertDialogCancel>
