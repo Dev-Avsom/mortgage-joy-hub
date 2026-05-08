@@ -8,6 +8,7 @@ import logoBlue from "@/assets/logo-blue.png";
 import logoBrown from "@/assets/logo-brown.png";
 
 type NavLeaf = { to: string; label: string };
+type NavLeaf = { to: string; label: string; params?: Record<string, string> };
 type NavGroup = { label: string; to?: string; children: NavLeaf[] };
 type NavItem = NavLeaf | NavGroup;
 
