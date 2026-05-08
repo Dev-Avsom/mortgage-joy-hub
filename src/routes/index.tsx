@@ -131,19 +131,25 @@ function HomePage() {
       </section>
 
       {/* Value props */}
-      <section className="mx-auto max-w-7xl px-4 py-16">
-        <div className="grid gap-6 md:grid-cols-3">
+      <section className="relative mx-auto max-w-7xl px-4 py-20">
+        <div className="mx-auto max-w-2xl text-center">
+          <span className="eyebrow">Why us</span>
+          <h2 className="mt-3 text-3xl font-bold tracking-tight md:text-4xl">
+            A smarter way to <span className="gradient-text">borrow</span>
+          </h2>
+        </div>
+        <div className="mt-10 grid gap-6 md:grid-cols-3">
           {[
-            { icon: TrendingDown, title: "Competitive rates", body: "We shop multiple lenders to find the best rate for your profile." },
-            { icon: ShieldCheck, title: "No surprises", body: "Transparent fees and a clear timeline from application to closing." },
-            { icon: Users, title: "Real loan officers", body: "Talk to a licensed expert — not a chatbot. Available 7 days a week." },
+            { icon: TrendingDown, title: "Competitive rates", body: "We shop multiple lenders to find the best rate for your profile.", tone: "brand" },
+            { icon: ShieldCheck, title: "No surprises", body: "Transparent fees and a clear timeline from application to closing.", tone: "teal" },
+            { icon: Users, title: "Real loan officers", body: "Talk to a licensed expert — not a chatbot. Available 7 days a week.", tone: "gold" },
           ].map((v, i) => (
             <Reveal key={v.title} delay={i * 100}>
-              <Card className="hover-lift p-6">
-                <v.icon className="h-9 w-9 text-primary transition-transform group-hover:scale-110" />
-                <h3 className="mt-3 text-lg font-semibold">{v.title}</h3>
+              <div className="card-elevated rounded-xl p-7 h-full">
+                <span className={`icon-chip ${v.tone}`}><v.icon className="h-5 w-5" /></span>
+                <h3 className="mt-5 text-lg font-semibold">{v.title}</h3>
                 <p className="mt-1 text-sm text-muted-foreground">{v.body}</p>
-              </Card>
+              </div>
             </Reveal>
           ))}
         </div>
@@ -164,6 +170,24 @@ function HomePage() {
 
       {/* Social proof */}
       <Reviews />
+
+      {/* Final CTA banner */}
+      <section className="mx-auto max-w-7xl px-4 pb-20">
+        <div className="cta-banner flex flex-wrap items-center justify-between gap-6 p-8 md:p-12">
+          <div className="relative z-10 max-w-xl">
+            <h3 className="text-3xl font-bold leading-tight md:text-4xl">Ready to make it official?</h3>
+            <p className="mt-2 text-primary-foreground/85">Get pre-qualified in minutes and lock in today's best rate.</p>
+          </div>
+          <div className="relative z-10 flex flex-wrap gap-3">
+            <Button asChild size="lg" className="bg-[oklch(0.84_0.13_75)] text-[oklch(0.2_0.05_40)] hover:opacity-90">
+              <Link to="/get-prequalified"><FileCheck className="mr-2 h-5 w-5" /> Get pre-qualified</Link>
+            </Button>
+            <Button asChild size="lg" variant="outline" className="border-white/40 bg-white/10 text-white hover:bg-white/20">
+              <Link to="/calculator">Try the calculator</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
     </>
   );
 }
