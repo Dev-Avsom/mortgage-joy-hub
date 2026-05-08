@@ -15,15 +15,14 @@ const STORAGE_KEY = "brand-theme";
 
 function applyTheme(t: BrandTheme) {
   if (typeof document === "undefined") return;
-  if (t === "brown") document.documentElement.removeAttribute("data-theme");
-  else document.documentElement.setAttribute("data-theme", t);
+  document.documentElement.setAttribute("data-theme", t);
 }
 
 export function ThemeSwitcher({ compact = false }: { compact?: boolean }) {
-  const [theme, setTheme] = useState<BrandTheme>("brown");
+  const [theme, setTheme] = useState<BrandTheme>("blue");
 
   useEffect(() => {
-    const saved = (localStorage.getItem(STORAGE_KEY) as BrandTheme | null) ?? "brown";
+    const saved = (localStorage.getItem(STORAGE_KEY) as BrandTheme | null) ?? "blue";
     setTheme(saved);
     applyTheme(saved);
   }, []);
