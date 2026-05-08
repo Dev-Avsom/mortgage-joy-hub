@@ -9,7 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { toast } from "sonner";
 import { Download, Search, LogOut, Phone, Mail, ShieldAlert, Users } from "lucide-react";
 
-export const Route = createFileRoute("/admin")({
+export const Route = createFileRoute("/admin/")({
   head: () => ({ meta: [{ title: "Admin Dashboard — HomeBridge Mortgage" }, { name: "robots", content: "noindex" }] }),
   component: AdminPage,
 });
