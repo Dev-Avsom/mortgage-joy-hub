@@ -15,16 +15,21 @@ import { Route as ReviewsRouteImport } from './routes/reviews'
 import { Route as RefinanceRouteImport } from './routes/refinance'
 import { Route as ProcessRouteImport } from './routes/process'
 import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as PressRouteImport } from './routes/press'
 import { Route as LoanOfficersRouteImport } from './routes/loan-officers'
 import { Route as LicensesRouteImport } from './routes/licenses'
 import { Route as LearnRouteImport } from './routes/learn'
 import { Route as JoinRouteImport } from './routes/join'
 import { Route as GetPrequalifiedRouteImport } from './routes/get-prequalified'
+import { Route as FirstTimeBuyerRouteImport } from './routes/first-time-buyer'
 import { Route as FindOfficerRouteImport } from './routes/find-officer'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as DocumentsRouteImport } from './routes/documents'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as CareersRouteImport } from './routes/careers'
 import { Route as CalculatorRouteImport } from './routes/calculator'
+import { Route as BuildersRouteImport } from './routes/builders'
+import { Route as AgentsRouteImport } from './routes/agents'
 import { Route as AffordabilityRouteImport } from './routes/affordability'
 import { Route as AccessibilityRouteImport } from './routes/accessibility'
 import { Route as AboutRouteImport } from './routes/about'
@@ -67,6 +72,11 @@ const PrivacyRoute = PrivacyRouteImport.update({
   path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PressRoute = PressRouteImport.update({
+  id: '/press',
+  path: '/press',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LoanOfficersRoute = LoanOfficersRouteImport.update({
   id: '/loan-officers',
   path: '/loan-officers',
@@ -92,6 +102,11 @@ const GetPrequalifiedRoute = GetPrequalifiedRouteImport.update({
   path: '/get-prequalified',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FirstTimeBuyerRoute = FirstTimeBuyerRouteImport.update({
+  id: '/first-time-buyer',
+  path: '/first-time-buyer',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FindOfficerRoute = FindOfficerRouteImport.update({
   id: '/find-officer',
   path: '/find-officer',
@@ -112,9 +127,24 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CareersRoute = CareersRouteImport.update({
+  id: '/careers',
+  path: '/careers',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CalculatorRoute = CalculatorRouteImport.update({
   id: '/calculator',
   path: '/calculator',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BuildersRoute = BuildersRouteImport.update({
+  id: '/builders',
+  path: '/builders',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AgentsRoute = AgentsRouteImport.update({
+  id: '/agents',
+  path: '/agents',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AffordabilityRoute = AffordabilityRouteImport.update({
@@ -148,9 +178,9 @@ const AdminIndexRoute = AdminIndexRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoanProgramsSlugRoute = LoanProgramsSlugRouteImport.update({
-  id: '/loan-programs/$slug',
-  path: '/loan-programs/$slug',
-  getParentRoute: () => rootRouteImport,
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => LoanProgramsRoute,
 } as any)
 const LoanOfficersSlugRoute = LoanOfficersSlugRouteImport.update({
   id: '/$slug',
@@ -168,9 +198,9 @@ const AdminOfficersRoute = AdminOfficersRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminLoginRoute = AdminLoginRouteImport.update({
-  id: '/admin/login',
-  path: '/admin/login',
-  getParentRoute: () => rootRouteImport,
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => AdminRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -178,16 +208,21 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/accessibility': typeof AccessibilityRoute
   '/affordability': typeof AffordabilityRoute
+  '/agents': typeof AgentsRoute
+  '/builders': typeof BuildersRoute
   '/calculator': typeof CalculatorRoute
+  '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
   '/documents': typeof DocumentsRoute
   '/faq': typeof FaqRoute
   '/find-officer': typeof FindOfficerRoute
+  '/first-time-buyer': typeof FirstTimeBuyerRoute
   '/get-prequalified': typeof GetPrequalifiedRoute
   '/join': typeof JoinRoute
   '/learn': typeof LearnRouteWithChildren
   '/licenses': typeof LicensesRoute
   '/loan-officers': typeof LoanOfficersRouteWithChildren
+  '/press': typeof PressRoute
   '/privacy': typeof PrivacyRoute
   '/process': typeof ProcessRoute
   '/refinance': typeof RefinanceRoute
@@ -207,16 +242,21 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/accessibility': typeof AccessibilityRoute
   '/affordability': typeof AffordabilityRoute
+  '/agents': typeof AgentsRoute
+  '/builders': typeof BuildersRoute
   '/calculator': typeof CalculatorRoute
+  '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
   '/documents': typeof DocumentsRoute
   '/faq': typeof FaqRoute
   '/find-officer': typeof FindOfficerRoute
+  '/first-time-buyer': typeof FirstTimeBuyerRoute
   '/get-prequalified': typeof GetPrequalifiedRoute
   '/join': typeof JoinRoute
   '/learn': typeof LearnRouteWithChildren
   '/licenses': typeof LicensesRoute
   '/loan-officers': typeof LoanOfficersRouteWithChildren
+  '/press': typeof PressRoute
   '/privacy': typeof PrivacyRoute
   '/process': typeof ProcessRoute
   '/refinance': typeof RefinanceRoute
@@ -237,16 +277,21 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/accessibility': typeof AccessibilityRoute
   '/affordability': typeof AffordabilityRoute
+  '/agents': typeof AgentsRoute
+  '/builders': typeof BuildersRoute
   '/calculator': typeof CalculatorRoute
+  '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
   '/documents': typeof DocumentsRoute
   '/faq': typeof FaqRoute
   '/find-officer': typeof FindOfficerRoute
+  '/first-time-buyer': typeof FirstTimeBuyerRoute
   '/get-prequalified': typeof GetPrequalifiedRoute
   '/join': typeof JoinRoute
   '/learn': typeof LearnRouteWithChildren
   '/licenses': typeof LicensesRoute
   '/loan-officers': typeof LoanOfficersRouteWithChildren
+  '/press': typeof PressRoute
   '/privacy': typeof PrivacyRoute
   '/process': typeof ProcessRoute
   '/refinance': typeof RefinanceRoute
@@ -268,16 +313,21 @@ export interface FileRouteTypes {
     | '/about'
     | '/accessibility'
     | '/affordability'
+    | '/agents'
+    | '/builders'
     | '/calculator'
+    | '/careers'
     | '/contact'
     | '/documents'
     | '/faq'
     | '/find-officer'
+    | '/first-time-buyer'
     | '/get-prequalified'
     | '/join'
     | '/learn'
     | '/licenses'
     | '/loan-officers'
+    | '/press'
     | '/privacy'
     | '/process'
     | '/refinance'
@@ -297,16 +347,21 @@ export interface FileRouteTypes {
     | '/about'
     | '/accessibility'
     | '/affordability'
+    | '/agents'
+    | '/builders'
     | '/calculator'
+    | '/careers'
     | '/contact'
     | '/documents'
     | '/faq'
     | '/find-officer'
+    | '/first-time-buyer'
     | '/get-prequalified'
     | '/join'
     | '/learn'
     | '/licenses'
     | '/loan-officers'
+    | '/press'
     | '/privacy'
     | '/process'
     | '/refinance'
@@ -326,16 +381,21 @@ export interface FileRouteTypes {
     | '/about'
     | '/accessibility'
     | '/affordability'
+    | '/agents'
+    | '/builders'
     | '/calculator'
+    | '/careers'
     | '/contact'
     | '/documents'
     | '/faq'
     | '/find-officer'
+    | '/first-time-buyer'
     | '/get-prequalified'
     | '/join'
     | '/learn'
     | '/licenses'
     | '/loan-officers'
+    | '/press'
     | '/privacy'
     | '/process'
     | '/refinance'
@@ -356,25 +416,28 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   AccessibilityRoute: typeof AccessibilityRoute
   AffordabilityRoute: typeof AffordabilityRoute
+  AgentsRoute: typeof AgentsRoute
+  BuildersRoute: typeof BuildersRoute
   CalculatorRoute: typeof CalculatorRoute
+  CareersRoute: typeof CareersRoute
   ContactRoute: typeof ContactRoute
   DocumentsRoute: typeof DocumentsRoute
   FaqRoute: typeof FaqRoute
   FindOfficerRoute: typeof FindOfficerRoute
+  FirstTimeBuyerRoute: typeof FirstTimeBuyerRoute
   GetPrequalifiedRoute: typeof GetPrequalifiedRoute
   JoinRoute: typeof JoinRoute
   LearnRoute: typeof LearnRouteWithChildren
   LicensesRoute: typeof LicensesRoute
   LoanOfficersRoute: typeof LoanOfficersRouteWithChildren
+  PressRoute: typeof PressRoute
   PrivacyRoute: typeof PrivacyRoute
   ProcessRoute: typeof ProcessRoute
   RefinanceRoute: typeof RefinanceRoute
   ReviewsRoute: typeof ReviewsRoute
   TcpaRoute: typeof TcpaRoute
   TermsRoute: typeof TermsRoute
-  AdminLoginRoute: typeof AdminLoginRoute
   AdminOfficersRoute: typeof AdminOfficersRoute
-  LoanProgramsSlugRoute: typeof LoanProgramsSlugRoute
   AdminIndexRoute: typeof AdminIndexRoute
   LoanProgramsIndexRoute: typeof LoanProgramsIndexRoute
 }
@@ -423,6 +486,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/press': {
+      id: '/press'
+      path: '/press'
+      fullPath: '/press'
+      preLoaderRoute: typeof PressRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/loan-officers': {
       id: '/loan-officers'
       path: '/loan-officers'
@@ -458,6 +528,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GetPrequalifiedRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/first-time-buyer': {
+      id: '/first-time-buyer'
+      path: '/first-time-buyer'
+      fullPath: '/first-time-buyer'
+      preLoaderRoute: typeof FirstTimeBuyerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/find-officer': {
       id: '/find-officer'
       path: '/find-officer'
@@ -486,11 +563,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/careers': {
+      id: '/careers'
+      path: '/careers'
+      fullPath: '/careers'
+      preLoaderRoute: typeof CareersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/calculator': {
       id: '/calculator'
       path: '/calculator'
       fullPath: '/calculator'
       preLoaderRoute: typeof CalculatorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/builders': {
+      id: '/builders'
+      path: '/builders'
+      fullPath: '/builders'
+      preLoaderRoute: typeof BuildersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/agents': {
+      id: '/agents'
+      path: '/agents'
+      fullPath: '/agents'
+      preLoaderRoute: typeof AgentsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/affordability': {
@@ -537,10 +635,10 @@ declare module '@tanstack/react-router' {
     }
     '/loan-programs/$slug': {
       id: '/loan-programs/$slug'
-      path: '/loan-programs/$slug'
+      path: '/$slug'
       fullPath: '/loan-programs/$slug'
       preLoaderRoute: typeof LoanProgramsSlugRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof LoanProgramsRoute
     }
     '/loan-officers/$slug': {
       id: '/loan-officers/$slug'
@@ -565,10 +663,10 @@ declare module '@tanstack/react-router' {
     }
     '/admin/login': {
       id: '/admin/login'
-      path: '/admin/login'
+      path: '/login'
       fullPath: '/admin/login'
       preLoaderRoute: typeof AdminLoginRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof AdminRoute
     }
   }
 }
@@ -600,28 +698,41 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   AccessibilityRoute: AccessibilityRoute,
   AffordabilityRoute: AffordabilityRoute,
+  AgentsRoute: AgentsRoute,
+  BuildersRoute: BuildersRoute,
   CalculatorRoute: CalculatorRoute,
+  CareersRoute: CareersRoute,
   ContactRoute: ContactRoute,
   DocumentsRoute: DocumentsRoute,
   FaqRoute: FaqRoute,
   FindOfficerRoute: FindOfficerRoute,
+  FirstTimeBuyerRoute: FirstTimeBuyerRoute,
   GetPrequalifiedRoute: GetPrequalifiedRoute,
   JoinRoute: JoinRoute,
   LearnRoute: LearnRouteWithChildren,
   LicensesRoute: LicensesRoute,
   LoanOfficersRoute: LoanOfficersRouteWithChildren,
+  PressRoute: PressRoute,
   PrivacyRoute: PrivacyRoute,
   ProcessRoute: ProcessRoute,
   RefinanceRoute: RefinanceRoute,
   ReviewsRoute: ReviewsRoute,
   TcpaRoute: TcpaRoute,
   TermsRoute: TermsRoute,
-  AdminLoginRoute: AdminLoginRoute,
   AdminOfficersRoute: AdminOfficersRoute,
-  LoanProgramsSlugRoute: LoanProgramsSlugRoute,
   AdminIndexRoute: AdminIndexRoute,
   LoanProgramsIndexRoute: LoanProgramsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
