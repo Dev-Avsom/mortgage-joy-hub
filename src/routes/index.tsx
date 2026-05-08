@@ -14,10 +14,10 @@ import { LoanComparisonChart } from "@/components/site/LoanComparisonChart";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "HomeBridge Mortgage — Home Loans Made Simple" },
-      { name: "description", content: "Get pre-qualified, calculate your monthly payment, and connect with a licensed US mortgage loan officer." },
-      { property: "og:title", content: "HomeBridge Mortgage" },
-      { property: "og:description", content: "Smarter home loans, made simple. Calculate payments and connect with a licensed loan officer." },
+      { title: "Ensure Home Loans — Your One Stop Shop for Home Loans" },
+      { name: "description", content: "Ensure Home Loans (NMLS #1666674): Conventional, Non-QM, Jumbo, DSCR, Bank Statement, Hard Money, Construction & Commercial. 250+ MLO partners across 29+ states." },
+      { property: "og:title", content: "Ensure Home Loans — Your One Stop Shop for Home Loans" },
+      { property: "og:description", content: "Conventional, Non-QM, Jumbo, DSCR, Bank Statement, Hard Money, Construction & Commercial loans. Licensed in 29+ states with 250+ MLO partners." },
     ],
   }),
   component: HomePage,
