@@ -17,7 +17,7 @@ const ICONS: Record<string, typeof Home> = {
   heloc: Wallet,
 };
 
-export const Route = createFileRoute("/loan-programs")({
+export const Route = createFileRoute("/loan-programs/")({
   head: () => ({
     meta: [
       { title: "Loan Programs — HomeBridge Mortgage" },
