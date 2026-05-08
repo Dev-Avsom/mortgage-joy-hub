@@ -40,6 +40,14 @@
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+  --color-accent-gold: var(--accent-gold);
+  --color-accent-gold-foreground: var(--accent-gold-foreground);
+  --color-accent-teal: var(--accent-teal);
+  --color-accent-teal-foreground: var(--accent-teal-foreground);
+  --color-accent-rose: var(--accent-rose);
+  --color-accent-rose-foreground: var(--accent-rose-foreground);
+  --color-accent-violet: var(--accent-violet);
+  --color-accent-violet-foreground: var(--accent-violet-foreground);
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
   --color-border: var(--border);
@@ -81,8 +89,20 @@
   --accent-foreground: oklch(0.99 0.005 60);
   --success: oklch(0.62 0.16 150);
   --success-foreground: oklch(0.98 0.005 250);
+  --accent-gold: oklch(0.82 0.14 80);
+  --accent-gold-foreground: oklch(0.25 0.06 60);
+  --accent-teal: oklch(0.68 0.11 195);
+  --accent-teal-foreground: oklch(0.99 0.005 200);
+  --accent-rose: oklch(0.72 0.14 25);
+  --accent-rose-foreground: oklch(0.99 0.005 30);
+  --accent-violet: oklch(0.65 0.15 295);
+  --accent-violet-foreground: oklch(0.99 0.005 290);
   --gradient-hero: linear-gradient(135deg, oklch(0.32 0.05 40), oklch(0.55 0.15 45));
   --gradient-accent: linear-gradient(135deg, oklch(0.62 0.15 45), oklch(0.72 0.16 50));
+  --gradient-warm: linear-gradient(135deg, oklch(0.62 0.15 45), oklch(0.82 0.14 80));
+  --gradient-cool: linear-gradient(135deg, oklch(0.68 0.11 195), oklch(0.55 0.15 45));
+  --gradient-sunset: linear-gradient(135deg, oklch(0.72 0.14 25), oklch(0.82 0.14 80) 50%, oklch(0.65 0.15 295));
+  --gradient-mesh: radial-gradient(at 20% 20%, oklch(0.82 0.14 80 / 0.35) 0px, transparent 50%), radial-gradient(at 80% 0%, oklch(0.68 0.11 195 / 0.30) 0px, transparent 50%), radial-gradient(at 80% 80%, oklch(0.72 0.14 25 / 0.30) 0px, transparent 50%), radial-gradient(at 0% 80%, oklch(0.65 0.15 295 / 0.25) 0px, transparent 50%);
   --shadow-elegant: 0 10px 30px -12px oklch(0.55 0.15 45 / 0.3);
   --shadow-card: 0 4px 16px -6px oklch(0.55 0.15 45 / 0.15);
   --destructive: oklch(0.577 0.245 27.325);
@@ -271,6 +291,95 @@
   box-shadow: 0 0 0 3px color-mix(in oklab, var(--primary) 18%, transparent),
               0 10px 30px -10px color-mix(in oklab, var(--primary) 40%, transparent);
   transform: translateY(-1px);
+}
+
+/* ===========================================================
+   COLORFUL UTILITIES — patterns, gradients, elevated surfaces
+   =========================================================== */
+.bg-mesh {
+  background-image: var(--gradient-mesh);
+}
+.bg-grid {
+  background-image: linear-gradient(to right, color-mix(in oklab, var(--foreground) 6%, transparent) 1px, transparent 1px),
+                    linear-gradient(to bottom, color-mix(in oklab, var(--foreground) 6%, transparent) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+.bg-dots {
+  background-image: radial-gradient(color-mix(in oklab, var(--foreground) 12%, transparent) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+.section-warm  { background: linear-gradient(180deg, color-mix(in oklab, var(--accent-gold) 10%, var(--background)), var(--background)); }
+.section-cool  { background: linear-gradient(180deg, color-mix(in oklab, var(--accent-teal) 10%, var(--background)), var(--background)); }
+.section-sunset{ background: var(--gradient-sunset); color: var(--primary-foreground); }
+
+.card-elevated {
+  background: var(--card);
+  border: 1px solid color-mix(in oklab, var(--border) 70%, transparent);
+  box-shadow: var(--shadow-card);
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+.card-elevated:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-elegant);
+  border-color: color-mix(in oklab, var(--primary) 40%, transparent);
+}
+
+.gradient-border {
+  position: relative;
+  background: var(--card);
+  border-radius: var(--radius-lg);
+}
+.gradient-border::before {
+  content: "";
+  position: absolute; inset: 0;
+  padding: 1.5px;
+  border-radius: inherit;
+  background: var(--gradient-warm);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+          mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+}
+
+.icon-chip {
+  display: inline-grid; place-items: center;
+  height: 2.75rem; width: 2.75rem;
+  border-radius: 0.875rem;
+  color: white;
+  background: var(--gradient-warm);
+  box-shadow: 0 8px 20px -10px color-mix(in oklab, var(--primary) 50%, transparent);
+}
+.icon-chip.gold   { background: linear-gradient(135deg, oklch(0.82 0.14 80), oklch(0.7 0.16 55)); color: oklch(0.25 0.06 60); }
+.icon-chip.teal   { background: linear-gradient(135deg, oklch(0.68 0.11 195), oklch(0.5 0.12 220)); }
+.icon-chip.rose   { background: linear-gradient(135deg, oklch(0.72 0.14 25), oklch(0.6 0.18 15)); }
+.icon-chip.violet { background: linear-gradient(135deg, oklch(0.7 0.15 295), oklch(0.55 0.18 280)); }
+.icon-chip.brand  { background: var(--gradient-accent); }
+
+.eyebrow {
+  display: inline-flex; align-items: center; gap: .5rem;
+  padding: .35rem .75rem;
+  border-radius: 9999px;
+  background: color-mix(in oklab, var(--primary) 10%, var(--background));
+  border: 1px solid color-mix(in oklab, var(--primary) 25%, transparent);
+  color: var(--primary);
+  font-size: .75rem; font-weight: 600;
+  letter-spacing: .04em; text-transform: uppercase;
+}
+
+.cta-banner {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-2xl);
+  background: var(--gradient-hero);
+  color: var(--primary-foreground);
+  box-shadow: var(--shadow-elegant);
+}
+.cta-banner::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: var(--gradient-mesh);
+  opacity: .55; pointer-events: none;
 }
 
 /* Scroll reveal: starts hidden, .in-view triggers fade-up */
