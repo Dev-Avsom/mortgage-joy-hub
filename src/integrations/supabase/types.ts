@@ -102,6 +102,8 @@ export type Database = {
       }
       loan_officers: {
         Row: {
+          about: string | null
+          achievements: string[]
           bio: string | null
           created_at: string
           display_order: number
@@ -121,6 +123,8 @@ export type Database = {
           years_experience: number | null
         }
         Insert: {
+          about?: string | null
+          achievements?: string[]
           bio?: string | null
           created_at?: string
           display_order?: number
@@ -140,6 +144,8 @@ export type Database = {
           years_experience?: number | null
         }
         Update: {
+          about?: string | null
+          achievements?: string[]
           bio?: string | null
           created_at?: string
           display_order?: number
