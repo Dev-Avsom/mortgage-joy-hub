@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { ClipboardCheck, FileText, Search, Home, Key } from "lucide-react";
 import { LoanProcessTimeline } from "@/components/site/LoanProcessTimeline";
 import { Reveal } from "@/components/site/Reveal";
+import { GradientOrb } from "@/components/site/GradientOrb";
+import { SectionHeading } from "@/components/site/SectionHeading";
 
 export const Route = createFileRoute("/process")({
   head: () => ({
@@ -26,44 +28,50 @@ const STEPS = [
 ];
 
 function ProcessPage() {
+  const tones = ["brand", "gold", "teal", "rose", "violet"] as const;
   return (
     <div>
-      <div className="mx-auto max-w-5xl px-4 pt-12">
-        <Reveal>
-          <h1 className="text-3xl font-bold md:text-4xl">How the <span className="gradient-text">mortgage process</span> works</h1>
-          <p className="mt-2 max-w-3xl text-muted-foreground">
-            Most of our clients go from pre-qualification to keys in 21–30 days. Here's what to expect at every stage.
-          </p>
-        </Reveal>
-      </div>
+      <section className="relative overflow-hidden bg-mesh">
+        <GradientOrb className="-top-20 -left-10" color="oklch(0.72 0.14 25 / 0.4)" size={420} />
+        <GradientOrb className="-top-10 right-0" color="oklch(0.65 0.15 295 / 0.35)" size={360} delay={2000} />
+        <div className="relative mx-auto max-w-5xl px-4 py-16">
+          <Reveal>
+            <span className="eyebrow">Our process</span>
+            <h1 className="mt-4 text-4xl font-bold tracking-tight md:text-5xl">How the <span className="gradient-text">mortgage process</span> works</h1>
+            <p className="mt-3 max-w-3xl text-lg text-muted-foreground">
+              Most of our clients go from pre-qualification to keys in 21–30 days. Here's what to expect at every stage.
+            </p>
+          </Reveal>
+        </div>
+      </section>
 
       <LoanProcessTimeline />
 
       <div className="mx-auto max-w-5xl px-4 pb-12">
-      <h2 className="text-2xl font-bold">Step-by-step detail</h2>
-      <ol className="mt-6 space-y-4">
+      <SectionHeading eyebrow="Step-by-step" title="Every stage, fully explained" gradientWords="fully explained" />
+      <ol className="mt-8 space-y-4">
         {STEPS.map((s, i) => (
           <Reveal key={s.title} as="li" delay={i * 80}>
-            <Card className="hover-lift flex gap-5 p-6">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary text-lg font-bold text-primary-foreground">
-                {i + 1}
-              </div>
+            <div className="card-elevated flex gap-5 rounded-xl p-6">
+              <span className={`icon-chip ${tones[i]} shrink-0`}><span className="text-base font-bold">{i + 1}</span></span>
               <div className="flex-1">
                 <div className="flex flex-wrap items-center justify-between gap-2">
                   <h3 className="text-xl font-semibold">{s.title}</h3>
-                  <span className="rounded-full bg-secondary px-3 py-0.5 text-xs">{s.time}</span>
+                  <span className="eyebrow !py-0.5">{s.time}</span>
                 </div>
                 <p className="mt-2 text-sm text-muted-foreground">{s.body}</p>
               </div>
               <s.icon className="hidden h-10 w-10 shrink-0 text-primary md:block" />
-            </Card>
+            </div>
           </Reveal>
         ))}
       </ol>
-      <div className="animated-bg mt-10 rounded-2xl p-8 text-white" style={{ background: "var(--gradient-hero)" }}>
-        <h2 className="text-2xl font-bold">Ready to start step 1?</h2>
-        <p className="mt-2 text-white/80">Pre-qualification takes 5 minutes and won't impact your credit.</p>
-        <Button asChild size="lg" variant="secondary" className="glow-on-hover mt-4"><Link to="/get-prequalified">Get pre-qualified</Link></Button>
+      <div className="cta-banner relative mt-10 p-8 md:p-10">
+        <div className="relative z-10">
+          <h2 className="text-2xl font-bold">Ready to start step 1?</h2>
+          <p className="mt-2 text-primary-foreground/80">Pre-qualification takes 5 minutes and won't impact your credit.</p>
+          <Button asChild size="lg" className="mt-4 bg-[oklch(0.84_0.13_75)] text-[oklch(0.2_0.05_40)] hover:opacity-90"><Link to="/get-prequalified">Get pre-qualified</Link></Button>
+        </div>
       </div>
       </div>
     </div>

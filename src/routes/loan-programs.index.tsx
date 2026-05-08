@@ -5,6 +5,8 @@ import { Home, ShieldCheck, Award, FileCheck, DollarSign, TrendingUp, Briefcase,
 import { LOAN_PROGRAMS } from "@/lib/loan-programs";
 import { LoanComparisonChart } from "@/components/site/LoanComparisonChart";
 import { Reveal } from "@/components/site/Reveal";
+import { GradientOrb } from "@/components/site/GradientOrb";
+import { SectionHeading } from "@/components/site/SectionHeading";
 
 const ICONS: Record<string, typeof Home> = {
   conventional: Home,
@@ -16,6 +18,8 @@ const ICONS: Record<string, typeof Home> = {
   "bank-statement": Landmark,
   heloc: Wallet,
 };
+
+const TONES = ["brand", "gold", "teal", "rose", "violet"] as const;
 
 export const Route = createFileRoute("/loan-programs/")({
   head: () => ({
@@ -29,24 +33,33 @@ export const Route = createFileRoute("/loan-programs/")({
 
 function ProgramsPage() {
   return (
-    <div className="mx-auto max-w-7xl px-4 py-12">
-      <Reveal>
-        <h1 className="text-3xl font-bold md:text-4xl">Loan <span className="gradient-text">programs</span></h1>
-        <p className="mt-2 max-w-2xl text-muted-foreground">
-          From first-time buyers to seasoned investors, we have a loan program built for you.
-        </p>
-      </Reveal>
+    <div>
+      <section className="relative overflow-hidden bg-mesh">
+        <GradientOrb className="-top-20 -left-10" color="oklch(0.82 0.14 80 / 0.45)" size={420} />
+        <GradientOrb className="-top-10 right-0" color="oklch(0.65 0.15 295 / 0.35)" size={360} delay={2000} />
+        <div className="relative mx-auto max-w-7xl px-4 py-16">
+          <Reveal>
+            <span className="eyebrow">Loan programs</span>
+            <h1 className="mt-4 text-4xl font-bold tracking-tight md:text-5xl">A loan <span className="gradient-text">built for you</span></h1>
+            <p className="mt-3 max-w-2xl text-lg text-muted-foreground">
+              From first-time buyers to seasoned investors, we have a loan program built for you.
+            </p>
+          </Reveal>
+        </div>
+      </section>
 
-      <LoanComparisonChart full />
+      <div className="mx-auto max-w-7xl px-4 py-12">
+        <LoanComparisonChart full />
 
-      <h2 className="mt-6 text-2xl font-bold">All programs</h2>
-      <div className="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {LOAN_PROGRAMS.map((p) => {
+        <SectionHeading eyebrow="The full lineup" title="All programs" gradientWords="All programs" />
+        <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {LOAN_PROGRAMS.map((p, i) => {
           const Icon = ICONS[p.slug] ?? Home;
+          const tone = TONES[i % TONES.length];
           return (
-            <Card key={p.slug} className="hover-lift group flex flex-col p-6">
-              <Icon className="h-9 w-9 text-primary transition-transform group-hover:scale-110" />
-              <h2 className="mt-3 text-xl font-semibold">{p.name}</h2>
+            <div key={p.slug} className="card-elevated group flex flex-col rounded-xl p-6">
+              <span className={`icon-chip ${tone}`}><Icon className="h-5 w-5" /></span>
+              <h2 className="mt-4 text-xl font-semibold">{p.name}</h2>
               <p className="mt-1 text-sm text-muted-foreground">{p.tagline}</p>
               <ul className="mt-4 space-y-1 text-sm">
                 {p.highlights.slice(0, 3).map((h) => (
@@ -64,19 +77,20 @@ function ProgramsPage() {
                   <Link to="/get-prequalified">Apply</Link>
                 </Button>
               </div>
-            </Card>
+            </div>
           );
         })}
-        <Card className="flex flex-col p-6 transition hover:shadow-[var(--shadow-elegant)]">
-          <TrendingUp className="h-9 w-9 text-primary" />
-          <h2 className="mt-3 text-xl font-semibold">Refinance</h2>
+        <div className="gradient-border flex flex-col p-6">
+          <span className="icon-chip rose"><TrendingUp className="h-5 w-5" /></span>
+          <h2 className="mt-4 text-xl font-semibold">Refinance</h2>
           <p className="mt-1 text-sm text-muted-foreground">Lower your rate, shorten your term, or tap into home equity.</p>
           <div className="mt-auto pt-5">
             <Button asChild variant="outline" className="w-full">
               <Link to="/refinance">Refinance calculator</Link>
             </Button>
           </div>
-        </Card>
+        </div>
+        </div>
       </div>
     </div>
   );
