@@ -46,7 +46,7 @@ function ProgramDetail() {
   const { program: p } = Route.useLoaderData() as { program: LoanProgram };
   return (
     <div>
-      <section className="relative overflow-hidden text-white animated-bg bg-mesh" style={{ background: "var(--gradient-mesh)" }}>
+      <section className="relative overflow-hidden text-white animated-bg" style={{ background: "var(--gradient-hero)" }}>
         <GradientOrb className="-top-20 -right-20" color="oklch(0.84 0.13 75 / 0.5)" size={420} />
         <GradientOrb className="-bottom-24 -left-16" color="oklch(0.72 0.14 200 / 0.45)" size={360} />
         <div className="relative mx-auto max-w-5xl px-4 py-16">
