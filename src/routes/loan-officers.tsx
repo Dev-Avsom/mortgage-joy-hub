@@ -5,6 +5,7 @@ import { Phone, MessageCircle, ArrowRight } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { siteConfig } from "@/lib/site-config";
 import type { Tables } from "@/integrations/supabase/types";
+import { GradientOrb } from "@/components/site/GradientOrb";
 
 type Officer = Tables<"loan_officers">;
 
@@ -36,25 +37,33 @@ export const Route = createFileRoute("/loan-officers")({
 function OfficersPage() {
   const { officers } = Route.useLoaderData();
   return (
-    <div className="mx-auto max-w-7xl px-4 py-12">
-      <h1 className="text-3xl font-bold md:text-4xl">Meet our loan officers</h1>
-      <p className="mt-2 max-w-2xl text-muted-foreground">
-        Licensed experts ready to help you navigate every step of your home loan.
-      </p>
-      <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+    <div>
+      <section className="relative overflow-hidden bg-mesh">
+        <GradientOrb className="-top-20 -left-10" color="oklch(0.68 0.11 195 / 0.4)" size={420} />
+        <GradientOrb className="-top-10 right-0" color="oklch(0.82 0.14 80 / 0.4)" size={360} delay={2000} />
+        <div className="relative mx-auto max-w-7xl px-4 py-16">
+          <span className="eyebrow">Our team</span>
+          <h1 className="mt-4 text-4xl font-bold tracking-tight md:text-5xl">Meet our <span className="gradient-text">loan officers</span></h1>
+          <p className="mt-3 max-w-2xl text-lg text-muted-foreground">
+            Licensed experts ready to help you navigate every step of your home loan.
+          </p>
+        </div>
+      </section>
+      <div className="mx-auto max-w-7xl px-4 py-12">
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {(officers as Officer[]).map((o) => (
-          <Card key={o.id} className="overflow-hidden p-0 transition hover:shadow-[var(--shadow-elegant)]">
+          <Card key={o.id} className="card-elevated overflow-hidden p-0">
             {o.photo_url && (
               <img src={o.photo_url} alt={`${o.name}, ${o.title ?? "Loan officer"}`} className="h-56 w-full object-cover" loading="lazy" />
             )}
             <div className="p-5">
               <h2 className="text-lg font-semibold">{o.name}</h2>
-              <p className="text-sm text-muted-foreground">{o.title}</p>
+              <p className="text-sm gradient-text font-medium">{o.title}</p>
               {o.nmls_id && <p className="mt-1 text-xs text-muted-foreground">NMLS #{o.nmls_id}</p>}
               <p className="mt-3 line-clamp-3 text-sm">{o.bio}</p>
               <div className="mt-4 flex flex-wrap gap-1.5">
                 {o.specialties.slice(0, 3).map((s: string) => (
-                  <span key={s} className="rounded-full bg-secondary px-2 py-0.5 text-xs">{s}</span>
+                  <span key={s} className="rounded-full border border-primary/20 bg-primary/5 px-2 py-0.5 text-xs text-primary">{s}</span>
                 ))}
               </div>
               <div className="mt-4 grid grid-cols-2 gap-2">
@@ -87,6 +96,7 @@ function OfficersPage() {
           Profiles coming soon. Reach us at {siteConfig.phone}.
         </p>
       )}
+      </div>
     </div>
   );
 }
