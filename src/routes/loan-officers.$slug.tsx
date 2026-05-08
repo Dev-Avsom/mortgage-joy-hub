@@ -81,7 +81,19 @@ function ProfilePage() {
           <h1 className="text-3xl font-bold md:text-4xl">{officer.name}</h1>
           <p className="mt-1 text-lg text-muted-foreground">{officer.title}</p>
           {officer.nmls_id && <p className="mt-1 text-sm text-muted-foreground">NMLS #{officer.nmls_id}</p>}
-          <p className="mt-5 leading-relaxed">{officer.bio}</p>
+          {officer.about ? (
+            <div className="mt-5 space-y-3 leading-relaxed whitespace-pre-line">{officer.about}</div>
+          ) : (
+            <p className="mt-5 leading-relaxed">{officer.bio}</p>
+          )}
+          {officer.achievements && officer.achievements.length > 0 && (
+            <div className="mt-6">
+              <h3 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">Achievements</h3>
+              <ul className="mt-2 list-disc space-y-1 pl-5 text-sm">
+                {officer.achievements.map((a: string) => (<li key={a}>{a}</li>))}
+              </ul>
+            </div>
+          )}
           <div className="mt-6 grid gap-4 sm:grid-cols-2">
             {officer.specialties.length > 0 && (
               <div>
