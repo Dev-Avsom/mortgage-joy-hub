@@ -92,7 +92,9 @@ function AdminPage() {
 
   const signOut = async () => {
     await supabase.auth.signOut();
-    navigate({ to: "/admin/login" });
+    setIsAdmin(null);
+    setUserEmail(null);
+    window.location.href = "/admin/login";
   };
 
   const exportCSV = () => {
