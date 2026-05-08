@@ -178,9 +178,9 @@ const AdminIndexRoute = AdminIndexRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoanProgramsSlugRoute = LoanProgramsSlugRouteImport.update({
-  id: '/$slug',
-  path: '/$slug',
-  getParentRoute: () => LoanProgramsRoute,
+  id: '/loan-programs/$slug',
+  path: '/loan-programs/$slug',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const LoanOfficersSlugRoute = LoanOfficersSlugRouteImport.update({
   id: '/$slug',
@@ -198,9 +198,9 @@ const AdminOfficersRoute = AdminOfficersRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminLoginRoute = AdminLoginRouteImport.update({
-  id: '/login',
-  path: '/login',
-  getParentRoute: () => AdminRoute,
+  id: '/admin/login',
+  path: '/admin/login',
+  getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -437,7 +437,9 @@ export interface RootRouteChildren {
   ReviewsRoute: typeof ReviewsRoute
   TcpaRoute: typeof TcpaRoute
   TermsRoute: typeof TermsRoute
+  AdminLoginRoute: typeof AdminLoginRoute
   AdminOfficersRoute: typeof AdminOfficersRoute
+  LoanProgramsSlugRoute: typeof LoanProgramsSlugRoute
   AdminIndexRoute: typeof AdminIndexRoute
   LoanProgramsIndexRoute: typeof LoanProgramsIndexRoute
 }
@@ -635,10 +637,10 @@ declare module '@tanstack/react-router' {
     }
     '/loan-programs/$slug': {
       id: '/loan-programs/$slug'
-      path: '/$slug'
+      path: '/loan-programs/$slug'
       fullPath: '/loan-programs/$slug'
       preLoaderRoute: typeof LoanProgramsSlugRouteImport
-      parentRoute: typeof LoanProgramsRoute
+      parentRoute: typeof rootRouteImport
     }
     '/loan-officers/$slug': {
       id: '/loan-officers/$slug'
@@ -663,10 +665,10 @@ declare module '@tanstack/react-router' {
     }
     '/admin/login': {
       id: '/admin/login'
-      path: '/login'
+      path: '/admin/login'
       fullPath: '/admin/login'
       preLoaderRoute: typeof AdminLoginRouteImport
-      parentRoute: typeof AdminRoute
+      parentRoute: typeof rootRouteImport
     }
   }
 }
@@ -719,20 +721,12 @@ const rootRouteChildren: RootRouteChildren = {
   ReviewsRoute: ReviewsRoute,
   TcpaRoute: TcpaRoute,
   TermsRoute: TermsRoute,
+  AdminLoginRoute: AdminLoginRoute,
   AdminOfficersRoute: AdminOfficersRoute,
+  LoanProgramsSlugRoute: LoanProgramsSlugRoute,
   AdminIndexRoute: AdminIndexRoute,
   LoanProgramsIndexRoute: LoanProgramsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
