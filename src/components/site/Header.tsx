@@ -7,7 +7,6 @@ import { ThemeSwitcher } from "@/components/site/ThemeSwitcher";
 import logoBlue from "@/assets/logo-blue.png";
 import logoBrown from "@/assets/logo-brown.png";
 
-type NavLeaf = { to: string; label: string };
 type NavLeaf = { to: string; label: string; params?: Record<string, string> };
 type NavGroup = { label: string; to?: string; children: NavLeaf[] };
 type NavItem = NavLeaf | NavGroup;
@@ -30,14 +29,14 @@ const nav: NavItem[] = [
     label: "Loan Programs",
     to: "/loan-programs",
     children: [
-      { to: "/loan-programs/conventional", label: "Conventional" },
-      { to: "/loan-programs/fha", label: "FHA" },
-      { to: "/loan-programs/va", label: "VA" },
-      { to: "/loan-programs/jumbo", label: "Jumbo" },
-      { to: "/loan-programs/usda", label: "USDA" },
-      { to: "/loan-programs/dscr", label: "DSCR" },
-      { to: "/loan-programs/bank-statement", label: "Bank Statement" },
-      { to: "/loan-programs/heloc", label: "HELOC" },
+      { to: "/loan-programs/$slug", params: { slug: "conventional" }, label: "Conventional" },
+      { to: "/loan-programs/$slug", params: { slug: "fha" }, label: "FHA" },
+      { to: "/loan-programs/$slug", params: { slug: "va" }, label: "VA" },
+      { to: "/loan-programs/$slug", params: { slug: "jumbo" }, label: "Jumbo" },
+      { to: "/loan-programs/$slug", params: { slug: "usda" }, label: "USDA" },
+      { to: "/loan-programs/$slug", params: { slug: "dscr" }, label: "DSCR" },
+      { to: "/loan-programs/$slug", params: { slug: "bank-statement" }, label: "Bank Statement" },
+      { to: "/loan-programs/$slug", params: { slug: "heloc" }, label: "HELOC" },
     ],
   },
   {
