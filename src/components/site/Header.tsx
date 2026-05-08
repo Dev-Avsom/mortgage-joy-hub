@@ -7,7 +7,7 @@ import { ThemeSwitcher } from "@/components/site/ThemeSwitcher";
 import logoBlue from "@/assets/logo-blue.png";
 import logoBrown from "@/assets/logo-brown.png";
 
-type NavLeaf = { to: string; label: string };
+type NavLeaf = { to: string; label: string; params?: Record<string, string> };
 type NavGroup = { label: string; to?: string; children: NavLeaf[] };
 type NavItem = NavLeaf | NavGroup;
 
@@ -29,14 +29,14 @@ const nav: NavItem[] = [
     label: "Loan Programs",
     to: "/loan-programs",
     children: [
-      { to: "/loan-programs/conventional", label: "Conventional" },
-      { to: "/loan-programs/fha", label: "FHA" },
-      { to: "/loan-programs/va", label: "VA" },
-      { to: "/loan-programs/jumbo", label: "Jumbo" },
-      { to: "/loan-programs/usda", label: "USDA" },
-      { to: "/loan-programs/dscr", label: "DSCR" },
-      { to: "/loan-programs/bank-statement", label: "Bank Statement" },
-      { to: "/loan-programs/heloc", label: "HELOC" },
+      { to: "/loan-programs/$slug", params: { slug: "conventional" }, label: "Conventional" },
+      { to: "/loan-programs/$slug", params: { slug: "fha" }, label: "FHA" },
+      { to: "/loan-programs/$slug", params: { slug: "va" }, label: "VA" },
+      { to: "/loan-programs/$slug", params: { slug: "jumbo" }, label: "Jumbo" },
+      { to: "/loan-programs/$slug", params: { slug: "usda" }, label: "USDA" },
+      { to: "/loan-programs/$slug", params: { slug: "dscr" }, label: "DSCR" },
+      { to: "/loan-programs/$slug", params: { slug: "bank-statement" }, label: "Bank Statement" },
+      { to: "/loan-programs/$slug", params: { slug: "heloc" }, label: "HELOC" },
     ],
   },
   {
@@ -85,8 +85,9 @@ export function Header() {
                 <div className="invisible absolute left-0 top-full z-50 min-w-[220px] translate-y-1 rounded-md border border-border bg-popover p-1 opacity-0 shadow-lg transition-all duration-150 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
                   {n.children.map((c) => (
                     <Link
-                      key={c.to}
+                      key={c.label}
                       to={c.to}
+                      params={c.params as never}
                       className="block rounded-sm px-3 py-2 text-sm text-foreground/80 hover:bg-secondary hover:text-primary"
                       activeProps={{ className: "bg-secondary text-primary" }}
                     >
@@ -153,8 +154,9 @@ export function Header() {
                     <div className="ml-3 flex flex-col border-l border-border pl-2">
                       {n.children.map((c) => (
                         <Link
-                          key={c.to}
+                          key={c.label}
                           to={c.to}
+                          params={c.params as never}
                           onClick={() => setOpen(false)}
                           className="rounded-md px-3 py-2 text-sm text-foreground/70 hover:bg-secondary hover:text-primary"
                           activeProps={{ className: "bg-secondary text-primary" }}
