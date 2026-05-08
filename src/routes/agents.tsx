@@ -1,5 +1,4 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Handshake, Clock, FileCheck } from "lucide-react";
 import { GradientOrb } from "@/components/site/GradientOrb";
