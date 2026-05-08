@@ -1,7 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Users, ShieldCheck, TrendingDown, ArrowRight, FileCheck, Star, CheckCircle2, TrendingUp, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import { siteConfig } from "@/lib/site-config";
 import { Reviews } from "@/components/site/Reviews";
 import { RateQuoteWidget } from "@/components/site/RateQuoteWidget";
