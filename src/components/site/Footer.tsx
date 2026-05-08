@@ -3,8 +3,9 @@ import { siteConfig } from "@/lib/site-config";
 
 export function Footer() {
   return (
-    <footer className="mt-20 border-t border-border bg-secondary/40">
-      <div className="mx-auto grid max-w-7xl gap-8 px-4 py-12 md:grid-cols-4">
+    <footer className="relative mt-20 overflow-hidden border-t border-border text-foreground" style={{ background: "linear-gradient(180deg, color-mix(in oklab, var(--primary) 8%, var(--background)), color-mix(in oklab, var(--accent-gold) 12%, var(--background)))" }}>
+      <div aria-hidden className="pointer-events-none absolute inset-0 bg-dots opacity-40" />
+      <div className="relative mx-auto grid max-w-7xl gap-8 px-4 py-14 md:grid-cols-4">
         <div>
           <h3 className="font-bold text-primary">{siteConfig.brand}</h3>
           <p className="mt-2 text-sm text-muted-foreground">{siteConfig.tagline}</p>
