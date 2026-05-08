@@ -12,6 +12,7 @@ import { z } from "zod";
 const schema = z.object({
   name: z.string().trim().min(1).max(100),
   email: z.string().trim().email().max(255),
+  phone: z.string().trim().min(7).max(32).regex(/^[+\d().\-\s]+$/, "Invalid phone"),
   message: z.string().trim().min(1).max(2000),
 });
 
@@ -42,16 +43,18 @@ export function LiveChat() {
     const parsed = schema.safeParse({
       name: fd.get("name"),
       email: fd.get("email"),
+      phone: fd.get("phone"),
       message: fd.get("message"),
     });
     if (!parsed.success) {
-      toast.error("Please fill all fields.");
+      toast.error("Please fill all fields with a valid phone & email.");
       return;
     }
     setSending(true);
     const { error } = await supabase.from("leads").insert({
       name: parsed.data.name,
       email: parsed.data.email,
+      phone: parsed.data.phone,
       message: parsed.data.message,
       source: "live-chat",
     });
@@ -116,6 +119,10 @@ export function LiveChat() {
             <div>
               <Label htmlFor="lc-email" className="text-xs">Email</Label>
               <Input id="lc-email" name="email" type="email" required maxLength={255} className="h-9" />
+            </div>
+            <div>
+              <Label htmlFor="lc-phone" className="text-xs">Phone</Label>
+              <Input id="lc-phone" name="phone" type="tel" required maxLength={32} className="h-9" placeholder="+1 555 123 4567" />
             </div>
             <div>
               <Label htmlFor="lc-msg" className="text-xs">How can we help?</Label>
