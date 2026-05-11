@@ -44,7 +44,7 @@ function RefiPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 py-10">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold md:text-4xl">Refinance calculator</h1>
+        <h1 className="text-3xl font-bold md:text-4xl">Refinance Calculator</h1>
         <p className="mt-2 text-muted-foreground">
           See if refinancing makes sense — including breakeven and lifetime savings.
         </p>

@@ -85,7 +85,7 @@ function PrequalPage() {
     return (
       <div className="mx-auto max-w-2xl px-4 py-20 text-center">
         <CheckCircle2 className="mx-auto h-16 w-16 text-[oklch(0.62_0.16_150)]" />
-        <h1 className="mt-6 text-3xl font-bold">You're pre-qualified to talk!</h1>
+        <h1 className="mt-6 text-3xl font-bold">You're Pre-Qualified to Talk!</h1>
         <p className="mt-3 text-muted-foreground">
           A licensed loan officer will reach out within 1 business hour with personalized rates and next steps.
         </p>
@@ -100,7 +100,7 @@ function PrequalPage() {
   return (
     <div className="mx-auto max-w-2xl px-4 py-12">
       <div className="mb-8 text-center">
-        <h1 className="text-3xl font-bold md:text-4xl">Get pre-qualified</h1>
+        <h1 className="text-3xl font-bold md:text-4xl">Get Pre-Qualified</h1>
         <p className="mt-2 text-muted-foreground">
           Takes about 60 seconds. No credit pull, no obligation.
         </p>

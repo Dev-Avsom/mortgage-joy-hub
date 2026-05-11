@@ -43,7 +43,7 @@ function FirstTimeBuyer() {
         <div className="relative mx-auto max-w-6xl px-4 py-16">
           <span className="eyebrow">For first-time buyers</span>
           <h1 className="mt-4 max-w-3xl text-4xl font-bold tracking-tight md:text-5xl">
-            Your first home, <span className="gradient-text">made simple</span>.
+            Your First Home, <span className="gradient-text">Made Simple</span>.
           </h1>
           <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
             A clear roadmap from budgeting to keys-in-hand, plus the programs designed to help
@@ -57,7 +57,7 @@ function FirstTimeBuyer() {
       </section>
 
       <section className="mx-auto max-w-6xl px-4 py-16">
-        <SectionHeading eyebrow="The roadmap" title="The 6-step path to your first home" gradientWords="6-step path" />
+        <SectionHeading eyebrow="The roadmap" title="The 6-Step Path to Your First Home" gradientWords="6-Step Path" />
         <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {steps.map((s, i) => (
             <div key={s.title} className="card-elevated rounded-xl p-6">
@@ -74,7 +74,7 @@ function FirstTimeBuyer() {
 
       <section className="section-warm">
         <div className="mx-auto max-w-6xl px-4 py-16">
-          <SectionHeading eyebrow="Programs" title="Built for first-time buyers" subtitle="Lower down payments, flexible credit, and benefits you may qualify for." gradientWords="first-time buyers" />
+          <SectionHeading eyebrow="Programs" title="Built for First-Time Buyers" subtitle="Lower down payments, flexible credit, and benefits you may qualify for." gradientWords="First-Time Buyers" />
           <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {programs.map((p, i) => (
               <div key={p.name} className="gradient-border p-6">
@@ -91,7 +91,7 @@ function FirstTimeBuyer() {
       <section className="mx-auto max-w-6xl px-4 pb-20">
         <div className="cta-banner relative flex flex-wrap items-center justify-between gap-4 p-8 md:p-10">
           <div className="relative z-10">
-            <h3 className="text-2xl font-bold">Ready to take the first step?</h3>
+            <h3 className="text-2xl font-bold">Ready to Take the First Step?</h3>
             <p className="mt-1 text-primary-foreground/80">Get pre-qualified in minutes — no commitment.</p>
           </div>
           <Button asChild size="lg" className="relative z-10 bg-[oklch(0.84_0.13_75)] text-[oklch(0.2_0.05_40)] hover:opacity-90">

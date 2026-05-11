@@ -33,7 +33,7 @@ function ReviewsPage() {
     <div className="mx-auto max-w-6xl px-4 py-12">
       <Reveal>
       <div className="text-center">
-        <h1 className="text-3xl font-bold md:text-4xl">What <span className="gradient-text">clients say</span></h1>
+        <h1 className="text-3xl font-bold md:text-4xl">What <span className="gradient-text">Clients Say</span></h1>
         <div className="mt-3 flex items-center justify-center gap-1">
           {Array.from({ length: 5 }).map((_, i) => (
             <Star key={i} className="h-6 w-6 fill-amber-400 text-amber-400 animate-scale-in" style={{ animationDelay: `${i * 80}ms` }} />
@@ -61,7 +61,7 @@ function ReviewsPage() {
         ))}
       </div>
       <div className="animated-bg mt-12 rounded-2xl p-8 text-center text-white" style={{ background: "var(--gradient-hero)" }}>
-        <h2 className="text-2xl font-bold">Join 1,200+ happy homeowners</h2>
+        <h2 className="text-2xl font-bold">Join 1,200+ Happy Homeowners</h2>
         <p className="mt-2 text-white/80">Get pre-qualified in 5 minutes. Soft credit pull, no obligation.</p>
         <Button asChild size="lg" variant="secondary" className="glow-on-hover mt-4"><Link to="/get-prequalified">Get pre-qualified</Link></Button>
       </div>

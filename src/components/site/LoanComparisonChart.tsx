@@ -21,7 +21,7 @@ export function LoanComparisonChart({ full = false }: Props) {
       <Reveal>
         <div className="text-center">
           <p className="text-sm font-semibold uppercase tracking-wider text-primary">Compare</p>
-          <h2 className="mt-2 text-3xl font-bold md:text-4xl">Find your <span className="gradient-text">perfect fit</span></h2>
+          <h2 className="mt-2 text-3xl font-bold md:text-4xl">Find Your <span className="gradient-text">Perfect Fit</span></h2>
           <p className="mx-auto mt-3 max-w-2xl text-muted-foreground">Side-by-side at a glance — hover for the full picture.</p>
         </div>
       </Reveal>

@@ -29,7 +29,7 @@ function JoinPage() {
         <div className="mx-auto max-w-7xl px-4 py-16 md:py-24">
           <span className="inline-block rounded-full bg-white/10 px-3 py-1 text-xs font-medium uppercase tracking-wider">For Loan Officers</span>
           <h1 className="mt-4 max-w-3xl text-4xl font-bold leading-tight md:text-5xl">
-            Build your mortgage business — without giving up your splits.
+            Build Your Mortgage Business — Without Giving Up Your Splits.
           </h1>
           <p className="mt-4 max-w-2xl text-lg text-white/85">
             Top-tier comp, 230+ lender access, real ops support, and marketing that actually drives leads. Join a brokerage that bets on you.
@@ -51,7 +51,7 @@ function JoinPage() {
 
       <section className="mx-auto max-w-3xl px-4 pb-20">
         <Card className="p-6">
-          <h2 className="text-2xl font-bold">Apply confidentially</h2>
+          <h2 className="text-2xl font-bold">Apply Confidentially</h2>
           <p className="mt-1 text-sm text-muted-foreground">
             Tell us about your production and goals. A principal will reach out within 24 hours.
           </p>

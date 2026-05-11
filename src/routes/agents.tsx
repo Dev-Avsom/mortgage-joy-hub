@@ -51,7 +51,7 @@ function Agents() {
         </div>
         <div className="cta-banner mt-12 flex flex-wrap items-center justify-between gap-4 p-8">
           <div className="relative z-10">
-            <h3 className="text-2xl font-bold">Become a partner agent</h3>
+            <h3 className="text-2xl font-bold">Become a Partner Agent</h3>
             <p className="mt-1 text-primary-foreground/80">We'll match you with an MLO in your market.</p>
           </div>
           <div className="relative z-10 flex gap-2">

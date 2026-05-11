@@ -17,7 +17,7 @@ export function LoanProcessTimeline() {
       <Reveal>
         <div className="text-center">
           <p className="text-sm font-semibold uppercase tracking-wider text-primary">The journey</p>
-          <h2 className="mt-2 text-3xl font-bold md:text-4xl">From <span className="gradient-text">apply to keys</span> in 5 steps</h2>
+          <h2 className="mt-2 text-3xl font-bold md:text-4xl">From <span className="gradient-text">Apply to Keys</span> in 5 Steps</h2>
           <p className="mx-auto mt-3 max-w-2xl text-muted-foreground">Most clients close in 21–30 days. Here's the road.</p>
         </div>
       </Reveal>

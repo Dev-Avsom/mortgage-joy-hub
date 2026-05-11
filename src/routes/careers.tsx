@@ -9,7 +9,7 @@ export const Route = createFileRoute("/careers")({
   head: () => ({
     meta: [
       { title: "Careers — Ensure Home Loans" },
-      { name: "description", content: "Join Ensure Home Loans. Open roles for MLOs, ops, marketing, and tech. Remote-friendly culture." },
+      { name: "description", content: "Join Ensure Home Loans. Open Roles for MLOs, ops, marketing, and tech. Remote-friendly culture." },
       { property: "og:title", content: "Careers at Ensure Home Loans" },
       { property: "og:description", content: "Build your career with a fast-growing mortgage company." },
     ],
@@ -51,7 +51,7 @@ function Careers() {
           ))}
         </div>
         <Card className="mt-10 p-6">
-        <h2 className="text-xl font-semibold">Open roles</h2>
+        <h2 className="text-xl font-semibold">Open Roles</h2>
         <p className="mt-2 text-muted-foreground">
           We're always looking for great talent. If you're a licensed MLO, see our partner program.
           For other roles, reach out and we'll be in touch when something opens up.

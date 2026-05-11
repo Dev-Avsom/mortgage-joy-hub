@@ -51,7 +51,7 @@ export function RateAlertForm() {
           <BellRing className="h-5 w-5" />
         </div>
         <div>
-          <h3 className="text-lg font-semibold">Set a rate alert</h3>
+          <h3 className="text-lg font-semibold">Set a Rate Alert</h3>
           <p className="text-sm text-muted-foreground">Get notified the moment 30-year fixed hits your target.</p>
         </div>
       </div>
