@@ -7,6 +7,7 @@ import { RateQuoteWidget } from "@/components/site/RateQuoteWidget";
 import { BestRateBadge } from "@/components/site/BestRateBadge";
 import { GradientOrb } from "@/components/site/GradientOrb";
 import { Reveal } from "@/components/site/Reveal";
+import { useTranslation, Trans } from "react-i18next";
 import { LoanProcessTimeline } from "@/components/site/LoanProcessTimeline";
 
 import { LoanComparisonChart } from "@/components/site/LoanComparisonChart";
@@ -24,6 +25,7 @@ export const Route = createFileRoute("/")({
 });
 
 function HomePage() {
+  const { t } = useTranslation();
   return (
     <>
       {/* Hero */}
@@ -48,14 +50,14 @@ function HomePage() {
             <div className="flex flex-wrap items-center gap-2">
               <span className="animate-fade-in-up inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-medium backdrop-blur">
                 <Sparkles className="h-3.5 w-3.5 text-[oklch(0.84_0.13_75)]" />
-                Licensed in 50 states · NMLS {siteConfig.nmlsId}
+                {t("home.badge", { nmls: siteConfig.nmlsId })}
               </span>
               <BestRateBadge />
             </div>
             <h1 className="animate-fade-in-up mt-5 text-4xl font-bold leading-[1.05] tracking-tight md:text-5xl lg:text-6xl" style={{ animationDelay: "120ms" }}>
-              Your dream home,{" "}
+              {t("home.heroTitle1")}{" "}
               <span className="relative inline-block text-[oklch(0.84_0.13_75)]">
-                funded faster
+                {t("home.heroTitle2")}
                 <svg className="absolute -bottom-1 left-0 w-full" height="8" viewBox="0 0 200 8" preserveAspectRatio="none" fill="none">
                   <path d="M2 5 Q 50 1, 100 4 T 198 3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" opacity="0.55"/>
                 </svg>
@@ -63,24 +65,24 @@ function HomePage() {
               .
             </h1>
             <p className="animate-fade-in-up mt-5 max-w-xl text-lg text-white/85" style={{ animationDelay: "240ms" }}>
-              Compare live rates from <strong>230+ wholesale lenders</strong> in 60 seconds and talk to a licensed loan officer — no spam, no pressure.
+              <Trans i18nKey="home.heroSub" components={{ strong: <strong /> }} />
             </p>
             <ul className="animate-fade-in-up mt-5 grid max-w-md gap-2 text-sm text-white/85" style={{ animationDelay: "300ms" }}>
-              {["Soft credit check — won't affect your score", "Close in as little as 15 days", "Real humans, available 7 days a week"].map((t) => (
-                <li key={t} className="flex items-start gap-2">
-                  <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[oklch(0.84_0.13_75)]" /> {t}
+              {[t("home.bullet1"), t("home.bullet2"), t("home.bullet3")].map((b) => (
+                <li key={b} className="flex items-start gap-2">
+                  <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[oklch(0.84_0.13_75)]" /> {b}
                 </li>
               ))}
             </ul>
             <div className="animate-fade-in-up mt-8 flex flex-wrap gap-3" style={{ animationDelay: "360ms" }}>
               <Button asChild size="lg" className="glow-on-hover bg-[oklch(0.84_0.13_75)] text-[oklch(0.2_0.05_255)] hover:opacity-90">
                 <Link to="/get-prequalified">
-                  <FileCheck className="mr-2 h-5 w-5" /> Get pre-qualified
+                  <FileCheck className="mr-2 h-5 w-5" /> {t("common.getPrequalified")}
                 </Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="border-white/30 bg-white/10 text-white hover:bg-white/20">
                 <Link to="/find-officer">
-                  <Users className="mr-2 h-5 w-5" /> Find an officer
+                  <Users className="mr-2 h-5 w-5" /> {t("common.findOfficer")}
                 </Link>
               </Button>
             </div>
@@ -107,15 +109,15 @@ function HomePage() {
                     {[...Array(5)].map((_, i) => <Star key={i} className="h-3.5 w-3.5 fill-[oklch(0.84_0.13_75)] text-[oklch(0.84_0.13_75)]" />)}
                     <span className="ml-1 font-semibold">4.9</span>
                   </div>
-                  <div className="text-xs text-white/65">10,000+ families funded</div>
+                  <div className="text-xs text-white/65">{t("home.rated")}</div>
                 </div>
               </div>
               <div className="hidden h-10 w-px bg-white/15 sm:block" />
               <div className="flex items-center gap-2 text-white/85">
                 <TrendingUp className="h-5 w-5 text-[oklch(0.84_0.13_75)]" />
                 <div>
-                  <div className="font-semibold">$2B+ funded</div>
-                  <div className="text-xs text-white/65">across 29+ states</div>
+                  <div className="font-semibold">{t("home.funded")}</div>
+                  <div className="text-xs text-white/65">{t("home.fundedSub")}</div>
                 </div>
               </div>
             </div>
@@ -132,16 +134,16 @@ function HomePage() {
       {/* Value props */}
       <section className="relative mx-auto max-w-7xl px-4 py-20">
         <div className="mx-auto max-w-2xl text-center">
-          <span className="eyebrow">Why us</span>
+          <span className="eyebrow">{t("home.whyUs")}</span>
           <h2 className="mt-3 text-3xl font-bold tracking-tight md:text-4xl">
-            A smarter way to <span className="gradient-text">borrow</span>
+            {t("home.smarterTitle1")}<span className="gradient-text">{t("home.smarterTitle2")}</span>
           </h2>
         </div>
         <div className="mt-10 grid gap-6 md:grid-cols-3">
           {[
-            { icon: TrendingDown, title: "Competitive rates", body: "We shop multiple lenders to find the best rate for your profile.", tone: "brand" },
-            { icon: ShieldCheck, title: "No surprises", body: "Transparent fees and a clear timeline from application to closing.", tone: "teal" },
-            { icon: Users, title: "Real loan officers", body: "Talk to a licensed expert — not a chatbot. Available 7 days a week.", tone: "gold" },
+            { icon: TrendingDown, title: t("home.valueProps.ratesTitle"), body: t("home.valueProps.ratesBody"), tone: "brand" },
+            { icon: ShieldCheck, title: t("home.valueProps.noSurpriseTitle"), body: t("home.valueProps.noSurpriseBody"), tone: "teal" },
+            { icon: Users, title: t("home.valueProps.humansTitle"), body: t("home.valueProps.humansBody"), tone: "gold" },
           ].map((v, i) => (
             <Reveal key={v.title} delay={i * 100}>
               <div className="card-elevated rounded-xl p-7 h-full">
@@ -159,7 +161,7 @@ function HomePage() {
         <LoanComparisonChart />
         <div className="mx-auto max-w-7xl px-4 pb-12 text-center">
           <Link to="/loan-programs" className="inline-flex items-center text-sm font-medium text-primary hover:underline">
-            View all loan programs <ArrowRight className="ml-1 h-4 w-4" />
+            {t("home.viewAllPrograms")} <ArrowRight className="ml-1 h-4 w-4" />
           </Link>
         </div>
       </section>
@@ -174,15 +176,15 @@ function HomePage() {
       <section className="mx-auto max-w-7xl px-4 pb-20">
         <div className="cta-banner flex flex-wrap items-center justify-between gap-6 p-8 md:p-12">
           <div className="relative z-10 max-w-xl">
-            <h3 className="text-3xl font-bold leading-tight md:text-4xl">Ready to make it official?</h3>
-            <p className="mt-2 text-primary-foreground/85">Get pre-qualified in minutes and lock in today's best rate.</p>
+            <h3 className="text-3xl font-bold leading-tight md:text-4xl">{t("home.ctaTitle")}</h3>
+            <p className="mt-2 text-primary-foreground/85">{t("home.ctaSub")}</p>
           </div>
           <div className="relative z-10 flex flex-wrap gap-3">
             <Button asChild size="lg" className="bg-[oklch(0.84_0.13_75)] text-[oklch(0.2_0.05_40)] hover:opacity-90">
-              <Link to="/get-prequalified"><FileCheck className="mr-2 h-5 w-5" /> Get pre-qualified</Link>
+              <Link to="/get-prequalified"><FileCheck className="mr-2 h-5 w-5" /> {t("common.getPrequalified")}</Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="border-white/40 bg-white/10 text-white hover:bg-white/20">
-              <Link to="/calculator">Try the calculator</Link>
+              <Link to="/calculator">{t("common.tryCalculator")}</Link>
             </Button>
           </div>
         </div>

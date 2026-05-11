@@ -4,6 +4,7 @@ import { useState } from "react";
 import { siteConfig, whatsappLink } from "@/lib/site-config";
 import { Button } from "@/components/ui/button";
 import { ThemeSwitcher } from "@/components/site/ThemeSwitcher";
+import { LanguageSwitcher } from "@/components/site/LanguageSwitcher";
 import logoBlue from "@/assets/logo-blue.png";
 import logoBrown from "@/assets/logo-brown.png";
 
@@ -109,6 +110,7 @@ export function Header() {
           )}
         </nav>
         <div className="hidden items-center gap-2 lg:flex">
+          <LanguageSwitcher compact />
           <ThemeSwitcher compact />
           <Button asChild variant="outline" size="sm">
             <a href={siteConfig.phoneHref}>
@@ -125,6 +127,7 @@ export function Header() {
           </Button>
         </div>
         <div className="flex items-center gap-2 lg:hidden">
+          <LanguageSwitcher compact />
           <ThemeSwitcher compact />
           <button
             aria-label="Toggle menu"
