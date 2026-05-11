@@ -22,4 +22,12 @@ if (!i18n.isInitialized) {
     });
 }
 
+if (typeof document !== "undefined") {
+  const setLang = (lng: string) => {
+    document.documentElement.lang = lng.startsWith("es") ? "es" : "en";
+  };
+  setLang(i18n.resolvedLanguage || i18n.language || "en");
+  i18n.on("languageChanged", setLang);
+}
+
 export default i18n;
