@@ -8,6 +8,17 @@ import { Textarea } from "@/components/ui/textarea";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { z } from "zod";
+import agent1 from "@/assets/agent-avatar.jpg";
+import agent2 from "@/assets/agent-2.jpg";
+import agent3 from "@/assets/agent-3.jpg";
+import agent4 from "@/assets/agent-4.jpg";
+
+const AGENTS = [
+  { photo: agent1, name: "Sarah", title: "Senior Loan Officer", reply: "~2 min" },
+  { photo: agent2, name: "Diego", title: "Mortgage Advisor", reply: "~3 min" },
+  { photo: agent3, name: "Amara", title: "Loan Officer", reply: "~2 min" },
+  { photo: agent4, name: "Mark", title: "Branch Manager · NMLS", reply: "~4 min" },
+];
 
 const schema = z.object({
   name: z.string().trim().min(1).max(100),
@@ -29,10 +40,12 @@ export function LiveChat() {
   const [sending, setSending] = useState(false);
   const [online, setOnline] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [agent, setAgent] = useState(AGENTS[0]);
 
   useEffect(() => {
     setMounted(true);
     setOnline(isOnline());
+    setAgent(AGENTS[Math.floor(Math.random() * AGENTS.length)]);
     const t = setInterval(() => setOnline(isOnline()), 60_000);
     return () => clearInterval(t);
   }, []);
@@ -89,12 +102,14 @@ export function LiveChat() {
       {/* Panel */}
       {open && (
         <div className="fixed bottom-36 right-4 z-40 w-[min(92vw,360px)] overflow-hidden rounded-2xl border border-border bg-background shadow-2xl lg:bottom-24">
-          <div className="flex items-center justify-between p-4 text-white" style={{ background: "var(--gradient-hero)" }}>
-            <div>
-              <p className="text-sm font-semibold">Talk to a loan officer</p>
-              <p className="mt-0.5 flex items-center gap-1.5 text-[11px] text-white/80">
+          <div className="flex items-start gap-3 p-4 text-white" style={{ background: "var(--gradient-hero)" }}>
+            <img src={agent.photo} alt={agent.name} className="h-12 w-12 shrink-0 rounded-full border-2 border-white/40 object-cover" />
+            <div className="min-w-0 flex-1">
+              <p className="text-sm font-semibold leading-tight">Chat With {agent.name}</p>
+              <p className="mt-0.5 text-[11px] text-white/80">{agent.title}</p>
+              <p className="mt-1 flex items-center gap-1.5 text-[11px] text-white/80">
                 <span className={`h-2 w-2 rounded-full ${online ? "bg-[oklch(0.7_0.18_150)]" : "bg-amber-400"}`} />
-                {online ? "Online — typically replies in 5 min" : "Offline — we'll reply next business hour"}
+                {online ? `Online · Typically replies in ${agent.reply}` : "Offline · We'll reply next business hour"}
               </p>
             </div>
             <button onClick={() => setOpen(false)} aria-label="Close"><X className="h-5 w-5" /></button>
