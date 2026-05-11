@@ -56,6 +56,7 @@ export function CallbackWidget() {
     setSending(true);
     const { error } = await supabase.from("leads").insert({
       name: parsed.data.name,
+      email: "",
       phone: parsed.data.phone,
       message: `Callback request — best time: ${parsed.data.best_time}`,
       source: "callback-widget",
