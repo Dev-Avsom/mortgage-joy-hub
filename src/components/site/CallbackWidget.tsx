@@ -31,7 +31,6 @@ function isOnline() {
 
 export function CallbackWidget() {
   const [open, setOpen] = useState(false);
-  const [dismissed, setDismissed] = useState(false);
   const [sending, setSending] = useState(false);
   const [agent, setAgent] = useState(AGENTS[0]);
   const [online, setOnline] = useState(false);
@@ -70,8 +69,6 @@ export function CallbackWidget() {
     (e.target as HTMLFormElement).reset();
     setOpen(false);
   }
-
-  if (dismissed) return null;
 
   return (
     <div className="fixed bottom-6 right-6 z-30 hidden lg:block">
@@ -152,7 +149,7 @@ export function CallbackWidget() {
             </Button>
             <button
               type="button"
-              onClick={() => { setOpen(false); setDismissed(true); }}
+              onClick={() => setOpen(false)}
               className="block w-full text-center text-[11px] text-muted-foreground hover:text-foreground"
             >
               No thanks
