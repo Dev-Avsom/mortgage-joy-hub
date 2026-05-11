@@ -1,69 +1,67 @@
+
+# Full Spanish localization across the site
+
 ## Goal
+Make the EN/ES toggle in the header actually switch the entire site — every public page, admin page, and shared component — into professional Spanish. Today only the header nav, footer links, and the home page are wired to i18n; everything else is hard-coded English.
 
-Make the site noticeably more visually attractive and lively — richer color, depth, and motion — while keeping the Ensure Home Loans brown/orange brand recognizable. No business-logic changes.
+## Scope (full site)
 
-## Visual direction
+**Public marketing routes (24)**
+index, about, calculator, affordability, refinance, loan-programs.index, loan-programs.$slug, loan-officers, loan-officers.$slug, find-officer, learn, learn.$slug, faq, contact, get-prequalified, first-time-buyer, process, reviews, press, careers, join, agents, builders, documents
 
-- Keep brown/orange as the brand anchor, but introduce **two supporting accents**: a warm gold and a fresh teal, used sparingly for highlights, badges, icons, and gradient stops.
-- Move from flat sections to **layered sections**: soft gradient backgrounds, blurred color "blobs", subtle grid/dot patterns, and glassy cards.
-- Add depth via **elevated cards, gradient borders, and refined shadows**.
-- Add tasteful **motion**: scroll-reveal, hover lift, gradient-shift on hero, floating accent shapes (already partly available in `styles.css`).
+**Legal / utility routes (5)**
+privacy, terms, tcpa, licenses, accessibility
 
-## Scope
+**Admin routes (3)**
+admin.index, admin.login, admin.officers
 
-Apply the upgrade across the public-facing site (homepage gets the biggest treatment; other content pages get the shared components and tokens automatically):
+**Shared components**
+Header, Footer (body copy + disclosures), LeadForm, CallbackWidget, LiveChat, RateQuoteWidget, RateAlertForm, StickyCTA, Reviews, TestimonialMarquee, LoanComparisonChart, LoanProcessTimeline, BestRateBadge, StatsCounters, AnimatedCounter labels, RateCardsFloating, ThemeSwitcher tooltips, SectionHeading consumers (eyebrows/titles passed in)
 
-- Home (`index.tsx`) — hero, stats, programs, testimonials, CTA.
-- Loan Programs list + detail.
-- Loan Officers list + detail.
-- About, Process, First-time buyer, Refinance, Calculator, Contact.
-- Shared site chrome: Header, Footer, section wrappers.
+**Dynamic content data files**
+- `src/lib/loan-programs.ts` — program names, descriptions, bullets
+- `src/lib/articles.ts` — learning-center article titles/excerpts/bodies
+- `src/lib/site-config.ts` — taglines and any user-visible strings
+Database-sourced content (loan_officers bios, etc.) is left as-is (admin would need to add bilingual columns — out of scope unless requested).
 
-Admin pages stay untouched.
+## Approach
 
-## Changes
+1. **Restructure `en.json` / `es.json`** into namespaced sections that mirror the site:
+   ```
+   nav, common, home, about, calculator, affordability, refinance,
+   loanPrograms, loanOfficers, findOfficer, learn, faq, contact,
+   getPrequalified, firstTimeBuyer, process, reviews, press, careers,
+   join, agents, builders, documents, legal (privacy/terms/tcpa/licenses/accessibility),
+   admin, footer, forms (leadForm, rateQuote, rateAlert, callback),
+   chat, widgets (stickyCTA, bestRate, comparison, timeline, stats),
+   programs (per-slug content), articles (per-slug content)
+   ```
 
-### 1. Design tokens (`src/styles.css`)
-- Add accent tokens: `--accent-gold`, `--accent-teal`, plus `-foreground` pairs.
-- Add gradient tokens: `--gradient-warm` (orange → gold), `--gradient-cool` (teal → primary), `--gradient-mesh` (multi-stop hero mesh).
-- Add pattern utilities: `.bg-grid`, `.bg-dots`, `.bg-mesh`.
-- Add `.section-gradient`, `.card-elevated`, `.gradient-border`, `.badge-soft` utilities.
-- Tune existing `--shadow-elegant` / `--shadow-card` for warmer glow.
+2. **Refactor every route + component** to use `const { t } = useTranslation()` and replace hard-coded strings with `t("namespace.key")`. Use the `Trans` component for strings containing inline JSX (links, `<strong>`, etc.).
 
-### 2. Reusable visual primitives (new files in `src/components/site/`)
-- `SectionHeading.tsx` — eyebrow chip + gradient headline + subcopy, consistent across pages.
-- `GradientBlob.tsx` — decorative animated background blob (positioned absolute).
-- `FeatureCard.tsx` — icon-in-gradient-circle, hover-lift, gradient border.
-- `StatStrip.tsx` — colorful stat tiles with count-up.
+3. **Translate to Spanish** — I write professional, mortgage-industry Spanish copy for every key. Numbers, brand names ("HomeBridge", "NMLS"), and legal IDs stay as-is. Disclosures use formal register ("usted").
 
-### 3. Home page upgrade (`src/routes/index.tsx`)
-- Hero: gradient-mesh background + floating blobs + new headline with `gradient-text`, dual CTA, trust badges row.
-- Programs grid: switch to `FeatureCard` with colored icons (each program a different accent shade).
-- "Why us" section: alternating image/text with soft gradient panels.
-- Testimonials: glassy cards on tinted gradient strip.
-- Final CTA: full-width gradient banner with subtle pattern overlay.
+4. **Locale-aware formatting**
+   - Currency: keep `$` (USD) but use `Intl.NumberFormat(i18n.language, {style:"currency", currency:"USD"})` so thousands separators follow locale.
+   - Dates: `Intl.DateTimeFormat(i18n.language, …)`.
+   - Update `<html lang>` dynamically in `__root.tsx` based on `i18n.resolvedLanguage`.
 
-### 4. Other pages
-- Wrap headers in `SectionHeading` with eyebrow chip.
-- Apply `card-elevated` + colored icon circles to existing card grids (about, process, first-time-buyer, agents, builders, careers).
-- Add `GradientBlob` decoration to top of hero sections.
-- Loan officer cards: gradient ring around avatar, role badge in accent color.
+5. **SEO `head()` per route** — make `meta` (title/description/og) read from `t()` so each page ships bilingual metadata.
 
-### 5. Header & Footer
-- Header: glass effect on scroll, animated underline on active link, accent dot indicator.
-- Footer: dark warm gradient background, brighter link hover state, social icons in colored circles.
-
-### 6. Imagery
-- Generate 2 new hero/section images (warm modern home + diverse family) for home page and first-time-buyer page. Other pages keep current imagery.
-
-## Out of scope
-
-- No changes to forms, data, auth, admin, routing, or business logic.
-- No new pages.
-- Dark mode tuning beyond what tokens require.
+6. **QA pass** — toggle ES on every route and confirm no English leaks, no layout breaks from longer Spanish strings (Spanish is ~20% longer; check buttons, nav, cards).
 
 ## Technical notes
 
-- All colors added as `oklch` semantic tokens in `styles.css`; components consume via Tailwind utilities (`bg-accent-gold`, `text-accent-teal`, `bg-[image:var(--gradient-warm)]` etc.). No hex/RGB in components.
-- Reuse existing animation utilities (`animate-blob`, `animate-fade-in-up`, `reveal`, `hover-lift`, `gradient-text`, `glass`) — no new animation libs.
-- Respect `prefers-reduced-motion` (already handled in `styles.css`).
+- i18next is already initialized with `LanguageDetector` + `localStorage` cache (`site-lang`). No new deps needed.
+- `head()` in TanStack route configs runs outside React, so it can't call `useTranslation()` directly. Solution: import the `i18n` instance from `src/i18n/index.ts` and call `i18n.t("…")` inside `head()`. Re-render of metadata on language change is handled by router invalidation; for SSR the detector falls back to `en` which is fine.
+- For dynamic routes (`loan-programs/$slug`, `learn/$slug`, `loan-officers/$slug`), translation keys are keyed by slug (e.g. `programs.conventional.title`). Slugs that don't have an ES entry fall back to EN automatically (i18next default behavior).
+- `Trans` component used for the home hero subtitle and any string with embedded `<strong>` / `<a>` / `<Link>`.
+- Admin pages get a lighter translation pass (form labels, buttons, table headers) — they're internal but still toggled.
+
+## Deliverable
+After this runs, clicking ES in the header switches the entire site — every page, modal, form, toast, footer disclosure, and meta tag — into Spanish, and clicking EN switches it back. Nothing remains hard-coded.
+
+## Out of scope (call out if you want them added)
+- Translating database content (loan officer bios, leads, etc.)
+- A `/es/...` URL prefix (current setup uses a single URL with client-side language). Add only if SEO for Spanish pages becomes a priority.
+- RTL support (not needed for ES).
