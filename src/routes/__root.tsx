@@ -13,7 +13,7 @@ import appCss from "../styles.css?url";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { StickyCTA } from "@/components/site/StickyCTA";
-import { LiveChat } from "@/components/site/LiveChat";
+import { CallbackWidget } from "@/components/site/CallbackWidget";
 import { Toaster } from "@/components/ui/sonner";
 import "@/i18n";
 
@@ -133,7 +133,7 @@ function RootComponent() {
         </main>
         <Footer />
         <StickyCTA />
-        <LiveChat />
+        <CallbackWidget />
         <Toaster richColors position="top-center" />
       </div>
     </QueryClientProvider>
