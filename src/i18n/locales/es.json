@@ -1,0 +1,72 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "about": "Nosotros",
+    "loanPrograms": "Programas de Préstamo",
+    "resources": "Recursos",
+    "partners": "Socios",
+    "contact": "Contacto",
+    "ourCompany": "Nuestra Empresa",
+    "ourTeam": "Nuestro Equipo",
+    "reviews": "Reseñas",
+    "licenses": "Licencias",
+    "howItWorks": "Cómo Funciona",
+    "calculator": "Calculadora",
+    "affordability": "Asequibilidad",
+    "refinance": "Refinanciamiento",
+    "learningCenter": "Centro de Aprendizaje",
+    "faq": "Preguntas Frecuentes",
+    "documentsChecklist": "Lista de Documentos",
+    "findOfficer": "Buscar un Oficial de Préstamos",
+    "joinAsMLO": "Únete como MLO"
+  },
+  "common": {
+    "call": "Llamar",
+    "whatsapp": "WhatsApp",
+    "applyNow": "Solicitar Ahora",
+    "getPrequalified": "Pre-Calificarse",
+    "findOfficer": "Buscar un Oficial",
+    "tryCalculator": "Probar la Calculadora",
+    "online": "En línea",
+    "repliesIn": "Responde en {{time}}"
+  },
+  "home": {
+    "badge": "Licencia en 50 Estados · NMLS {{nmls}}",
+    "heroTitle1": "La Casa de Tus Sueños,",
+    "heroTitle2": "Financiada Más Rápido",
+    "heroSub": "Compara tasas en vivo de <strong>más de 230 prestamistas mayoristas</strong> en 60 segundos y habla con un oficial de préstamos licenciado — sin spam, sin presión.",
+    "bullet1": "Consulta de crédito suave — no afecta tu puntaje",
+    "bullet2": "Cierra en tan solo 15 días",
+    "bullet3": "Personas reales, disponibles los 7 días de la semana",
+    "rated": "Más de 10,000 Familias Financiadas",
+    "funded": "Más de $2B Financiados",
+    "fundedSub": "En más de 29 estados",
+    "whyUs": "Por Qué Nosotros",
+    "smarterTitle1": "Una Forma Más Inteligente de ",
+    "smarterTitle2": "Pedir Prestado",
+    "valueProps": {
+      "ratesTitle": "Tasas Competitivas",
+      "ratesBody": "Comparamos varios prestamistas para encontrar la mejor tasa para tu perfil.",
+      "noSurpriseTitle": "Sin Sorpresas",
+      "noSurpriseBody": "Tarifas transparentes y un calendario claro desde la solicitud hasta el cierre.",
+      "humansTitle": "Oficiales de Préstamos Reales",
+      "humansBody": "Habla con un experto licenciado — no con un chatbot. Disponible los 7 días."
+    },
+    "viewAllPrograms": "Ver Todos los Programas de Préstamo",
+    "ctaTitle": "¿Listo para Hacerlo Oficial?",
+    "ctaSub": "Pre-califícate en minutos y asegura la mejor tasa de hoy."
+  },
+  "footer": {
+    "explore": "Explorar",
+    "company": "Empresa",
+    "contact": "Contacto",
+    "verifyNmls": "Verificar en NMLS Consumer Access →",
+    "equalHousing": "Prestamista de Vivienda Igualitaria",
+    "disclosures": "Divulgaciones:"
+  },
+  "chat": {
+    "title": "Habla con un Oficial de Préstamos",
+    "onlineMsg": "En línea — normalmente responde en 5 min",
+    "offlineMsg": "Fuera de línea — responderemos en la próxima hora hábil"
+  }
+}

@@ -37,7 +37,7 @@ function ProcessPage() {
         <div className="relative mx-auto max-w-5xl px-4 py-16">
           <Reveal>
             <span className="eyebrow">Our process</span>
-            <h1 className="mt-4 text-4xl font-bold tracking-tight md:text-5xl">How the <span className="gradient-text">mortgage process</span> works</h1>
+            <h1 className="mt-4 text-4xl font-bold tracking-tight md:text-5xl">How the <span className="gradient-text">Mortgage Process</span> Works</h1>
             <p className="mt-3 max-w-3xl text-lg text-muted-foreground">
               Most of our clients go from pre-qualification to keys in 21–30 days. Here's what to expect at every stage.
             </p>
@@ -68,7 +68,7 @@ function ProcessPage() {
       </ol>
       <div className="cta-banner relative mt-10 p-8 md:p-10">
         <div className="relative z-10">
-          <h2 className="text-2xl font-bold">Ready to start step 1?</h2>
+          <h2 className="text-2xl font-bold">Ready to Start Step 1?</h2>
           <p className="mt-2 text-primary-foreground/80">Pre-qualification takes 5 minutes and won't impact your credit.</p>
           <Button asChild size="lg" className="mt-4 bg-[oklch(0.84_0.13_75)] text-[oklch(0.2_0.05_40)] hover:opacity-90"><Link to="/get-prequalified">Get pre-qualified</Link></Button>
         </div>

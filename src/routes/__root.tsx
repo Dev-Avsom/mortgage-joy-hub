@@ -14,7 +14,9 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { StickyCTA } from "@/components/site/StickyCTA";
 import { LiveChat } from "@/components/site/LiveChat";
+import { DesktopAgentCard } from "@/components/site/DesktopAgentCard";
 import { Toaster } from "@/components/ui/sonner";
+import "@/i18n";
 
 function NotFoundComponent() {
   return (
@@ -132,6 +134,7 @@ function RootComponent() {
         </main>
         <Footer />
         <StickyCTA />
+        <DesktopAgentCard />
         <LiveChat />
         <Toaster richColors position="top-center" />
       </div>

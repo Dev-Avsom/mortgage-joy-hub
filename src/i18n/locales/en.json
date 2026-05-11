@@ -1,0 +1,72 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "loanPrograms": "Loan Programs",
+    "resources": "Resources",
+    "partners": "Partners",
+    "contact": "Contact",
+    "ourCompany": "Our Company",
+    "ourTeam": "Our Team",
+    "reviews": "Reviews",
+    "licenses": "Licenses",
+    "howItWorks": "How It Works",
+    "calculator": "Calculator",
+    "affordability": "Affordability",
+    "refinance": "Refinance",
+    "learningCenter": "Learning Center",
+    "faq": "FAQ",
+    "documentsChecklist": "Documents Checklist",
+    "findOfficer": "Find a Loan Officer",
+    "joinAsMLO": "Join as MLO"
+  },
+  "common": {
+    "call": "Call",
+    "whatsapp": "WhatsApp",
+    "applyNow": "Apply Now",
+    "getPrequalified": "Get Pre-Qualified",
+    "findOfficer": "Find an Officer",
+    "tryCalculator": "Try the Calculator",
+    "online": "Online",
+    "repliesIn": "Replies in {{time}}"
+  },
+  "home": {
+    "badge": "Licensed in 50 States · NMLS {{nmls}}",
+    "heroTitle1": "Your Dream Home,",
+    "heroTitle2": "Funded Faster",
+    "heroSub": "Compare live rates from <strong>230+ wholesale lenders</strong> in 60 seconds and talk to a licensed loan officer — no spam, no pressure.",
+    "bullet1": "Soft credit check — won't affect your score",
+    "bullet2": "Close in as little as 15 days",
+    "bullet3": "Real humans, available 7 days a week",
+    "rated": "10,000+ Families Funded",
+    "funded": "$2B+ Funded",
+    "fundedSub": "Across 29+ states",
+    "whyUs": "Why Us",
+    "smarterTitle1": "A Smarter Way to ",
+    "smarterTitle2": "Borrow",
+    "valueProps": {
+      "ratesTitle": "Competitive Rates",
+      "ratesBody": "We shop multiple lenders to find the best rate for your profile.",
+      "noSurpriseTitle": "No Surprises",
+      "noSurpriseBody": "Transparent fees and a clear timeline from application to closing.",
+      "humansTitle": "Real Loan Officers",
+      "humansBody": "Talk to a licensed expert — not a chatbot. Available 7 days a week."
+    },
+    "viewAllPrograms": "View All Loan Programs",
+    "ctaTitle": "Ready to Make It Official?",
+    "ctaSub": "Get pre-qualified in minutes and lock in today's best rate."
+  },
+  "footer": {
+    "explore": "Explore",
+    "company": "Company",
+    "contact": "Contact",
+    "verifyNmls": "Verify on NMLS Consumer Access →",
+    "equalHousing": "Equal Housing Lender",
+    "disclosures": "Disclosures:"
+  },
+  "chat": {
+    "title": "Talk to a Loan Officer",
+    "onlineMsg": "Online — typically replies in 5 min",
+    "offlineMsg": "Offline — we'll reply next business hour"
+  }
+}
