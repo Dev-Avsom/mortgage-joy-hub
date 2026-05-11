@@ -40,7 +40,7 @@ function ProgramsPage() {
         <div className="relative mx-auto max-w-7xl px-4 py-16">
           <Reveal>
             <span className="eyebrow">Loan programs</span>
-            <h1 className="mt-4 text-4xl font-bold tracking-tight md:text-5xl">A loan <span className="gradient-text">built for you</span></h1>
+            <h1 className="mt-4 text-4xl font-bold tracking-tight md:text-5xl">A Loan <span className="gradient-text">Built for You</span></h1>
             <p className="mt-3 max-w-2xl text-lg text-muted-foreground">
               From first-time buyers to seasoned investors, we have a loan program built for you.
             </p>

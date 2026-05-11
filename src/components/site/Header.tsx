@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Phone, MessageCircle, Menu, X, ChevronDown } from "lucide-react";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { siteConfig, whatsappLink } from "@/lib/site-config";
 import { Button } from "@/components/ui/button";
 import { ThemeSwitcher } from "@/components/site/ThemeSwitcher";
@@ -14,55 +15,55 @@ type NavItem = NavLeaf | NavGroup;
 
 const isGroup = (n: NavItem): n is NavGroup => "children" in n;
 
-const nav: NavItem[] = [
-  { to: "/", label: "Home" },
-  {
-    label: "About",
-    to: "/about",
-    children: [
-      { to: "/about", label: "Our Company" },
-      { to: "/loan-officers", label: "Our Team" },
-      { to: "/reviews", label: "Reviews" },
-      { to: "/licenses", label: "Licenses" },
-    ],
-  },
-  {
-    label: "Loan Programs",
-    to: "/loan-programs",
-    children: [
-      { to: "/loan-programs/$slug", params: { slug: "conventional" }, label: "Conventional" },
-      { to: "/loan-programs/$slug", params: { slug: "fha" }, label: "FHA" },
-      { to: "/loan-programs/$slug", params: { slug: "va" }, label: "VA" },
-      { to: "/loan-programs/$slug", params: { slug: "jumbo" }, label: "Jumbo" },
-      { to: "/loan-programs/$slug", params: { slug: "usda" }, label: "USDA" },
-      { to: "/loan-programs/$slug", params: { slug: "dscr" }, label: "DSCR" },
-      { to: "/loan-programs/$slug", params: { slug: "bank-statement" }, label: "Bank Statement" },
-      { to: "/loan-programs/$slug", params: { slug: "heloc" }, label: "HELOC" },
-    ],
-  },
-  {
-    label: "Resources",
-    children: [
-      { to: "/process", label: "How It Works" },
-      { to: "/calculator", label: "Calculator" },
-      { to: "/affordability", label: "Affordability" },
-      { to: "/refinance", label: "Refinance" },
-      { to: "/learn", label: "Learning Center" },
-      { to: "/faq", label: "FAQ" },
-      { to: "/documents", label: "Documents Checklist" },
-    ],
-  },
-  {
-    label: "Partners",
-    children: [
-      { to: "/find-officer", label: "Find a Loan Officer" },
-      { to: "/join", label: "Join as MLO" },
-    ],
-  },
-  { to: "/contact", label: "Contact" },
-];
-
 export function Header() {
+  const { t } = useTranslation();
+  const nav: NavItem[] = [
+    { to: "/", label: t("nav.home") },
+    {
+      label: t("nav.about"),
+      to: "/about",
+      children: [
+        { to: "/about", label: t("nav.ourCompany") },
+        { to: "/loan-officers", label: t("nav.ourTeam") },
+        { to: "/reviews", label: t("nav.reviews") },
+        { to: "/licenses", label: t("nav.licenses") },
+      ],
+    },
+    {
+      label: t("nav.loanPrograms"),
+      to: "/loan-programs",
+      children: [
+        { to: "/loan-programs/$slug", params: { slug: "conventional" }, label: "Conventional" },
+        { to: "/loan-programs/$slug", params: { slug: "fha" }, label: "FHA" },
+        { to: "/loan-programs/$slug", params: { slug: "va" }, label: "VA" },
+        { to: "/loan-programs/$slug", params: { slug: "jumbo" }, label: "Jumbo" },
+        { to: "/loan-programs/$slug", params: { slug: "usda" }, label: "USDA" },
+        { to: "/loan-programs/$slug", params: { slug: "dscr" }, label: "DSCR" },
+        { to: "/loan-programs/$slug", params: { slug: "bank-statement" }, label: "Bank Statement" },
+        { to: "/loan-programs/$slug", params: { slug: "heloc" }, label: "HELOC" },
+      ],
+    },
+    {
+      label: t("nav.resources"),
+      children: [
+        { to: "/process", label: t("nav.howItWorks") },
+        { to: "/calculator", label: t("nav.calculator") },
+        { to: "/affordability", label: t("nav.affordability") },
+        { to: "/refinance", label: t("nav.refinance") },
+        { to: "/learn", label: t("nav.learningCenter") },
+        { to: "/faq", label: t("nav.faq") },
+        { to: "/documents", label: t("nav.documentsChecklist") },
+      ],
+    },
+    {
+      label: t("nav.partners"),
+      children: [
+        { to: "/find-officer", label: t("nav.findOfficer") },
+        { to: "/join", label: t("nav.joinAsMLO") },
+      ],
+    },
+    { to: "/contact", label: t("nav.contact") },
+  ];
   const [open, setOpen] = useState(false);
   const [openGroup, setOpenGroup] = useState<string | null>(null);
   return (
@@ -114,16 +115,16 @@ export function Header() {
           <ThemeSwitcher compact />
           <Button asChild variant="outline" size="sm">
             <a href={siteConfig.phoneHref}>
-              <Phone className="mr-1 h-4 w-4" /> Call
+              <Phone className="mr-1 h-4 w-4" /> {t("common.call")}
             </a>
           </Button>
           <Button asChild size="sm" className="bg-[oklch(0.62_0.16_150)] text-white hover:opacity-90">
             <a href={whatsappLink()} target="_blank" rel="noopener noreferrer">
-              <MessageCircle className="mr-1 h-4 w-4" /> WhatsApp
+              <MessageCircle className="mr-1 h-4 w-4" /> {t("common.whatsapp")}
             </a>
           </Button>
           <Button asChild size="sm">
-            <Link to="/get-prequalified">Apply Now</Link>
+            <Link to="/get-prequalified">{t("common.applyNow")}</Link>
           </Button>
         </div>
         <div className="flex items-center gap-2 lg:hidden">
@@ -187,7 +188,7 @@ export function Header() {
               onClick={() => setOpen(false)}
               className="mt-2 rounded-md bg-primary px-3 py-2 text-center text-sm font-medium text-primary-foreground"
             >
-              Apply Now
+              {t("common.applyNow")}
             </Link>
           </div>
         </div>

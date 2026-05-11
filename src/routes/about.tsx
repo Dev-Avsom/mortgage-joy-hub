@@ -62,7 +62,7 @@ function AboutPage() {
       </div>
 
       <section className="mt-12">
-        <h2 className="text-2xl font-bold">What we offer</h2>
+        <h2 className="text-2xl font-bold">What We Offer</h2>
         <div className="mt-3 flex flex-wrap gap-2 text-sm">
           {["Conventional", "Non-QM", "Jumbo", "DSCR", "Self-Employment", "Investment Homes", "Bank Statement", "Hard Money", "Construction", "Commercial"].map((p) => (
             <span key={p} className="rounded-full border border-border bg-secondary/50 px-3 py-1 transition hover:scale-105 hover:border-primary hover:text-primary">{p}</span>
@@ -82,7 +82,7 @@ function AboutPage() {
 
       <div className="cta-banner relative mt-12 p-8 md:p-10">
         <div className="relative z-10">
-          <h2 className="text-2xl font-bold">Want to partner with us as an MLO?</h2>
+        <h2 className="text-2xl font-bold">Want to Partner With Us as an MLO?</h2>
           <p className="mt-2 text-primary-foreground/80">Join 250+ MLOs across 29+ states. Or talk to us about your home loan today.</p>
           <div className="mt-4 flex flex-wrap gap-2">
             <Button asChild size="lg" className="bg-[oklch(0.84_0.13_75)] text-[oklch(0.2_0.05_40)] hover:opacity-90"><Link to="/join">Become an MLO partner</Link></Button>

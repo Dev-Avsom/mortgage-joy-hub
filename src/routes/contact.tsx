@@ -17,7 +17,7 @@ export const Route = createFileRoute("/contact")({
 function ContactPage() {
   return (
     <div className="mx-auto max-w-6xl px-4 py-12">
-      <h1 className="text-3xl font-bold md:text-4xl">Get in touch</h1>
+      <h1 className="text-3xl font-bold md:text-4xl">Get in Touch</h1>
       <p className="mt-2 text-muted-foreground">
         We're here 7 days a week. Reach out the way that works for you.
       </p>
@@ -61,7 +61,7 @@ function ContactPage() {
           </Card>
         </div>
         <Card className="p-6">
-          <h2 className="text-xl font-semibold">Send us a message</h2>
+          <h2 className="text-xl font-semibold">Send Us a Message</h2>
           <p className="mt-1 text-sm text-muted-foreground">A loan officer will reply within one business hour.</p>
           <div className="mt-5">
             <LeadForm source="contact" submitLabel="Send message" />
