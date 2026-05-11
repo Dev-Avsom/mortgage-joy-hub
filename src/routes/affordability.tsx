@@ -34,7 +34,7 @@ function AffordabilityPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 py-10">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold md:text-4xl">How much house can I afford?</h1>
+        <h1 className="text-3xl font-bold md:text-4xl">How Much House Can I Afford?</h1>
         <p className="mt-2 text-muted-foreground">
           Based on the 28/36 debt-to-income rule used by most US lenders.
         </p>

@@ -142,7 +142,7 @@ function DocumentsPage() {
           <div className="flex items-center gap-2 text-primary">
             <ShieldCheck className="h-5 w-5" /><span className="font-semibold">Secure document portal</span>
           </div>
-          <h1 className="mt-2 text-2xl font-bold">Sign in to upload</h1>
+          <h1 className="mt-2 text-2xl font-bold">Sign In to Upload</h1>
           <p className="mt-1 text-sm text-muted-foreground">
             Create an account or sign in to securely send us your loan documents.
           </p>
@@ -178,7 +178,7 @@ function DocumentsPage() {
     <div className="mx-auto max-w-5xl px-4 py-12">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
-          <h1 className="text-3xl font-bold">Your loan documents</h1>
+          <h1 className="text-3xl font-bold">Your Loan Documents</h1>
           <p className="mt-1 text-sm text-muted-foreground">Signed in as {user.email}</p>
         </div>
         <Button variant="ghost" size="sm" onClick={() => supabase.auth.signOut()}>Sign out</Button>
@@ -186,7 +186,7 @@ function DocumentsPage() {
 
       <div className="mt-8 grid gap-6 lg:grid-cols-[1fr,320px]">
         <Card className="p-6">
-          <h2 className="text-lg font-semibold">Upload a document</h2>
+          <h2 className="text-lg font-semibold">Upload a Document</h2>
           <div className="mt-4 grid gap-3 sm:grid-cols-[200px,1fr]">
             <div>
               <Label htmlFor="cat" className="text-xs">Category</Label>
@@ -229,7 +229,7 @@ function DocumentsPage() {
         </Card>
 
         <Card className="p-6">
-          <h2 className="text-lg font-semibold">Pre-approval checklist</h2>
+          <h2 className="text-lg font-semibold">Pre-Approval Checklist</h2>
           <ul className="mt-4 space-y-2 text-sm">
             {CHECKLIST.map((c) => {
               const done = docs.some((d) => d.category === c.key);

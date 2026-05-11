@@ -54,7 +54,7 @@ const SECTIONS: { title: string; items: { q: string; a: string }[] }[] = [
 function FAQPage() {
   return (
     <div className="mx-auto max-w-4xl px-4 py-12">
-      <h1 className="text-3xl font-bold md:text-4xl">Frequently asked questions</h1>
+      <h1 className="text-3xl font-bold md:text-4xl">Frequently Asked Questions</h1>
       <p className="mt-2 text-muted-foreground">Quick answers to the questions we hear most.</p>
       <div className="mt-8 space-y-8">
         {SECTIONS.map((s) => (
@@ -72,7 +72,7 @@ function FAQPage() {
         ))}
       </div>
       <div className="mt-10 rounded-2xl p-8 text-white" style={{ background: "var(--gradient-hero)" }}>
-        <h2 className="text-2xl font-bold">Still have questions?</h2>
+        <h2 className="text-2xl font-bold">Still Have Questions?</h2>
         <p className="mt-2 text-white/80">Talk to a licensed loan officer — no pressure, no obligation.</p>
         <div className="mt-4 flex flex-wrap gap-2">
           <Button asChild variant="secondary"><Link to="/contact">Contact us</Link></Button>

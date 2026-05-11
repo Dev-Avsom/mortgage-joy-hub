@@ -187,7 +187,7 @@ function CalculatorPage() {
           </Card>
 
           <Card className="p-6">
-            <h3 className="text-lg font-semibold">Loan balance over time</h3>
+            <h3 className="text-lg font-semibold">Loan Balance Over Time</h3>
             <div className="mt-4 h-64">
               <ResponsiveContainer width="100%" height="100%">
                 <AreaChart data={result.schedule}>

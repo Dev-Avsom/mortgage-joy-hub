@@ -32,7 +32,7 @@ export function Reviews() {
               <Star key={i} className="h-5 w-5 fill-current" />
             ))}
           </div>
-          <h2 className="mt-3 text-3xl font-bold">Rated 4.9 / 5 by 1,200+ borrowers</h2>
+          <h2 className="mt-3 text-3xl font-bold">Rated 4.9 / 5 by 1,200+ Borrowers</h2>
           <p className="mt-2 text-muted-foreground">Real reviews from homeowners across the US.</p>
         </div>
         <div className="mt-10 grid gap-5 md:grid-cols-3">

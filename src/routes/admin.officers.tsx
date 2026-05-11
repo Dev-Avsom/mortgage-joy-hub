@@ -156,7 +156,7 @@ function OfficersAdmin() {
     return (
       <div className="mx-auto max-w-2xl px-4 py-20 text-center">
         <ShieldAlert className="mx-auto h-12 w-12 text-amber-500" />
-        <h1 className="mt-4 text-2xl font-bold">Access denied</h1>
+        <h1 className="mt-4 text-2xl font-bold">Access Denied</h1>
         <div className="mt-6 flex justify-center gap-2">
           <Button onClick={signOut} variant="outline"><LogOut className="mr-2 h-4 w-4" /> Sign out</Button>
           <Button asChild><Link to="/">Back to site</Link></Button>
