@@ -16,6 +16,7 @@ import { StickyCTA } from "@/components/site/StickyCTA";
 import { CallbackWidget } from "@/components/site/CallbackWidget";
 import { Toaster } from "@/components/ui/sonner";
 import "@/i18n";
+import { AutoTranslate } from "@/i18n/AutoTranslate";
 
 function NotFoundComponent() {
   return (
@@ -135,6 +136,7 @@ function RootComponent() {
         <StickyCTA />
         <CallbackWidget />
         <Toaster richColors position="top-center" />
+        <AutoTranslate />
       </div>
     </QueryClientProvider>
   );
