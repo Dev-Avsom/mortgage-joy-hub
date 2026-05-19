@@ -38,13 +38,14 @@ type Officer = {
   achievements: string[];
   display_order: number;
   is_active: boolean;
+  portal_link: string | null;
 };
 
 const empty: Partial<Officer> = {
   name: "", slug: "", title: "", nmls_id: "", email: "", phone: "", whatsapp: "",
   bio: "", about: "", photo_url: "", years_experience: 0,
   languages: [], specialties: [], achievements: [],
-  display_order: 0, is_active: true,
+  display_order: 0, is_active: true, portal_link: "",
 };
 
 function slugify(s: string) {
@@ -122,6 +123,7 @@ function OfficersAdmin() {
       bio: editing.bio || null,
       about: editing.about || null,
       photo_url: editing.photo_url || null,
+      portal_link: editing.portal_link || null,
       years_experience: editing.years_experience ? Number(editing.years_experience) : null,
       languages: editing.languages ?? [],
       specialties: editing.specialties ?? [],
