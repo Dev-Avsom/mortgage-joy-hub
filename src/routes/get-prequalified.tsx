@@ -26,7 +26,11 @@ export const Route = createFileRoute("/get-prequalified")({
 
 function ChooseOfficerPage() {
   const { officers } = Route.useLoaderData();
-  const withLinks = officers.filter((o) => o.portal_link && o.portal_link.trim().length > 0);
+  const list = officers as Array<{
+    id: string; name: string; title: string | null; photo_url: string | null;
+    nmls_id: string | null; portal_link: string | null; slug: string;
+  }>;
+  const withLinks = list.filter((o) => o.portal_link && o.portal_link.trim().length > 0);
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-14">
