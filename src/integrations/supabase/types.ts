@@ -108,9 +108,12 @@ export type Database = {
           created_at: string
           display_order: number
           email: string | null
+          facebook_url: string | null
           id: string
+          instagram_url: string | null
           is_active: boolean
           languages: string[]
+          linkedin_url: string | null
           name: string
           nmls_id: string | null
           phone: string | null
@@ -119,7 +122,9 @@ export type Database = {
           slug: string
           specialties: string[]
           title: string | null
+          twitter_url: string | null
           updated_at: string
+          website_url: string | null
           whatsapp: string | null
           years_experience: number | null
         }
@@ -130,9 +135,12 @@ export type Database = {
           created_at?: string
           display_order?: number
           email?: string | null
+          facebook_url?: string | null
           id?: string
+          instagram_url?: string | null
           is_active?: boolean
           languages?: string[]
+          linkedin_url?: string | null
           name: string
           nmls_id?: string | null
           phone?: string | null
@@ -141,7 +149,9 @@ export type Database = {
           slug: string
           specialties?: string[]
           title?: string | null
+          twitter_url?: string | null
           updated_at?: string
+          website_url?: string | null
           whatsapp?: string | null
           years_experience?: number | null
         }
@@ -152,9 +162,12 @@ export type Database = {
           created_at?: string
           display_order?: number
           email?: string | null
+          facebook_url?: string | null
           id?: string
+          instagram_url?: string | null
           is_active?: boolean
           languages?: string[]
+          linkedin_url?: string | null
           name?: string
           nmls_id?: string | null
           phone?: string | null
@@ -163,7 +176,9 @@ export type Database = {
           slug?: string
           specialties?: string[]
           title?: string | null
+          twitter_url?: string | null
           updated_at?: string
+          website_url?: string | null
           whatsapp?: string | null
           years_experience?: number | null
         }
