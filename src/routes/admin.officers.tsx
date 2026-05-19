@@ -38,13 +38,14 @@ type Officer = {
   achievements: string[];
   display_order: number;
   is_active: boolean;
+  portal_link: string | null;
 };
 
 const empty: Partial<Officer> = {
   name: "", slug: "", title: "", nmls_id: "", email: "", phone: "", whatsapp: "",
   bio: "", about: "", photo_url: "", years_experience: 0,
   languages: [], specialties: [], achievements: [],
-  display_order: 0, is_active: true,
+  display_order: 0, is_active: true, portal_link: "",
 };
 
 function slugify(s: string) {
@@ -122,6 +123,7 @@ function OfficersAdmin() {
       bio: editing.bio || null,
       about: editing.about || null,
       photo_url: editing.photo_url || null,
+      portal_link: editing.portal_link || null,
       years_experience: editing.years_experience ? Number(editing.years_experience) : null,
       languages: editing.languages ?? [],
       specialties: editing.specialties ?? [],
@@ -268,6 +270,13 @@ function OfficersAdmin() {
               <Field label="Email"><Input type="email" value={editing.email ?? ""} onChange={(e) => setEditing({ ...editing, email: e.target.value })} /></Field>
               <Field label="Phone"><Input value={editing.phone ?? ""} onChange={(e) => setEditing({ ...editing, phone: e.target.value })} /></Field>
               <Field label="WhatsApp"><Input value={editing.whatsapp ?? ""} onChange={(e) => setEditing({ ...editing, whatsapp: e.target.value })} /></Field>
+              <Field label="Portal/Application link (1003 URL)" className="sm:col-span-2">
+                <Input
+                  placeholder="https://ensurehomeloans.my1003app.com/XXXXXX/register?..."
+                  value={editing.portal_link ?? ""}
+                  onChange={(e) => setEditing({ ...editing, portal_link: e.target.value })}
+                />
+              </Field>
               <Field label="Years experience">
                 <Input type="number" value={editing.years_experience ?? 0} onChange={(e) => setEditing({ ...editing, years_experience: Number(e.target.value) })} />
               </Field>
