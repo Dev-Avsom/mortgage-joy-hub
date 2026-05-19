@@ -115,6 +115,7 @@ export type Database = {
           nmls_id: string | null
           phone: string | null
           photo_url: string | null
+          portal_link: string | null
           slug: string
           specialties: string[]
           title: string | null
@@ -136,6 +137,7 @@ export type Database = {
           nmls_id?: string | null
           phone?: string | null
           photo_url?: string | null
+          portal_link?: string | null
           slug: string
           specialties?: string[]
           title?: string | null
@@ -157,6 +159,7 @@ export type Database = {
           nmls_id?: string | null
           phone?: string | null
           photo_url?: string | null
+          portal_link?: string | null
           slug?: string
           specialties?: string[]
           title?: string | null
