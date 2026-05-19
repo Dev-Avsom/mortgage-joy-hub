@@ -183,9 +183,9 @@ const LoanProgramsSlugRoute = LoanProgramsSlugRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoanOfficersSlugRoute = LoanOfficersSlugRouteImport.update({
-  id: '/$slug',
-  path: '/$slug',
-  getParentRoute: () => LoanOfficersRoute,
+  id: '/loan-officers/$slug',
+  path: '/loan-officers/$slug',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const LearnSlugRoute = LearnSlugRouteImport.update({
   id: '/$slug',
@@ -438,6 +438,7 @@ export interface RootRouteChildren {
   TermsRoute: typeof TermsRoute
   AdminLoginRoute: typeof AdminLoginRoute
   AdminOfficersRoute: typeof AdminOfficersRoute
+  LoanOfficersSlugRoute: typeof LoanOfficersSlugRoute
   LoanProgramsSlugRoute: typeof LoanProgramsSlugRoute
   AdminIndexRoute: typeof AdminIndexRoute
   LoanOfficersIndexRoute: typeof LoanOfficersIndexRoute
@@ -644,10 +645,10 @@ declare module '@tanstack/react-router' {
     }
     '/loan-officers/$slug': {
       id: '/loan-officers/$slug'
-      path: '/$slug'
+      path: '/loan-officers/$slug'
       fullPath: '/loan-officers/$slug'
       preLoaderRoute: typeof LoanOfficersSlugRouteImport
-      parentRoute: typeof LoanOfficersRoute
+      parentRoute: typeof rootRouteImport
     }
     '/learn/$slug': {
       id: '/learn/$slug'
@@ -710,6 +711,7 @@ const rootRouteChildren: RootRouteChildren = {
   TermsRoute: TermsRoute,
   AdminLoginRoute: AdminLoginRoute,
   AdminOfficersRoute: AdminOfficersRoute,
+  LoanOfficersSlugRoute: LoanOfficersSlugRoute,
   LoanProgramsSlugRoute: LoanProgramsSlugRoute,
   AdminIndexRoute: AdminIndexRoute,
   LoanOfficersIndexRoute: LoanOfficersIndexRoute,
