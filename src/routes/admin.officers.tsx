@@ -270,6 +270,13 @@ function OfficersAdmin() {
               <Field label="Email"><Input type="email" value={editing.email ?? ""} onChange={(e) => setEditing({ ...editing, email: e.target.value })} /></Field>
               <Field label="Phone"><Input value={editing.phone ?? ""} onChange={(e) => setEditing({ ...editing, phone: e.target.value })} /></Field>
               <Field label="WhatsApp"><Input value={editing.whatsapp ?? ""} onChange={(e) => setEditing({ ...editing, whatsapp: e.target.value })} /></Field>
+              <Field label="Portal/Application link (1003 URL)" className="sm:col-span-2">
+                <Input
+                  placeholder="https://ensurehomeloans.my1003app.com/XXXXXX/register?..."
+                  value={editing.portal_link ?? ""}
+                  onChange={(e) => setEditing({ ...editing, portal_link: e.target.value })}
+                />
+              </Field>
               <Field label="Years experience">
                 <Input type="number" value={editing.years_experience ?? 0} onChange={(e) => setEditing({ ...editing, years_experience: Number(e.target.value) })} />
               </Field>
