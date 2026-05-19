@@ -9,7 +9,7 @@ import { GradientOrb } from "@/components/site/GradientOrb";
 
 type Officer = Tables<"loan_officers">;
 
-export const Route = createFileRoute("/loan-officers")({
+export const Route = createFileRoute("/loan-officers/")({
   head: () => ({
     meta: [
       { title: "Our Loan Officers — HomeBridge Mortgage" },
