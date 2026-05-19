@@ -24,6 +24,7 @@ function LoginPage() {
   const [password, setPassword] = useState("");
   const [mode, setMode] = useState<"signin" | "signup">("signin");
   const [loading, setLoading] = useState(false);
+  const [resending, setResending] = useState(false);
   const navigate = useNavigate();
 
   async function submit(e: React.FormEvent) {
@@ -50,6 +51,23 @@ function LoginPage() {
       toast.success("Account created. Check your email to verify, then sign in.");
       setMode("signin");
     }
+  }
+
+  async function resendVerification() {
+    const parsed = z.string().trim().email().max(255).safeParse(email);
+    if (!parsed.success) {
+      toast.error("Enter your email above first");
+      return;
+    }
+    setResending(true);
+    const { error } = await supabase.auth.resend({
+      type: "signup",
+      email: parsed.data,
+      options: { emailRedirectTo: `${window.location.origin}/admin` },
+    });
+    setResending(false);
+    if (error) return toast.error(error.message);
+    toast.success("Verification email sent. Open the latest one in this browser.");
   }
 
   return (
@@ -82,6 +100,16 @@ function LoginPage() {
               <button onClick={() => setMode("signin")} className="text-primary hover:underline">Sign in</button>
             </>
           )}
+        </div>
+        <div className="mt-2 text-center text-sm">
+          <button
+            type="button"
+            onClick={resendVerification}
+            disabled={resending}
+            className="text-primary hover:underline disabled:opacity-50"
+          >
+            {resending ? "Sending…" : "Resend verification email"}
+          </button>
         </div>
         <p className="mt-4 text-center text-xs text-muted-foreground">
           New accounts have no admin access until granted by an existing admin.
