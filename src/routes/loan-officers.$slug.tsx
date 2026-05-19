@@ -1,7 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Phone, MessageCircle, Mail, ArrowLeft, ArrowRight } from "lucide-react";
+import { Phone, MessageCircle, Mail, ArrowLeft, ArrowRight, Linkedin, Facebook, Instagram, Twitter, Globe } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 
 const DEFAULT_APPLY_URL = "https://ensurehomeloans.my1003app.com/950536/register?time=1779206112172";
@@ -82,6 +82,40 @@ function ProfilePage() {
           <h1 className="text-3xl font-bold md:text-4xl">{officer.name}</h1>
           <p className="mt-1 text-lg text-muted-foreground">{officer.title}</p>
           {officer.nmls_id && <p className="mt-1 text-sm text-muted-foreground">NMLS #{officer.nmls_id}</p>}
+          {(officer.linkedin_url || officer.facebook_url || officer.instagram_url || officer.twitter_url || officer.website_url) && (
+            <div className="mt-4 flex flex-wrap gap-2">
+              {officer.linkedin_url && (
+                <a href={officer.linkedin_url} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"
+                  className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-input hover:bg-accent">
+                  <Linkedin className="h-4 w-4" />
+                </a>
+              )}
+              {officer.facebook_url && (
+                <a href={officer.facebook_url} target="_blank" rel="noopener noreferrer" aria-label="Facebook"
+                  className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-input hover:bg-accent">
+                  <Facebook className="h-4 w-4" />
+                </a>
+              )}
+              {officer.instagram_url && (
+                <a href={officer.instagram_url} target="_blank" rel="noopener noreferrer" aria-label="Instagram"
+                  className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-input hover:bg-accent">
+                  <Instagram className="h-4 w-4" />
+                </a>
+              )}
+              {officer.twitter_url && (
+                <a href={officer.twitter_url} target="_blank" rel="noopener noreferrer" aria-label="X/Twitter"
+                  className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-input hover:bg-accent">
+                  <Twitter className="h-4 w-4" />
+                </a>
+              )}
+              {officer.website_url && (
+                <a href={officer.website_url} target="_blank" rel="noopener noreferrer" aria-label="Website"
+                  className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-input hover:bg-accent">
+                  <Globe className="h-4 w-4" />
+                </a>
+              )}
+            </div>
+          )}
           {officer.about ? (
             <div className="mt-5 space-y-3 leading-relaxed whitespace-pre-line">{officer.about}</div>
           ) : (

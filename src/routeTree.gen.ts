@@ -16,6 +16,7 @@ import { Route as RefinanceRouteImport } from './routes/refinance'
 import { Route as ProcessRouteImport } from './routes/process'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PressRouteImport } from './routes/press'
+import { Route as MloOnboardRouteImport } from './routes/mlo-onboard'
 import { Route as LicensesRouteImport } from './routes/licenses'
 import { Route as LearnRouteImport } from './routes/learn'
 import { Route as JoinRouteImport } from './routes/join'
@@ -75,6 +76,11 @@ const PrivacyRoute = PrivacyRouteImport.update({
 const PressRoute = PressRouteImport.update({
   id: '/press',
   path: '/press',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MloOnboardRoute = MloOnboardRouteImport.update({
+  id: '/mlo-onboard',
+  path: '/mlo-onboard',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LicensesRoute = LicensesRouteImport.update({
@@ -221,6 +227,7 @@ export interface FileRoutesByFullPath {
   '/join': typeof JoinRoute
   '/learn': typeof LearnRouteWithChildren
   '/licenses': typeof LicensesRoute
+  '/mlo-onboard': typeof MloOnboardRoute
   '/press': typeof PressRoute
   '/privacy': typeof PrivacyRoute
   '/process': typeof ProcessRoute
@@ -255,6 +262,7 @@ export interface FileRoutesByTo {
   '/join': typeof JoinRoute
   '/learn': typeof LearnRouteWithChildren
   '/licenses': typeof LicensesRoute
+  '/mlo-onboard': typeof MloOnboardRoute
   '/press': typeof PressRoute
   '/privacy': typeof PrivacyRoute
   '/process': typeof ProcessRoute
@@ -290,6 +298,7 @@ export interface FileRoutesById {
   '/join': typeof JoinRoute
   '/learn': typeof LearnRouteWithChildren
   '/licenses': typeof LicensesRoute
+  '/mlo-onboard': typeof MloOnboardRoute
   '/press': typeof PressRoute
   '/privacy': typeof PrivacyRoute
   '/process': typeof ProcessRoute
@@ -326,6 +335,7 @@ export interface FileRouteTypes {
     | '/join'
     | '/learn'
     | '/licenses'
+    | '/mlo-onboard'
     | '/press'
     | '/privacy'
     | '/process'
@@ -360,6 +370,7 @@ export interface FileRouteTypes {
     | '/join'
     | '/learn'
     | '/licenses'
+    | '/mlo-onboard'
     | '/press'
     | '/privacy'
     | '/process'
@@ -394,6 +405,7 @@ export interface FileRouteTypes {
     | '/join'
     | '/learn'
     | '/licenses'
+    | '/mlo-onboard'
     | '/press'
     | '/privacy'
     | '/process'
@@ -429,6 +441,7 @@ export interface RootRouteChildren {
   JoinRoute: typeof JoinRoute
   LearnRoute: typeof LearnRouteWithChildren
   LicensesRoute: typeof LicensesRoute
+  MloOnboardRoute: typeof MloOnboardRoute
   PressRoute: typeof PressRoute
   PrivacyRoute: typeof PrivacyRoute
   ProcessRoute: typeof ProcessRoute
@@ -494,6 +507,13 @@ declare module '@tanstack/react-router' {
       path: '/press'
       fullPath: '/press'
       preLoaderRoute: typeof PressRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mlo-onboard': {
+      id: '/mlo-onboard'
+      path: '/mlo-onboard'
+      fullPath: '/mlo-onboard'
+      preLoaderRoute: typeof MloOnboardRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/licenses': {
@@ -702,6 +722,7 @@ const rootRouteChildren: RootRouteChildren = {
   JoinRoute: JoinRoute,
   LearnRoute: LearnRouteWithChildren,
   LicensesRoute: LicensesRoute,
+  MloOnboardRoute: MloOnboardRoute,
   PressRoute: PressRoute,
   PrivacyRoute: PrivacyRoute,
   ProcessRoute: ProcessRoute,
@@ -720,3 +741,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
