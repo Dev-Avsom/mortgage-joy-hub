@@ -1,9 +1,10 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Phone, MessageCircle, Mail, ArrowLeft } from "lucide-react";
+import { Phone, MessageCircle, Mail, ArrowLeft, ArrowRight } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
-import { LeadForm } from "@/components/site/LeadForm";
+
+const DEFAULT_APPLY_URL = "https://ensurehomeloans.my1003app.com/950536/register?time=1779206112172";
 
 export const Route = createFileRoute("/loan-officers/$slug")({
   loader: async ({ params }) => {
@@ -117,11 +118,19 @@ function ProfilePage() {
             )}
           </div>
           <Card className="mt-8 p-6">
-            <h2 className="text-xl font-semibold">Get in touch with {officer.name.split(" ")[0]}</h2>
-            <p className="mt-1 text-sm text-muted-foreground">Send a quick note and they'll reach out today.</p>
-            <div className="mt-4">
-              <LeadForm source="mlo-profile" loanOfficerId={officer.id} submitLabel="Send message" />
-            </div>
+            <h2 className="text-xl font-semibold">Ready to apply with {officer.name.split(" ")[0]}?</h2>
+            <p className="mt-1 text-sm text-muted-foreground">
+              Start your secure 1003 mortgage application in minutes.
+            </p>
+            <Button asChild size="lg" className="mt-4 w-full">
+              <a
+                href={(officer.portal_link && officer.portal_link.trim().length > 0) ? officer.portal_link : DEFAULT_APPLY_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Apply with {officer.name.split(" ")[0]} <ArrowRight className="ml-1 h-4 w-4" />
+              </a>
+            </Button>
           </Card>
         </div>
       </div>
