@@ -1,26 +1,31 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { useState } from "react";
-import { z } from "zod";
-import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Progress } from "@/components/ui/progress";
-import { CheckCircle2, ArrowLeft, ArrowRight, Home, DollarSign, User, Mail } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
-import { toast } from "sonner";
+import { createFileRoute } from "@tanstack/react-router";
+import { useEffect } from "react";
+
+const APPLY_URL = "https://ensurehomeloans.my1003app.com/950536/register?time=1779206112172";
 
 export const Route = createFileRoute("/get-prequalified")({
   head: () => ({
     meta: [
-      { title: "Get Pre-qualified — HomeBridge Mortgage" },
-      { name: "description", content: "Free 60-second pre-qualification. No credit pull, no obligation. See how much home you can afford." },
-      { property: "og:title", content: "Get Pre-qualified in 60 Seconds" },
-      { property: "og:description", content: "Soft inquiry only. See how much home you can afford in minutes." },
+      { title: "Apply Now — Ensure Home Loans" },
+      { name: "description", content: "Start your mortgage application with Ensure Home Loans." },
     ],
   }),
-  component: PrequalPage,
+  component: PrequalRedirect,
 });
+
+function PrequalRedirect() {
+  useEffect(() => {
+    window.location.replace(APPLY_URL);
+  }, []);
+  return (
+    <div className="mx-auto max-w-xl px-4 py-20 text-center">
+      <p className="text-muted-foreground">
+        Redirecting you to our secure application…{" "}
+        <a href={APPLY_URL} className="text-primary underline">Click here if not redirected</a>.
+      </p>
+    </div>
+  );
+}
 
 const purposes = ["Buying my first home", "Buying a new home", "Refinancing", "Just exploring"];
 const propertyTypes = ["Single family", "Condo / Townhome", "Multi-family", "Other"];
