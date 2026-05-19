@@ -16,7 +16,6 @@ import { Route as RefinanceRouteImport } from './routes/refinance'
 import { Route as ProcessRouteImport } from './routes/process'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PressRouteImport } from './routes/press'
-import { Route as LoanOfficersRouteImport } from './routes/loan-officers'
 import { Route as LicensesRouteImport } from './routes/licenses'
 import { Route as LearnRouteImport } from './routes/learn'
 import { Route as JoinRouteImport } from './routes/join'
@@ -35,6 +34,7 @@ import { Route as AccessibilityRouteImport } from './routes/accessibility'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as LoanProgramsIndexRouteImport } from './routes/loan-programs.index'
+import { Route as LoanOfficersIndexRouteImport } from './routes/loan-officers.index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as LoanProgramsSlugRouteImport } from './routes/loan-programs.$slug'
 import { Route as LoanOfficersSlugRouteImport } from './routes/loan-officers.$slug'
@@ -75,11 +75,6 @@ const PrivacyRoute = PrivacyRouteImport.update({
 const PressRoute = PressRouteImport.update({
   id: '/press',
   path: '/press',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LoanOfficersRoute = LoanOfficersRouteImport.update({
-  id: '/loan-officers',
-  path: '/loan-officers',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LicensesRoute = LicensesRouteImport.update({
@@ -172,6 +167,11 @@ const LoanProgramsIndexRoute = LoanProgramsIndexRouteImport.update({
   path: '/loan-programs/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LoanOfficersIndexRoute = LoanOfficersIndexRouteImport.update({
+  id: '/loan-officers/',
+  path: '/loan-officers/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminIndexRoute = AdminIndexRouteImport.update({
   id: '/admin/',
   path: '/admin/',
@@ -183,9 +183,9 @@ const LoanProgramsSlugRoute = LoanProgramsSlugRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoanOfficersSlugRoute = LoanOfficersSlugRouteImport.update({
-  id: '/$slug',
-  path: '/$slug',
-  getParentRoute: () => LoanOfficersRoute,
+  id: '/loan-officers/$slug',
+  path: '/loan-officers/$slug',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const LearnSlugRoute = LearnSlugRouteImport.update({
   id: '/$slug',
@@ -221,7 +221,6 @@ export interface FileRoutesByFullPath {
   '/join': typeof JoinRoute
   '/learn': typeof LearnRouteWithChildren
   '/licenses': typeof LicensesRoute
-  '/loan-officers': typeof LoanOfficersRouteWithChildren
   '/press': typeof PressRoute
   '/privacy': typeof PrivacyRoute
   '/process': typeof ProcessRoute
@@ -235,6 +234,7 @@ export interface FileRoutesByFullPath {
   '/loan-officers/$slug': typeof LoanOfficersSlugRoute
   '/loan-programs/$slug': typeof LoanProgramsSlugRoute
   '/admin/': typeof AdminIndexRoute
+  '/loan-officers/': typeof LoanOfficersIndexRoute
   '/loan-programs/': typeof LoanProgramsIndexRoute
 }
 export interface FileRoutesByTo {
@@ -255,7 +255,6 @@ export interface FileRoutesByTo {
   '/join': typeof JoinRoute
   '/learn': typeof LearnRouteWithChildren
   '/licenses': typeof LicensesRoute
-  '/loan-officers': typeof LoanOfficersRouteWithChildren
   '/press': typeof PressRoute
   '/privacy': typeof PrivacyRoute
   '/process': typeof ProcessRoute
@@ -269,6 +268,7 @@ export interface FileRoutesByTo {
   '/loan-officers/$slug': typeof LoanOfficersSlugRoute
   '/loan-programs/$slug': typeof LoanProgramsSlugRoute
   '/admin': typeof AdminIndexRoute
+  '/loan-officers': typeof LoanOfficersIndexRoute
   '/loan-programs': typeof LoanProgramsIndexRoute
 }
 export interface FileRoutesById {
@@ -290,7 +290,6 @@ export interface FileRoutesById {
   '/join': typeof JoinRoute
   '/learn': typeof LearnRouteWithChildren
   '/licenses': typeof LicensesRoute
-  '/loan-officers': typeof LoanOfficersRouteWithChildren
   '/press': typeof PressRoute
   '/privacy': typeof PrivacyRoute
   '/process': typeof ProcessRoute
@@ -304,6 +303,7 @@ export interface FileRoutesById {
   '/loan-officers/$slug': typeof LoanOfficersSlugRoute
   '/loan-programs/$slug': typeof LoanProgramsSlugRoute
   '/admin/': typeof AdminIndexRoute
+  '/loan-officers/': typeof LoanOfficersIndexRoute
   '/loan-programs/': typeof LoanProgramsIndexRoute
 }
 export interface FileRouteTypes {
@@ -326,7 +326,6 @@ export interface FileRouteTypes {
     | '/join'
     | '/learn'
     | '/licenses'
-    | '/loan-officers'
     | '/press'
     | '/privacy'
     | '/process'
@@ -340,6 +339,7 @@ export interface FileRouteTypes {
     | '/loan-officers/$slug'
     | '/loan-programs/$slug'
     | '/admin/'
+    | '/loan-officers/'
     | '/loan-programs/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -360,7 +360,6 @@ export interface FileRouteTypes {
     | '/join'
     | '/learn'
     | '/licenses'
-    | '/loan-officers'
     | '/press'
     | '/privacy'
     | '/process'
@@ -374,6 +373,7 @@ export interface FileRouteTypes {
     | '/loan-officers/$slug'
     | '/loan-programs/$slug'
     | '/admin'
+    | '/loan-officers'
     | '/loan-programs'
   id:
     | '__root__'
@@ -394,7 +394,6 @@ export interface FileRouteTypes {
     | '/join'
     | '/learn'
     | '/licenses'
-    | '/loan-officers'
     | '/press'
     | '/privacy'
     | '/process'
@@ -408,6 +407,7 @@ export interface FileRouteTypes {
     | '/loan-officers/$slug'
     | '/loan-programs/$slug'
     | '/admin/'
+    | '/loan-officers/'
     | '/loan-programs/'
   fileRoutesById: FileRoutesById
 }
@@ -429,7 +429,6 @@ export interface RootRouteChildren {
   JoinRoute: typeof JoinRoute
   LearnRoute: typeof LearnRouteWithChildren
   LicensesRoute: typeof LicensesRoute
-  LoanOfficersRoute: typeof LoanOfficersRouteWithChildren
   PressRoute: typeof PressRoute
   PrivacyRoute: typeof PrivacyRoute
   ProcessRoute: typeof ProcessRoute
@@ -439,8 +438,10 @@ export interface RootRouteChildren {
   TermsRoute: typeof TermsRoute
   AdminLoginRoute: typeof AdminLoginRoute
   AdminOfficersRoute: typeof AdminOfficersRoute
+  LoanOfficersSlugRoute: typeof LoanOfficersSlugRoute
   LoanProgramsSlugRoute: typeof LoanProgramsSlugRoute
   AdminIndexRoute: typeof AdminIndexRoute
+  LoanOfficersIndexRoute: typeof LoanOfficersIndexRoute
   LoanProgramsIndexRoute: typeof LoanProgramsIndexRoute
 }
 
@@ -493,13 +494,6 @@ declare module '@tanstack/react-router' {
       path: '/press'
       fullPath: '/press'
       preLoaderRoute: typeof PressRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/loan-officers': {
-      id: '/loan-officers'
-      path: '/loan-officers'
-      fullPath: '/loan-officers'
-      preLoaderRoute: typeof LoanOfficersRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/licenses': {
@@ -628,6 +622,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoanProgramsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/loan-officers/': {
+      id: '/loan-officers/'
+      path: '/loan-officers'
+      fullPath: '/loan-officers/'
+      preLoaderRoute: typeof LoanOfficersIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/': {
       id: '/admin/'
       path: '/admin'
@@ -644,10 +645,10 @@ declare module '@tanstack/react-router' {
     }
     '/loan-officers/$slug': {
       id: '/loan-officers/$slug'
-      path: '/$slug'
+      path: '/loan-officers/$slug'
       fullPath: '/loan-officers/$slug'
       preLoaderRoute: typeof LoanOfficersSlugRouteImport
-      parentRoute: typeof LoanOfficersRoute
+      parentRoute: typeof rootRouteImport
     }
     '/learn/$slug': {
       id: '/learn/$slug'
@@ -683,18 +684,6 @@ const LearnRouteChildren: LearnRouteChildren = {
 
 const LearnRouteWithChildren = LearnRoute._addFileChildren(LearnRouteChildren)
 
-interface LoanOfficersRouteChildren {
-  LoanOfficersSlugRoute: typeof LoanOfficersSlugRoute
-}
-
-const LoanOfficersRouteChildren: LoanOfficersRouteChildren = {
-  LoanOfficersSlugRoute: LoanOfficersSlugRoute,
-}
-
-const LoanOfficersRouteWithChildren = LoanOfficersRoute._addFileChildren(
-  LoanOfficersRouteChildren,
-)
-
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
@@ -713,7 +702,6 @@ const rootRouteChildren: RootRouteChildren = {
   JoinRoute: JoinRoute,
   LearnRoute: LearnRouteWithChildren,
   LicensesRoute: LicensesRoute,
-  LoanOfficersRoute: LoanOfficersRouteWithChildren,
   PressRoute: PressRoute,
   PrivacyRoute: PrivacyRoute,
   ProcessRoute: ProcessRoute,
@@ -723,10 +711,22 @@ const rootRouteChildren: RootRouteChildren = {
   TermsRoute: TermsRoute,
   AdminLoginRoute: AdminLoginRoute,
   AdminOfficersRoute: AdminOfficersRoute,
+  LoanOfficersSlugRoute: LoanOfficersSlugRoute,
   LoanProgramsSlugRoute: LoanProgramsSlugRoute,
   AdminIndexRoute: AdminIndexRoute,
+  LoanOfficersIndexRoute: LoanOfficersIndexRoute,
   LoanProgramsIndexRoute: LoanProgramsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
