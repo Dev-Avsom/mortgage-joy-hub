@@ -13,7 +13,7 @@ import {
   AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import { toast } from "sonner";
-import { Plus, Pencil, Trash2, ShieldAlert, LogOut, Upload, Loader2 } from "lucide-react";
+import { Plus, Pencil, Trash2, ShieldAlert, LogOut, Upload, Loader2, Link as LinkIcon } from "lucide-react";
 
 export const Route = createFileRoute("/admin/officers")({
   head: () => ({ meta: [{ title: "Manage MLOs — Admin" }, { name: "robots", content: "noindex" }] }),
@@ -39,6 +39,11 @@ type Officer = {
   display_order: number;
   is_active: boolean;
   portal_link: string | null;
+  linkedin_url: string | null;
+  facebook_url: string | null;
+  instagram_url: string | null;
+  twitter_url: string | null;
+  website_url: string | null;
 };
 
 const empty: Partial<Officer> = {
@@ -46,6 +51,7 @@ const empty: Partial<Officer> = {
   bio: "", about: "", photo_url: "", years_experience: 0,
   languages: [], specialties: [], achievements: [],
   display_order: 0, is_active: true, portal_link: "",
+  linkedin_url: "", facebook_url: "", instagram_url: "", twitter_url: "", website_url: "",
 };
 
 function slugify(s: string) {
@@ -124,6 +130,11 @@ function OfficersAdmin() {
       about: editing.about || null,
       photo_url: editing.photo_url || null,
       portal_link: editing.portal_link || null,
+      linkedin_url: editing.linkedin_url || null,
+      facebook_url: editing.facebook_url || null,
+      instagram_url: editing.instagram_url || null,
+      twitter_url: editing.twitter_url || null,
+      website_url: editing.website_url || null,
       years_experience: editing.years_experience ? Number(editing.years_experience) : null,
       languages: editing.languages ?? [],
       specialties: editing.specialties ?? [],
@@ -175,6 +186,11 @@ function OfficersAdmin() {
           <p className="text-sm text-muted-foreground">Signed in as {userEmail}</p>
         </div>
         <div className="flex gap-2">
+          <Button variant="outline" onClick={() => {
+            const url = `${window.location.origin}/mlo-onboard`;
+            navigator.clipboard.writeText(url);
+            toast.success("Onboarding link copied — share with MLOs");
+          }}><LinkIcon className="mr-2 h-4 w-4" /> Copy MLO onboarding link</Button>
           <Button onClick={() => setEditing({ ...empty })}><Plus className="mr-2 h-4 w-4" /> Add MLO</Button>
           <Button variant="outline" onClick={signOut}><LogOut className="mr-2 h-4 w-4" /> Sign out</Button>
         </div>
@@ -277,6 +293,11 @@ function OfficersAdmin() {
                   onChange={(e) => setEditing({ ...editing, portal_link: e.target.value })}
                 />
               </Field>
+              <Field label="LinkedIn URL"><Input value={editing.linkedin_url ?? ""} onChange={(e) => setEditing({ ...editing, linkedin_url: e.target.value })} /></Field>
+              <Field label="Facebook URL"><Input value={editing.facebook_url ?? ""} onChange={(e) => setEditing({ ...editing, facebook_url: e.target.value })} /></Field>
+              <Field label="Instagram URL"><Input value={editing.instagram_url ?? ""} onChange={(e) => setEditing({ ...editing, instagram_url: e.target.value })} /></Field>
+              <Field label="X / Twitter URL"><Input value={editing.twitter_url ?? ""} onChange={(e) => setEditing({ ...editing, twitter_url: e.target.value })} /></Field>
+              <Field label="Personal website URL" className="sm:col-span-2"><Input value={editing.website_url ?? ""} onChange={(e) => setEditing({ ...editing, website_url: e.target.value })} /></Field>
               <Field label="Years experience">
                 <Input type="number" value={editing.years_experience ?? 0} onChange={(e) => setEditing({ ...editing, years_experience: Number(e.target.value) })} />
               </Field>
