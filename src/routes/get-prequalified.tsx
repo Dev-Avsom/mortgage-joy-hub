@@ -30,7 +30,6 @@ function ChooseOfficerPage() {
     id: string; name: string; title: string | null; photo_url: string | null;
     nmls_id: string | null; portal_link: string | null; slug: string;
   }>;
-  const withLinks = list.filter((o) => o.portal_link && o.portal_link.trim().length > 0);
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-14">
@@ -45,7 +44,11 @@ function ChooseOfficerPage() {
       </div>
 
       <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {withLinks.map((o) => (
+        {list.map((o) => {
+          const url = o.portal_link && o.portal_link.trim().length > 0
+            ? o.portal_link
+            : DEFAULT_APPLY_URL;
+          return (
           <Card key={o.id} className="card-elevated overflow-hidden p-0">
             {o.photo_url && (
               <img src={o.photo_url} alt={o.name} className="h-48 w-full object-cover" loading="lazy" />
@@ -55,16 +58,17 @@ function ChooseOfficerPage() {
               {o.title && <p className="text-sm gradient-text font-medium">{o.title}</p>}
               {o.nmls_id && <p className="mt-1 text-xs text-muted-foreground">NMLS #{o.nmls_id}</p>}
               <Button asChild className="mt-4 w-full">
-                <a href={o.portal_link!} target="_blank" rel="noopener noreferrer">
+                <a href={url} target="_blank" rel="noopener noreferrer">
                   Apply with {o.name.split(" ")[0]} <ArrowRight className="ml-1 h-4 w-4" />
                 </a>
               </Button>
             </div>
           </Card>
-        ))}
+          );
+        })}
       </div>
 
-      {withLinks.length === 0 && (
+      {list.length === 0 && (
         <div className="mt-10 text-center">
           <p className="text-muted-foreground">Continue to our general application portal.</p>
           <Button asChild className="mt-4">
@@ -75,7 +79,7 @@ function ChooseOfficerPage() {
         </div>
       )}
 
-      {withLinks.length > 0 && (
+      {list.length > 0 && (
         <p className="mt-10 text-center text-sm text-muted-foreground">
           Not sure?{" "}
           <a href={DEFAULT_APPLY_URL} target="_blank" rel="noopener noreferrer" className="text-primary underline">
