@@ -39,10 +39,24 @@ function FindOfficerPage() {
   const { officers } = Route.useLoaderData() as { officers: Officer[] };
   const [q, setQ] = useState("");
   const [lang, setLang] = useState("");
+  const [state, setState] = useState("");
+  const [specialty, setSpecialty] = useState("");
 
   const langs = useMemo(() => {
     const set = new Set<string>();
     officers.forEach((o) => o.languages.forEach((l: string) => set.add(l)));
+    return Array.from(set).sort();
+  }, [officers]);
+
+  const states = useMemo(() => {
+    const set = new Set<string>();
+    officers.forEach((o) => (o.licensed_states ?? []).forEach((s: string) => set.add(s)));
+    return Array.from(set).sort();
+  }, [officers]);
+
+  const specialties = useMemo(() => {
+    const set = new Set<string>();
+    officers.forEach((o) => o.specialties.forEach((s: string) => set.add(s)));
     return Array.from(set).sort();
   }, [officers]);
 
@@ -52,9 +66,11 @@ function FindOfficerPage() {
       const blob = `${o.name} ${o.title ?? ""} ${o.bio ?? ""} ${o.specialties.join(" ")} ${o.languages.join(" ")}`.toLowerCase();
       const matchQ = !needle || blob.includes(needle);
       const matchLang = !lang || o.languages.includes(lang);
-      return matchQ && matchLang;
+      const matchState = !state || (o.licensed_states ?? []).includes(state);
+      const matchSpec = !specialty || o.specialties.includes(specialty);
+      return matchQ && matchLang && matchState && matchSpec;
     });
-  }, [officers, q, lang]);
+  }, [officers, q, lang, state, specialty]);
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-12">
@@ -66,13 +82,37 @@ function FindOfficerPage() {
       </div>
 
       <Card className="mt-6 p-5">
-        <div className="grid gap-3 md:grid-cols-[1fr,200px,auto]">
+        <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-[1fr,160px,200px,160px,auto]">
           <div>
             <Label htmlFor="q" className="text-xs">Search by ZIP, state, name, or specialty</Label>
             <div className="relative">
               <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
               <Input id="q" value={q} onChange={(e) => setQ(e.target.value)} className="pl-9" placeholder="e.g. 78701, Texas, FHA, Spanish" />
             </div>
+          </div>
+          <div>
+            <Label htmlFor="state" className="text-xs">State</Label>
+            <select
+              id="state"
+              value={state}
+              onChange={(e) => setState(e.target.value)}
+              className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+            >
+              <option value="">Any</option>
+              {states.map((s) => <option key={s} value={s}>{s}</option>)}
+            </select>
+          </div>
+          <div>
+            <Label htmlFor="specialty" className="text-xs">Loan type / specialty</Label>
+            <select
+              id="specialty"
+              value={specialty}
+              onChange={(e) => setSpecialty(e.target.value)}
+              className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+            >
+              <option value="">Any</option>
+              {specialties.map((s) => <option key={s} value={s}>{s}</option>)}
+            </select>
           </div>
           <div>
             <Label htmlFor="lang" className="text-xs">Language</Label>
@@ -87,7 +127,7 @@ function FindOfficerPage() {
             </select>
           </div>
           <div className="flex items-end">
-            <Button type="button" variant="outline" onClick={() => { setQ(""); setLang(""); }}>Reset</Button>
+            <Button type="button" variant="outline" onClick={() => { setQ(""); setLang(""); setState(""); setSpecialty(""); }}>Reset</Button>
           </div>
         </div>
       </Card>
