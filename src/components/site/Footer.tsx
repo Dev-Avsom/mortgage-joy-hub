@@ -43,7 +43,7 @@ export function Footer() {
           <ul className="mt-2 space-y-1 text-sm">
             <li><Link to="/about" className="text-muted-foreground hover:text-primary">About</Link></li>
             <li><Link to="/contact" className="text-muted-foreground hover:text-primary">Contact</Link></li>
-            <li><Link to="/get-prequalified" className="text-muted-foreground hover:text-primary">Get Pre-qualified</Link></li>
+            <li><Link to="/get-prequalified" className="text-muted-foreground hover:text-primary">Get Pre-Qualified</Link></li>
             <li><Link to="/join" className="text-muted-foreground hover:text-primary">Join Our Team (MLOs)</Link></li>
             <li><Link to="/careers" className="text-muted-foreground hover:text-primary">Careers</Link></li>
             <li><Link to="/agents" className="text-muted-foreground hover:text-primary">Agent Partners</Link></li>
