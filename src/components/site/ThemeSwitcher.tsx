@@ -26,10 +26,10 @@ function applyTheme(t: BrandTheme) {
 }
 
 export function ThemeSwitcher({ compact = false }: { compact?: boolean }) {
-  const [theme, setTheme] = useState<BrandTheme>("blue");
+  const [theme, setTheme] = useState<BrandTheme>("brown");
 
   useEffect(() => {
-    const saved = (localStorage.getItem(STORAGE_KEY) as BrandTheme | null) ?? "blue";
+    const saved = (localStorage.getItem(STORAGE_KEY) as BrandTheme | null) ?? "brown";
     setTheme(saved);
     applyTheme(saved);
   }, []);
