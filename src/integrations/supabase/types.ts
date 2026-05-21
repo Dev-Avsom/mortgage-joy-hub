@@ -113,6 +113,7 @@ export type Database = {
           instagram_url: string | null
           is_active: boolean
           languages: string[]
+          licensed_states: string[]
           linkedin_url: string | null
           name: string
           nmls_id: string | null
@@ -140,6 +141,7 @@ export type Database = {
           instagram_url?: string | null
           is_active?: boolean
           languages?: string[]
+          licensed_states?: string[]
           linkedin_url?: string | null
           name: string
           nmls_id?: string | null
@@ -167,6 +169,7 @@ export type Database = {
           instagram_url?: string | null
           is_active?: boolean
           languages?: string[]
+          licensed_states?: string[]
           linkedin_url?: string | null
           name?: string
           nmls_id?: string | null
