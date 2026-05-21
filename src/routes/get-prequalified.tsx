@@ -84,7 +84,7 @@ function ChooseOfficerPage() {
             <Button
               asChild
               size="lg"
-              className="bg-gradient-to-r from-primary to-primary-glow text-primary-foreground shadow-[var(--shadow-elegant)] hover:opacity-95 ring-2 ring-primary/30 ring-offset-2 ring-offset-background"
+              className="bg-primary text-primary-foreground font-semibold shadow-[var(--shadow-elegant)] hover:bg-primary/90 ring-2 ring-primary/40 ring-offset-2 ring-offset-background"
             >
               <a href={DEFAULT_APPLY_URL} target="_blank" rel="noopener noreferrer">
                 <Sparkles className="mr-1 h-4 w-4" /> Use our general application <ArrowRight className="ml-1 h-4 w-4" />
