@@ -9,9 +9,14 @@ if (!i18n.isInitialized) {
     .use(LanguageDetector)
     .use(initReactI18next)
     .init({
-      resources: { en: { translation: en }, es: { translation: es } },
+      resources: {
+        en: { translation: en },
+        es: { translation: es },
+        hi: { translation: en },
+        te: { translation: en },
+      },
       fallbackLng: "en",
-      supportedLngs: ["en", "es"],
+      supportedLngs: ["en", "es", "hi", "te"],
       interpolation: { escapeValue: false },
       detection: {
         order: ["localStorage", "navigator"],
@@ -23,8 +28,15 @@ if (!i18n.isInitialized) {
 }
 
 if (typeof document !== "undefined") {
+  const normalize = (lng: string) => {
+    const l = (lng || "en").toLowerCase();
+    if (l.startsWith("es")) return "es";
+    if (l.startsWith("hi")) return "hi";
+    if (l.startsWith("te")) return "te";
+    return "en";
+  };
   const setLang = (lng: string) => {
-    document.documentElement.lang = lng.startsWith("es") ? "es" : "en";
+    document.documentElement.lang = normalize(lng);
   };
   setLang(i18n.resolvedLanguage || i18n.language || "en");
   i18n.on("languageChanged", setLang);

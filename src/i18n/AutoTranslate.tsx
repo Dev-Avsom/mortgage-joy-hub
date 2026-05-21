@@ -134,6 +134,8 @@ export function AutoTranslate() {
       restoreSubtree(document.body);
       return;
     }
+    // Restore originals before applying new dictionary (handles language swap)
+    restoreSubtree(document.body);
     DICT = DICTS[code];
 
     let scheduled = false;
