@@ -122,13 +122,19 @@ export function AutoTranslate() {
 
   useEffect(() => {
     if (typeof document === "undefined") return;
-    const isEs = (i18n.resolvedLanguage || i18n.language || "en").startsWith("es");
-    document.documentElement.lang = isEs ? "es" : "en";
+    const raw = (i18n.resolvedLanguage || i18n.language || "en").toLowerCase();
+    const code = raw.startsWith("es") ? "es"
+      : raw.startsWith("hi") ? "hi"
+      : raw.startsWith("te") ? "te"
+      : "en";
+    document.documentElement.lang = code;
 
-    if (!isEs) {
+    if (code === "en" || !DICTS[code]) {
+      DICT = {};
       restoreSubtree(document.body);
       return;
     }
+    DICT = DICTS[code];
 
     let scheduled = false;
     let pending: Node[] = [];
