@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { toast } from "sonner";
 import { Plus, Pencil, Trash2, ShieldAlert, LogOut, Upload, Loader2, Link as LinkIcon } from "lucide-react";
+import { US_STATES } from "@/lib/us-states";
 
 export const Route = createFileRoute("/admin/officers")({
   head: () => ({ meta: [{ title: "Manage MLOs — Admin" }, { name: "robots", content: "noindex" }] }),
@@ -36,6 +37,7 @@ type Officer = {
   languages: string[];
   specialties: string[];
   achievements: string[];
+  licensed_states: string[];
   display_order: number;
   is_active: boolean;
   portal_link: string | null;
@@ -49,7 +51,7 @@ type Officer = {
 const empty: Partial<Officer> = {
   name: "", slug: "", title: "", nmls_id: "", email: "", phone: "", whatsapp: "",
   bio: "", about: "", photo_url: "", years_experience: 0,
-  languages: [], specialties: [], achievements: [],
+  languages: [], specialties: [], achievements: [], licensed_states: [],
   display_order: 0, is_active: true, portal_link: "",
   linkedin_url: "", facebook_url: "", instagram_url: "", twitter_url: "", website_url: "",
 };
@@ -139,6 +141,7 @@ function OfficersAdmin() {
       languages: editing.languages ?? [],
       specialties: editing.specialties ?? [],
       achievements: editing.achievements ?? [],
+      licensed_states: editing.licensed_states ?? [],
       display_order: Number(editing.display_order ?? 0),
       is_active: editing.is_active ?? true,
     };
@@ -320,6 +323,35 @@ function OfficersAdmin() {
                   value={(editing.achievements ?? []).join("\n")}
                   onChange={(e) => setEditing({ ...editing, achievements: e.target.value.split("\n").map((s) => s.trim()).filter(Boolean) })}
                 />
+              </Field>
+              <Field label={`Licensed states (${(editing.licensed_states ?? []).length} selected)`} className="sm:col-span-2">
+                <div className="mb-2 flex gap-2">
+                  <Button type="button" size="sm" variant="outline" onClick={() => setEditing({ ...editing, licensed_states: US_STATES.map(s => s.code) })}>Select all</Button>
+                  <Button type="button" size="sm" variant="ghost" onClick={() => setEditing({ ...editing, licensed_states: [] })}>Clear</Button>
+                </div>
+                <div className="grid max-h-56 grid-cols-2 gap-1 overflow-y-auto rounded border border-border p-3 sm:grid-cols-3 md:grid-cols-4">
+                  {US_STATES.map((s) => {
+                    const selected = (editing.licensed_states ?? []).includes(s.code);
+                    return (
+                      <label key={s.code} className="flex cursor-pointer items-center gap-2 text-sm">
+                        <input
+                          type="checkbox"
+                          checked={selected}
+                          onChange={(e) => {
+                            const cur = editing.licensed_states ?? [];
+                            setEditing({
+                              ...editing,
+                              licensed_states: e.target.checked
+                                ? [...cur, s.code]
+                                : cur.filter((c) => c !== s.code),
+                            });
+                          }}
+                        />
+                        <span>{s.code} — {s.name}</span>
+                      </label>
+                    );
+                  })}
+                </div>
               </Field>
               <Field label="Display order">
                 <Input type="number" value={editing.display_order ?? 0} onChange={(e) => setEditing({ ...editing, display_order: Number(e.target.value) })} />
