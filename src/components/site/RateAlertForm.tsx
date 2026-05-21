@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { BellRing } from "lucide-react";
+import { notifySubmission } from "@/lib/notify";
 
 const schema = z.object({
   email: z.string().trim().email().max(255),
@@ -40,6 +41,16 @@ export function RateAlertForm() {
       toast.error("Could not save your alert. Please try again.");
       return;
     }
+    void notifySubmission({
+      source: "rate-alert",
+      subject: "New rate alert subscription",
+      fields: {
+        Email: parsed.data.email,
+        "Target Rate": `${parsed.data.target_rate}%`,
+        ZIP: parsed.data.zip ?? "",
+        "Loan Type": "30yr fixed",
+      },
+    });
     toast.success("Alert set! We'll email you when rates hit your target.");
     (e.target as HTMLFormElement).reset();
   }

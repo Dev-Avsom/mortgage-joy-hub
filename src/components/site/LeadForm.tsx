@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
+import { notifySubmission } from "@/lib/notify";
 
 const schema = z.object({
   name: z.string().trim().min(1, "Name required").max(100),
@@ -64,6 +65,18 @@ export function LeadForm({
       toast.error("Could not submit — please try again.");
       return;
     }
+    void notifySubmission({
+      source: source,
+      subject: `New lead — ${source}`,
+      fields: {
+        Name: parsed.data.name,
+        Email: parsed.data.email,
+        Phone: parsed.data.phone ?? "",
+        Source: source,
+        "Loan Officer ID": loanOfficerId ?? "",
+      },
+      message: parsed.data.message,
+    });
     toast.success("Thanks! We'll be in touch shortly.");
     (e.target as HTMLFormElement).reset();
     onSuccess?.();

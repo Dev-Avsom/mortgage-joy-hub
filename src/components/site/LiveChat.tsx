@@ -8,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { z } from "zod";
+import { notifySubmission } from "@/lib/notify";
 import agent1 from "@/assets/agent-avatar.jpg";
 import agent2 from "@/assets/agent-2.jpg";
 import agent3 from "@/assets/agent-3.jpg";
@@ -76,6 +77,16 @@ export function LiveChat() {
       toast.error("Could not send. Try WhatsApp or phone.");
       return;
     }
+    void notifySubmission({
+      source: "live-chat",
+      subject: "New live chat message",
+      fields: {
+        Name: parsed.data.name,
+        Email: parsed.data.email,
+        Phone: parsed.data.phone,
+      },
+      message: parsed.data.message,
+    });
     toast.success("Sent! A loan officer will reply within 5 minutes.");
     (e.target as HTMLFormElement).reset();
     setOpen(false);
