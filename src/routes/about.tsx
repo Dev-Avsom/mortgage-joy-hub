@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Award, Heart, ShieldCheck } from "lucide-react";
+import { Award, Heart, ShieldCheck, Building2, Users, Cpu, Handshake, Compass, Sparkles } from "lucide-react";
 import { siteConfig } from "@/lib/site-config";
 import { StatsCounters } from "@/components/site/StatsCounters";
 import { Reveal } from "@/components/site/Reveal";
@@ -41,6 +41,57 @@ function AboutPage() {
       </section>
 
       <StatsCounters />
+
+      <section className="relative overflow-hidden border-y border-border/60 bg-gradient-to-b from-secondary/30 via-background to-background">
+        <GradientOrb className="top-10 -right-20" color="oklch(0.68 0.11 195 / 0.25)" size={380} />
+        <div className="relative mx-auto max-w-5xl px-4 py-16">
+          <Reveal>
+            <span className="eyebrow">Our story</span>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight md:text-4xl">
+              Built in Texas. <span className="gradient-text">Engineered for trust.</span>
+            </h2>
+          </Reveal>
+
+          <Reveal delay={80}>
+            <blockquote className="mt-8 rounded-2xl border-l-4 border-primary bg-card/60 p-6 text-lg italic leading-relaxed text-foreground/90 shadow-sm md:text-xl">
+              Ensure Home Loans was founded with a clear mission: to give borrowers, referral partners,
+              and mortgage professionals a modern, service-driven lending platform built on speed,
+              transparency, compliance, and long-term relationships.
+            </blockquote>
+          </Reveal>
+
+          <div className="mt-10 grid gap-6 md:grid-cols-2">
+            {[
+              { icon: Compass, tone: "brand", title: "A Texas-rooted mission", body: "Established in Texas, the company was built around a simple belief: the mortgage process should pair strong operational systems with personalized customer service — so clients can navigate one of the most important financial decisions of their lives with confidence and clarity." },
+              { icon: Users, tone: "teal", title: "A culture of accountability", body: "From the start, Ensure Home Loans focused on accountability, professionalism, and growth — bringing together experienced loan originators, operations professionals, processors, and compliance personnel united by a common goal: efficient, ethical mortgage solutions." },
+              { icon: Cpu, tone: "gold", title: "Technology + compliance", body: "As the industry evolved, we invested heavily in operational infrastructure, compliance oversight, and marketing innovation — embracing digital lending tools, social outreach, and modern communication platforms while holding firm to strict regulatory standards." },
+              { icon: Building2, tone: "brand", title: "Built to scale", body: "We expanded beyond traditional origination with internal initiatives for production efficiency, processor performance tracking, recruitment, and coordinated marketing — scalable systems designed to support growth across multiple markets." },
+              { icon: Handshake, tone: "teal", title: "Deep lender network", body: "Strong relationships with wholesale lenders and industry organizations let us offer a broad range of products tailored to first-time buyers, investors, self-employed borrowers, and clients seeking specialized financing — flexible, responsive, and borrower-focused." },
+              { icon: Sparkles, tone: "gold", title: "Leadership & execution", body: "Motivation, teamwork, and execution define our culture. Leadership initiatives reinforce accountability, punctuality, and continuous improvement — attracting professionals committed to high performance in the mortgage industry." },
+            ].map((item, i) => (
+              <Reveal key={item.title} delay={i * 80}>
+                <div className="card-elevated h-full rounded-xl p-6">
+                  <span className={`icon-chip ${item.tone}`}><item.icon className="h-5 w-5" /></span>
+                  <h3 className="mt-4 text-lg font-semibold">{item.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.body}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+
+          <Reveal delay={120}>
+            <div className="mt-10 rounded-2xl border border-primary/20 bg-gradient-to-r from-primary/5 via-background to-background p-6 md:p-8">
+              <p className="text-base leading-relaxed text-foreground/90 md:text-lg">
+                Today, Ensure Home Loans continues to operate as a forward-looking mortgage company focused on
+                expansion, innovation, and service. By combining experienced leadership, operational discipline,
+                compliance-focused practices, and modern marketing strategies, we work toward our long-term
+                objective of becoming a <span className="gradient-text font-semibold">nationally recognized mortgage platform</span> —
+                known for reliability, efficiency, and professional excellence.
+              </p>
+            </div>
+          </Reveal>
+        </div>
+      </section>
 
       <div className="mx-auto max-w-5xl px-4 py-12">
       <SectionHeading eyebrow="What sets us apart" title="A different kind of mortgage company" gradientWords="mortgage company" />
