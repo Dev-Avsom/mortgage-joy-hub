@@ -7,7 +7,8 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
-import { Upload, Loader2, CheckCircle2 } from "lucide-react";
+import { Upload, Loader2, CheckCircle2, X } from "lucide-react";
+import { US_STATES } from "@/lib/us-states";
 
 export const Route = createFileRoute("/mlo-onboard")({
   head: () => ({
@@ -28,6 +29,7 @@ type Form = {
   bio: string; about: string; photo_url: string; portal_link: string;
   languages: string; specialties: string;
   linkedin_url: string; facebook_url: string; instagram_url: string; twitter_url: string; website_url: string;
+  licensed_states: string[];
 };
 
 const empty: Form = {
@@ -35,6 +37,7 @@ const empty: Form = {
   bio: "", about: "", photo_url: "", portal_link: "",
   languages: "", specialties: "",
   linkedin_url: "", facebook_url: "", instagram_url: "", twitter_url: "", website_url: "",
+  licensed_states: [],
 };
 
 function OnboardPage() {
@@ -87,6 +90,7 @@ function OnboardPage() {
       instagram_url: form.instagram_url || null,
       twitter_url: form.twitter_url || null,
       website_url: form.website_url || null,
+      licensed_states: form.licensed_states,
       is_active: false,
       display_order: 999,
     });
