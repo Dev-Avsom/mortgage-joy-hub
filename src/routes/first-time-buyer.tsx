@@ -20,7 +20,7 @@ export const Route = createFileRoute("/first-time-buyer")({
 const tones = ["brand", "gold", "teal", "rose", "violet", "brand"] as const;
 const steps = [
   { icon: PiggyBank, title: "Know your budget", body: "Use our affordability calculator to set a realistic price range based on income, debts, and down payment." },
-  { icon: FileText, title: "Get pre-qualified", body: "A pre-qualification letter shows sellers you're serious. Takes minutes and uses a soft credit pull." },
+  { icon: FileText, title: "Get Pre-Qualified", body: "A pre-qualification letter shows sellers you're serious. Takes minutes and uses a soft credit pull." },
   { icon: Home, title: "Shop with confidence", body: "Tour homes within your budget. Your loan officer is on standby for quick offer-letter turnarounds." },
   { icon: Calculator, title: "Lock your rate", body: "Once your offer is accepted, lock today's rate for 30–60 days while underwriting completes." },
   { icon: Users, title: "Underwrite & appraise", body: "We coordinate the appraisal, title, and final approval. You'll get a clear-to-close in days, not weeks." },
@@ -50,7 +50,7 @@ function FirstTimeBuyer() {
             first-timers get in with less down.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
-            <Button asChild size="lg" className="glow-on-hover"><Link to="/get-prequalified">Get pre-qualified</Link></Button>
+            <Button asChild size="lg" className="glow-on-hover"><Link to="/get-prequalified">Get Pre-Qualified</Link></Button>
             <Button asChild size="lg" variant="outline"><Link to="/affordability">Check affordability</Link></Button>
           </div>
         </div>

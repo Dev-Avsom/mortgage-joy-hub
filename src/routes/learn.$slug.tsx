@@ -108,7 +108,7 @@ function ArticlePage() {
         <p className="mt-2 text-white/85">Get pre-qualified in 60 seconds. No credit pull, no obligation.</p>
         <Button asChild size="lg" className="mt-4 bg-white text-primary hover:bg-white/90">
           <Link to="/get-prequalified">
-            Get pre-qualified <ArrowRight className="ml-2 h-4 w-4" />
+            Get Pre-Qualified <ArrowRight className="ml-2 h-4 w-4" />
           </Link>
         </Button>
       </div>

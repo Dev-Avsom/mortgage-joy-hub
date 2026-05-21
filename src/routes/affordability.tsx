@@ -71,7 +71,7 @@ function AffordabilityPage() {
             <div className="border-t border-border p-6">
               <Button asChild size="lg" className="w-full">
                 <Link to="/get-prequalified">
-                  Get pre-qualified <ArrowRight className="ml-2 h-4 w-4" />
+                  Get Pre-Qualified <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
             </div>

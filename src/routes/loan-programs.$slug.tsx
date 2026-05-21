@@ -137,7 +137,7 @@ function ProgramDetail() {
             <h2 className="text-2xl font-bold md:text-3xl">Ready to apply for a {p.shortName} loan?</h2>
             <p className="mt-2 text-white/85">Get pre-qualified in minutes — soft credit pull, no impact to your score.</p>
             <div className="mt-5 flex flex-wrap gap-2">
-              <Button asChild size="lg" className="glow-on-hover bg-[var(--accent-gold)] text-foreground hover:opacity-90"><Link to="/get-prequalified">Get pre-qualified</Link></Button>
+              <Button asChild size="lg" className="glow-on-hover bg-[var(--accent-gold)] text-foreground hover:opacity-90"><Link to="/get-prequalified">Get Pre-Qualified</Link></Button>
               <Button asChild size="lg" variant="outline" className="border-white/30 bg-transparent text-white hover:bg-white/10"><Link to="/contact">Talk to an officer</Link></Button>
             </div>
           </div>

@@ -63,7 +63,7 @@ function ReviewsPage() {
       <div className="animated-bg mt-12 rounded-2xl p-8 text-center text-white" style={{ background: "var(--gradient-hero)" }}>
         <h2 className="text-2xl font-bold">Join 1,200+ Happy Homeowners</h2>
         <p className="mt-2 text-white/80">Get pre-qualified in 5 minutes. Soft credit pull, no obligation.</p>
-        <Button asChild size="lg" variant="secondary" className="glow-on-hover mt-4"><Link to="/get-prequalified">Get pre-qualified</Link></Button>
+        <Button asChild size="lg" variant="secondary" className="glow-on-hover mt-4"><Link to="/get-prequalified">Get Pre-Qualified</Link></Button>
       </div>
     </div>
   );
