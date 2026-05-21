@@ -54,10 +54,16 @@ function OfficersPage() {
         {(officers as Officer[]).map((o) => (
           <Card key={o.id} className="card-elevated overflow-hidden p-0">
             {o.photo_url && (
-              <img src={o.photo_url} alt={`${o.name}, ${o.title ?? "Loan officer"}`} className="h-56 w-full object-cover" loading="lazy" />
+              <Link to="/loan-officers/$slug" params={{ slug: o.slug }} aria-label={`View ${o.name}'s profile`}>
+                <img src={o.photo_url} alt={`${o.name}, ${o.title ?? "Loan officer"}`} className="h-56 w-full object-cover transition hover:opacity-90" loading="lazy" />
+              </Link>
             )}
             <div className="p-5">
-              <h2 className="text-lg font-semibold">{o.name}</h2>
+              <h2 className="text-lg font-semibold">
+                <Link to="/loan-officers/$slug" params={{ slug: o.slug }} className="hover:text-primary hover:underline">
+                  {o.name}
+                </Link>
+              </h2>
               <p className="text-sm gradient-text font-medium">{o.title}</p>
               {o.nmls_id && <p className="mt-1 text-xs text-muted-foreground">NMLS #{o.nmls_id}</p>}
               <p className="mt-3 line-clamp-3 text-sm">{o.bio}</p>
