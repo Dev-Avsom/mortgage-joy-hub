@@ -116,7 +116,12 @@ function HomePage() {
               <div className="flex items-center gap-2 text-white/85">
                 <TrendingUp className="h-5 w-5 text-[oklch(0.84_0.13_75)]" />
                 <div>
-                  <div className="font-semibold">{t("home.funded")}</div>
+                  <div className="font-semibold">
+                    <span className="rounded-md bg-[oklch(0.84_0.13_75)] px-1.5 py-0.5 text-[oklch(0.2_0.05_255)]">
+                      {t("home.fundedPrefix")}
+                    </span>{" "}
+                    {t("home.funded")}
+                  </div>
                   <div className="text-xs text-white/65">{t("home.fundedSub")}</div>
                 </div>
               </div>
