@@ -52,18 +52,18 @@ function OfficersPage() {
       <div className="mx-auto max-w-7xl px-4 py-12">
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {(officers as Officer[]).map((o) => (
-          <Card key={o.id} className="card-elevated overflow-hidden p-0">
+          <Card key={o.id} className="card-elevated group relative overflow-hidden p-0 transition hover:shadow-[var(--shadow-elegant)]">
+            <Link
+              to="/loan-officers/$slug"
+              params={{ slug: o.slug }}
+              aria-label={`View ${o.name}'s profile`}
+              className="absolute inset-0 z-10"
+            />
             {o.photo_url && (
-              <Link to="/loan-officers/$slug" params={{ slug: o.slug }} aria-label={`View ${o.name}'s profile`}>
-                <img src={o.photo_url} alt={`${o.name}, ${o.title ?? "Loan officer"}`} className="h-56 w-full object-cover transition hover:opacity-90" loading="lazy" />
-              </Link>
+              <img src={o.photo_url} alt={`${o.name}, ${o.title ?? "Loan officer"}`} className="h-56 w-full object-cover transition group-hover:opacity-90" loading="lazy" />
             )}
             <div className="p-5">
-              <h2 className="text-lg font-semibold">
-                <Link to="/loan-officers/$slug" params={{ slug: o.slug }} className="hover:text-primary hover:underline">
-                  {o.name}
-                </Link>
-              </h2>
+              <h2 className="text-lg font-semibold group-hover:text-primary">{o.name}</h2>
               <p className="text-sm gradient-text font-medium">{o.title}</p>
               {o.nmls_id && <p className="mt-1 text-xs text-muted-foreground">NMLS #{o.nmls_id}</p>}
               <p className="mt-3 line-clamp-3 text-sm">{o.bio}</p>
@@ -72,27 +72,23 @@ function OfficersPage() {
                   <span key={s} className="rounded-full border border-primary/20 bg-primary/5 px-2 py-0.5 text-xs text-primary">{s}</span>
                 ))}
               </div>
-              <div className="mt-4 grid grid-cols-2 gap-2">
+              <div className="relative z-20 mt-4 grid grid-cols-2 gap-2">
                 {o.phone && (
                   <Button asChild variant="outline" size="sm">
-                    <a href={`tel:${o.phone}`}><Phone className="mr-1 h-3.5 w-3.5" /> Call</a>
+                    <a href={`tel:${o.phone}`} onClick={(e) => e.stopPropagation()}><Phone className="mr-1 h-3.5 w-3.5" /> Call</a>
                   </Button>
                 )}
                 {o.whatsapp && (
                   <Button asChild size="sm" className="bg-[oklch(0.62_0.16_150)] text-white hover:opacity-90">
-                    <a href={`https://wa.me/${o.whatsapp}`} target="_blank" rel="noopener noreferrer">
+                    <a href={`https://wa.me/${o.whatsapp}`} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>
                       <MessageCircle className="mr-1 h-3.5 w-3.5" /> Chat
                     </a>
                   </Button>
                 )}
               </div>
-              <Link
-                to="/loan-officers/$slug"
-                params={{ slug: o.slug }}
-                className="mt-3 inline-flex text-sm font-medium text-primary hover:underline"
-              >
+              <span className="mt-3 inline-flex text-sm font-medium text-primary">
                 View profile <ArrowRight className="ml-1 h-4 w-4" />
-              </Link>
+              </span>
             </div>
           </Card>
         ))}
