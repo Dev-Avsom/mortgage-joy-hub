@@ -9,6 +9,7 @@ import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { Upload, Loader2, CheckCircle2, X } from "lucide-react";
 import { US_STATES } from "@/lib/us-states";
+import { notifySubmission } from "@/lib/notify";
 
 export const Route = createFileRoute("/mlo-onboard")({
   head: () => ({
@@ -96,6 +97,26 @@ function OnboardPage() {
     });
     setSaving(false);
     if (error) return toast.error(error.message);
+    void notifySubmission({
+      source: "mlo-onboard",
+      subject: `New MLO application — ${name}`,
+      fields: {
+        Name: name,
+        Title: form.title,
+        "NMLS ID": form.nmls_id,
+        Email: form.email,
+        Phone: form.phone,
+        WhatsApp: form.whatsapp,
+        Languages: form.languages,
+        Specialties: form.specialties,
+        "Licensed States": form.licensed_states.join(", "),
+        "Portal Link": form.portal_link,
+        LinkedIn: form.linkedin_url,
+        Website: form.website_url,
+        "Photo URL": form.photo_url,
+      },
+      message: form.bio || form.about,
+    });
     setDone(true);
   };
 
