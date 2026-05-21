@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import autoEs from "./auto-es.json";
+import autoHi from "./auto-hi.json";
+import autoTe from "./auto-te.json";
 
 /**
  * Runtime DOM translator. When the active language is Spanish, this component
@@ -11,7 +13,12 @@ import autoEs from "./auto-es.json";
  * content (route changes, dropdowns, toasts) in sync.
  */
 
-const DICT = autoEs as Record<string, string>;
+const DICTS: Record<string, Record<string, string>> = {
+  es: autoEs as Record<string, string>,
+  hi: autoHi as Record<string, string>,
+  te: autoTe as Record<string, string>,
+};
+let DICT: Record<string, string> = {};
 const ATTRS = ["placeholder", "title", "alt", "aria-label"] as const;
 const SKIP_TAGS = new Set([
   "SCRIPT",
@@ -115,13 +122,21 @@ export function AutoTranslate() {
 
   useEffect(() => {
     if (typeof document === "undefined") return;
-    const isEs = (i18n.resolvedLanguage || i18n.language || "en").startsWith("es");
-    document.documentElement.lang = isEs ? "es" : "en";
+    const raw = (i18n.resolvedLanguage || i18n.language || "en").toLowerCase();
+    const code = raw.startsWith("es") ? "es"
+      : raw.startsWith("hi") ? "hi"
+      : raw.startsWith("te") ? "te"
+      : "en";
+    document.documentElement.lang = code;
 
-    if (!isEs) {
+    if (code === "en" || !DICTS[code]) {
+      DICT = {};
       restoreSubtree(document.body);
       return;
     }
+    // Restore originals before applying new dictionary (handles language swap)
+    restoreSubtree(document.body);
+    DICT = DICTS[code];
 
     let scheduled = false;
     let pending: Node[] = [];

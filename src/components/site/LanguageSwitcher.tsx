@@ -1,11 +1,23 @@
 import { useTranslation } from "react-i18next";
 import { Globe } from "lucide-react";
 
+type Lang = "en" | "es" | "hi" | "te";
+const LANGS: { code: Lang; label: string }[] = [
+  { code: "en", label: "EN" },
+  { code: "es", label: "ES" },
+  { code: "hi", label: "हि" },
+  { code: "te", label: "తె" },
+];
+
 export function LanguageSwitcher({ compact = false }: { compact?: boolean }) {
   const { i18n } = useTranslation();
-  const current = (i18n.resolvedLanguage || i18n.language || "en").startsWith("es") ? "es" : "en";
+  const raw = (i18n.resolvedLanguage || i18n.language || "en").toLowerCase();
+  const current: Lang = raw.startsWith("es") ? "es"
+    : raw.startsWith("hi") ? "hi"
+    : raw.startsWith("te") ? "te"
+    : "en";
 
-  const setLang = (lng: "en" | "es") => {
+  const setLang = (lng: Lang) => {
     i18n.changeLanguage(lng);
     try { localStorage.setItem("site-lang", lng); } catch {}
   };
@@ -19,30 +31,21 @@ export function LanguageSwitcher({ compact = false }: { compact?: boolean }) {
       aria-label="Language selector"
     >
       <Globe className="ml-1 h-3.5 w-3.5 text-muted-foreground" />
-      <button
-        type="button"
-        onClick={() => setLang("en")}
-        aria-pressed={current === "en"}
-        className={`rounded-full px-2 py-0.5 text-[11px] font-semibold transition ${
-          current === "en"
-            ? "bg-primary text-primary-foreground"
-            : "text-foreground/70 hover:text-primary"
-        }`}
-      >
-        EN
-      </button>
-      <button
-        type="button"
-        onClick={() => setLang("es")}
-        aria-pressed={current === "es"}
-        className={`rounded-full px-2 py-0.5 text-[11px] font-semibold transition ${
-          current === "es"
-            ? "bg-primary text-primary-foreground"
-            : "text-foreground/70 hover:text-primary"
-        }`}
-      >
-        ES
-      </button>
+      {LANGS.map(({ code, label }) => (
+        <button
+          key={code}
+          type="button"
+          onClick={() => setLang(code)}
+          aria-pressed={current === code}
+          className={`rounded-full px-2 py-0.5 text-[11px] font-semibold transition ${
+            current === code
+              ? "bg-primary text-primary-foreground"
+              : "text-foreground/70 hover:text-primary"
+          }`}
+        >
+          {label}
+        </button>
+      ))}
     </div>
   );
 }
