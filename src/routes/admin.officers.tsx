@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { toast } from "sonner";
 import { Plus, Pencil, Trash2, ShieldAlert, LogOut, Upload, Loader2, Link as LinkIcon } from "lucide-react";
+import { US_STATES } from "@/lib/us-states";
 
 export const Route = createFileRoute("/admin/officers")({
   head: () => ({ meta: [{ title: "Manage MLOs — Admin" }, { name: "robots", content: "noindex" }] }),
@@ -36,6 +37,7 @@ type Officer = {
   languages: string[];
   specialties: string[];
   achievements: string[];
+  licensed_states: string[];
   display_order: number;
   is_active: boolean;
   portal_link: string | null;
@@ -49,7 +51,7 @@ type Officer = {
 const empty: Partial<Officer> = {
   name: "", slug: "", title: "", nmls_id: "", email: "", phone: "", whatsapp: "",
   bio: "", about: "", photo_url: "", years_experience: 0,
-  languages: [], specialties: [], achievements: [],
+  languages: [], specialties: [], achievements: [], licensed_states: [],
   display_order: 0, is_active: true, portal_link: "",
   linkedin_url: "", facebook_url: "", instagram_url: "", twitter_url: "", website_url: "",
 };
@@ -139,6 +141,7 @@ function OfficersAdmin() {
       languages: editing.languages ?? [],
       specialties: editing.specialties ?? [],
       achievements: editing.achievements ?? [],
+      licensed_states: editing.licensed_states ?? [],
       display_order: Number(editing.display_order ?? 0),
       is_active: editing.is_active ?? true,
     };
