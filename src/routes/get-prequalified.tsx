@@ -41,6 +41,20 @@ function ChooseOfficerPage() {
         <p className="mt-3 text-muted-foreground">
           Select an MLO to continue to their secure 1003 application portal.
         </p>
+        {list.length > 0 && (
+          <p className="mt-4 text-sm text-muted-foreground">
+            Not sure?{" "}
+            <a
+              href={DEFAULT_APPLY_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary underline underline-offset-2 font-medium"
+            >
+              Use our general application
+            </a>
+            .
+          </p>
+        )}
       </div>
 
       <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -79,15 +93,6 @@ function ChooseOfficerPage() {
         </div>
       )}
 
-      {list.length > 0 && (
-        <p className="mt-10 text-center text-sm text-muted-foreground">
-          Not sure?{" "}
-          <a href={DEFAULT_APPLY_URL} target="_blank" rel="noopener noreferrer" className="text-primary underline">
-            Use our general application
-          </a>
-          .
-        </p>
-      )}
     </div>
   );
 }

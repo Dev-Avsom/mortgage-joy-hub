@@ -118,7 +118,7 @@ function HomePage() {
                 <div>
                   <div className="font-semibold">
                     <span className="rounded-md bg-[oklch(0.84_0.13_75)] px-1.5 py-0.5 text-[oklch(0.2_0.05_255)]">
-                      {t("home.fundedPrefix")}
+                      Nearing
                     </span>{" "}
                     {t("home.funded")}
                   </div>

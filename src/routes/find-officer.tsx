@@ -99,10 +99,16 @@ function FindOfficerPage() {
           <Card key={o.id} className="overflow-hidden p-0 transition hover:shadow-[var(--shadow-elegant)]">
             <div className="flex gap-4 p-5">
               {o.photo_url && (
-                <img src={o.photo_url} alt={o.name} className="h-20 w-20 flex-none rounded-full object-cover" loading="lazy" />
+                <Link to="/loan-officers/$slug" params={{ slug: o.slug }} aria-label={`View ${o.name}'s profile`} className="flex-none">
+                  <img src={o.photo_url} alt={o.name} className="h-20 w-20 rounded-full object-cover transition hover:opacity-90" loading="lazy" />
+                </Link>
               )}
               <div className="min-w-0">
-                <h2 className="truncate text-base font-semibold">{o.name}</h2>
+                <h2 className="truncate text-base font-semibold">
+                  <Link to="/loan-officers/$slug" params={{ slug: o.slug }} className="hover:text-primary hover:underline">
+                    {o.name}
+                  </Link>
+                </h2>
                 <p className="truncate text-xs text-muted-foreground">{o.title}</p>
                 {o.nmls_id && <p className="text-[11px] text-muted-foreground">NMLS #{o.nmls_id}</p>}
                 <div className="mt-2 flex flex-wrap gap-1">
