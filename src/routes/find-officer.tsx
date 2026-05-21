@@ -96,19 +96,19 @@ function FindOfficerPage() {
 
       <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {filtered.map((o) => (
-          <Card key={o.id} className="overflow-hidden p-0 transition hover:shadow-[var(--shadow-elegant)]">
+          <Card key={o.id} className="group relative overflow-hidden p-0 transition hover:shadow-[var(--shadow-elegant)]">
+            <Link
+              to="/loan-officers/$slug"
+              params={{ slug: o.slug }}
+              aria-label={`View ${o.name}'s profile`}
+              className="absolute inset-0 z-10"
+            />
             <div className="flex gap-4 p-5">
               {o.photo_url && (
-                <Link to="/loan-officers/$slug" params={{ slug: o.slug }} aria-label={`View ${o.name}'s profile`} className="flex-none">
-                  <img src={o.photo_url} alt={o.name} className="h-20 w-20 rounded-full object-cover transition hover:opacity-90" loading="lazy" />
-                </Link>
+                <img src={o.photo_url} alt={o.name} className="h-20 w-20 flex-none rounded-full object-cover transition group-hover:opacity-90" loading="lazy" />
               )}
               <div className="min-w-0">
-                <h2 className="truncate text-base font-semibold">
-                  <Link to="/loan-officers/$slug" params={{ slug: o.slug }} className="hover:text-primary hover:underline">
-                    {o.name}
-                  </Link>
-                </h2>
+                <h2 className="truncate text-base font-semibold group-hover:text-primary">{o.name}</h2>
                 <p className="truncate text-xs text-muted-foreground">{o.title}</p>
                 {o.nmls_id && <p className="text-[11px] text-muted-foreground">NMLS #{o.nmls_id}</p>}
                 <div className="mt-2 flex flex-wrap gap-1">
@@ -120,13 +120,13 @@ function FindOfficerPage() {
                 </div>
               </div>
             </div>
-            <div className="grid grid-cols-3 gap-2 border-t border-border p-3">
+            <div className="relative z-20 grid grid-cols-3 gap-2 border-t border-border p-3">
               {o.phone && (
-                <Button asChild size="sm" variant="outline"><a href={`tel:${o.phone}`}><Phone className="h-3.5 w-3.5" /></a></Button>
+                <Button asChild size="sm" variant="outline"><a href={`tel:${o.phone}`} onClick={(e) => e.stopPropagation()}><Phone className="h-3.5 w-3.5" /></a></Button>
               )}
               {o.whatsapp && (
                 <Button asChild size="sm" className="bg-[oklch(0.62_0.16_150)] text-white hover:opacity-90">
-                  <a href={`https://wa.me/${o.whatsapp}`} target="_blank" rel="noopener noreferrer"><MessageCircle className="h-3.5 w-3.5" /></a>
+                  <a href={`https://wa.me/${o.whatsapp}`} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}><MessageCircle className="h-3.5 w-3.5" /></a>
                 </Button>
               )}
               <Button asChild size="sm">
