@@ -1,12 +1,18 @@
 import { useTranslation } from "react-i18next";
-import { Globe } from "lucide-react";
+import { Globe, Check, ChevronDown } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 type Lang = "en" | "es" | "hi" | "te";
-const LANGS: { code: Lang; label: string }[] = [
-  { code: "en", label: "EN" },
-  { code: "es", label: "ES" },
-  { code: "hi", label: "हि" },
-  { code: "te", label: "తె" },
+const LANGS: { code: Lang; short: string; label: string }[] = [
+  { code: "en", short: "EN", label: "English" },
+  { code: "es", short: "ES", label: "Español" },
+  { code: "hi", short: "हि", label: "हिन्दी" },
+  { code: "te", short: "తె", label: "తెలుగు" },
 ];
 
 export function LanguageSwitcher({ compact = false }: { compact?: boolean }) {
@@ -22,30 +28,32 @@ export function LanguageSwitcher({ compact = false }: { compact?: boolean }) {
     try { localStorage.setItem("site-lang", lng); } catch {}
   };
 
+  const active = LANGS.find((l) => l.code === current) ?? LANGS[0];
+
   return (
-    <div
-      className={`inline-flex items-center gap-1 rounded-full border border-border bg-background/60 ${
-        compact ? "p-0.5" : "p-1"
-      }`}
-      role="group"
-      aria-label="Language selector"
-    >
-      <Globe className="ml-1 h-3.5 w-3.5 text-muted-foreground" />
-      {LANGS.map(({ code, label }) => (
-        <button
-          key={code}
-          type="button"
-          onClick={() => setLang(code)}
-          aria-pressed={current === code}
-          className={`rounded-full px-2 py-0.5 text-[11px] font-semibold transition ${
-            current === code
-              ? "bg-primary text-primary-foreground"
-              : "text-foreground/70 hover:text-primary"
-          }`}
-        >
-          {label}
-        </button>
-      ))}
-    </div>
+    <DropdownMenu>
+      <DropdownMenuTrigger
+        aria-label="Select language"
+        className={`inline-flex items-center gap-1.5 rounded-full border border-border bg-background/60 font-semibold text-foreground/80 transition hover:text-primary ${
+          compact ? "px-2 py-1 text-[11px]" : "px-2.5 py-1 text-xs"
+        }`}
+      >
+        <Globe className="h-3.5 w-3.5 text-muted-foreground" />
+        <span>{active.short}</span>
+        <ChevronDown className="h-3 w-3 opacity-60" />
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end" className="min-w-[140px]">
+        {LANGS.map(({ code, label }) => (
+          <DropdownMenuItem
+            key={code}
+            onClick={() => setLang(code)}
+            className="flex items-center justify-between gap-2 text-sm"
+          >
+            <span>{label}</span>
+            {current === code ? <Check className="h-3.5 w-3.5 text-primary" /> : null}
+          </DropdownMenuItem>
+        ))}
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 }
