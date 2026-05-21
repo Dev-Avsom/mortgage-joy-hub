@@ -12,7 +12,7 @@ export const siteConfig = {
   whatsappHref: "https://wa.me/16824131045",
   email: "contact@ensurehomeloans.com",
   assistEmail: "assist@ensurehomeloans.com",
-  address: "Texas, USA",
+  address: "2785 Rockbrook Dr. Suite 304, Lewisville, TX 75067",
   nmlsId: "NMLS #1666674",
 };
 

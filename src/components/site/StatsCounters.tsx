@@ -2,7 +2,7 @@ import { Reveal } from "./Reveal";
 import { AnimatedCounter } from "./AnimatedCounter";
 
 const STATS = [
-  { to: 250, suffix: "+", label: "MLO partners" },
+  { to: 260, suffix: "+", label: "MLO partners" },
   { to: 29, suffix: "+", label: "States served" },
   { to: 10000, suffix: "+", label: "Families helped" },
   { to: 4.9, decimals: 1, suffix: "★", label: "Average rating" },

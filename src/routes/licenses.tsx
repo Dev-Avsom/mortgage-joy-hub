@@ -14,9 +14,8 @@ export const Route = createFileRoute("/licenses")({
 });
 
 const STATES_LICENSED = [
-  "AL","AK","AZ","AR","CA","CO","CT","DE","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA","ME","MD",
-  "MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","PA","RI","SC",
-  "SD","TN","TX","UT","VT","VA","WA","WV","WI","WY",
+  "AL","AZ","AR","CA","CO","CT","DE","FL","GA","IL","IN","IA","KS","MD","MI","MN",
+  "NJ","NC","OH","OK","OR","PA","SC","TN","TX","VA","WA","WV","WI",
 ];
 
 function LicensesPage() {
@@ -44,7 +43,7 @@ function LicensesPage() {
       <Card className="mt-6 p-6">
         <h2 className="text-xl font-semibold">States We're Licensed In</h2>
         <p className="mt-1 text-sm text-muted-foreground">
-          Licensed in all 50 states. Loan availability and terms vary by state.
+          Licensed in {STATES_LICENSED.length} states. Loan availability and terms vary by state.
         </p>
         <div className="mt-4 grid grid-cols-5 gap-2 sm:grid-cols-8 md:grid-cols-10">
           {STATES_LICENSED.map((s) => (

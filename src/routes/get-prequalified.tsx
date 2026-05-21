@@ -42,18 +42,14 @@ function ChooseOfficerPage() {
           Select an MLO to continue to their secure 1003 application portal.
         </p>
         {list.length > 0 && (
-          <p className="mt-4 text-sm text-muted-foreground">
-            Not sure?{" "}
-            <a
-              href={DEFAULT_APPLY_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-primary underline underline-offset-2 font-medium"
-            >
-              Use our general application
-            </a>
-            .
-          </p>
+          <div className="mt-6 flex flex-col items-center gap-2">
+            <p className="text-sm text-muted-foreground">Not sure who to pick?</p>
+            <Button asChild size="lg" variant="secondary" className="shadow-md">
+              <a href={DEFAULT_APPLY_URL} target="_blank" rel="noopener noreferrer">
+                Use our general application <ArrowRight className="ml-1 h-4 w-4" />
+              </a>
+            </Button>
+          </div>
         )}
       </div>
 
