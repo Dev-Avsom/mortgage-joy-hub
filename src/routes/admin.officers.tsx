@@ -324,6 +324,35 @@ function OfficersAdmin() {
                   onChange={(e) => setEditing({ ...editing, achievements: e.target.value.split("\n").map((s) => s.trim()).filter(Boolean) })}
                 />
               </Field>
+              <Field label={`Licensed states (${(editing.licensed_states ?? []).length} selected)`} className="sm:col-span-2">
+                <div className="mb-2 flex gap-2">
+                  <Button type="button" size="sm" variant="outline" onClick={() => setEditing({ ...editing, licensed_states: US_STATES.map(s => s.code) })}>Select all</Button>
+                  <Button type="button" size="sm" variant="ghost" onClick={() => setEditing({ ...editing, licensed_states: [] })}>Clear</Button>
+                </div>
+                <div className="grid max-h-56 grid-cols-2 gap-1 overflow-y-auto rounded border border-border p-3 sm:grid-cols-3 md:grid-cols-4">
+                  {US_STATES.map((s) => {
+                    const selected = (editing.licensed_states ?? []).includes(s.code);
+                    return (
+                      <label key={s.code} className="flex cursor-pointer items-center gap-2 text-sm">
+                        <input
+                          type="checkbox"
+                          checked={selected}
+                          onChange={(e) => {
+                            const cur = editing.licensed_states ?? [];
+                            setEditing({
+                              ...editing,
+                              licensed_states: e.target.checked
+                                ? [...cur, s.code]
+                                : cur.filter((c) => c !== s.code),
+                            });
+                          }}
+                        />
+                        <span>{s.code} — {s.name}</span>
+                      </label>
+                    );
+                  })}
+                </div>
+              </Field>
               <Field label="Display order">
                 <Input type="number" value={editing.display_order ?? 0} onChange={(e) => setEditing({ ...editing, display_order: Number(e.target.value) })} />
               </Field>
