@@ -76,7 +76,7 @@ function FAQPage() {
         <p className="mt-2 text-white/80">Talk to a licensed loan officer — no pressure, no obligation.</p>
         <div className="mt-4 flex flex-wrap gap-2">
           <Button asChild variant="secondary"><Link to="/contact">Contact us</Link></Button>
-          <Button asChild variant="outline" className="border-white/30 bg-transparent text-white hover:bg-white/10"><Link to="/get-prequalified">Get pre-qualified</Link></Button>
+          <Button asChild variant="outline" className="border-white/30 bg-transparent text-white hover:bg-white/10"><Link to="/get-prequalified">Get Pre-Qualified</Link></Button>
         </div>
       </div>
     </div>

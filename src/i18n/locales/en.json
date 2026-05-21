@@ -114,7 +114,7 @@
       "reviews": "Reviews",
       "about": "About",
       "contact": "Contact",
-      "getPrequalified": "Get Pre-qualified",
+      "getPrequalified": "Get Pre-Qualified",
       "join": "Join Our Team (MLOs)",
       "careers": "Careers",
       "agents": "Agent Partners",
@@ -295,7 +295,7 @@
     "loanAmount": "Loan amount",
     "tax": "Tax (est.)",
     "insurance": "Insurance",
-    "getPrequalified": "Get pre-qualified",
+    "getPrequalified": "Get Pre-Qualified",
     "howWeCalc": "How we calculate this:",
     "calcBody": "We use the 36% back-end DTI ratio (total monthly debts including housing should not exceed 36% of gross income). Property tax is estimated at 1.1% of home value, insurance at 0.4%. Your actual rates and qualification depend on credit, location, and full underwriting."
   },
@@ -415,7 +415,7 @@
     "stillTitle": "Still Have Questions?",
     "stillBody": "Talk to a licensed loan officer — no pressure, no obligation.",
     "contactUs": "Contact us",
-    "getPreq": "Get pre-qualified",
+    "getPreq": "Get Pre-Qualified",
     "sections": {
       "gettingStarted": "Getting started",
       "ratesCosts": "Rates & costs",

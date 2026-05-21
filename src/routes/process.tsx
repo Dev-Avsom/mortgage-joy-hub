@@ -70,7 +70,7 @@ function ProcessPage() {
         <div className="relative z-10">
           <h2 className="text-2xl font-bold">Ready to Start Step 1?</h2>
           <p className="mt-2 text-primary-foreground/80">Pre-qualification takes 5 minutes and won't impact your credit.</p>
-          <Button asChild size="lg" className="mt-4 bg-[oklch(0.84_0.13_75)] text-[oklch(0.2_0.05_40)] hover:opacity-90"><Link to="/get-prequalified">Get pre-qualified</Link></Button>
+          <Button asChild size="lg" className="mt-4 bg-[oklch(0.84_0.13_75)] text-[oklch(0.2_0.05_40)] hover:opacity-90"><Link to="/get-prequalified">Get Pre-Qualified</Link></Button>
         </div>
       </div>
       </div>

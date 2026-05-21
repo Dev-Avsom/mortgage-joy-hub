@@ -50,7 +50,7 @@ function FirstTimeBuyer() {
             first-timers get in with less down.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
-            <Button asChild size="lg" className="glow-on-hover"><Link to="/get-prequalified">Get pre-qualified</Link></Button>
+            <Button asChild size="lg" className="glow-on-hover"><Link to="/get-prequalified">Get Pre-Qualified</Link></Button>
             <Button asChild size="lg" variant="outline"><Link to="/affordability">Check affordability</Link></Button>
           </div>
         </div>
