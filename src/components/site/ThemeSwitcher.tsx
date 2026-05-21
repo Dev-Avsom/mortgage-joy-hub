@@ -16,6 +16,13 @@ const STORAGE_KEY = "brand-theme";
 function applyTheme(t: BrandTheme) {
   if (typeof document === "undefined") return;
   document.documentElement.setAttribute("data-theme", t);
+  const href = t === "brown" ? "/favicon-brown.png" : "/favicon.png";
+  document.querySelectorAll<HTMLLinkElement>(
+    'link[rel="icon"], link[rel="apple-touch-icon"]'
+  ).forEach((el) => {
+    if (el.type === "image/x-icon") return; // skip .ico
+    el.href = href;
+  });
 }
 
 export function ThemeSwitcher({ compact = false }: { compact?: boolean }) {
