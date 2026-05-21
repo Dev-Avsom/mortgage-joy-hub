@@ -59,6 +59,18 @@ function ContactPage() {
               </div>
             </div>
           </Card>
+          <Card className="overflow-hidden p-0">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3346.3534600691755!2d-96.98225662569315!3d32.99445557284462!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c2fb79dfd82c7%3A0x2e50cdc279a57df3!2sEnsure%20Home%20Loans%20LLC!5e0!3m2!1sen!2sin!4v1779358715706!5m2!1sen!2sin"
+              width="100%"
+              height="300"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Ensure Home Loans office location"
+            />
+          </Card>
         </div>
         <Card className="p-6">
           <h2 className="text-xl font-semibold">Send Us a Message</h2>

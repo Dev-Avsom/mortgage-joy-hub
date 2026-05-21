@@ -22,7 +22,7 @@ export const Route = createFileRoute("/find-officer")({
       .from("loan_officers")
       .select("*")
       .eq("is_active", true)
-      .order("display_order", { ascending: true });
+      .order("name", { ascending: true });
     if (error) throw error;
     return { officers: (data ?? []) as Officer[] };
   },

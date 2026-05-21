@@ -18,7 +18,7 @@ export const Route = createFileRoute("/get-prequalified")({
       .from("loan_officers")
       .select("id, name, title, photo_url, nmls_id, portal_link, slug")
       .eq("is_active", true)
-      .order("display_order", { ascending: true });
+      .order("name", { ascending: true });
     return { officers: data ?? [] };
   },
   component: ChooseOfficerPage,
