@@ -3,6 +3,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Phone, MessageCircle, Mail, ArrowLeft, ArrowRight, Linkedin, Facebook, Instagram, Twitter, Globe } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { US_STATES } from "@/lib/us-states";
 
 const DEFAULT_APPLY_URL = "https://ensurehomeloans.my1003app.com/950536/register?time=1779206112172";
 
@@ -151,6 +152,23 @@ function ProfilePage() {
               </div>
             )}
           </div>
+          {officer.licensed_states && officer.licensed_states.length > 0 && (
+            <div className="mt-6">
+              <h3 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
+                Licensed in {officer.licensed_states.length} {officer.licensed_states.length === 1 ? "state" : "states"}
+              </h3>
+              <div className="mt-2 flex flex-wrap gap-1.5">
+                {officer.licensed_states.map((code: string) => {
+                  const s = US_STATES.find((x) => x.code === code);
+                  return (
+                    <span key={code} className="rounded-full border border-primary/20 bg-primary/5 px-2.5 py-0.5 text-xs font-medium text-primary">
+                      {s?.name ?? code}
+                    </span>
+                  );
+                })}
+              </div>
+            </div>
+          )}
           <Card className="mt-8 p-6">
             <h2 className="text-xl font-semibold">Ready to apply with {officer.name.split(" ")[0]}?</h2>
             <p className="mt-1 text-sm text-muted-foreground">

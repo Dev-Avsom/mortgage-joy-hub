@@ -163,6 +163,58 @@ function OnboardPage() {
             <Input placeholder="English, Spanish" value={form.languages} onChange={(e) => set("languages", e.target.value)} />
           </F>
 
+          <div className="sm:col-span-2">
+            <Label className="mb-1.5 block text-xs">Licensed states</Label>
+            <p className="mb-2 text-xs text-muted-foreground">
+              Select every state where you currently hold an active mortgage loan originator license.
+            </p>
+            {form.licensed_states.length > 0 && (
+              <div className="mb-3 flex flex-wrap gap-1.5">
+                {form.licensed_states.map((code) => {
+                  const s = US_STATES.find((x) => x.code === code);
+                  return (
+                    <span key={code} className="inline-flex items-center gap-1 rounded-full bg-primary/10 px-2.5 py-1 text-xs font-medium text-primary">
+                      {s?.name ?? code}
+                      <button
+                        type="button"
+                        aria-label={`Remove ${s?.name ?? code}`}
+                        onClick={() => set("licensed_states", form.licensed_states.filter((c) => c !== code))}
+                        className="rounded-full hover:bg-primary/20"
+                      >
+                        <X className="h-3 w-3" />
+                      </button>
+                    </span>
+                  );
+                })}
+              </div>
+            )}
+            <div className="max-h-56 overflow-y-auto rounded-md border border-input p-3">
+              <div className="grid grid-cols-2 gap-1.5 sm:grid-cols-3 md:grid-cols-4">
+                {US_STATES.map((s) => {
+                  const checked = form.licensed_states.includes(s.code);
+                  return (
+                    <label key={s.code} className="flex cursor-pointer items-center gap-2 rounded px-1.5 py-1 text-sm hover:bg-accent">
+                      <input
+                        type="checkbox"
+                        checked={checked}
+                        onChange={(e) => {
+                          set(
+                            "licensed_states",
+                            e.target.checked
+                              ? [...form.licensed_states, s.code]
+                              : form.licensed_states.filter((c) => c !== s.code),
+                          );
+                        }}
+                        className="h-3.5 w-3.5"
+                      />
+                      <span className="truncate">{s.name}</span>
+                    </label>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+
           <F label="Short bio (1–2 sentences, shown on cards)" className="sm:col-span-2">
             <Textarea rows={3} value={form.bio} onChange={(e) => set("bio", e.target.value)} />
           </F>
