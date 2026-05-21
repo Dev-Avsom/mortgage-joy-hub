@@ -126,7 +126,7 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <ScriptOnce>{`(function(){try{var t=localStorage.getItem('brand-theme')||'blue';document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','blue');}})();`}</ScriptOnce>
+      <ScriptOnce>{`(function(){try{var t=localStorage.getItem('brand-theme')||'blue';document.documentElement.setAttribute('data-theme',t);var h=t==='brown'?'/favicon-brown.png':'/favicon.png';document.querySelectorAll('link[rel="icon"], link[rel="apple-touch-icon"]').forEach(function(el){if(el.type==='image/x-icon')return;el.href=h;});}catch(e){document.documentElement.setAttribute('data-theme','blue');}})();`}</ScriptOnce>
       <div className="flex min-h-screen flex-col">
         <Header />
         <main className="flex-1 pb-24 lg:pb-0">
