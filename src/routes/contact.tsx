@@ -64,11 +64,11 @@ function ContactPage() {
               <div className="flex h-5 w-5 items-center justify-center rounded-full bg-primary text-primary-foreground text-[10px] font-bold">#</div>
               <div>
                 <div className="text-xs uppercase text-muted-foreground">Social</div>
-                <div className="mt-1 flex gap-2">
-                  <a href="https://www.instagram.com/ensurehomeloansllc/?hl=en" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="hover:text-primary transition-colors"><Instagram className="h-4 w-4" /></a>
-                  <a href="https://www.facebook.com/Ensurehomeloans/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="hover:text-primary transition-colors"><Facebook className="h-4 w-4" /></a>
-                  <a href="https://www.linkedin.com/company/ensure-home-loans/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="hover:text-primary transition-colors"><Linkedin className="h-4 w-4" /></a>
-                  <a href="https://www.youtube.com/@EnsureHomeLoansLLC" target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="hover:text-primary transition-colors"><Youtube className="h-4 w-4" /></a>
+                <div className="mt-1 flex gap-3">
+                  <a href="https://www.instagram.com/ensurehomeloansllc/?hl=en" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="group transition-colors"><Instagram className="h-5 w-5 text-[#E1306C] transition-transform group-hover:scale-110" /></a>
+                  <a href="https://www.facebook.com/Ensurehomeloans/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="group transition-colors"><Facebook className="h-5 w-5 text-[#1877F2] transition-transform group-hover:scale-110" /></a>
+                  <a href="https://www.linkedin.com/company/ensure-home-loans/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="group transition-colors"><Linkedin className="h-5 w-5 text-[#0A66C2] transition-transform group-hover:scale-110" /></a>
+                  <a href="https://www.youtube.com/@EnsureHomeLoansLLC" target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="group transition-colors"><Youtube className="h-5 w-5 text-[#FF0000] transition-transform group-hover:scale-110" /></a>
                 </div>
               </div>
             </div>
