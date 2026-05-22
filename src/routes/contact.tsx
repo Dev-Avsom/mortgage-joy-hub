@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Card } from "@/components/ui/card";
-import { Phone, MessageCircle, Mail, MapPin } from "lucide-react";
+import { Phone, MessageCircle, Mail, MapPin, Instagram, Facebook, Linkedin, Youtube } from "lucide-react";
 import { siteConfig, whatsappLink } from "@/lib/site-config";
 import { LeadForm } from "@/components/site/LeadForm";
 
@@ -56,6 +56,20 @@ function ContactPage() {
               <div>
                 <div className="text-xs uppercase text-muted-foreground">Office</div>
                 <div className="font-semibold">{siteConfig.address}</div>
+              </div>
+            </div>
+          </Card>
+          <Card className="p-5">
+            <div className="flex items-center gap-3">
+              <div className="flex h-5 w-5 items-center justify-center rounded-full bg-primary text-primary-foreground text-[10px] font-bold">#</div>
+              <div>
+                <div className="text-xs uppercase text-muted-foreground">Social</div>
+                <div className="mt-1 flex gap-2">
+                  <a href="https://www.instagram.com/ensurehomeloansllc/?hl=en" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="hover:text-primary transition-colors"><Instagram className="h-4 w-4" /></a>
+                  <a href="https://www.facebook.com/Ensurehomeloans/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="hover:text-primary transition-colors"><Facebook className="h-4 w-4" /></a>
+                  <a href="https://www.linkedin.com/company/ensure-home-loans/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="hover:text-primary transition-colors"><Linkedin className="h-4 w-4" /></a>
+                  <a href="https://www.youtube.com/@EnsureHomeLoansLLC" target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="hover:text-primary transition-colors"><Youtube className="h-4 w-4" /></a>
+                </div>
               </div>
             </div>
           </Card>

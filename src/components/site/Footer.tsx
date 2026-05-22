@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { Instagram, Facebook, Linkedin, Youtube } from "lucide-react";
 import { siteConfig } from "@/lib/site-config";
 
 export function Footer() {
@@ -21,6 +22,24 @@ export function Footer() {
           <div className="mt-4 flex items-center gap-2 rounded-md border border-border bg-background px-3 py-2 text-xs text-foreground/80">
             <span aria-hidden className="grid h-6 w-6 place-items-center rounded-sm bg-primary text-primary-foreground font-bold">=</span>
             Equal Housing Lender
+          </div>
+          <div className="mt-4 flex gap-3">
+            <a href="https://www.instagram.com/ensurehomeloansllc/?hl=en" target="_blank" rel="noopener noreferrer" aria-label="Instagram"
+              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-background hover:bg-accent transition-colors">
+              <Instagram className="h-4 w-4" />
+            </a>
+            <a href="https://www.facebook.com/Ensurehomeloans/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"
+              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-background hover:bg-accent transition-colors">
+              <Facebook className="h-4 w-4" />
+            </a>
+            <a href="https://www.linkedin.com/company/ensure-home-loans/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"
+              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-background hover:bg-accent transition-colors">
+              <Linkedin className="h-4 w-4" />
+            </a>
+            <a href="https://www.youtube.com/@EnsureHomeLoansLLC" target="_blank" rel="noopener noreferrer" aria-label="YouTube"
+              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-background hover:bg-accent transition-colors">
+              <Youtube className="h-4 w-4" />
+            </a>
           </div>
         </div>
         <div>
