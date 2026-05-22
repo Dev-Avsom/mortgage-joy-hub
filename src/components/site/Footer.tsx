@@ -25,20 +25,20 @@ export function Footer() {
           </div>
           <div className="mt-4 flex gap-3">
             <a href="https://www.instagram.com/ensurehomeloansllc/?hl=en" target="_blank" rel="noopener noreferrer" aria-label="Instagram"
-              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-background hover:bg-accent transition-colors">
-              <Instagram className="h-4 w-4" />
+              className="group inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-background transition-colors hover:border-[#E1306C]/40">
+              <Instagram className="h-4 w-4 text-[#E1306C] transition-transform group-hover:scale-110" />
             </a>
             <a href="https://www.facebook.com/Ensurehomeloans/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"
-              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-background hover:bg-accent transition-colors">
-              <Facebook className="h-4 w-4" />
+              className="group inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-background transition-colors hover:border-[#1877F2]/40">
+              <Facebook className="h-4 w-4 text-[#1877F2] transition-transform group-hover:scale-110" />
             </a>
             <a href="https://www.linkedin.com/company/ensure-home-loans/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"
-              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-background hover:bg-accent transition-colors">
-              <Linkedin className="h-4 w-4" />
+              className="group inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-background transition-colors hover:border-[#0A66C2]/40">
+              <Linkedin className="h-4 w-4 text-[#0A66C2] transition-transform group-hover:scale-110" />
             </a>
             <a href="https://www.youtube.com/@EnsureHomeLoansLLC" target="_blank" rel="noopener noreferrer" aria-label="YouTube"
-              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-background hover:bg-accent transition-colors">
-              <Youtube className="h-4 w-4" />
+              className="group inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-background transition-colors hover:border-[#FF0000]/40">
+              <Youtube className="h-4 w-4 text-[#FF0000] transition-transform group-hover:scale-110" />
             </a>
           </div>
         </div>
