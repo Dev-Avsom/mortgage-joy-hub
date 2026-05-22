@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { Instagram, Facebook, Linkedin, Youtube } from "lucide-react";
 import { siteConfig } from "@/lib/site-config";
 
 export function Footer() {
