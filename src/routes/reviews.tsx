@@ -16,7 +16,6 @@ export const Route = createFileRoute("/reviews")({
   component: ReviewsPage,
 });
 
-const REVIEWS = [
 // Real Google reviews sourced from Google Maps / Ensure Home Loans LLC public profile.
 const REVIEWS = [
   { name: "Manas Bagde", source: "Google", rating: 5, body: "Knowledgeable on the Texas property taxes and loan process. He was always available for the customers and responsive. Closed the loan on the promised date. Highly recommend if anyone is looking for a mortgage loan or to refinance." },
