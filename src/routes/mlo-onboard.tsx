@@ -10,6 +10,7 @@ import { toast } from "sonner";
 import { Upload, Loader2, CheckCircle2, X } from "lucide-react";
 import { US_STATES } from "@/lib/us-states";
 import { notifySubmission } from "@/lib/notify";
+import { PhotoCropDialog } from "@/components/site/PhotoCropDialog";
 
 export const Route = createFileRoute("/mlo-onboard")({
   head: () => ({
@@ -47,21 +48,28 @@ function OnboardPage() {
   const [saving, setSaving] = useState(false);
   const [done, setDone] = useState(false);
   const fileRef = useRef<HTMLInputElement>(null);
+  const [cropSrc, setCropSrc] = useState<string | null>(null);
 
   const set = <K extends keyof Form>(k: K, v: Form[K]) => setForm((f) => ({ ...f, [k]: v }));
 
-  const handlePhoto = async (file: File) => {
-    if (file.size > 5 * 1024 * 1024) return toast.error("Max 5MB photo");
+  const handlePhotoSelect = (file: File) => {
+    if (file.size > 10 * 1024 * 1024) return toast.error("Max 10MB photo");
+    const reader = new FileReader();
+    reader.onload = () => setCropSrc(reader.result as string);
+    reader.readAsDataURL(file);
+  };
+
+  const uploadCropped = async (blob: Blob) => {
     setUploading(true);
-    const ext = file.name.split(".").pop() ?? "jpg";
-    const path = `onboard/${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
-    const { error } = await supabase.storage.from("officer-photos").upload(path, file, {
-      cacheControl: "3600", upsert: false, contentType: file.type,
+    const path = `onboard/${Date.now()}-${Math.random().toString(36).slice(2)}.jpg`;
+    const { error } = await supabase.storage.from("officer-photos").upload(path, blob, {
+      cacheControl: "3600", upsert: false, contentType: "image/jpeg",
     });
     setUploading(false);
     if (error) return toast.error(error.message);
     const { data } = supabase.storage.from("officer-photos").getPublicUrl(path);
     set("photo_url", data.publicUrl);
+    setCropSrc(null);
     toast.success("Photo uploaded");
   };
 
@@ -166,7 +174,7 @@ function OnboardPage() {
               )}
               <input
                 ref={fileRef} type="file" accept="image/*" className="hidden"
-                onChange={(e) => { const f = e.target.files?.[0]; if (f) handlePhoto(f); e.target.value = ""; }}
+                onChange={(e) => { const f = e.target.files?.[0]; if (f) handlePhotoSelect(f); e.target.value = ""; }}
               />
               <Button type="button" variant="outline" disabled={uploading} onClick={() => fileRef.current?.click()}>
                 {uploading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Upload className="mr-2 h-4 w-4" />}
@@ -269,6 +277,13 @@ function OnboardPage() {
           </div>
         </form>
       </Card>
+      <PhotoCropDialog
+        open={!!cropSrc}
+        imageSrc={cropSrc}
+        saving={uploading}
+        onCancel={() => setCropSrc(null)}
+        onCropped={uploadCropped}
+      />
     </div>
   );
 }
