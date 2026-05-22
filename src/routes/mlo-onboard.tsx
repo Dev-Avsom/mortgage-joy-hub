@@ -70,11 +70,10 @@ function OnboardPage() {
     const name = form.name.trim();
     if (!name) return toast.error("Name is required");
     if (!form.email.trim()) return toast.error("Email is required");
-    const slug = `${slugify(name)}-${Math.random().toString(36).slice(2, 6)}`;
+    const baseSlug = slugify(name);
     setSaving(true);
-    const { error } = await supabase.from("loan_officers").insert({
+    const payload = {
       name,
-      slug,
       title: form.title || null,
       nmls_id: form.nmls_id || null,
       email: form.email || null,
@@ -94,7 +93,17 @@ function OnboardPage() {
       licensed_states: form.licensed_states,
       is_active: false,
       display_order: 999,
-    });
+    };
+    // Try clean slug first; on unique conflict, append -2, -3, ...
+    let error: { code?: string; message: string } | null = null;
+    let slug = baseSlug;
+    for (let i = 1; i <= 20; i++) {
+      slug = i === 1 ? baseSlug : `${baseSlug}-${i}`;
+      const res = await supabase.from("loan_officers").insert({ ...payload, slug });
+      if (!res.error) { error = null; break; }
+      error = res.error;
+      if (res.error.code !== "23505") break;
+    }
     setSaving(false);
     if (error) return toast.error(error.message);
     void notifySubmission({
