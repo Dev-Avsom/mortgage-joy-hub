@@ -87,32 +87,32 @@ function ProfilePage() {
             <div className="mt-4 flex flex-wrap gap-2">
               {officer.linkedin_url && (
                 <a href={officer.linkedin_url} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"
-                  className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-input hover:bg-accent">
-                  <Linkedin className="h-4 w-4" />
+                  className="group inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-background transition-colors hover:border-[#0A66C2]/40">
+                  <Linkedin className="h-4 w-4 text-[#0A66C2] transition-transform group-hover:scale-110" />
                 </a>
               )}
               {officer.facebook_url && (
                 <a href={officer.facebook_url} target="_blank" rel="noopener noreferrer" aria-label="Facebook"
-                  className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-input hover:bg-accent">
-                  <Facebook className="h-4 w-4" />
+                  className="group inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-background transition-colors hover:border-[#1877F2]/40">
+                  <Facebook className="h-4 w-4 text-[#1877F2] transition-transform group-hover:scale-110" />
                 </a>
               )}
               {officer.instagram_url && (
                 <a href={officer.instagram_url} target="_blank" rel="noopener noreferrer" aria-label="Instagram"
-                  className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-input hover:bg-accent">
-                  <Instagram className="h-4 w-4" />
+                  className="group inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-background transition-colors hover:border-[#E1306C]/40">
+                  <Instagram className="h-4 w-4 text-[#E1306C] transition-transform group-hover:scale-110" />
                 </a>
               )}
               {officer.twitter_url && (
                 <a href={officer.twitter_url} target="_blank" rel="noopener noreferrer" aria-label="X/Twitter"
-                  className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-input hover:bg-accent">
-                  <Twitter className="h-4 w-4" />
+                  className="group inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-background transition-colors hover:border-[#1DA1F2]/40">
+                  <Twitter className="h-4 w-4 text-[#1DA1F2] transition-transform group-hover:scale-110" />
                 </a>
               )}
               {officer.website_url && (
                 <a href={officer.website_url} target="_blank" rel="noopener noreferrer" aria-label="Website"
-                  className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-input hover:bg-accent">
-                  <Globe className="h-4 w-4" />
+                  className="group inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-background transition-colors hover:border-primary/40">
+                  <Globe className="h-4 w-4 text-primary transition-transform group-hover:scale-110" />
                 </a>
               )}
             </div>
