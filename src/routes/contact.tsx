@@ -59,6 +59,20 @@ function ContactPage() {
               </div>
             </div>
           </Card>
+          <Card className="p-5">
+            <div className="flex items-center gap-3">
+              <div className="flex h-5 w-5 items-center justify-center rounded-full bg-primary text-primary-foreground text-[10px] font-bold">#</div>
+              <div>
+                <div className="text-xs uppercase text-muted-foreground">Social</div>
+                <div className="mt-1 flex gap-2">
+                  <a href="https://www.instagram.com/ensurehomeloansllc/?hl=en" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="hover:text-primary transition-colors"><Instagram className="h-4 w-4" /></a>
+                  <a href="https://www.facebook.com/Ensurehomeloans/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="hover:text-primary transition-colors"><Facebook className="h-4 w-4" /></a>
+                  <a href="https://www.linkedin.com/company/ensure-home-loans/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="hover:text-primary transition-colors"><Linkedin className="h-4 w-4" /></a>
+                  <a href="https://www.youtube.com/@EnsureHomeLoansLLC" target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="hover:text-primary transition-colors"><Youtube className="h-4 w-4" /></a>
+                </div>
+              </div>
+            </div>
+          </Card>
           <Card className="overflow-hidden p-0">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3346.3534600691755!2d-96.98225662569315!3d32.99445557284462!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c2fb79dfd82c7%3A0x2e50cdc279a57df3!2sEnsure%20Home%20Loans%20LLC!5e0!3m2!1sen!2sin!4v1779358715706!5m2!1sen!2sin"
