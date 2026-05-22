@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Card } from "@/components/ui/card";
-import { Phone, MessageCircle, Mail, MapPin } from "lucide-react";
+import { Phone, MessageCircle, Mail, MapPin, Instagram, Facebook, Linkedin, Youtube } from "lucide-react";
 import { siteConfig, whatsappLink } from "@/lib/site-config";
 import { LeadForm } from "@/components/site/LeadForm";
 
