@@ -41,7 +41,7 @@ function ReviewsPage() {
       </Reveal>
       <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
         {REVIEWS.map((r, idx) => (
-          <Reveal key={r.name + r.city} delay={idx * 70}>
+          <Reveal key={r.name} delay={idx * 70}>
           <Card className="hover-lift flex h-full flex-col p-6">
             <div className="flex items-center gap-1">
               {Array.from({ length: r.rating }).map((_, i) => (
