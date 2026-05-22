@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/lib/site-config";
 import { Reviews } from "@/components/site/Reviews";
 import { RateQuoteWidget } from "@/components/site/RateQuoteWidget";
-import { BestRateBadge } from "@/components/site/BestRateBadge";
+
 import { GradientOrb } from "@/components/site/GradientOrb";
 import { Reveal } from "@/components/site/Reveal";
 import { useTranslation, Trans } from "react-i18next";
@@ -52,7 +52,7 @@ function HomePage() {
                 <Sparkles className="h-3.5 w-3.5 text-[oklch(0.84_0.13_75)]" />
                 {t("home.badge", { nmls: siteConfig.nmlsId })}
               </span>
-              <BestRateBadge />
+              
             </div>
             <h1 className="animate-fade-in-up mt-5 text-4xl font-bold leading-[1.05] tracking-tight md:text-5xl lg:text-6xl" style={{ animationDelay: "120ms" }}>
               {t("home.heroTitle1")}{" "}
