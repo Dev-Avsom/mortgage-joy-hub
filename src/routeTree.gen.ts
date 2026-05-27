@@ -42,6 +42,7 @@ import { Route as LoanOfficersSlugRouteImport } from './routes/loan-officers.$sl
 import { Route as LearnSlugRouteImport } from './routes/learn.$slug'
 import { Route as AdminOfficersRouteImport } from './routes/admin.officers'
 import { Route as AdminLoginRouteImport } from './routes/admin.login'
+import { Route as LovableEmailQueueProcessRouteImport } from './routes/lovable/email/queue/process'
 
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
@@ -208,6 +209,12 @@ const AdminLoginRoute = AdminLoginRouteImport.update({
   path: '/admin/login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LovableEmailQueueProcessRoute =
+  LovableEmailQueueProcessRouteImport.update({
+    id: '/lovable/email/queue/process',
+    path: '/lovable/email/queue/process',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -243,6 +250,7 @@ export interface FileRoutesByFullPath {
   '/admin/': typeof AdminIndexRoute
   '/loan-officers/': typeof LoanOfficersIndexRoute
   '/loan-programs/': typeof LoanProgramsIndexRoute
+  '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -278,6 +286,7 @@ export interface FileRoutesByTo {
   '/admin': typeof AdminIndexRoute
   '/loan-officers': typeof LoanOfficersIndexRoute
   '/loan-programs': typeof LoanProgramsIndexRoute
+  '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -314,6 +323,7 @@ export interface FileRoutesById {
   '/admin/': typeof AdminIndexRoute
   '/loan-officers/': typeof LoanOfficersIndexRoute
   '/loan-programs/': typeof LoanProgramsIndexRoute
+  '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -351,6 +361,7 @@ export interface FileRouteTypes {
     | '/admin/'
     | '/loan-officers/'
     | '/loan-programs/'
+    | '/lovable/email/queue/process'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -386,6 +397,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/loan-officers'
     | '/loan-programs'
+    | '/lovable/email/queue/process'
   id:
     | '__root__'
     | '/'
@@ -421,6 +433,7 @@ export interface FileRouteTypes {
     | '/admin/'
     | '/loan-officers/'
     | '/loan-programs/'
+    | '/lovable/email/queue/process'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -456,6 +469,7 @@ export interface RootRouteChildren {
   AdminIndexRoute: typeof AdminIndexRoute
   LoanOfficersIndexRoute: typeof LoanOfficersIndexRoute
   LoanProgramsIndexRoute: typeof LoanProgramsIndexRoute
+  LovableEmailQueueProcessRoute: typeof LovableEmailQueueProcessRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -691,6 +705,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminLoginRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/lovable/email/queue/process': {
+      id: '/lovable/email/queue/process'
+      path: '/lovable/email/queue/process'
+      fullPath: '/lovable/email/queue/process'
+      preLoaderRoute: typeof LovableEmailQueueProcessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -737,6 +758,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminIndexRoute: AdminIndexRoute,
   LoanOfficersIndexRoute: LoanOfficersIndexRoute,
   LoanProgramsIndexRoute: LoanProgramsIndexRoute,
+  LovableEmailQueueProcessRoute: LovableEmailQueueProcessRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
