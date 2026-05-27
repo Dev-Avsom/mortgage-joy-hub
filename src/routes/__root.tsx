@@ -129,7 +129,7 @@ function RootComponent() {
       <ScriptOnce>{`(function(){try{var t=localStorage.getItem('brand-theme')||'brown';document.documentElement.setAttribute('data-theme',t);var h=t==='brown'?'/favicon-brown.png':'/favicon.png';document.querySelectorAll('link[rel="icon"], link[rel="apple-touch-icon"]').forEach(function(el){if(el.type==='image/x-icon')return;el.href=h;});}catch(e){document.documentElement.setAttribute('data-theme','brown');}})();`}</ScriptOnce>
       <div className="flex min-h-screen flex-col">
         <Header />
-        <main className="flex-1 pb-24 lg:pb-0">
+        <main className="flex-1 pb-24 xl:pb-0">
           <Outlet />
         </main>
         <Footer />
