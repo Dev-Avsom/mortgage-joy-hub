@@ -64,6 +64,7 @@ function OfficersAdmin() {
   const navigate = useNavigate();
   const [authReady, setAuthReady] = useState(false);
   const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
+  const [authError, setAuthError] = useState<string | null>(null);
   const [userEmail, setUserEmail] = useState<string | null>(null);
   const [officers, setOfficers] = useState<Officer[]>([]);
   const [loading, setLoading] = useState(false);
@@ -79,7 +80,12 @@ function OfficersAdmin() {
       if (!mounted) return;
       if (!session) { navigate({ to: "/admin/login" }); return; }
       setUserEmail(session.user.email ?? null);
-      const { data: roles } = await supabase.from("user_roles").select("role").eq("user_id", session.user.id);
+      const { data: roles, error } = await supabase.from("user_roles").select("role").eq("user_id", session.user.id);
+      if (error) {
+        setAuthError(error.message);
+        setAuthReady(true);
+        return;
+      }
       const admin = (roles ?? []).some((r) => r.role === "admin");
       setIsAdmin(admin);
       setAuthReady(true);
@@ -167,6 +173,20 @@ function OfficersAdmin() {
   const signOut = async () => { await supabase.auth.signOut(); window.location.href = "/admin/login"; };
 
   if (!authReady) return <div className="p-12 text-center text-muted-foreground">Loading…</div>;
+
+  if (authError) {
+    return (
+      <div className="mx-auto max-w-2xl px-4 py-20 text-center">
+        <ShieldAlert className="mx-auto h-12 w-12 text-amber-500" />
+        <h1 className="mt-4 text-2xl font-bold">Admin check failed</h1>
+        <p className="mt-3 text-sm text-muted-foreground">{authError}</p>
+        <div className="mt-6 flex justify-center gap-2">
+          <Button onClick={() => window.location.reload()} variant="outline">Retry</Button>
+          <Button onClick={signOut} variant="outline"><LogOut className="mr-2 h-4 w-4" /> Sign out</Button>
+        </div>
+      </div>
+    );
+  }
 
   if (isAdmin === false) {
     return (
