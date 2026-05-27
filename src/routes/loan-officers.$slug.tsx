@@ -3,6 +3,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Phone, MessageCircle, Mail, ArrowLeft, ArrowRight, Linkedin, Facebook, Instagram, Twitter, Globe } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { normalizeWhatsApp } from "@/lib/site-config";
 import { US_STATES } from "@/lib/us-states";
 
 const DEFAULT_APPLY_URL = "https://ensurehomeloans.my1003app.com/950536/register?time=1779206112172";
@@ -67,7 +68,7 @@ function ProfilePage() {
             )}
             {officer.whatsapp && (
               <Button asChild className="w-full bg-[oklch(0.62_0.16_150)] text-white hover:opacity-90">
-                <a href={`https://wa.me/${officer.whatsapp}`} target="_blank" rel="noopener noreferrer">
+                <a href={`https://wa.me/${normalizeWhatsApp(officer.whatsapp)}`} target="_blank" rel="noopener noreferrer">
                   <MessageCircle className="mr-2 h-4 w-4" /> WhatsApp
                 </a>
               </Button>
