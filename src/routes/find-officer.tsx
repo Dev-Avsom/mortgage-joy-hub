@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { supabase } from "@/integrations/supabase/client";
+import { normalizeWhatsApp } from "@/lib/site-config";
 import type { Tables } from "@/integrations/supabase/types";
 import { Phone, MessageCircle, MapPin, Search } from "lucide-react";
 
@@ -166,7 +167,7 @@ function FindOfficerPage() {
               )}
               {o.whatsapp && (
                 <Button asChild size="sm" className="bg-[oklch(0.62_0.16_150)] text-white hover:opacity-90">
-                  <a href={`https://wa.me/${o.whatsapp}`} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}><MessageCircle className="h-3.5 w-3.5" /></a>
+                  <a href={`https://wa.me/${normalizeWhatsApp(o.whatsapp)}`} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}><MessageCircle className="h-3.5 w-3.5" /></a>
                 </Button>
               )}
               <Button asChild size="sm">
