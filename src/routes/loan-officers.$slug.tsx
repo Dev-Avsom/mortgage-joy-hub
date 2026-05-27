@@ -3,19 +3,10 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Phone, MessageCircle, Mail, ArrowLeft, ArrowRight, Linkedin, Facebook, Instagram, Twitter, Globe } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { normalizeWhatsApp } from "@/lib/site-config";
 import { US_STATES } from "@/lib/us-states";
 
 const DEFAULT_APPLY_URL = "https://ensurehomeloans.my1003app.com/950536/register?time=1779206112172";
-
-// Strip non-digits and ensure a country code so wa.me doesn't 404.
-// Defaults to US (+1) when officers enter a 10-digit local number like "214-317-4830".
-function normalizeWhatsApp(input: string): string {
-  const digits = (input ?? "").replace(/\D/g, "");
-  if (!digits) return "";
-  if (digits.length === 10) return `1${digits}`;
-  if (digits.length === 11 && digits.startsWith("1")) return digits;
-  return digits;
-}
 
 export const Route = createFileRoute("/loan-officers/$slug")({
   loader: async ({ params }) => {
