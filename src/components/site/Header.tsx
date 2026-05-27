@@ -6,6 +6,12 @@ import { siteConfig, whatsappLink } from "@/lib/site-config";
 import { Button } from "@/components/ui/button";
 import { ThemeSwitcher } from "@/components/site/ThemeSwitcher";
 import { LanguageSwitcher } from "@/components/site/LanguageSwitcher";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import logoBlue from "@/assets/logo-blue.png";
 import logoBrown from "@/assets/logo-brown.png";
 
@@ -73,31 +79,31 @@ export function Header() {
           <img src={logoBlue} alt={siteConfig.brand} className="brand-logo-blue h-14 w-auto md:h-16" />
           <img src={logoBrown} alt={siteConfig.brand} className="brand-logo-brown h-14 w-auto md:h-16" />
         </Link>
-        <nav className="hidden items-center gap-1 lg:flex">
+        <nav className="hidden items-center gap-1 xl:flex">
           {nav.map((n) =>
             isGroup(n) ? (
-              <div key={n.label} className="group relative">
-                <button
-                  className="inline-flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium text-foreground/80 transition-colors hover:text-primary"
-                  type="button"
+              <DropdownMenu key={n.label}>
+                <DropdownMenuTrigger
+                  className="group inline-flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium text-foreground/80 transition-colors hover:text-primary focus:outline-none data-[state=open]:text-primary"
                 >
                   {n.label}
-                  <ChevronDown className="h-3.5 w-3.5" />
-                </button>
-                <div className="invisible absolute left-0 top-full z-50 min-w-[220px] translate-y-1 rounded-md border border-border bg-popover p-1 opacity-0 shadow-lg transition-all duration-150 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
+                  <ChevronDown className="h-3.5 w-3.5 transition-transform group-data-[state=open]:rotate-180" />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="start" className="min-w-[220px]">
                   {n.children.map((c) => (
-                    <Link
-                      key={c.label}
-                      to={c.to}
-                      params={c.params as never}
-                      className="block rounded-sm px-3 py-2 text-sm text-foreground/80 hover:bg-secondary hover:text-primary"
-                      activeProps={{ className: "bg-secondary text-primary" }}
-                    >
-                      {c.label}
-                    </Link>
+                    <DropdownMenuItem key={c.label} asChild>
+                      <Link
+                        to={c.to}
+                        params={c.params as never}
+                        className="block w-full cursor-pointer rounded-sm px-3 py-2 text-sm text-foreground/80 hover:bg-secondary hover:text-primary"
+                        activeProps={{ className: "bg-secondary text-primary" }}
+                      >
+                        {c.label}
+                      </Link>
+                    </DropdownMenuItem>
                   ))}
-                </div>
-              </div>
+                </DropdownMenuContent>
+              </DropdownMenu>
             ) : (
               <Link
                 key={n.to}
@@ -110,7 +116,7 @@ export function Header() {
             ),
           )}
         </nav>
-        <div className="hidden items-center gap-2 lg:flex">
+        <div className="hidden items-center gap-2 xl:flex">
           <LanguageSwitcher compact />
           <ThemeSwitcher compact />
           <Button asChild variant="outline" size="sm">
@@ -127,7 +133,7 @@ export function Header() {
             <Link to="/get-prequalified">{t("common.applyNow")}</Link>
           </Button>
         </div>
-        <div className="flex items-center gap-2 lg:hidden">
+        <div className="flex items-center gap-2 xl:hidden">
           <LanguageSwitcher compact />
           <ThemeSwitcher compact />
           <button
@@ -139,7 +145,7 @@ export function Header() {
         </div>
       </div>
       {open && (
-        <div className="border-t border-border bg-background lg:hidden">
+        <div className="border-t border-border bg-background xl:hidden">
           <div className="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-3">
             {nav.map((n) =>
               isGroup(n) ? (
