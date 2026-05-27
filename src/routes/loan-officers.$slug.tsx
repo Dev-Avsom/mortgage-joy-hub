@@ -67,7 +67,7 @@ function ProfilePage() {
             )}
             {officer.whatsapp && (
               <Button asChild className="w-full bg-[oklch(0.62_0.16_150)] text-white hover:opacity-90">
-                <a href={`https://wa.me/${officer.whatsapp}`} target="_blank" rel="noopener noreferrer">
+                <a href={`https://wa.me/${normalizeWhatsApp(officer.whatsapp)}`} target="_blank" rel="noopener noreferrer">
                   <MessageCircle className="mr-2 h-4 w-4" /> WhatsApp
                 </a>
               </Button>
