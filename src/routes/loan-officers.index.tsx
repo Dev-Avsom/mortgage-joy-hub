@@ -3,7 +3,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Phone, MessageCircle, ArrowRight } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
-import { siteConfig } from "@/lib/site-config";
+import { siteConfig, normalizeWhatsApp } from "@/lib/site-config";
 import type { Tables } from "@/integrations/supabase/types";
 import { GradientOrb } from "@/components/site/GradientOrb";
 
@@ -80,7 +80,7 @@ function OfficersPage() {
                 )}
                 {o.whatsapp && (
                   <Button asChild size="sm" className="bg-[oklch(0.62_0.16_150)] text-white hover:opacity-90">
-                    <a href={`https://wa.me/${o.whatsapp}`} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>
+                    <a href={`https://wa.me/${normalizeWhatsApp(o.whatsapp)}`} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>
                       <MessageCircle className="mr-1 h-3.5 w-3.5" /> Chat
                     </a>
                   </Button>
