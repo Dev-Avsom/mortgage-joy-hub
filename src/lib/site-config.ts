@@ -18,3 +18,13 @@ export const siteConfig = {
 
 export const whatsappLink = (msg = "Hi! I'd like to learn more about your mortgage options.") =>
   `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(msg)}`;
+
+// Normalize a WhatsApp phone for wa.me links: strip non-digits and ensure
+// a country code. Defaults to US (+1) when officers enter 10 local digits
+// like "214-317-4830" — without this wa.me returns 404.
+export function normalizeWhatsApp(input: string | null | undefined): string {
+  const digits = (input ?? "").replace(/\D/g, "");
+  if (!digits) return "";
+  if (digits.length === 10) return `1${digits}`;
+  return digits;
+}
