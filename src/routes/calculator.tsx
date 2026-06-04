@@ -233,11 +233,11 @@ function NumberField({
       <div className="relative mt-1">
         {prefix && <span className="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-muted-foreground">{prefix}</span>}
         <Input
-          type="number"
-          step={step}
+          type="text"
+          inputMode="decimal"
           value={text}
           onChange={(e) => {
-            const raw = e.target.value;
+            const raw = e.target.value.replace(/[^0-9.]/g, "");
             setText(raw);
             if (raw === "") {
               onChange(0);
