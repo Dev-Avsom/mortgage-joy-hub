@@ -49,7 +49,7 @@ export function Footer() {
             <li><Link to="/affordability" className="text-muted-foreground hover:text-primary">Affordability Calculator</Link></li>
             <li><Link to="/refinance" className="text-muted-foreground hover:text-primary">Refinance Calculator</Link></li>
             <li><Link to="/loan-programs" className="text-muted-foreground hover:text-primary">Loan Programs</Link></li>
-            <li><Link to="/loan-officers" className="text-muted-foreground hover:text-primary">Our Loan Officers</Link></li>
+            <li><Link to="/find-officer" className="text-muted-foreground hover:text-primary">Our Loan Officers</Link></li>
             <li><Link to="/learn" className="text-muted-foreground hover:text-primary">Learning Center</Link></li>
             <li><Link to="/first-time-buyer" className="text-muted-foreground hover:text-primary">First-Time Buyer Guide</Link></li>
             <li><Link to="/process" className="text-muted-foreground hover:text-primary">How It Works</Link></li>

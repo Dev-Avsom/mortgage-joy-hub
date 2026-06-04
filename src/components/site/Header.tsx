@@ -30,7 +30,7 @@ export function Header() {
       to: "/about",
       children: [
         { to: "/about", label: t("nav.ourCompany") },
-        { to: "/loan-officers", label: t("nav.ourTeam") },
+        { to: "/find-officer", label: t("nav.ourTeam") },
         { to: "/reviews", label: t("nav.reviews") },
         { to: "/licenses", label: t("nav.licenses") },
       ],
