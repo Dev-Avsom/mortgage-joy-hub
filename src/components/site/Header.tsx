@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { siteConfig, whatsappLink } from "@/lib/site-config";
 import { Button } from "@/components/ui/button";
-import { ThemeSwitcher } from "@/components/site/ThemeSwitcher";
 import { LanguageSwitcher } from "@/components/site/LanguageSwitcher";
 import {
   DropdownMenu,
@@ -116,7 +115,6 @@ export function Header() {
         </nav>
         <div className="hidden items-center gap-2 xl:flex">
           <LanguageSwitcher compact />
-          <ThemeSwitcher compact />
           <Button asChild variant="outline" size="sm">
             <a href={siteConfig.phoneHref}>
               <Phone className="mr-1 h-4 w-4" /> {t("common.call")}
@@ -133,7 +131,6 @@ export function Header() {
         </div>
         <div className="flex items-center gap-2 xl:hidden">
           <LanguageSwitcher compact />
-          <ThemeSwitcher compact />
           <button
             aria-label="Toggle menu"
             onClick={() => setOpen((v) => !v)}
