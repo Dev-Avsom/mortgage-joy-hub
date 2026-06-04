@@ -57,7 +57,6 @@ export function Header() {
         { to: "/refinance", label: t("nav.refinance") },
         { to: "/learn", label: t("nav.learningCenter") },
         { to: "/faq", label: t("nav.faq") },
-        { to: "/documents", label: t("nav.documentsChecklist") },
       ],
     },
     {
