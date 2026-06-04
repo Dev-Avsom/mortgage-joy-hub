@@ -222,7 +222,8 @@ function NumberField({
     if (value !== lastValue.current) {
       lastValue.current = value;
       const parsed = Number(text);
-      if (!Number.isFinite(parsed) || parsed !== value) {
+      // Don't overwrite an in-progress empty field.
+      if (text !== "" && (!Number.isFinite(parsed) || parsed !== value)) {
         setText(value === 0 ? "" : String(value));
       }
     }
@@ -239,9 +240,9 @@ function NumberField({
           onChange={(e) => {
             const raw = e.target.value.replace(/[^0-9.]/g, "");
             setText(raw);
-            if (raw === "") {
-              onChange(0);
-            } else {
+            // Only propagate valid numbers; keep field empty without pushing 0
+            // (parent schemas may reject 0 and snap the value back).
+            if (raw !== "" && raw !== ".") {
               const n = Number(raw);
               if (Number.isFinite(n)) onChange(n);
             }
