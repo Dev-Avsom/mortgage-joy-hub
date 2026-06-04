@@ -105,9 +105,9 @@ function CalculatorPage() {
       <div className="grid gap-8 lg:grid-cols-[1fr_1.2fr]">
         {/* Inputs */}
         <Card className="space-y-5 p-6">
-          <NumberField label="Home price" value={s.price} onChange={(v) => set({ price: v })} step={1000} prefix="$" />
+          <NumberField label="Home price" value={s.price} onChange={(v) => set({ price: v })} step={1000} min={10000} max={10000000} prefix="$" />
           <div>
-            <NumberField label={`Down payment (${downPct.toFixed(1)}%)`} value={s.down} onChange={(v) => set({ down: v })} step={500} prefix="$" />
+            <NumberField label={`Down payment (${downPct.toFixed(1)}%)`} value={s.down} onChange={(v) => set({ down: v })} step={500} min={0} max={10000000} prefix="$" />
             <Slider
               className="mt-3"
               value={[Math.min(downPct, 100)]}
@@ -117,16 +117,16 @@ function CalculatorPage() {
             />
           </div>
           <div className="grid grid-cols-2 gap-4">
-            <NumberField label="Interest rate (%)" value={s.rate} onChange={(v) => set({ rate: v })} step={0.125} suffix="%" />
+            <NumberField label="Interest rate (%)" value={s.rate} onChange={(v) => set({ rate: v })} step={0.125} min={0} max={25} suffix="%" />
             <SelectField label="Term" value={s.term} onChange={(v) => set({ term: v })} options={[10, 15, 20, 25, 30]} />
           </div>
           <div className="grid grid-cols-2 gap-4">
-            <NumberField label="Property tax /yr" value={s.tax} onChange={(v) => set({ tax: v })} step={100} prefix="$" />
-            <NumberField label="Insurance /yr" value={s.ins} onChange={(v) => set({ ins: v })} step={50} prefix="$" />
+            <NumberField label="Property tax /yr" value={s.tax} onChange={(v) => set({ tax: v })} step={100} min={0} max={200000} prefix="$" />
+            <NumberField label="Insurance /yr" value={s.ins} onChange={(v) => set({ ins: v })} step={50} min={0} max={50000} prefix="$" />
           </div>
           <div className="grid grid-cols-2 gap-4">
-            <NumberField label="HOA /month" value={s.hoa} onChange={(v) => set({ hoa: v })} step={10} prefix="$" />
-            <NumberField label="PMI rate /yr (%)" value={s.pmi} onChange={(v) => set({ pmi: v })} step={0.05} suffix="%" />
+            <NumberField label="HOA /month" value={s.hoa} onChange={(v) => set({ hoa: v })} step={10} min={0} max={5000} prefix="$" />
+            <NumberField label="PMI rate /yr (%)" value={s.pmi} onChange={(v) => set({ pmi: v })} step={0.05} min={0} max={5} suffix="%" />
           </div>
         </Card>
 
@@ -213,8 +213,8 @@ function CalculatorPage() {
 }
 
 function NumberField({
-  label, value, onChange, step = 1, prefix, suffix,
-}: { label: string; value: number; onChange: (v: number) => void; step?: number; prefix?: string; suffix?: string }) {
+  label, value, onChange, step = 1, min, max, prefix, suffix,
+}: { label: string; value: number; onChange: (v: number) => void; step?: number; min?: number; max?: number; prefix?: string; suffix?: string }) {
   const [text, setText] = useState<string>(value === 0 ? "" : String(value));
   // Keep local text in sync when value changes externally (e.g. slider, URL).
   const lastValue = useRef(value);
@@ -240,11 +240,11 @@ function NumberField({
           onChange={(e) => {
             const raw = e.target.value.replace(/[^0-9.]/g, "");
             setText(raw);
-            // Only propagate valid numbers; keep field empty without pushing 0
-            // (parent schemas may reject 0 and snap the value back).
             if (raw !== "" && raw !== ".") {
               const n = Number(raw);
-              if (Number.isFinite(n)) onChange(n);
+              const meetsMin = min === undefined || n >= min;
+              const meetsMax = max === undefined || n <= max;
+              if (Number.isFinite(n) && meetsMin && meetsMax) onChange(n);
             }
           }}
           className={prefix ? "pl-7" : suffix ? "pr-8" : ""}
