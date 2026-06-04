@@ -1,7 +1,7 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { zodValidator, fallback } from "@tanstack/zod-adapter";
 import { z } from "zod";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
@@ -217,8 +217,8 @@ function NumberField({
 }: { label: string; value: number; onChange: (v: number) => void; step?: number; prefix?: string; suffix?: string }) {
   const [text, setText] = useState<string>(value === 0 ? "" : String(value));
   // Keep local text in sync when value changes externally (e.g. slider, URL).
-  const lastValue = React.useRef(value);
-  React.useEffect(() => {
+  const lastValue = useRef(value);
+  useEffect(() => {
     if (value !== lastValue.current) {
       lastValue.current = value;
       const parsed = Number(text);
