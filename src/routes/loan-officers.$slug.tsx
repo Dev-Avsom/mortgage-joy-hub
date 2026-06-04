@@ -40,7 +40,7 @@ export const Route = createFileRoute("/loan-officers/$slug")({
   notFoundComponent: () => (
     <div className="mx-auto max-w-3xl px-4 py-16 text-center">
       <h1 className="text-2xl font-semibold">Loan officer not found</h1>
-      <Link to="/find-officer" className="mt-4 inline-block text-primary hover:underline">
+      <Link to="/loan-officers" className="mt-4 inline-block text-primary hover:underline">
         Browse all loan officers
       </Link>
     </div>
@@ -52,7 +52,7 @@ function ProfilePage() {
   const { officer } = Route.useLoaderData();
   return (
     <div className="mx-auto max-w-6xl px-4 py-10">
-      <Link to="/find-officer" className="inline-flex items-center text-sm text-muted-foreground hover:text-primary">
+      <Link to="/loan-officers" className="inline-flex items-center text-sm text-muted-foreground hover:text-primary">
         <ArrowLeft className="mr-1 h-4 w-4" /> All loan officers
       </Link>
       <div className="mt-6 grid gap-8 lg:grid-cols-[1fr_1.4fr]">
