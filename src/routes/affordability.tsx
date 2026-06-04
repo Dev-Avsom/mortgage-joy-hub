@@ -100,8 +100,8 @@ function Field({
         <Input
           type="number"
           step={step}
-          value={value}
-          onChange={(e) => onChange(Number(e.target.value) || 0)}
+          value={value === 0 ? "" : value}
+          onChange={(e) => onChange(Number(e.target.value.replace(/^0+(?=\d)/, "")) || 0)}
           className={prefix ? "pl-7" : suffix ? "pr-8" : ""}
         />
         {suffix && <span className="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-muted-foreground">{suffix}</span>}
