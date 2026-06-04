@@ -52,11 +52,11 @@ export function RateQuoteWidget() {
       <div className="mt-4 grid grid-cols-2 gap-3">
         <div>
           <Label htmlFor="rq-price" className="text-xs">Home price</Label>
-          <Input id="rq-price" type="number" min={50000} step={5000} value={price} onChange={(e) => setPrice(Number(e.target.value) || 0)} />
+          <Input id="rq-price" type="number" min={50000} step={5000} value={price === 0 ? "" : price} onChange={(e) => setPrice(Number(e.target.value.replace(/^0+(?=\d)/, "")) || 0)} />
         </div>
         <div>
           <Label htmlFor="rq-down" className="text-xs">Down payment</Label>
-          <Input id="rq-down" type="number" min={0} step={1000} value={down} onChange={(e) => setDown(Number(e.target.value) || 0)} />
+          <Input id="rq-down" type="number" min={0} step={1000} value={down === 0 ? "" : down} onChange={(e) => setDown(Number(e.target.value.replace(/^0+(?=\d)/, "")) || 0)} />
         </div>
         <div>
           <Label className="text-xs">Credit</Label>
