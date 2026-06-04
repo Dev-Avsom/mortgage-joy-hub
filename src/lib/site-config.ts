@@ -54,10 +54,6 @@ function isLikelyFemale(name: string): boolean {
   return /(a|i|ee|ya|ka|ana|ina|isha|itha|priya)$/.test(first);
 }
 
-// Static illustrated avatars (uploaded by the brand). One for women, one for men.
-import femaleAvatar from "@/assets/avatar-female.png.asset.json";
-import maleAvatar from "@/assets/avatar-male.png.asset.json";
-
 export function officerAvatarUrl(name: string): string {
   return isLikelyFemale(name) ? femaleAvatar.url : maleAvatar.url;
 }
