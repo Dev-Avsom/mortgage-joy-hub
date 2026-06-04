@@ -56,9 +56,9 @@ function isLikelyFemale(name: string): boolean {
 export function officerAvatarUrl(name: string): string {
   const seed = encodeURIComponent(name.trim() || "officer");
   const female = isLikelyFemale(name);
-  const top = female
-    ? "longHair,longHairStraight,longHairCurly,longHairBob,longHairStraight2"
-    : "shortHair,shortHairShortFlat,shortHairShortRound,shortHairSides,noHair";
-  const facialHair = female ? "blank" : "blank,beardLight,beardMedium,moustacheFancy";
-  return `https://api.dicebear.com/9.x/avataaars/svg?seed=${seed}&top=${top}&facialHairProbability=${female ? 0 : 40}&facialHair=${facialHair}&backgroundColor=ffd5a8,ffe5cc,fde2c9,f7d6b5`;
+  // Flat illustrated persona-style avatars (similar to the reference design):
+  // soft peach background, simple face. We pick a gender-appropriate DiceBear
+  // style so women get feminine illustrations and men get masculine ones.
+  const style = female ? "lorelei" : "micah";
+  return `https://api.dicebear.com/9.x/${style}/svg?seed=${seed}&backgroundColor=fde2c9,ffd5a8,ffe5cc,f7d6b5&backgroundType=solid&radius=50`;
 }
