@@ -59,8 +59,12 @@ function OfficersPage() {
               aria-label={`View ${o.name}'s profile`}
               className="absolute inset-0 z-10"
             />
-            {o.photo_url && (
+            {o.photo_url ? (
               <img src={o.photo_url} alt={`${o.name}, ${o.title ?? "Loan officer"}`} className="h-56 w-full object-cover transition group-hover:opacity-90" loading="lazy" />
+            ) : (
+              <div className="flex h-56 w-full items-center justify-center bg-gradient-to-br from-primary/15 to-primary/5 text-5xl font-semibold text-primary">
+                {o.name.split(" ").map((n) => n[0]).slice(0, 2).join("").toUpperCase()}
+              </div>
             )}
             <div className="p-5">
               <h2 className="text-lg font-semibold group-hover:text-primary">{o.name}</h2>
