@@ -172,42 +172,12 @@
 }
 
 /* ===========================================================
-   THEME: BROWN / ORANGE (Ensure Home Loans alt brand)
-   Toggle via <html data-theme="brown"> — set by ThemeSwitcher.
+   THEME: BROWN / ORANGE (Ensure Home Loans brand) — only theme
    =========================================================== */
-/* ===========================================================
-   ALT THEME: BLUE — opt-in via <html data-theme="blue">
-   =========================================================== */
-[data-theme="blue"] {
-  --background: oklch(0.99 0.005 250);
-  --foreground: oklch(0.18 0.04 250);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.18 0.04 250);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.18 0.04 250);
-  --primary: oklch(0.28 0.09 255);
-  --primary-foreground: oklch(0.98 0.005 250);
-  --primary-glow: oklch(0.42 0.13 255);
-  --secondary: oklch(0.95 0.015 250);
-  --secondary-foreground: oklch(0.22 0.06 255);
-  --muted: oklch(0.96 0.01 250);
-  --muted-foreground: oklch(0.5 0.03 255);
-  --accent: oklch(0.78 0.14 75);
-  --accent-foreground: oklch(0.2 0.05 255);
-  --gradient-hero: linear-gradient(135deg, oklch(0.22 0.07 255), oklch(0.42 0.13 255));
-  --gradient-accent: linear-gradient(135deg, oklch(0.42 0.13 255), oklch(0.62 0.14 240));
-  --shadow-elegant: 0 10px 30px -12px oklch(0.28 0.09 255 / 0.25);
-  --shadow-card: 0 4px 16px -6px oklch(0.28 0.09 255 / 0.12);
-  --border: oklch(0.9 0.012 250);
-  --input: oklch(0.92 0.01 250);
-  --ring: oklch(0.42 0.13 255);
-}
 
-/* Logo swap based on theme — brown is default */
+/* Logo — brown only */
 .brand-logo-brown { display: inline-block; }
 .brand-logo-blue { display: none; }
-[data-theme="blue"] .brand-logo-brown { display: none; }
-[data-theme="blue"] .brand-logo-blue { display: inline-block; }
 
 /* ===========================================================
    ANIMATION UTILITIES — modern & lively motion system
