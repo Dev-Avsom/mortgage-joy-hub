@@ -1,3 +1,6 @@
+import femaleAvatar from "@/assets/avatar-female.png.asset.json";
+import maleAvatar from "@/assets/avatar-male.png.asset.json";
+
 export const siteConfig = {
   brand: "Ensure Home Loans",
   tagline: "Your one stop shop for home loans.",
@@ -51,14 +54,6 @@ function isLikelyFemale(name: string): boolean {
   return /(a|i|ee|ya|ka|ana|ina|isha|itha|priya)$/.test(first);
 }
 
-// Returns a deterministic illustrated avatar URL based on the officer's
-// name. Uses DiceBear's "avataaars" style with gender-appropriate options.
 export function officerAvatarUrl(name: string): string {
-  const seed = encodeURIComponent(name.trim() || "officer");
-  const female = isLikelyFemale(name);
-  // Flat illustrated persona-style avatars (similar to the reference design):
-  // soft peach background, simple face. We pick a gender-appropriate DiceBear
-  // style so women get feminine illustrations and men get masculine ones.
-  const style = female ? "lorelei" : "micah";
-  return `https://api.dicebear.com/9.x/${style}/svg?seed=${seed}&backgroundColor=fde2c9,ffd5a8,ffe5cc,f7d6b5&backgroundType=solid&radius=50`;
+  return isLikelyFemale(name) ? femaleAvatar.url : maleAvatar.url;
 }
