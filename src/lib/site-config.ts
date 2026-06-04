@@ -1,3 +1,6 @@
+import femaleAvatar from "@/assets/avatar-female.png.asset.json";
+import maleAvatar from "@/assets/avatar-male.png.asset.json";
+
 export const siteConfig = {
   brand: "Ensure Home Loans",
   tagline: "Your one stop shop for home loans.",
