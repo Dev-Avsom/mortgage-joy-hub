@@ -3,7 +3,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Phone, MessageCircle, Mail, ArrowLeft, ArrowRight, Linkedin, Facebook, Instagram, Twitter, Globe } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
-import { normalizeWhatsApp } from "@/lib/site-config";
+import { normalizeWhatsApp, officerAvatarUrl } from "@/lib/site-config";
 import { US_STATES } from "@/lib/us-states";
 
 const DEFAULT_APPLY_URL = "https://ensurehomeloans.my1003app.com/950536/register?time=1779206112172";
@@ -57,13 +57,12 @@ function ProfilePage() {
       </Link>
       <div className="mt-6 grid gap-8 lg:grid-cols-[1fr_1.4fr]">
         <Card className="overflow-hidden p-0">
-          {officer.photo_url ? (
-            <img src={officer.photo_url} alt={officer.name} className="aspect-square w-full object-cover" />
-          ) : (
-            <div className="flex aspect-square w-full items-center justify-center bg-gradient-to-br from-primary/15 to-primary/5 text-7xl font-semibold text-primary">
-              {officer.name.split(" ").map((n: string) => n[0]).slice(0, 2).join("").toUpperCase()}
-            </div>
-          )}
+          <img
+            src={officer.photo_url && officer.photo_url.trim() ? officer.photo_url : officerAvatarUrl(officer.name)}
+            alt={officer.name}
+            className="aspect-square w-full bg-gradient-to-br from-primary/10 to-primary/5 object-cover"
+            onError={(e) => { e.currentTarget.src = officerAvatarUrl(officer.name); }}
+          />
           <div className="space-y-2 p-5">
             {officer.phone && (
               <Button asChild variant="outline" className="w-full">
