@@ -56,9 +56,13 @@ function isLikelyFemale(name: string): boolean {
 export function officerAvatarUrl(name: string): string {
   const seed = encodeURIComponent(name.trim() || "officer");
   const female = isLikelyFemale(name);
-  const top = female
-    ? "longHair,longHairStraight,longHairCurly,longHairBob,longHairStraight2"
-    : "shortHair,shortHairShortFlat,shortHairShortRound,shortHairSides,noHair";
-  const facialHair = female ? "blank" : "blank,beardLight,beardMedium,moustacheFancy";
-  return `https://api.dicebear.com/9.x/avataaars/svg?seed=${seed}&top=${top}&facialHairProbability=${female ? 0 : 40}&facialHair=${facialHair}&backgroundColor=ffd5a8,ffe5cc,fde2c9,f7d6b5`;
+  // Flat illustrated persona-style avatars (similar to the reference design):
+  // soft peach background, simple face, gendered hair.
+  const hair = female
+    ? "long01,long02,long03,long04,long05,long06,long07,long08,long09,long10,long11,long12,long13,long14,long15,long16,long17,long18,long19,long20,long21"
+    : "short01,short02,short03,short04,short05,short06,short07,short08,short09,short10,short11,short12,short13,short14,short15,short16,short17,short18,short19";
+  const facialHair = female
+    ? "beardMustache[0]"
+    : "beardMustache[0],beardMustache[1]";
+  return `https://api.dicebear.com/9.x/personas/svg?seed=${seed}&hair=${hair}&facialHair=${facialHair}&backgroundColor=fde2c9,ffd5a8,ffe5cc,f7d6b5&backgroundType=solid&radius=50`;
 }
