@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { supabase } from "@/integrations/supabase/client";
-import { normalizeWhatsApp } from "@/lib/site-config";
+import { normalizeWhatsApp, officerAvatarUrl } from "@/lib/site-config";
 import type { Tables } from "@/integrations/supabase/types";
 import { Phone, MessageCircle, MapPin, Search } from "lucide-react";
 
@@ -145,13 +145,13 @@ function FindOfficerPage() {
               className="absolute inset-0 z-10"
             />
             <div className="flex gap-4 p-5">
-              {o.photo_url ? (
-                <img src={o.photo_url} alt={o.name} className="h-20 w-20 flex-none rounded-full object-cover transition group-hover:opacity-90" loading="lazy" />
-              ) : (
-                <div className="flex h-20 w-20 flex-none items-center justify-center rounded-full bg-gradient-to-br from-primary/15 to-primary/5 text-xl font-semibold text-primary">
-                  {o.name.split(" ").map((n) => n[0]).slice(0, 2).join("").toUpperCase()}
-                </div>
-              )}
+              <img
+                src={o.photo_url && o.photo_url.trim() ? o.photo_url : officerAvatarUrl(o.name)}
+                alt={o.name}
+                className="h-20 w-20 flex-none rounded-full bg-gradient-to-br from-primary/10 to-primary/5 object-cover transition group-hover:opacity-90"
+                loading="lazy"
+                onError={(e) => { e.currentTarget.src = officerAvatarUrl(o.name); }}
+              />
               <div className="min-w-0">
                 <h2 className="truncate text-base font-semibold group-hover:text-primary">{o.name}</h2>
                 <p className="truncate text-xs text-muted-foreground">{o.title}</p>

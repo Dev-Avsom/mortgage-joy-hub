@@ -28,3 +28,37 @@ export function normalizeWhatsApp(input: string | null | undefined): string {
   if (digits.length === 10) return `1${digits}`;
   return digits;
 }
+
+// Common female first names (lowercase). Extend as needed. Used to pick a
+// gendered illustrated avatar when an officer has no photo.
+const FEMALE_NAMES = new Set<string>([
+  "dimple","durga","priya","anita","sunita","kavita","pooja","neha","ritu","sneha",
+  "sara","sarah","emily","emma","olivia","ava","mia","sophia","isabella","amelia",
+  "jessica","jennifer","linda","mary","patricia","susan","karen","nancy","lisa","betty",
+  "anjali","aishwarya","deepika","divya","meera","radha","sita","swati","sangeeta","seema",
+  "rekha","reema","reshma","shreya","shilpa","shweta","sonia","sonal","sonali","tanvi",
+  "asha","usha","uma","lakshmi","laxmi","kalpana","kiran","kirti","jyoti","jaya",
+  "anu","anuradha","aruna","bhavana","chitra","gita","geeta","hema","indira","ishita",
+  "manju","madhuri","mamta","manisha","nisha","nidhi","preeti","pratibha","rashmi","ruchi",
+  "sushma","savita","shanti","shobha","smita","supriya","vandana","veena","vidya","vibha",
+]);
+
+function isLikelyFemale(name: string): boolean {
+  const first = name.trim().split(/\s+/)[0]?.toLowerCase() ?? "";
+  if (!first) return false;
+  if (FEMALE_NAMES.has(first)) return true;
+  // Common female-name endings (heuristic; not perfect).
+  return /(a|i|ee|ya|ka|ana|ina|isha|itha|priya)$/.test(first);
+}
+
+// Returns a deterministic illustrated avatar URL based on the officer's
+// name. Uses DiceBear's "avataaars" style with gender-appropriate options.
+export function officerAvatarUrl(name: string): string {
+  const seed = encodeURIComponent(name.trim() || "officer");
+  const female = isLikelyFemale(name);
+  const top = female
+    ? "longHair,longHairStraight,longHairCurly,longHairBob,longHairStraight2"
+    : "shortHair,shortHairShortFlat,shortHairShortRound,shortHairSides,noHair";
+  const facialHair = female ? "blank" : "blank,beardLight,beardMedium,moustacheFancy";
+  return `https://api.dicebear.com/9.x/avataaars/svg?seed=${seed}&top=${top}&facialHairProbability=${female ? 0 : 40}&facialHair=${facialHair}&backgroundColor=ffd5a8,ffe5cc,fde2c9,f7d6b5`;
+}
