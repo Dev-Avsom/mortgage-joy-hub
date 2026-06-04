@@ -57,8 +57,12 @@ function ProfilePage() {
       </Link>
       <div className="mt-6 grid gap-8 lg:grid-cols-[1fr_1.4fr]">
         <Card className="overflow-hidden p-0">
-          {officer.photo_url && (
+          {officer.photo_url ? (
             <img src={officer.photo_url} alt={officer.name} className="aspect-square w-full object-cover" />
+          ) : (
+            <div className="flex aspect-square w-full items-center justify-center bg-gradient-to-br from-primary/15 to-primary/5 text-7xl font-semibold text-primary">
+              {officer.name.split(" ").map((n: string) => n[0]).slice(0, 2).join("").toUpperCase()}
+            </div>
           )}
           <div className="space-y-2 p-5">
             {officer.phone && (
