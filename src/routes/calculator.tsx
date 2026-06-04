@@ -1,7 +1,7 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { zodValidator, fallback } from "@tanstack/zod-adapter";
 import { z } from "zod";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
@@ -215,6 +215,18 @@ function CalculatorPage() {
 function NumberField({
   label, value, onChange, step = 1, prefix, suffix,
 }: { label: string; value: number; onChange: (v: number) => void; step?: number; prefix?: string; suffix?: string }) {
+  const [text, setText] = useState<string>(value === 0 ? "" : String(value));
+  // Keep local text in sync when value changes externally (e.g. slider, URL).
+  const lastValue = useRef(value);
+  useEffect(() => {
+    if (value !== lastValue.current) {
+      lastValue.current = value;
+      const parsed = Number(text);
+      if (!Number.isFinite(parsed) || parsed !== value) {
+        setText(value === 0 ? "" : String(value));
+      }
+    }
+  }, [value, text]);
   return (
     <div>
       <Label>{label}</Label>
@@ -223,8 +235,17 @@ function NumberField({
         <Input
           type="number"
           step={step}
-          value={Number.isFinite(value) ? value : 0}
-          onChange={(e) => onChange(Number(e.target.value) || 0)}
+          value={text}
+          onChange={(e) => {
+            const raw = e.target.value;
+            setText(raw);
+            if (raw === "") {
+              onChange(0);
+            } else {
+              const n = Number(raw);
+              if (Number.isFinite(n)) onChange(n);
+            }
+          }}
           className={prefix ? "pl-7" : suffix ? "pr-8" : ""}
         />
         {suffix && <span className="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-muted-foreground">{suffix}</span>}
