@@ -32,44 +32,26 @@ export function normalizeWhatsApp(input: string | null | undefined): string {
   return digits;
 }
 
-// Explicit female first names (lowercase). Default is male — only flag female
-// when the first name is clearly feminine. Avoids misclassifying common
-// male Indian names that end in "a" (Krishna, Ravi, Balachandra, etc.).
+// Common female first names (lowercase). Extend as needed. Used to pick a
+// gendered illustrated avatar when an officer has no photo.
 const FEMALE_NAMES = new Set<string>([
-  // Western
+  "dimple","durga","priya","anita","sunita","kavita","pooja","neha","ritu","sneha",
   "sara","sarah","emily","emma","olivia","ava","mia","sophia","isabella","amelia",
   "jessica","jennifer","linda","mary","patricia","susan","karen","nancy","lisa","betty",
-  "kathy","samantha",
-  // South Asian
-  "amita","anita","anitha","anjali","anjukumari","anuja","archana","asha","aishwarya",
-  "atika","beena","bhavana","chitra","deepika","dimple","divya","durga","geeta","gita",
-  "hema","indira","indradevi","ishita","jaya","jyoti","kalika","kalpana","keerthi",
-  "kirithika","kirti","lakshmi","laxmi","lavanya","laya","madhuri","mamta","manisha",
-  "manju","meera","munmun","nagammai","nidhi","nisha","parimala","pavani","pavithra",
-  "pooja","prashanthi","pratibha","preeti","prem","radha","radhika","rajalakshmi",
-  "ramya","rashmi","rekha","reema","reshma","ritu","roopa","ruchi","saileela","sakhi",
-  "sangeeta","sarada","saritha","savita","seema","shalinee","shanti","sharanpreet",
-  "shilpa","shobha","shreya","shweta","sireesha","sirisha","sita","smita","sneha",
-  "sofiya","sonal","sonali","sonia","soumya","sowmya","sreelakshmi","sridevi",
-  "srilakshmi","srilekha","srividya","subha","sunita","sunitha","supriya","surekha",
-  "sushma","swathi","swati","tanvi","thanuja","uma","usha","vandana","veena","vibha",
-  "vidya","vishala","yojana","laxmi","saritha","sri",
-]);
-
-// Explicit female tokens appearing anywhere in the full name (lowercase).
-const FEMALE_TOKENS = new Set<string>([
-  "devi","kumari","lakshmi","laxmi","priya","rani",
+  "anjali","aishwarya","deepika","divya","meera","radha","sita","swati","sangeeta","seema",
+  "rekha","reema","reshma","shreya","shilpa","shweta","sonia","sonal","sonali","tanvi",
+  "asha","usha","uma","lakshmi","laxmi","kalpana","kiran","kirti","jyoti","jaya",
+  "anu","anuradha","aruna","bhavana","chitra","gita","geeta","hema","indira","ishita",
+  "manju","madhuri","mamta","manisha","nisha","nidhi","preeti","pratibha","rashmi","ruchi",
+  "sushma","savita","shanti","shobha","smita","supriya","vandana","veena","vidya","vibha",
 ]);
 
 function isLikelyFemale(name: string): boolean {
-  const parts = name.trim().toLowerCase().split(/\s+/);
-  const first = parts[0] ?? "";
+  const first = name.trim().split(/\s+/)[0]?.toLowerCase() ?? "";
   if (!first) return false;
   if (FEMALE_NAMES.has(first)) return true;
-  for (const p of parts) {
-    if (FEMALE_TOKENS.has(p)) return true;
-  }
-  return false;
+  // Common female-name endings (heuristic; not perfect).
+  return /(a|i|ee|ya|ka|ana|ina|isha|itha|priya)$/.test(first);
 }
 
 export function officerAvatarUrl(name: string): string {
