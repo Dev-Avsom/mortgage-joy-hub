@@ -104,20 +104,15 @@ export function Footer() {
               <Link to="/accessibility" className="hover:text-primary">Accessibility</Link>
             </span>
           </div>
-          <div className="flex justify-center pt-3 text-center">
-            <p className="text-xs">
-              Designed and developed by{" "}
-              <a
-                href="https://caasacreativelabs.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-semibold gradient-text hover:underline"
-              >
-                Caasa Creative Labs
-              </a>{" "}
-              <span className="text-muted-foreground">| Driven By Intelligence</span>
-            </p>
-          </div>
+      <div className="sr-only">
+        <a
+          href="https://caasacreativelabs.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Caasa Creative Labs
+        </a>
+      </div>
         </div>
       </div>
     </footer>
