@@ -6,8 +6,8 @@ import { TrendingUp, DollarSign, Users, Sparkles, Award, Headphones } from "luci
 export const Route = createFileRoute("/join")({
   head: () => ({
     meta: [
-      { title: "Join Our Team — Loan Officer Careers | HomeBridge Mortgage" },
-      { name: "description", content: "Build your mortgage business with HomeBridge — top splits, in-house ops, marketing, and 230+ lender access." },
+      { title: "Join Our Team — Loan Officer Careers | Ensure Home Loans" },
+      { name: "description", content: "Build your mortgage business with Ensure Home Loans — top splits, in-house ops, marketing, and 230+ lender access." },
     ],
   }),
   component: JoinPage,

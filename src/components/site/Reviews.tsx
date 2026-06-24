@@ -57,7 +57,7 @@ export function Reviews() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "FinancialService",
-            name: "HomeBridge Mortgage",
+            name: "Ensure Home Loans",
             aggregateRating: {
               "@type": "AggregateRating",
               ratingValue: "4.9",

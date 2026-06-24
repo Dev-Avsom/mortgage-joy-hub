@@ -7,9 +7,9 @@ import { Reveal } from "@/components/site/Reveal";
 export const Route = createFileRoute("/reviews")({
   head: () => ({
     meta: [
-      { title: "Client Reviews — HomeBridge Mortgage" },
-      { name: "description", content: "Real reviews from HomeBridge Mortgage clients across the US — purchase, refinance, and first-time buyers." },
-      { property: "og:title", content: "Client Reviews — HomeBridge Mortgage" },
+      { title: "Client Reviews — Ensure Home Loans" },
+      { name: "description", content: "Real reviews from Ensure Home Loans clients across the US — purchase, refinance, and first-time buyers." },
+      { property: "og:title", content: "Client Reviews — Ensure Home Loans" },
       { property: "og:description", content: "5-star reviews from real homeowners." },
     ],
   }),

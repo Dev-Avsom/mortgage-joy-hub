@@ -15,7 +15,7 @@ export const Route = createFileRoute("/learn/$slug")({
     if (!a) return { meta: [{ title: "Article not found" }] };
     return {
       meta: [
-        { title: `${a.title} — HomeBridge Mortgage` },
+        { title: `${a.title} — Ensure Home Loans` },
         { name: "description", content: a.description },
         { property: "og:title", content: a.title },
         { property: "og:description", content: a.description },

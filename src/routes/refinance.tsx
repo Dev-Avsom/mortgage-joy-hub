@@ -10,7 +10,7 @@ import { TrendingDown, ArrowRight, Calendar } from "lucide-react";
 export const Route = createFileRoute("/refinance")({
   head: () => ({
     meta: [
-      { title: "Refinance Calculator — HomeBridge Mortgage" },
+      { title: "Refinance Calculator — Ensure Home Loans" },
       { name: "description", content: "Should you refinance? See your new monthly payment, breakeven point, and lifetime savings." },
       { property: "og:title", content: "Refinance Calculator" },
       { property: "og:description", content: "Compare your current mortgage to a refi. See breakeven and lifetime savings." },

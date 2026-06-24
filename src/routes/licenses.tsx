@@ -6,8 +6,8 @@ import { siteConfig } from "@/lib/site-config";
 export const Route = createFileRoute("/licenses")({
   head: () => ({
     meta: [
-      { title: "State Licenses & NMLS — HomeBridge Mortgage" },
-      { name: "description", content: "HomeBridge Mortgage state licenses, NMLS Consumer Access verification, and Equal Housing Lender disclosures." },
+      { title: "State Licenses & NMLS — Ensure Home Loans" },
+      { name: "description", content: "Ensure Home Loans state licenses, NMLS Consumer Access verification, and Equal Housing Lender disclosures." },
     ],
   }),
   component: LicensesPage,

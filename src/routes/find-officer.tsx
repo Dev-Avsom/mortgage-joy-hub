@@ -14,7 +14,7 @@ type Officer = Tables<"loan_officers">;
 export const Route = createFileRoute("/find-officer")({
   head: () => ({
     meta: [
-      { title: "Find a Loan Officer Near You — HomeBridge Mortgage" },
+      { title: "Find a Loan Officer Near You — Ensure Home Loans" },
       { name: "description", content: "Search licensed mortgage loan officers by ZIP, state, language, or specialty." },
     ],
   }),

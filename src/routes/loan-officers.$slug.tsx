@@ -23,13 +23,13 @@ export const Route = createFileRoute("/loan-officers/$slug")({
   head: ({ loaderData }) => ({
     meta: loaderData
       ? [
-          { title: `${loaderData.officer.name} — Loan Officer | HomeBridge Mortgage` },
+          { title: `${loaderData.officer.name} — Loan Officer | Ensure Home Loans` },
           { name: "description", content: loaderData.officer.bio?.slice(0, 155) ?? "Licensed mortgage loan officer." },
           { property: "og:title", content: `${loaderData.officer.name} — Loan Officer` },
           { property: "og:description", content: loaderData.officer.bio?.slice(0, 155) ?? "Licensed mortgage loan officer." },
           ...(loaderData.officer.photo_url ? [{ property: "og:image", content: loaderData.officer.photo_url }] : []),
         ]
-      : [{ title: "Loan Officer — HomeBridge Mortgage" }],
+      : [{ title: "Loan Officer — Ensure Home Loans" }],
   }),
   errorComponent: ({ error }) => (
     <div className="mx-auto max-w-3xl px-4 py-16 text-center">

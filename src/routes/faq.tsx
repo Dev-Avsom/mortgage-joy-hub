@@ -6,9 +6,9 @@ import { Button } from "@/components/ui/button";
 export const Route = createFileRoute("/faq")({
   head: () => ({
     meta: [
-      { title: "Mortgage FAQ — HomeBridge Mortgage" },
+      { title: "Mortgage FAQ — Ensure Home Loans" },
       { name: "description", content: "Answers to common questions about mortgages, rates, pre-qualification, closing costs, and the loan process." },
-      { property: "og:title", content: "Mortgage FAQ — HomeBridge Mortgage" },
+      { property: "og:title", content: "Mortgage FAQ — Ensure Home Loans" },
       { property: "og:description", content: "Answers to common mortgage questions." },
     ],
   }),

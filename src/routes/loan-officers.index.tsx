@@ -12,7 +12,7 @@ type Officer = Tables<"loan_officers">;
 export const Route = createFileRoute("/loan-officers/")({
   head: () => ({
     meta: [
-      { title: "Our Loan Officers — HomeBridge Mortgage" },
+      { title: "Our Loan Officers — Ensure Home Loans" },
       { name: "description", content: "Meet our licensed mortgage loan officers and find the right expert for your home loan." },
     ],
   }),

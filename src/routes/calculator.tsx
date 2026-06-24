@@ -28,7 +28,7 @@ export const Route = createFileRoute("/calculator")({
   validateSearch: zodValidator(schema),
   head: () => ({
     meta: [
-      { title: "Mortgage Calculator — HomeBridge Mortgage" },
+      { title: "Mortgage Calculator — Ensure Home Loans" },
       { name: "description", content: "Calculate your monthly mortgage payment with taxes, insurance, PMI and HOA. See full amortization." },
     ],
   }),
@@ -65,7 +65,7 @@ function CalculatorPage() {
     const { default: jsPDF } = await import("jspdf");
     const doc = new jsPDF();
     doc.setFontSize(18);
-    doc.text("HomeBridge Mortgage — Payment Estimate", 14, 18);
+    doc.text("Ensure Home Loans — Payment Estimate", 14, 18);
     doc.setFontSize(11);
     let y = 30;
     const line = (label: string, val: string) => {
