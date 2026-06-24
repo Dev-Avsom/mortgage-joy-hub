@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
-import { Phone, X, Send, ChevronUp } from "lucide-react";
+import { Phone, X, ChevronUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Link } from "@tanstack/react-router";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { z } from "zod";
@@ -34,6 +36,7 @@ export function CallbackWidget() {
   const [sending, setSending] = useState(false);
   const [agent, setAgent] = useState(AGENTS[0]);
   const [online, setOnline] = useState(false);
+  const [consent, setConsent] = useState(false);
 
   useEffect(() => {
     setAgent(AGENTS[Math.floor(Math.random() * AGENTS.length)]);
@@ -42,6 +45,10 @@ export function CallbackWidget() {
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (!consent) {
+      toast.error("Please agree to the consent terms to proceed.");
+      return;
+    }
     const fd = new FormData(e.currentTarget);
     const parsed = schema.safeParse({
       name: fd.get("name"),
@@ -144,7 +151,22 @@ export function CallbackWidget() {
                 <option>Tomorrow morning</option>
               </select>
             </div>
-            <Button type="submit" disabled={sending} className="w-full">
+            <div className="flex items-start gap-2">
+              <Checkbox
+                id="cb-consent"
+                checked={consent}
+                onCheckedChange={(c) => setConsent(c === true)}
+                className="mt-0.5"
+              />
+              <Label htmlFor="cb-consent" className="cursor-pointer text-[11px] leading-tight text-muted-foreground">
+                I agree to the{" "}
+                <Link to="/privacy" className="underline hover:text-foreground">Privacy Policy</Link>,{" "}
+                <Link to="/terms" className="underline hover:text-foreground">Terms of Service</Link>, and{" "}
+                <Link to="/tcpa" className="underline hover:text-foreground">TCPA Consent</Link>.{" "}
+                I consent to be contacted by phone and text at the number provided. Message and data rates may apply.
+              </Label>
+            </div>
+            <Button type="submit" disabled={sending || !consent} className="w-full">
               {sending ? "Sending…" : <><Phone className="mr-1.5 h-3.5 w-3.5" /> Request My Callback</>}
             </Button>
             <button
