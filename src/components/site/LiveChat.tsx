@@ -87,7 +87,7 @@ export function LiveChat() {
       },
       message: parsed.data.message,
     });
-    toast.success("Sent! A loan officer will reply within 5 minutes.");
+    toast.success("Sent! A licensed loan officer will reply shortly.");
     (e.target as HTMLFormElement).reset();
     setOpen(false);
   }
