@@ -59,23 +59,23 @@
     "noResults": "No results."
   },
   "home": {
-    "badge": "Licensed in 50 States · NMLS {{nmls}}",
+    "badge": "Licensed in multiple states · NMLS {{nmls}}",
     "heroTitle1": "Your Dream Home,",
     "heroTitle2": "Funded Faster",
-    "heroSub": "Compare live rates from <strong>230+ wholesale lenders</strong> in 60 seconds and talk to a licensed loan officer — no spam, no pressure.",
+    "heroSub": "Review <strong>available loan options</strong> through our approved lender network and talk to a licensed loan officer — no spam, no pressure.",
     "bullet1": "Soft credit check — won't affect your score",
-    "bullet2": "Close in as little as 15 days",
+    "bullet2": "Closing timelines vary by loan, documentation, and underwriting",
     "bullet3": "Real humans, available 7 days a week",
-    "rated": "10,000+ Families Funded",
-    "funded": "$2B+ Funded",
-    "fundedPrefix": "Nearing",
-    "fundedSub": "Across 29+ states",
+    "rated": "Verified borrower reviews",
+    "funded": "Loan options across approved lenders",
+    "fundedPrefix": "",
+    "fundedSub": "Licensed in multiple states",
     "whyUs": "Why Us",
     "smarterTitle1": "A Smarter Way to ",
     "smarterTitle2": "Borrow",
     "valueProps": {
       "ratesTitle": "Competitive Rates",
-      "ratesBody": "We shop multiple lenders to find the best rate for your profile.",
+      "ratesBody": "We review available loan options from our approved lender network based on your profile and underwriting.",
       "noSurpriseTitle": "No Surprises",
       "noSurpriseBody": "Transparent fees and a clear timeline from application to closing.",
       "humansTitle": "Real Loan Officers",
@@ -83,7 +83,7 @@
     },
     "viewAllPrograms": "View All Loan Programs",
     "ctaTitle": "Ready to Make It Official?",
-    "ctaSub": "Get pre-qualified in minutes and lock in today's best rate."
+    "ctaSub": "Start a pre-qualification request online in minutes. Pre-qualification is subject to review."
   },
   "footer": {
     "explore": "Explore",
