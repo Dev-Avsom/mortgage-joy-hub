@@ -24,7 +24,7 @@ function LicensesPage() {
     <div className="mx-auto max-w-4xl px-4 py-12">
       <h1 className="text-3xl font-bold md:text-4xl">State Licenses &amp; NMLS</h1>
       <p className="mt-2 max-w-2xl text-muted-foreground">
-        {siteConfig.brand} is a licensed mortgage lender / broker. Verify our credentials below.
+        {siteConfig.brand} is a licensed mortgage lender / broker. Licensed in multiple states. Licensing information is available through NMLS Consumer Access — verify our credentials below.
       </p>
 
       <Card className="mt-8 p-6">
