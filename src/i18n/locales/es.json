@@ -125,11 +125,11 @@
   },
   "chat": {
     "title": "Habla con un Oficial de Préstamos",
-    "onlineMsg": "En línea — normalmente responde en 5 min",
+    "onlineMsg": "En línea — responde durante el horario laboral",
     "offlineMsg": "Fuera de línea — responderemos en la próxima hora hábil",
     "yourMessage": "Tu mensaje",
     "messagePlaceholder": "Cuéntanos cómo podemos ayudar…",
-    "sentToast": "¡Enviado! Un oficial de préstamos responderá en 5 minutos.",
+    "sentToast": "¡Enviado! Un oficial de préstamos licenciado responderá pronto.",
     "errorToast": "No se pudo enviar. Intenta WhatsApp o teléfono.",
     "validToast": "Por favor complete todos los campos con teléfono y correo válidos."
   },
@@ -180,7 +180,7 @@
   },
   "stickyCTA": {
     "title": "¿Listo para empezar?",
-    "subtitle": "Pre-califícate en 5 minutos."
+    "subtitle": "Inicia una solicitud de pre-calificación en línea."
   },
   "bestRate": "Mejor Tasa Hoy",
   "comparison": {
@@ -195,7 +195,7 @@
     "title": "Tu Camino al Cierre",
     "subtitle": "Desde la solicitud hasta las llaves — qué esperar en cada paso.",
     "step1Title": "Pre-calificar",
-    "step1Body": "Consulta suave de crédito, info básica de ingresos. Toma 5 minutos.",
+    "step1Body": "Consulta suave de crédito e info básica de ingresos. La pre-calificación está sujeta a revisión.",
     "step2Title": "Encuentra tu casa",
     "step2Body": "Compra con confianza usando tu carta de pre-calificación.",
     "step3Title": "Enviar solicitud",
@@ -453,9 +453,9 @@
   },
   "getPrequalified": {
     "metaTitle": "Pre-Calificarse — Ensure Home Loans",
-    "metaDesc": "Pre-califícate en 5 minutos con una consulta suave de crédito. Sin impacto a tu puntaje.",
+    "metaDesc": "Inicia una solicitud de pre-calificación en línea con consulta suave de crédito. Sujeto a revisión.",
     "title": "Pre-Calificarse",
-    "subtitle": "Consulta suave de crédito. Sin impacto a tu puntaje. Toma 5 minutos."
+    "subtitle": "Consulta suave de crédito. La pre-calificación está sujeta a revisión y no es una aprobación de préstamo."
   },
   "firstTimeBuyer": {
     "metaTitle": "Guía para Comprador Primerizo — Ensure Home Loans",
@@ -474,9 +474,9 @@
     "metaDesc": "Reseñas reales de clientes de Ensure Home Loans en EE.UU. — compra, refinanciamiento y compradores primerizos.",
     "title1": "Lo que",
     "title2": "Dicen los Clientes",
-    "rating": "Promedio de 4.9 de más de 1,200 reseñas verificadas",
-    "joinTitle": "Únete a Más de 1,200 Propietarios Felices",
-    "joinBody": "Pre-califícate en 5 minutos. Consulta suave de crédito, sin obligación."
+    "rating": "Reseñas verificadas de prestatarios",
+    "joinTitle": "Únete a Nuestros Propietarios Felices",
+    "joinBody": "Inicia una solicitud de pre-calificación en línea. Consulta suave de crédito, sin obligación."
   },
   "press": {
     "metaTitle": "Prensa y Medios — Ensure Home Loans",
