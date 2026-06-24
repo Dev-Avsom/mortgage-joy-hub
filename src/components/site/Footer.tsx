@@ -101,15 +101,8 @@ export function Footer() {
             or email about loan products. Message and data rates may apply. Consent is not a condition of service.
             See our Privacy Policy for details on TCPA compliance.
           </p>
-          <div className="flex flex-wrap items-center justify-between gap-2 pt-2">
+          <div className="flex flex-wrap items-center gap-2 pt-2">
             <span>© {new Date().getFullYear()} {siteConfig.brand}. All rights reserved.</span>
-            <span className="space-x-3">
-              <Link to="/privacy" className="hover:text-primary">Privacy</Link>
-              <Link to="/terms" className="hover:text-primary">Terms</Link>
-              <Link to="/tcpa" className="hover:text-primary">TCPA</Link>
-              <Link to="/licenses" className="hover:text-primary">Licenses</Link>
-              <Link to="/accessibility" className="hover:text-primary">Accessibility</Link>
-            </span>
           </div>
       <div className="sr-only">
         <a
