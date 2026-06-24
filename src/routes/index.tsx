@@ -3,6 +3,7 @@ import { Users, ShieldCheck, TrendingDown, ArrowRight, FileCheck, CheckCircle2, 
 import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/lib/site-config";
 import { Reviews } from "@/components/site/Reviews";
+import { HeroCalculator } from "@/components/site/HeroCalculator";
 
 import { GradientOrb } from "@/components/site/GradientOrb";
 import { Reveal } from "@/components/site/Reveal";
@@ -94,19 +95,8 @@ function HomePage() {
           </div>
           <div className="animate-scale-in relative" style={{ animationDelay: "300ms" }}>
             <div aria-hidden className="absolute -inset-3 rounded-3xl bg-white/5 blur-2xl" />
-            <div className="relative rounded-2xl border border-white/15 bg-white/5 p-8 text-white backdrop-blur">
-              <h2 className="text-2xl font-semibold">Start a pre-qualification request</h2>
-              <p className="mt-3 text-sm text-white/80">
-                Start online in minutes. Pre-qualification is subject to review and is not a loan approval or commitment to lend. Actual rates, terms, and fees depend on credit profile, loan program, loan amount, property type, occupancy, market conditions, and underwriting approval.
-              </p>
-              <div className="mt-5 flex flex-wrap gap-2">
-                <Button asChild size="lg" className="bg-[oklch(0.84_0.13_75)] text-[oklch(0.2_0.05_255)] hover:opacity-90">
-                  <Link to="/get-prequalified"><FileCheck className="mr-2 h-5 w-5" /> {t("common.getPrequalified")}</Link>
-                </Button>
-                <Button asChild size="lg" variant="outline" className="border-white/30 bg-white/10 text-white hover:bg-white/20">
-                  <Link to="/contact">{t("nav.contact")}</Link>
-                </Button>
-              </div>
+            <div className="relative">
+              <HeroCalculator />
             </div>
           </div>
         </div>
