@@ -104,7 +104,7 @@ function HomePage() {
                   <Link to="/get-prequalified"><FileCheck className="mr-2 h-5 w-5" /> {t("common.getPrequalified")}</Link>
                 </Button>
                 <Button asChild size="lg" variant="outline" className="border-white/30 bg-white/10 text-white hover:bg-white/20">
-                  <Link to="/contact">{t("common.contact")}</Link>
+                  <Link to="/contact">{t("nav.contact")}</Link>
                 </Button>
               </div>
             </div>
