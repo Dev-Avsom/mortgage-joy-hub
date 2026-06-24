@@ -474,9 +474,9 @@
     "metaDesc": "Real reviews from Ensure Home Loans clients across the US — purchase, refinance, and first-time buyers.",
     "title1": "What",
     "title2": "Clients Say",
-    "rating": "4.9 average from 1,200+ verified reviews",
-    "joinTitle": "Join 1,200+ Happy Homeowners",
-    "joinBody": "Get pre-qualified in 5 minutes. Soft credit pull, no obligation."
+    "rating": "Verified borrower reviews",
+    "joinTitle": "Join Our Happy Homeowners",
+    "joinBody": "Start a pre-qualification request online in minutes. Pre-qualification is subject to review."
   },
   "press": {
     "metaTitle": "Press & Media — Ensure Home Loans",
@@ -492,7 +492,7 @@
     "brandAssetsBody": "Logos, photos, and company fact sheet.",
     "requestAssets": "Request assets",
     "aboutHeading": "About {{brand}}",
-    "aboutBody": "{{brand}} ({{nmls}}) is your one-stop shop for home loans, partnering with 250+ licensed Mortgage Loan Originators across 29+ states and 40+ lenders to deliver the right loan at the right price."
+    "aboutBody": "{{brand}} ({{nmls}}) is your one-stop shop for home loans, partnering with licensed Mortgage Loan Originators and an approved wholesale lender network to deliver loan options based on your profile and underwriting."
   },
   "careers": {
     "metaTitle": "Careers — Ensure Home Loans",
@@ -515,10 +515,10 @@
   "join": {
     "metaTitle": "Join Our MLO Network — Ensure Home Loans",
     "metaDesc": "Become an MLO partner. Better pricing, more flexibility, full operational support.",
-    "title": "Join 250+ MLOs at Ensure Home Loans",
-    "subtitle": "More flexibility. Better pricing. Real operational support — across 29+ states.",
+    "title": "Join Our MLO Network at Ensure Home Loans",
+    "subtitle": "More flexibility. Better pricing. Real operational support.",
     "perkPricing": "Sharper pricing",
-    "perkPricingBody": "40+ lender relationships means we shop your loans for the best execution.",
+    "perkPricingBody": "Approved wholesale lender network means we review available loan options for each file.",
     "perkSupport": "Real support",
     "perkSupportBody": "Processing, marketing, and tech — so you can focus on borrowers.",
     "perkBrand": "Trusted brand",
