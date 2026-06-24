@@ -54,8 +54,8 @@ function Press() {
           <h2 className="font-semibold">About {siteConfig.brand}</h2>
           <p className="mt-2 text-sm text-muted-foreground">
             {siteConfig.brand} ({siteConfig.nmlsId}) is your one-stop shop for home loans, partnering
-            with 250+ licensed Mortgage Loan Originators across 29+ states and 40+ lenders to deliver
-            the right loan at the right price.
+            with licensed Mortgage Loan Originators and an approved wholesale lender network to deliver
+            loan options based on each borrower's profile and underwriting.
           </p>
         </div>
       </section>
