@@ -151,7 +151,22 @@ export function CallbackWidget() {
                 <option>Tomorrow morning</option>
               </select>
             </div>
-            <Button type="submit" disabled={sending} className="w-full">
+            <div className="flex items-start gap-2">
+              <Checkbox
+                id="cb-consent"
+                checked={consent}
+                onCheckedChange={(c) => setConsent(c === true)}
+                className="mt-0.5"
+              />
+              <Label htmlFor="cb-consent" className="cursor-pointer text-[11px] leading-tight text-muted-foreground">
+                I agree to the{" "}
+                <Link to="/privacy" className="underline hover:text-foreground">Privacy Policy</Link>,{" "}
+                <Link to="/terms" className="underline hover:text-foreground">Terms of Service</Link>, and{" "}
+                <Link to="/tcpa" className="underline hover:text-foreground">TCPA Consent</Link>.{" "}
+                I consent to be contacted by phone and text at the number provided. Message and data rates may apply.
+              </Label>
+            </div>
+            <Button type="submit" disabled={sending || !consent} className="w-full">
               {sending ? "Sending…" : <><Phone className="mr-1.5 h-3.5 w-3.5" /> Request My Callback</>}
             </Button>
             <button
