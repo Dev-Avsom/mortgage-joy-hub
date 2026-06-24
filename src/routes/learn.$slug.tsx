@@ -105,7 +105,7 @@ function ArticlePage() {
 
       <div className="mt-12 rounded-2xl p-8 text-white" style={{ background: "var(--gradient-hero)" }}>
         <h3 className="text-2xl font-bold">Ready to take the next step?</h3>
-        <p className="mt-2 text-white/85">Get pre-qualified in 60 seconds. No credit pull, no obligation.</p>
+        <p className="mt-2 text-white/85">Start a pre-qualification request online in minutes. Pre-qualification is subject to review.</p>
         <Button asChild size="lg" className="mt-4 bg-white text-primary hover:bg-white/90">
           <Link to="/get-prequalified">
             Get Pre-Qualified <ArrowRight className="ml-2 h-4 w-4" />
