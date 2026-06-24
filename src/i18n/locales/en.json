@@ -158,7 +158,7 @@
   },
   "rateQuote": {
     "title": "Get Today's Rate",
-    "subtitle": "Compare live rates in 60 seconds",
+    "subtitle": "Review available rate options",
     "loanAmount": "Loan amount",
     "creditScore": "Credit score",
     "loanType": "Loan type",
@@ -180,9 +180,9 @@
   },
   "stickyCTA": {
     "title": "Ready to start?",
-    "subtitle": "Get pre-qualified in 5 minutes."
+    "subtitle": "Start a pre-qualification request online in minutes."
   },
-  "bestRate": "Best Rate Today",
+  "bestRate": "Available Rate Options",
   "comparison": {
     "title": "Compare Loan Programs Side by Side",
     "subtitle": "Find the right loan for your situation",
@@ -195,7 +195,7 @@
     "title": "Your Path to Closing",
     "subtitle": "From application to keys — what to expect at every step.",
     "step1Title": "Pre-qualify",
-    "step1Body": "Soft credit check, basic income info. Takes 5 minutes.",
+    "step1Body": "Soft credit check and basic income info. Pre-qualification is subject to review.",
     "step2Title": "Find your home",
     "step2Body": "Shop with confidence using your pre-qualification letter.",
     "step3Title": "Submit application",
