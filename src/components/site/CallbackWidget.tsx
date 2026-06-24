@@ -36,6 +36,7 @@ export function CallbackWidget() {
   const [sending, setSending] = useState(false);
   const [agent, setAgent] = useState(AGENTS[0]);
   const [online, setOnline] = useState(false);
+  const [consent, setConsent] = useState(false);
 
   useEffect(() => {
     setAgent(AGENTS[Math.floor(Math.random() * AGENTS.length)]);
@@ -44,6 +45,10 @@ export function CallbackWidget() {
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (!consent) {
+      toast.error("Please agree to the consent terms to proceed.");
+      return;
+    }
     const fd = new FormData(e.currentTarget);
     const parsed = schema.safeParse({
       name: fd.get("name"),
