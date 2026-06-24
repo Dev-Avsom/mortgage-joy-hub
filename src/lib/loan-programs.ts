@@ -24,7 +24,7 @@ export const LOAN_PROGRAMS: LoanProgram[] = [
     highlights: [
       { label: "Min down payment", value: "3%" },
       { label: "Min credit score", value: "620" },
-      { label: "Max loan (2025)", value: "$806,500" },
+      { label: "Max loan", value: "Varies by county — contact a loan officer for current limits" },
       { label: "PMI", value: "Removable at 80% LTV" },
     ],
     requirements: [
@@ -51,7 +51,7 @@ export const LOAN_PROGRAMS: LoanProgram[] = [
     highlights: [
       { label: "Min down payment", value: "3.5%" },
       { label: "Min credit score", value: "580" },
-      { label: "Max loan (most areas)", value: "$524,225" },
+      { label: "Max loan", value: "Varies by county — contact a loan officer for current limits" },
       { label: "Mortgage Insurance", value: "Upfront 1.75% + monthly" },
     ],
     requirements: [
@@ -101,7 +101,7 @@ export const LOAN_PROGRAMS: LoanProgram[] = [
     tagline: "Financing above conforming loan limits for higher‑value properties.",
     description:
       "Jumbo loans exceed the conforming loan limit set by Fannie Mae and Freddie Mac. They allow buyers to finance luxury and high‑cost market homes with competitive rates.",
-    bestFor: ["Buyers in high‑cost markets", "Loan amounts above $806,500", "Strong credit & income borrowers"],
+    bestFor: ["Buyers in high‑cost markets", "Loan amounts above the conforming loan limit", "Strong credit & income borrowers"],
     highlights: [
       { label: "Min down payment", value: "10%" },
       { label: "Min credit score", value: "700" },
@@ -109,7 +109,7 @@ export const LOAN_PROGRAMS: LoanProgram[] = [
       { label: "Reserves", value: "6–12 months typical" },
     ],
     requirements: [
-      "Credit score 700 or higher (740+ for best rates)",
+      "Credit score 700 or higher (740+ for the most competitive rate options)",
       "DTI under 43%",
       "Cash reserves of 6–12 months PITI",
       "Two appraisals may be required for loans > $1M",
@@ -171,7 +171,7 @@ export const LOAN_PROGRAMS: LoanProgram[] = [
     pros: ["No personal income docs (no W‑2, tax returns)", "No DTI calculation", "Unlimited number of properties", "Fast closings (3–4 weeks)"],
     cons: ["Higher rates than conventional", "Larger down payment required", "Investment properties only"],
     faqs: [
-      { q: "What DSCR ratio do I need?", a: "Most programs require a DSCR of 1.00 (rent equals payment) or higher. The best rates are at 1.25+." },
+      { q: "What DSCR ratio do I need?", a: "Most programs require a DSCR of 1.00 (rent equals payment) or higher. The most competitive rate options are typically at 1.25+." },
       { q: "Can I close in my LLC?", a: "Yes — DSCR loans are designed for entity ownership and we can close in your LLC, LP, or trust." },
     ],
   },
