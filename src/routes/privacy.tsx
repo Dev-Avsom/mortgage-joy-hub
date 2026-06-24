@@ -12,7 +12,7 @@ export const Route = createFileRoute("/privacy")({
     ],
   }),
   component: () => (
-    <article className="prose prose-slate mx-auto max-w-3xl px-4 py-12 dark:prose-invert">
+    <article className="mx-auto max-w-3xl px-4 py-12 leading-relaxed [&_p]:mb-4 [&_h1]:mb-4 [&_h1]:mt-8 [&_h1]:text-3xl [&_h1]:font-bold [&_h2]:mb-3 [&_h2]:mt-10 [&_h2]:text-2xl [&_h2]:font-semibold [&_h3]:mb-2 [&_h3]:mt-6 [&_h3]:text-xl [&_h3]:font-semibold [&_ul]:mb-4 [&_ul]:list-disc [&_ul]:pl-6 [&_li]:mb-1 [&_a]:text-primary [&_a]:underline [&_table]:my-6">
       <h1>Privacy Policy and Consumer Financial Privacy Notice</h1>
       <p className="text-sm text-muted-foreground">
         Effective Date: {EFFECTIVE_DATE} | Last Revised: {LAST_REVISED}
