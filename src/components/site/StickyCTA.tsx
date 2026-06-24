@@ -7,10 +7,10 @@ import agent3 from "@/assets/agent-3.jpg";
 import agent4 from "@/assets/agent-4.jpg";
 
 const AGENTS = [
-  { photo: agent1, name: "Sarah", title: "Senior Loan Officer", reply: "~2 min" },
-  { photo: agent2, name: "Diego", title: "Mortgage Advisor", reply: "~3 min" },
-  { photo: agent3, name: "Amara", title: "Loan Officer", reply: "~2 min" },
-  { photo: agent4, name: "Mark", title: "Branch Manager · NMLS", reply: "~4 min" },
+  { photo: agent1, name: "Loan Officer Team", title: "Licensed Loan Officer Team", reply: "shortly" },
+  { photo: agent2, name: "Loan Officer Team", title: "Licensed Loan Officer Team", reply: "shortly" },
+  { photo: agent3, name: "Loan Officer Team", title: "Licensed Loan Officer Team", reply: "shortly" },
+  { photo: agent4, name: "Loan Officer Team", title: "Licensed Loan Officer Team", reply: "shortly" },
 ];
 
 export function StickyCTA() {

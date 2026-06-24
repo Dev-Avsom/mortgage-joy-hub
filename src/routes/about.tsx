@@ -12,9 +12,9 @@ export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
       { title: "About — Ensure Home Loans" },
-      { name: "description", content: "Ensure Home Loans (NMLS #1666674) — your one stop shop for home loans. 250+ MLO partners across 29+ states, backed by 40+ reputable lenders." },
+      { name: "description", content: "Ensure Home Loans (NMLS #1666674) — your one stop shop for home loans. Licensed in multiple states with an approved wholesale lender network." },
       { property: "og:title", content: "About Ensure Home Loans" },
-      { property: "og:description", content: "250+ MLO partners. 29+ states. 40+ lender relationships." },
+      { property: "og:description", content: "Licensed in multiple states. Approved wholesale lender network." },
     ],
   }),
   component: AboutPage,
@@ -32,9 +32,10 @@ function AboutPage() {
             <span className="eyebrow">About us</span>
             <h1 className="mt-4 text-4xl font-bold tracking-tight md:text-5xl">About <span className="gradient-text">Ensure Home Loans</span></h1>
             <p className="mt-4 max-w-3xl text-lg text-muted-foreground">
-              Ensure Home Loans is your one stop shop for home loans. We partner with 250+ licensed
-              Mortgage Loan Originators across 29+ states, backed by 40+ reputable lender relationships —
-              so every borrower gets the right loan at the right price, the first time.
+              Ensure Home Loans is your one stop shop for home loans. We partner with licensed
+              Mortgage Loan Originators and an approved wholesale lender network — so every borrower
+              can review available loan options from a licensed team. Licensing information is
+              available through NMLS Consumer Access.
             </p>
           </Reveal>
         </div>
@@ -100,7 +101,7 @@ function AboutPage() {
         {[
           { icon: Heart, title: "MLO-first model", body: "We don't employ — we partner with MLOs. That means more flexibility, better pricing, and personal service." },
           { icon: ShieldCheck, title: "Every loan, one place", body: "Conventional, Non-QM, Jumbo, DSCR, Bank Statement, Hard Money, Construction, Commercial — you name it." },
-          { icon: Award, title: "40+ lender network", body: "We shop your loan across our entire network so you always get the sharpest rate and structure." },
+          { icon: Award, title: "Approved lender network", body: "We review available loan options from our approved lender network." },
         ].map((v, i) => (
           <Reveal key={v.title} delay={i * 100}>
             <div className="card-elevated rounded-xl p-6 h-full">
@@ -134,7 +135,7 @@ function AboutPage() {
       <div className="cta-banner relative mt-12 p-8 md:p-10">
         <div className="relative z-10">
         <h2 className="text-2xl font-bold">Want to Partner With Us as an MLO?</h2>
-          <p className="mt-2 text-primary-foreground/80">Join 250+ MLOs across 29+ states. Or talk to us about your home loan today.</p>
+          <p className="mt-2 text-primary-foreground/80">Join our MLO network. Or talk to us about your home loan today.</p>
           <div className="mt-4 flex flex-wrap gap-2">
             <Button asChild size="lg" className="bg-[oklch(0.84_0.13_75)] text-[oklch(0.2_0.05_40)] hover:opacity-90"><Link to="/join">Become an MLO partner</Link></Button>
             <Button asChild size="lg" variant="outline" className="border-white/30 bg-transparent text-white hover:bg-white/10"><Link to="/contact">Contact us</Link></Button>

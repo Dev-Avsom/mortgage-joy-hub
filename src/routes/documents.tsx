@@ -12,7 +12,7 @@ import type { User } from "@supabase/supabase-js";
 export const Route = createFileRoute("/documents")({
   head: () => ({
     meta: [
-      { title: "Secure Document Upload — HomeBridge Mortgage" },
+      { title: "Secure Document Upload — Ensure Home Loans" },
       { name: "description", content: "Securely upload your loan documents — W-2s, paystubs, bank statements, and ID — for pre-approval." },
     ],
   }),

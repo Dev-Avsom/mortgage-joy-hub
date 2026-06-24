@@ -1,11 +1,11 @@
 import { Reveal } from "./Reveal";
-import { AnimatedCounter } from "./AnimatedCounter";
+import { ShieldCheck, Network, Users, Star } from "lucide-react";
 
 const STATS = [
-  { to: 260, suffix: "+", label: "MLO partners" },
-  { to: 29, suffix: "+", label: "States served" },
-  { to: 10000, suffix: "+", label: "Families helped" },
-  { to: 4.9, decimals: 1, suffix: "★", label: "Average rating" },
+  { icon: ShieldCheck, label: "Licensed in multiple states" },
+  { icon: Network, label: "Approved wholesale lender network" },
+  { icon: Users, label: "Licensed Mortgage Loan Originators" },
+  { icon: Star, label: "Verified borrower reviews" },
 ];
 
 export function StatsCounters() {
@@ -16,14 +16,13 @@ export function StatsCounters() {
           {STATS.map((s, i) => (
             <Reveal key={s.label} delay={i * 80}>
               <div className="text-center">
-                <div className="text-3xl font-bold tracking-tight text-primary md:text-4xl">
-                  <AnimatedCounter to={s.to} suffix={s.suffix} decimals={s.decimals ?? 0} />
-                </div>
-                <p className="mt-1 text-sm text-muted-foreground">{s.label}</p>
+                <s.icon className="mx-auto h-8 w-8 text-primary" />
+                <p className="mt-3 text-sm font-medium text-foreground">{s.label}</p>
               </div>
             </Reveal>
           ))}
         </div>
+        <p className="mt-6 text-center text-xs text-muted-foreground">Licensing information is available through NMLS Consumer Access.</p>
       </div>
     </section>
   );

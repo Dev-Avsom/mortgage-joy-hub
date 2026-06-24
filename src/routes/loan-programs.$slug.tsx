@@ -18,9 +18,9 @@ export const Route = createFileRoute("/loan-programs/$slug")({
     if (!p) return { meta: [{ title: "Loan Program" }] };
     return {
       meta: [
-        { title: `${p.name} — HomeBridge Mortgage` },
+        { title: `${p.name} — Ensure Home Loans` },
         { name: "description", content: p.tagline },
-        { property: "og:title", content: `${p.name} — HomeBridge Mortgage` },
+        { property: "og:title", content: `${p.name} — Ensure Home Loans` },
         { property: "og:description", content: p.tagline },
       ],
     };

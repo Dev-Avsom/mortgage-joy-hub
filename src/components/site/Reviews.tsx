@@ -32,8 +32,8 @@ export function Reviews() {
               <Star key={i} className="h-5 w-5 fill-current" />
             ))}
           </div>
-          <h2 className="mt-3 text-3xl font-bold">Rated 4.9 / 5 by 1,200+ Borrowers</h2>
-          <p className="mt-2 text-muted-foreground">Real reviews from homeowners across the US.</p>
+          <h2 className="mt-3 text-3xl font-bold">What Our Borrowers Say</h2>
+          <p className="mt-2 text-muted-foreground">Reviews from homeowners we've worked with.</p>
         </div>
         <div className="mt-10 grid gap-5 md:grid-cols-3">
           {reviews.map((r) => (
@@ -50,22 +50,6 @@ export function Reviews() {
           ))}
         </div>
       </div>
-      {/* AggregateRating JSON-LD */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FinancialService",
-            name: "HomeBridge Mortgage",
-            aggregateRating: {
-              "@type": "AggregateRating",
-              ratingValue: "4.9",
-              reviewCount: "1200",
-            },
-          }),
-        }}
-      />
     </section>
   );
 }

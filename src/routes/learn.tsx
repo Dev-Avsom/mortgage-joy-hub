@@ -6,7 +6,7 @@ import { BookOpen, Clock } from "lucide-react";
 export const Route = createFileRoute("/learn")({
   head: () => ({
     meta: [
-      { title: "Learning Center — HomeBridge Mortgage" },
+      { title: "Learning Center — Ensure Home Loans" },
       { name: "description", content: "Free mortgage guides: first-time buyers, FHA vs conventional, when to refinance, and more." },
       { property: "og:title", content: "Mortgage Learning Center" },
       { property: "og:description", content: "Plain-English guides on home loans, refinance, and credit." },

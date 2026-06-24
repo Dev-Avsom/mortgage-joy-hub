@@ -24,7 +24,7 @@ const TONES = ["brand", "gold", "teal", "rose", "violet"] as const;
 export const Route = createFileRoute("/loan-programs/")({
   head: () => ({
     meta: [
-      { title: "Loan Programs — HomeBridge Mortgage" },
+      { title: "Loan Programs — Ensure Home Loans" },
       { name: "description", content: "Conventional, FHA, VA, Jumbo, USDA, and Refinance loan programs to fit every buyer." },
     ],
   }),

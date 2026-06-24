@@ -4,7 +4,7 @@ import { siteConfig } from "@/lib/site-config";
 export const Route = createFileRoute("/accessibility")({
   head: () => ({
     meta: [
-      { title: "Accessibility Statement — HomeBridge Mortgage" },
+      { title: "Accessibility Statement — Ensure Home Loans" },
       { name: "description", content: "Our commitment to digital accessibility for users of all abilities." },
     ],
   }),

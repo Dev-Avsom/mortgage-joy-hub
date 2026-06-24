@@ -10,7 +10,7 @@ import { toast } from "sonner";
 import { Lock } from "lucide-react";
 
 export const Route = createFileRoute("/admin/login")({
-  head: () => ({ meta: [{ title: "Admin Login — HomeBridge Mortgage" }, { name: "robots", content: "noindex" }] }),
+  head: () => ({ meta: [{ title: "Admin Login — Ensure Home Loans" }, { name: "robots", content: "noindex" }] }),
   component: LoginPage,
 });
 

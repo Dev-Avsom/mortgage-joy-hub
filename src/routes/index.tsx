@@ -1,9 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Users, ShieldCheck, TrendingDown, ArrowRight, FileCheck, Star, CheckCircle2, TrendingUp, Sparkles } from "lucide-react";
+import { Users, ShieldCheck, TrendingDown, ArrowRight, FileCheck, CheckCircle2, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/lib/site-config";
 import { Reviews } from "@/components/site/Reviews";
-import { RateQuoteWidget } from "@/components/site/RateQuoteWidget";
 
 import { GradientOrb } from "@/components/site/GradientOrb";
 import { Reveal } from "@/components/site/Reveal";
@@ -16,9 +15,9 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Ensure Home Loans — Your One Stop Shop for Home Loans" },
-      { name: "description", content: "Ensure Home Loans (NMLS #1666674): Conventional, Non-QM, Jumbo, DSCR, Bank Statement, Hard Money, Construction & Commercial. 250+ MLO partners across 29+ states." },
+      { name: "description", content: "Ensure Home Loans (NMLS #1666674): Conventional, Non-QM, Jumbo, DSCR, Bank Statement, Hard Money, Construction & Commercial. Licensed in multiple states." },
       { property: "og:title", content: "Ensure Home Loans — Your One Stop Shop for Home Loans" },
-      { property: "og:description", content: "Conventional, Non-QM, Jumbo, DSCR, Bank Statement, Hard Money, Construction & Commercial loans. Licensed in 29+ states with 250+ MLO partners." },
+      { property: "og:description", content: "Conventional, Non-QM, Jumbo, DSCR, Bank Statement, Hard Money, Construction & Commercial loans. Licensed in multiple states." },
     ],
   }),
   component: HomePage,
@@ -86,51 +85,28 @@ function HomePage() {
                 </Link>
               </Button>
             </div>
-            <div className="animate-fade-in-up mt-8 flex flex-wrap items-center gap-5 border-t border-white/15 pt-6 text-sm" style={{ animationDelay: "480ms" }}>
+            <div className="animate-fade-in-up mt-8 flex flex-wrap items-center gap-5 border-t border-white/15 pt-6 text-sm text-white/80" style={{ animationDelay: "480ms" }}>
               <div className="flex items-center gap-2">
-              <div className="flex -space-x-2">
-                {[
-                  { bg: "oklch(0.84 0.13 75)", initials: "SM" },
-                  { bg: "oklch(0.7 0.15 30)", initials: "DR" },
-                  { bg: "oklch(0.65 0.18 260)", initials: "AK" },
-                  { bg: "oklch(0.7 0.15 180)", initials: "MJ" },
-                ].map((a, i) => (
-                  <div
-                    key={i}
-                    className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-[oklch(0.2_0.05_255)] text-[10px] font-bold text-white/95"
-                    style={{ background: a.bg }}
-                  >
-                    {a.initials}
-                  </div>
-                ))}
-              </div>
-                <div className="text-white/85">
-                  <div className="flex items-center gap-1">
-                    {[...Array(5)].map((_, i) => <Star key={i} className="h-3.5 w-3.5 fill-[oklch(0.84_0.13_75)] text-[oklch(0.84_0.13_75)]" />)}
-                    <span className="ml-1 font-semibold">4.9</span>
-                  </div>
-                  <div className="text-xs text-white/65">{t("home.rated")}</div>
-                </div>
-              </div>
-              <div className="hidden h-10 w-px bg-white/15 sm:block" />
-              <div className="flex items-center gap-2 text-white/85">
-                <TrendingUp className="h-5 w-5 text-[oklch(0.84_0.13_75)]" />
-                <div>
-                  <div className="font-semibold">
-                    <span className="rounded-md bg-[oklch(0.84_0.13_75)] px-1.5 py-0.5 text-[oklch(0.2_0.05_255)]">
-                      Nearing
-                    </span>{" "}
-                    {t("home.funded")}
-                  </div>
-                  <div className="text-xs text-white/65">{t("home.fundedSub")}</div>
-                </div>
+                <ShieldCheck className="h-5 w-5 text-[oklch(0.84_0.13_75)]" />
+                <span>{t("home.fundedSub")} · {siteConfig.nmlsId}</span>
               </div>
             </div>
           </div>
           <div className="animate-scale-in relative" style={{ animationDelay: "300ms" }}>
             <div aria-hidden className="absolute -inset-3 rounded-3xl bg-white/5 blur-2xl" />
-            <div className="relative">
-              <RateQuoteWidget />
+            <div className="relative rounded-2xl border border-white/15 bg-white/5 p-8 text-white backdrop-blur">
+              <h2 className="text-2xl font-semibold">Start a pre-qualification request</h2>
+              <p className="mt-3 text-sm text-white/80">
+                Start online in minutes. Pre-qualification is subject to review and is not a loan approval or commitment to lend. Actual rates, terms, and fees depend on credit profile, loan program, loan amount, property type, occupancy, market conditions, and underwriting approval.
+              </p>
+              <div className="mt-5 flex flex-wrap gap-2">
+                <Button asChild size="lg" className="bg-[oklch(0.84_0.13_75)] text-[oklch(0.2_0.05_255)] hover:opacity-90">
+                  <Link to="/get-prequalified"><FileCheck className="mr-2 h-5 w-5" /> {t("common.getPrequalified")}</Link>
+                </Button>
+                <Button asChild size="lg" variant="outline" className="border-white/30 bg-white/10 text-white hover:bg-white/20">
+                  <Link to="/contact">{t("nav.contact")}</Link>
+                </Button>
+              </div>
             </div>
           </div>
         </div>

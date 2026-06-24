@@ -10,7 +10,7 @@ import { Home as HomeIcon, ArrowRight } from "lucide-react";
 export const Route = createFileRoute("/affordability")({
   head: () => ({
     meta: [
-      { title: "How Much House Can I Afford? — HomeBridge Mortgage" },
+      { title: "How Much House Can I Afford? — Ensure Home Loans" },
       { name: "description", content: "Free affordability calculator. See your maximum home price based on income, debts, and down payment." },
       { property: "og:title", content: "How Much House Can I Afford?" },
       { property: "og:description", content: "Calculate your max home price using the 28/36 DTI rule." },

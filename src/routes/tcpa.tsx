@@ -4,7 +4,7 @@ import { siteConfig } from "@/lib/site-config";
 export const Route = createFileRoute("/tcpa")({
   head: () => ({
     meta: [
-      { title: "TCPA Consent — HomeBridge Mortgage" },
+      { title: "TCPA Consent — Ensure Home Loans" },
       { name: "description", content: "Telephone Consumer Protection Act consent disclosure." },
     ],
   }),

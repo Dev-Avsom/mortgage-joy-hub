@@ -10,9 +10,9 @@ import { SectionHeading } from "@/components/site/SectionHeading";
 export const Route = createFileRoute("/process")({
   head: () => ({
     meta: [
-      { title: "How It Works — HomeBridge Mortgage" },
+      { title: "How It Works — Ensure Home Loans" },
       { name: "description", content: "Our 5-step mortgage process: pre-qualification, application, underwriting, appraisal, and closing." },
-      { property: "og:title", content: "How It Works — HomeBridge Mortgage" },
+      { property: "og:title", content: "How It Works — Ensure Home Loans" },
       { property: "og:description", content: "From pre-qualification to keys in 21–30 days." },
     ],
   }),

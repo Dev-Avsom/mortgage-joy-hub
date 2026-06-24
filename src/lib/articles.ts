@@ -60,15 +60,14 @@ If your credit is 700+ and you have 5%+ down, **conventional** is usually cheape
 
 ## Credit score
 - **FHA:** 580 minimum (some lenders go to 500).
-- **Conventional:** 620 minimum, 740+ for the best rates.
+- **Conventional:** 620 minimum, 740+ for the most competitive rate options.
 
 ## Mortgage insurance
 - **FHA:** Upfront MIP (1.75% of loan) plus monthly MIP for the life of the loan if you put less than 10% down.
 - **Conventional:** PMI only if you put down less than 20%, and it drops off automatically at 78% LTV.
 
-## Loan limits (2025)
-- **FHA:** $524,225 in most areas, up to $1,209,750 in high-cost counties.
-- **Conventional:** $806,500 conforming, higher in high-cost areas.
+## Loan limits
+Loan limits vary by county and change annually. Contact a licensed loan officer for current limits.
 
 ## When FHA wins
 - Lower credit (580–680)

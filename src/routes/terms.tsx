@@ -4,8 +4,8 @@ import { siteConfig } from "@/lib/site-config";
 export const Route = createFileRoute("/terms")({
   head: () => ({
     meta: [
-      { title: "Terms of Service — HomeBridge Mortgage" },
-      { name: "description", content: "Terms governing your use of the HomeBridge Mortgage website and services." },
+      { title: "Terms of Service — Ensure Home Loans" },
+      { name: "description", content: "Terms governing your use of the Ensure Home Loans website and services." },
     ],
   }),
   component: () => (

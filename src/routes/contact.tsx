@@ -7,7 +7,7 @@ import { LeadForm } from "@/components/site/LeadForm";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact Us — HomeBridge Mortgage" },
+      { title: "Contact Us — Ensure Home Loans" },
       { name: "description", content: "Reach our mortgage team by phone, WhatsApp, email, or contact form." },
     ],
   }),
