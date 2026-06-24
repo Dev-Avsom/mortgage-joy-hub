@@ -7,7 +7,7 @@ export const Route = createFileRoute("/join")({
   head: () => ({
     meta: [
       { title: "Join Our Team — Loan Officer Careers | Ensure Home Loans" },
-      { name: "description", content: "Build your mortgage business with Ensure Home Loans — top splits, in-house ops, marketing, and 230+ lender access." },
+      { name: "description", content: "Build your mortgage business with Ensure Home Loans — top splits, in-house ops, marketing, and access to our approved wholesale lender network." },
     ],
   }),
   component: JoinPage,
@@ -15,7 +15,7 @@ export const Route = createFileRoute("/join")({
 
 const perks = [
   { icon: DollarSign, title: "Industry-leading splits", body: "Up to 275 BPS comp — keep more of every loan you close." },
-  { icon: TrendingUp, title: "230+ wholesale lenders", body: "Beat retail rates and win more deals with broker pricing power." },
+  { icon: TrendingUp, title: "Wholesale lender access", body: "Access to our approved wholesale lender network for competitive pricing." },
   { icon: Headphones, title: "In-house processing", body: "Dedicated processors and underwriting support so you can focus on selling." },
   { icon: Sparkles, title: "Marketing engine", body: "Done-for-you website, CRM, paid ads, and social content." },
   { icon: Users, title: "Mentorship", body: "Weekly coaching from $100M+ producers and a thriving LO community." },
@@ -32,7 +32,7 @@ function JoinPage() {
             Build Your Mortgage Business — Without Giving Up Your Splits.
           </h1>
           <p className="mt-4 max-w-2xl text-lg text-white/85">
-            Top-tier comp, 230+ lender access, real ops support, and marketing that actually drives leads. Join a brokerage that bets on you.
+            Top-tier comp, access to our approved wholesale lender network, real ops support, and marketing that actually drives leads. Join a brokerage that bets on you.
           </p>
         </div>
       </section>
