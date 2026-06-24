@@ -59,7 +59,7 @@
     "noResults": "No results."
   },
   "home": {
-    "badge": "Licensed in multiple states · NMLS {{nmls}}",
+    "badge": "Licensed in multiple states · {{nmls}}",
     "heroTitle1": "Your Dream Home,",
     "heroTitle2": "Funded Faster",
     "heroSub": "Review <strong>available loan options</strong> through our approved lender network and talk to a licensed loan officer — no spam, no pressure.",
@@ -125,11 +125,11 @@
   },
   "chat": {
     "title": "Talk to a Loan Officer",
-    "onlineMsg": "Online — typically replies in 5 min",
+    "onlineMsg": "Online — typically replies during business hours",
     "offlineMsg": "Offline — we'll reply next business hour",
     "yourMessage": "Your message",
     "messagePlaceholder": "Tell us how we can help…",
-    "sentToast": "Sent! A loan officer will reply within 5 minutes.",
+    "sentToast": "Sent! A licensed loan officer will reply shortly.",
     "errorToast": "Could not send. Try WhatsApp or phone.",
     "validToast": "Please fill all fields with a valid phone & email."
   },
@@ -453,9 +453,9 @@
   },
   "getPrequalified": {
     "metaTitle": "Get Pre-Qualified — Ensure Home Loans",
-    "metaDesc": "Get pre-qualified in 5 minutes with a soft credit pull. No impact to your score.",
+    "metaDesc": "Start a pre-qualification request online with a soft credit pull. Pre-qualification is subject to review.",
     "title": "Get Pre-Qualified",
-    "subtitle": "Soft credit pull. No impact to your score. Takes 5 minutes."
+    "subtitle": "Soft credit pull. Pre-qualification is subject to review and is not a loan approval or commitment to lend."
   },
   "firstTimeBuyer": {
     "metaTitle": "First-Time Buyer Guide — Ensure Home Loans",

@@ -20,7 +20,7 @@ export const Route = createFileRoute("/process")({
 });
 
 const STEPS = [
-  { icon: ClipboardCheck, title: "Pre-qualification", time: "5 minutes", body: "Share basic info — income, assets, target price. Soft credit pull, no impact to your score. We send a Loan Estimate so you can shop with confidence." },
+  { icon: ClipboardCheck, title: "Pre-qualification", time: "Same day", body: "Share basic info — income, assets, target price. Soft credit pull, no impact to your score. Pre-qualification is subject to review and is not a loan approval or commitment to lend." },
   { icon: FileText, title: "Application & docs", time: "1–3 days", body: "Once you're under contract (or ready to refi), we collect W-2s, pay stubs, bank statements, and ID. Most clients upload everything from their phone." },
   { icon: Search, title: "Underwriting", time: "5–10 days", body: "Our underwriting team verifies income, assets, and credit. We order title and homeowners insurance. You'll get a clear list of any conditions to clear." },
   { icon: Home, title: "Appraisal & approval", time: "7–14 days", body: "An independent appraiser confirms the home's value. Once cleared, we issue your final approval — the Clear to Close." },
@@ -69,7 +69,7 @@ function ProcessPage() {
       <div className="cta-banner relative mt-10 p-8 md:p-10">
         <div className="relative z-10">
           <h2 className="text-2xl font-bold">Ready to Start Step 1?</h2>
-          <p className="mt-2 text-primary-foreground/80">Pre-qualification takes 5 minutes and won't impact your credit.</p>
+          <p className="mt-2 text-primary-foreground/80">Start a pre-qualification request online. Pre-qualification is subject to review.</p>
           <Button asChild size="lg" className="mt-4 bg-[oklch(0.84_0.13_75)] text-[oklch(0.2_0.05_40)] hover:opacity-90"><Link to="/get-prequalified">Get Pre-Qualified</Link></Button>
         </div>
       </div>
