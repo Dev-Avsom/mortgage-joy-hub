@@ -3,7 +3,7 @@ import { Reveal } from "./Reveal";
 import { useInView } from "@/hooks/use-in-view";
 
 const STEPS = [
-  { icon: ClipboardCheck, title: "Apply", body: "5-min pre-qualification, soft credit pull." },
+  { icon: ClipboardCheck, title: "Apply", body: "Start a pre-qualification request online in minutes; subject to review." },
   { icon: FileText, title: "Pre-approve", body: "Upload docs from your phone." },
   { icon: Search, title: "Shop", body: "Hunt with a real Loan Estimate in hand." },
   { icon: Home, title: "Underwrite", body: "We verify, appraise, and clear conditions." },
@@ -18,7 +18,7 @@ export function LoanProcessTimeline() {
         <div className="text-center">
           <p className="text-sm font-semibold uppercase tracking-wider text-primary">The journey</p>
           <h2 className="mt-2 text-3xl font-bold md:text-4xl">From <span className="gradient-text">Apply to Keys</span> in 5 Steps</h2>
-          <p className="mx-auto mt-3 max-w-2xl text-muted-foreground">Most clients close in 21–30 days. Here's the road.</p>
+          <p className="mx-auto mt-3 max-w-2xl text-muted-foreground">Closing timelines vary by loan type, borrower documentation, appraisal, underwriting, title, and investor requirements.</p>
         </div>
       </Reveal>
 
