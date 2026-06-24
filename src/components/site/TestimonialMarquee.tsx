@@ -5,7 +5,7 @@ const QUOTES = [
   { name: "Priya S.", body: "Saved $640/mo on our refinance. Real humans answer the phone." },
   { name: "James O.", body: "VA loan with zero down. Forever grateful." },
   { name: "The Nguyens", body: "Closed at $14k under what we'd budgeted." },
-  { name: "Sarah K.", body: "Self-employed approval in 2 weeks." },
+  { name: "Rachel K.", body: "Self-employed approval handled smoothly." },
   { name: "Carlos M.", body: "On my 4th DSCR loan with them." },
 ];
 

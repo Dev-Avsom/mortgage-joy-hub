@@ -3,7 +3,7 @@ import { Card } from "@/components/ui/card";
 
 const reviews = [
   {
-    name: "Sarah M.",
+    name: "Rachel M.",
     location: "Austin, TX",
     rating: 5,
     body: "Closed in 21 days. The team kept me updated daily and got me a rate 0.5% lower than my bank quoted.",
