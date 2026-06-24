@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
-import { Phone, X, Send, ChevronUp } from "lucide-react";
+import { Phone, X, ChevronUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Link } from "@tanstack/react-router";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { z } from "zod";
